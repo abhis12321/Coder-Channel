@@ -1,4 +1,4 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -24,4 +24,35 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.centre {
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: rgb(84, 28, 28);
+}
+
+.nav-tag {
+  margin: 5px 2px;
+  padding: 14px 40px;
+  /* border: 2px solid black; */
+  border-radius: 15px;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-tag:hover {
+  background-color: black;
+  font-weight: 700;
 }
