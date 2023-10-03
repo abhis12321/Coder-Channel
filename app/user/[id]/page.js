@@ -1,6 +1,7 @@
+'use client'
 import React from 'react'
 
-function page({params }) {
+export default function Page({params }) {
     // console.log(params);
   return (
     <div>
@@ -8,5 +9,3 @@ function page({params }) {
     </div>
   )
 }
-
-export default page

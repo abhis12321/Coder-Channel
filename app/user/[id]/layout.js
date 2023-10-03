@@ -1,6 +1,6 @@
 import React from 'react'
 
-function layout({children}) {
+export default function Layout({children}) {
   return (
     <>
      <h1>layout for [id] page </h1>
@@ -8,5 +8,3 @@ function layout({children}) {
     </>
   )
 }
-
-export default layout

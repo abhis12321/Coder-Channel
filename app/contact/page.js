@@ -1,11 +1,9 @@
 import React from 'react'
 
-function page() {
+export default function Page() {
   return (
     <>
      <h1>It is contact page</h1> 
     </>
   )
 }
-
-export default page

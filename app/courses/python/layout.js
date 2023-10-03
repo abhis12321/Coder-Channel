@@ -1,6 +1,6 @@
 import React from 'react'
 
-function layout({children}) {
+export default function Layout({children}) {
   return (
     <>
      <p>Python course layout</p> 
@@ -8,5 +8,3 @@ function layout({children}) {
     </>
   )
 }
-
-export default layout

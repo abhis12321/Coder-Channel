@@ -4,13 +4,14 @@ import  Link  from 'next/link';
 function NavBar() {
   return (
     <>
-      <nav>
+      <nav className='nav'>
         <Link href="/" className='nav-tag'>Home</Link>
         <Link href="/about" className='nav-tag'>About</Link>
         <Link href="/contact" className='nav-tag'>Contact</Link>
         <Link href="/courses" className='nav-tag'>Courses</Link>
         <Link href="/navigate" className='nav-tag'>Navigate</Link>
         <Link href="/user" className='nav-tag'>Users</Link>
+        <Link href="/news" className='nav-tag'> News</Link>
       </nav>
     </>
   )

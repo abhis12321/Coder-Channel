@@ -35,17 +35,24 @@ body {
   text-align: center;
 }
 
-nav {
+.nav {
   display: flex;
   justify-content: left;
   align-items: center;
   background-color: rgb(84, 28, 28);
+  /* position: fixed;
+  width: 100%;
+  z-index: 2;
+  overflow: hidden; */
+/*   
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0; */
 }
 
 .nav-tag {
   margin: 5px 2px;
   padding: 14px 40px;
-  /* border: 2px solid black; */
   border-radius: 15px;
   color: white;
   font-weight: 600;
@@ -55,4 +62,61 @@ nav {
 .nav-tag:hover {
   background-color: black;
   font-weight: 700;
+}
+
+.news-cant {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+}
+
+.box {
+  top: 0px;
+  border: 2px solid black;
+  background-color: rgb(202, 209, 209);
+}
+
+.news-layout {
+  display: flex;
+  flex-direction: column;
+  height: 50rem;
+  position: sticky;
+}
+
+.news {
+  display: grid;
+  /* grid-template-columns: auto auto auto; */
+  grid-template-columns: 25% 25% 25% 25%;
+  /* grid-template-columns: 33.34% 33.34% 33.33%; */
+  width: 100%;
+}
+
+.news-card {
+  margin: 5px;
+  padding: 7px;
+  border: 2px solid black;
+  background-color: aliceblue;
+}
+
+.news-img {
+  width: 100%;
+  display: inline;
+  text-align: center;
+}
+
+.news-tag {
+  text-shadow: 0px 0px 7px rgb(12, 215, 15);
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  color: red;
+
+}
+
+.news-tag:hover {
+  /* background-color: rgb(255, 255, 0); */
+  font-weight: 800;
+  color: blueviolet;
 }

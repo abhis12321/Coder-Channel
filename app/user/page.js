@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-function Page() {
+export default function Page() {
   const [id , setId] = React.useState('');
   const router = useRouter();
   const handleInput = e => {
@@ -17,5 +17,3 @@ function Page() {
     </>
   )
 }
-
-export default Page

@@ -1,12 +1,10 @@
+// 'use client'
 import React from 'react'
 
-function page({parent}) {
+export default function Page() {
   return (
     <>
-    {parent}
      <h1>It is a Python course</h1> 
     </>
   )
 }
-
-export default page

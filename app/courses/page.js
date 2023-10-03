@@ -1,6 +1,6 @@
 import React from 'react'
 
-function page() {
+export default function Page() {
   return (
     <>
       <div>C</div>
@@ -11,5 +11,3 @@ function page() {
     </>
   )
 }
-
-export default page

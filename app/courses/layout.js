@@ -1,6 +1,6 @@
 import React from 'react';
 
-function layout({children}) {
+export default function Layout({children}) {
   return (
     <>
     {/* layout will render even when it's new folders or children are rendering */}
@@ -9,5 +9,3 @@ function layout({children}) {
     </>
   )
 }
-
-export default layout
