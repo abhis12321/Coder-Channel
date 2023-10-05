@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default async function Page({props}) {
+export default async function Page() {
     
   return (
     <>
