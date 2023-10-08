@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-export async function GET(request) {
+export async function GET(request , props) {
+  // let payload = await request.json();
+  // console.log(payload);
     // const page_str = request.nextUrl.searchParams.get("page");
     // const limit_str = request.nextUrl.searchParams.get("limit");
   
@@ -17,6 +19,14 @@ export async function GET(request) {
     //   results: feedbacks.length,
     //   feedbacks,
     // };
+    // console.log(props);
     const users = [{name:'abhay singh kachhal' , age:21 , id:1} , {name:'abhinav Omer' , age:20 , id:2} , {name:'abhinav verma' , age:21 , id:3}];
     return NextResponse.json(users , {status:200});
+  }
+
+
+  export async function POST(request) {
+    let payload = await request.json();
+    console.log(payload);
+    return NextResponse.json({payload , success:true});
   }

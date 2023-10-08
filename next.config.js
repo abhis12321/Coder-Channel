@@ -5,21 +5,21 @@ const nextConfig = {
         domains:['insidethemagic.net']
     },
 
-    redirects:async () => 
-    [
-        {
-            source:'/about',
-            destination:'/courses',
-            permanent:false,
-        },
+    // redirects:async () => 
+    // [
+    //     {
+    //         source:'/about',
+    //         destination:'/courses',
+    //         permanent:false,
+    //     },
         
-        {
-            source:'/about/:id',
-            destination:'/courses/python',
-            permanent:false,
-        },
+    //     {
+    //         source:'/about/:id',
+    //         destination:'/courses/python',
+    //         permanent:false,
+    //     },
 
-    ]
+    // ]        //when there is any ongoing update 
 }
 
 module.exports = nextConfig
