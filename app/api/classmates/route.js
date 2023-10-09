@@ -36,7 +36,7 @@ export async function GET(request) {
         
         {
             name:'abhishek singh',
-            age:20,
+            age:19,
             id:5,
             branch:'CSE',
             college:"DR. AITH",
@@ -44,7 +44,7 @@ export async function GET(request) {
         
         {
             name:'achutanand shukla',
-            age:23,
+            age:22,
             id:6,
             branch:'CSE',
             college:"DR. AITH",
@@ -52,7 +52,7 @@ export async function GET(request) {
         
         {
             name:'adarsh singh',
-            age:22,
+            age:21,
             id:7,
             branch:'CSE',
             college:"DR. AITH",
