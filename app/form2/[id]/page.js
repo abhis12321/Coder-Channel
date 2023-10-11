@@ -1,7 +1,7 @@
 "use client"
-import React from 'react';
+import React from 'react'
 
-const initial = {
+let initial = {
     email:"",
     name:"",
     age:"",
@@ -15,6 +15,7 @@ const initial = {
     branch:"",
     semester:"",
 }
+
 
 const reduce = (curr , obj)=> {
     switch(obj.ip) {
@@ -42,28 +43,45 @@ const reduce = (curr , obj)=> {
             return {...curr , branch:obj.value};
         case "semester":
             return {...curr , semester:obj.value};
+        case "reset":
+            return {...obj.value};
         default:
-            return curr;
+            return {...initial};
     }
 }
 
-export default function Page() {
+
+
+export default function Page({params}) {
     const [data , dispatch] = React.useReducer(reduce , initial);
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let student = await fetch("http://localhost:3000/api/mongo/form2" , {
-            method:"post",
+        let student = await fetch(`http://localhost:3000/api/mongo/form2/${params.id}` , {
+            method:"put",
             body:JSON.stringify(data),
         }).then(res => res.json());
 
-        // console.log(student); required
+        // console.log(student);
         if(student.success) {
-            alert(`Form submitted & your id is: ${student.id}`);
+            alert(`Student info has been updated successfully for email: ${data.email}`);
         }
         else {
-            alert(`Already an user is resitered with the same Email id: ${data.email}`);
+            alert(`Student info does not updated, Try again!`);
         }
     }
+
+    const getData = async () => {
+        let d = await fetch(`http://localhost:3000/api/mongo/form2/${params.id}`)
+        .then(res => res.json())
+        .then(m => m.data)
+        initial = {...initial , ...d};
+        dispatch({ip:""})
+    }
+    React.useEffect(() => {
+        getData();
+    } , [])
+
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -79,7 +97,8 @@ export default function Page() {
       <input type="text" value = {data.course} onChange={(e)=> dispatch({ip:"course" , value:e.target.value})} className='form-input' placeholder='course' required/>
       <input type="text" value = {data.branch} onChange={(e)=> dispatch({ip:"branch" , value:e.target.value})} className='form-input' placeholder='branch' required/>
       <input type="Number" value = {data.semester} onChange={(e)=> dispatch({ip:"semester" , value:e.target.value})} className='form-input' placeholder='semester' required/>
-      <button type='submit' className='form-input' >submit</button>
+      <button className='form-input' onClick={getData}> Fetch Previous </button>
+      <button type='submit' className='form-input' > update </button>
     </form>
   )
 }

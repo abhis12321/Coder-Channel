@@ -1,7 +1,7 @@
 // 'use client'
 import Link from 'next/link';
 import React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 // import alt from './alt.jpg'
 
 export default async function Page(props) {

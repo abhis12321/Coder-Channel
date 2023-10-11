@@ -132,7 +132,7 @@ body {
 
 .form-cant {
   margin: 1rem auto;
-  padding: 1rem;
+  padding:1rem 0rem 4rem 0rem;
   border-radius: 1rem;
   border: 3px solid black;
   width: 60%;
@@ -140,8 +140,8 @@ body {
 }
 
 .form-tag {
-  color: rgb(255, 0, 0);
-  text-shadow: 1px 1px 2px black;
+  color: white;
+  text-shadow: 3.5px 1px 0px black;
   text-align: center;
 }
 
@@ -153,7 +153,8 @@ body {
   padding: 10px;
   margin: 5px auto;
   text-align: center;
-  background-color: aliceblue;
+  /* color: white; */
+  background-color: rgba(238, 255, 165, 0.335);
   font-size: large;
 }
 button.form-input {

@@ -23,7 +23,7 @@ export default async function Page() {
                         <h2 className="student-info">course: {student.course}</h2>
                         <h2 className="student-info">branch: {student.branch}</h2>
                         <h2 className="student-info">semester: {student.semester}</h2>
-                        <Button />
+                        <Button id = {student._id}/>
                     </div>)
                 })
             }
