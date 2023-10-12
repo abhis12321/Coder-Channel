@@ -1,5 +1,6 @@
 "use client"
-import React from 'react'
+import React from 'react';
+import { useRouter } from 'next/navigation';
 
 let initial = {
     email:"",
@@ -53,6 +54,7 @@ const reduce = (curr , obj)=> {
 
 
 export default function Page({params}) {
+    const router = useRouter();
     const [data , dispatch] = React.useReducer(reduce , initial);
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -68,6 +70,8 @@ export default function Page({params}) {
         else {
             alert(`Student info does not updated, Try again!`);
         }
+
+        router.push("/students");
     }
 
     const getData = async () => {
@@ -84,7 +88,7 @@ export default function Page({params}) {
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} onReset={getData}>
       <input type="text" value = {data.email} onChange={(e)=> dispatch({ip:"email" , value:e.target.value})} className='form-input' placeholder='email' required/>
       <input type="text" value = {data.name} onChange={(e)=> dispatch({ip:"name" , value:e.target.value})} className='form-input' placeholder='Name' required/>
       <input type="Number" value = {data.age} onChange={(e)=> dispatch({ip:"age" , value:e.target.value})} className='form-input' placeholder='age' required/>
@@ -97,7 +101,7 @@ export default function Page({params}) {
       <input type="text" value = {data.course} onChange={(e)=> dispatch({ip:"course" , value:e.target.value})} className='form-input' placeholder='course' required/>
       <input type="text" value = {data.branch} onChange={(e)=> dispatch({ip:"branch" , value:e.target.value})} className='form-input' placeholder='branch' required/>
       <input type="Number" value = {data.semester} onChange={(e)=> dispatch({ip:"semester" , value:e.target.value})} className='form-input' placeholder='semester' required/>
-      <button className='form-input' onClick={getData}> Fetch Previous </button>
+      <button className='form-input' type="reset"> Fetch Previous </button>
       <button type='submit' className='form-input' > update </button>
     </form>
   )

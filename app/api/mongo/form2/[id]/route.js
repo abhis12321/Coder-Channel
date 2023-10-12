@@ -3,7 +3,17 @@ import {mongoUrl , Student} from '/mongo/exp';
 import mongoose from "mongoose";
 
 export async function GET(req , {params}) {
-    let data = await Student.findOne({_id:params.id})
+    let data;
+    try {
+        await mongoose.connect(mongoUrl);
+        data = await Student.findOne({_id:params.id})
+        // console.log(data);
+    }
+    catch(err) {
+        // console.log(err);
+        data = {name:"unknown"}
+    }
+    
     return NextResponse.json({data , success:true});
 }
 

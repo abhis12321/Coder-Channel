@@ -62,6 +62,7 @@ export default function Page() {
         <input type="text" value={data.school} placeholder='School Name' onChange={(e) => handleChange({value:e.target.value ,inp: "school"})}  className='form-input' required/>
         <input type="text" value={data.branch} placeholder='Branch' onChange={(e) => handleChange({value:e.target.value ,inp: "branch"})} className='form-input' required/>
         <input type="Number" value={data.year} placeholder='Year' onChange={(e) => handleChange({value:e.target.value ,inp: "year"})} className='form-input' required/>
+        <input type="file" className='form-input cursor' required/>
         <button type='submit' className='form-input'>submit</button>
     </form>
   )

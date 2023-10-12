@@ -1,4 +1,4 @@
-import Button from './Button'
+import Link from 'next/link';
 export default async function Page() {
     let students = await fetch('http://localhost:3000/api/mongo/form2')
     .then(res => res.json())
@@ -7,6 +7,9 @@ export default async function Page() {
     return (
         <>
             <div className="student-cant">
+                {/* <div className="student" id='flex'> */}
+                    <Link href={"form2"} className="student" id='flex'>Add New Students</Link>
+                {/* </div> */}
             {
                 (students.found).map(student => {
                     return (
@@ -23,7 +26,7 @@ export default async function Page() {
                         <h2 className="student-info">course: {student.course}</h2>
                         <h2 className="student-info">branch: {student.branch}</h2>
                         <h2 className="student-info">semester: {student.semester}</h2>
-                        <Button id = {student._id}/>
+                        <Link href={`/form2/${student._id}`} > update </Link>
                     </div>)
                 })
             }
