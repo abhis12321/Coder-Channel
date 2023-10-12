@@ -1,8 +1,7 @@
 // 'use client'
-import Link from 'next/link';
 import React from 'react';
 // import Image from 'next/image';
-// import alt from './alt.jpg'
+import NewsCard from './NewsCard'
 
 export default async function Page(props) {
     const {newsTag} = props.params;
@@ -25,18 +24,6 @@ export default async function Page(props) {
 
 
 
-
-export const NewsCard = ({post}) => {
-    return (
-        <div className='news-card'>
-            <img src={post.urlToImage} alt='./alt.jpg' className='news-img'/>
-            {/* <Image src={post.urlToImage} alt='./alt.jpg' className='news-img' width='100' height='100'/> */}
-            <h2 className='news-title'>{post.title}</h2>
-            <p className='news-content'>{post.content}</p>
-            <Link href={post.url} target='blank'>See full News</Link>
-        </div>
-    )
-}
 
 const data = async (tag) => {
     let date1 =  new Date();
