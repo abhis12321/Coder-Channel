@@ -1,7 +1,8 @@
 export default async function Page() {
-    let student = await fetch('https://abhis12321.github.io/first-next-app/api/classmates');
-    student = await student.json();
-    student = student[0];
+    let student = {name:"" , age:"" , id:""}
+    // let student = await fetch('https://abhis12321.github.io/first-next-app/api/classmates');
+    // student = await student.json();
+    // student = student[0];
     return(
         <>
             <h1>student details</h1>

@@ -58,10 +58,11 @@ export default function Page({params}) {
     const [data , dispatch] = React.useReducer(reduce , initial);
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let student = await fetch(`https://abhis12321.github.io/first-next-app/api/mongo/form2/${params.id}` , {
-            method:"put",
-            body:JSON.stringify(data),
-        }).then(res => res.json());
+        let student = {success:true}
+        // let student = await fetch(`https://abhis12321.github.io/first-next-app/api/mongo/form2/${params.id}` , {
+        //     method:"put",
+        //     body:JSON.stringify(data),
+        // }).then(res => res.json());
 
         // console.log(student);
         if(student.success) {
@@ -75,11 +76,11 @@ export default function Page({params}) {
     }
 
     const getData = async () => {
-        let d = await fetch(`https://abhis12321.github.io/first-next-app/api/mongo/form2/${params.id}`)
-        .then(res => res.json())
-        .then(m => m.data)
-        initial = {...initial , ...d};
-        dispatch({ip:""})
+        // let d = await fetch(`https://abhis12321.github.io/first-next-app/api/mongo/form2/${params.id}`)
+        // .then(res => res.json())
+        // .then(m => m.data)
+        // initial = {...initial , ...d};
+        // dispatch({ip:""})
     }
     React.useEffect(() => {
         getData();
