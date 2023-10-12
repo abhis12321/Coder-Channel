@@ -1,15 +1,15 @@
 import Link from 'next/link';
 
 export default async function Page() {
-    // let students = await fetch('https://abhis12321.github.io/first-next-app/api/mongo/form2')
-    // .then(res => res.json())
-    // .catch(err => {success:false});
+    let students = await fetch('https://abhis12321.github.io/first-next-app/api/mongo/form2')
+    .then(res => res.json())
+    .catch(err => {success:false});
 
     return (
         <>
             <div className="student-cant">
                 <Link href={"form2"} className="student" id='flex'>Add New Students</Link>
-                {/* {(students.found).map(student => {
+                {(students.found).map(student => {
                     return (
                     <div key={student._id} className="student">
                         <p className="student-info">email: {student.email}</p>
@@ -27,7 +27,7 @@ export default async function Page() {
                         <Link href={`/form2/${student._id}`} > update </Link>
                     </div>)
                 })
-            } */}
+            }
             </div>
         </>
     )

@@ -1,4 +1,3 @@
-import { log } from "console";
 import { NextResponse } from "next/server";
 
 export async function GET(request , props) {
