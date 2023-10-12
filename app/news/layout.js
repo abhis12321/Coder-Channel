@@ -32,13 +32,3 @@ export default function NewsLayout({children}) {
         </div>
     )
 }
-
-// export function generateMetadata() {
-//     return {
-//         title:'News Hunt',
-//         description:'daily news'
-//     }
-// }
-export async function generateStaticParams() {
-    return null;
-}

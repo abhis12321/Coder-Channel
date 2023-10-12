@@ -17,3 +17,7 @@ export default function Home() {
     </div>
   )
 }
+
+export async function generateStaticParams() {
+  return null;
+}

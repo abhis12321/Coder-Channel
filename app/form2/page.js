@@ -84,6 +84,6 @@ export default function Page() {
   )
 }
 
-export async function generateStaticParams() {
-    return null;
-}
+// export async function generateStaticParams() {
+//     return null;
+// }
