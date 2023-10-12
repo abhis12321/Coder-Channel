@@ -1,4 +1,5 @@
-export default async function Page() {
+"use client"
+export default  function Page() {
     let student = {name:"" , age:"" , id:""}
     // let student = await fetch('https://abhis12321.github.io/first-next-app/api/classmates');
     // student = await student.json();
@@ -12,7 +13,4 @@ export default async function Page() {
             
         </>
     )
-}
-export async function generateStaticParams() {
-    return null;
 }
