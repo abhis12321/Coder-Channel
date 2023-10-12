@@ -1,6 +1,7 @@
 import Link from 'next/link';
+
 export default async function Page() {
-    let students = await fetch('http://localhost:3000/api/mongo/form2')
+    let students = await fetch('https://abhis12321.github.io/first-next-app/api/mongo/form2')
     .then(res => res.json())
     .catch(err => {success:false});
 

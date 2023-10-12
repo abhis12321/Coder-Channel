@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default async function Page() {
-    let data = await fetch('http://localhost:3000/api/classmates');
+    let data = await fetch('https://abhis12321.github.io/first-next-app/api/classmates');
     data = await data.json();
 
     return (

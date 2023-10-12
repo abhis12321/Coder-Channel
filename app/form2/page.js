@@ -51,7 +51,7 @@ export default function Page() {
     const [data , dispatch] = React.useReducer(reduce , initial);
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let student = await fetch("http://localhost:3000/api/mongo/form2" , {
+        let student = await fetch("https://abhis12321.github.io/first-next-app/api/mongo/form2" , {
             method:"post",
             body:JSON.stringify(data),
         }).then(res => res.json());
