@@ -30,3 +30,6 @@ export default function Page() {
         </>
     )
 }
+export async function generateStaticParams() {
+    return null;
+}

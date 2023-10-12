@@ -39,3 +39,6 @@ export default function NewsLayout({children}) {
 //         description:'daily news'
 //     }
 // }
+export async function generateStaticParams() {
+    return null;
+}

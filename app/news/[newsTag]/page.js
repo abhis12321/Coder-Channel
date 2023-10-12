@@ -36,3 +36,6 @@ const data = async (tag) => {
     
     return posts.articles;
 }
+export async function generateStaticParams() {
+    return null;
+}

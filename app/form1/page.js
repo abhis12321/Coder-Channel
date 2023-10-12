@@ -67,3 +67,7 @@ export default function Page() {
     </form>
   )
 }
+
+export async function generateStaticParams() {
+    return null;
+}

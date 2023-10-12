@@ -183,3 +183,7 @@ export default function Home(props) {
     </div>
   );
 }
+
+export async function generateStaticParams() {
+  return null;
+}
