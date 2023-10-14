@@ -1,5 +1,5 @@
 import Link from 'next/link';
-export const NewsCard = ({post}) => {
+export default function NewsCard({post})  {
     return (
         <div className='news-card'>
             <img src={post.urlToImage} alt='./alt.jpg' className='news-img'/>

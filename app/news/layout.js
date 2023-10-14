@@ -15,9 +15,9 @@ export default function NewsLayout({children}) {
 
     return (
         <div className="news-cant">
-            <div className="news-layout box">
-                <input type="text" value={newsTag} onChange={handleTag} className="input" placeholder="Enter a topic"/>
-                <button onClick={() => router.push(`/news/${newsTag}`)} className="input">fetch News</button>
+            <div className="news-layout">
+                <input type="text" value={newsTag} onChange={handleTag} className="input " placeholder="Enter a topic"/>
+                <button onClick={() => router.push(`/news/${newsTag}`)} className="input ">fetch News</button>
                 <Link className='news-tag' href='/news/tesla'>Tesla</Link>
                 <Link className='news-tag' href='/news/google'>Google</Link>
                 <Link className='news-tag' href='/news/business'>Business</Link>

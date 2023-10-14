@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const {mongo_username3 , mongo_password3} = process.env;
+// const {mongo_username3 , mongo_password3} = process.env;
 
 const model1 = new mongoose.Schema({        // data model
     fname:String,
@@ -30,4 +30,4 @@ const model2 = new mongoose.Schema({    //data model
 export const next1 = mongoose.models.next1 || mongoose.model('next1' , model1);  // constructor
 export const next2 = mongoose.models.next2 || mongoose.model('next2' , model1);  // constructor
 export const students = mongoose.models.students || mongoose.model("students" , model2);  // constructor
-export const mongoUrl = `mongodb+srv://${mongo_username3}:dJ68kiYeDaV7gsHL@mongo1.jrugiqf.mongodb.net/mongonext1?retryWrites=true&w=majority`;      //mongo atlas connection url
+export const mongoUrl = `mongodb+srv://jack:dJ68kiYeDaV7gsHL@mongo1.jrugiqf.mongodb.net/mongonext1?retryWrites=true&w=majority`;      //mongo atlas connection url

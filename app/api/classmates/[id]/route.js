@@ -1,10 +1,18 @@
 import { NextResponse } from "next/server";
 
 export async function GET(request , props) {
-    let users = await fetch('https://abhis12321.github.io/first-next-app/api/classmates');
-    users = await users.json();
+    // let users = await fetch('http://localhost:3000/api/classmates')
+    let users = await fetch('https://second-next.vercel.app/api/classmates')
+                .then(res => res.json())
+                .catch(err => [{name:"Err", age:"0", id:"0"}])
+
+                
+    if(users.length == 1 && users[0].name === "Err") {
+        return NextResponse.json(users[0]);
+    }
+    
     const student = users.filter(user => user.id == props.params.id);
-    return NextResponse.json(student , {status:200});
+    return NextResponse.json(student[0] , {status:200});
 }
 
 export async function POST(request, props) {

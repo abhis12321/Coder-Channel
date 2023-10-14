@@ -1,15 +1,30 @@
+"use client"
 import Link from 'next/link';
+import React from 'react';
 
-export default async function Page() {
-    // let students = await fetch('https://abhis12321.github.io/first-next-app/api/mongo/form2')
-    // .then(res => res.json())
-    // .catch(err => {success:false});
+export default function Page() {
+    const [students , setStd] = React.useState(null)
+    const getData = async () => {
+        let datas = await fetch('https://second-next.vercel.app/api/mongo/form2')
+        // let datas = await fetch('http://localhost:3000/api/mongo/form2')
+            .then(res => res.json())
+            .catch(err => {success:false});
+        
+        if(datas.success) {
+            setStd(datas);
+        }
+    }
+    React.useEffect(() => {
+        getData();
+    } , [])
+
+    
 
     return (
         <>
             <div className="student-cant">
                 <Link href={"form2"} className="student" id='flex'>Add New Students</Link>
-                {/* {(students.found).map(student => {
+                {students && (students.found).map(student => {
                     return (
                     <div key={student._id} className="student">
                         <p className="student-info">email: {student.email}</p>
@@ -27,11 +42,10 @@ export default async function Page() {
                         <Link href={`/form2/${student._id}`} > update </Link>
                     </div>)
                     })
-                } */}
+                }
             </div>
+
         </>
     )
 }
-export async function generateStaticParams() {
-    return null;
-}
+

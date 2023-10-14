@@ -40,15 +40,19 @@ body {
   /* margin: 0; */
   background-color: rgb(84, 28, 28);
   background-size: cover;
-  flex-direction: column;
-  width: 10%;
-  height: 100vh;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+
+  height: 10vh;
   position: fixed;
 }
 
 
 .nav-tag {
-  padding: 15px 0;
+  border-radius: 20px;
+  padding: 15px 20px;
   display: block;
   text-align: center;
   color: white;
@@ -62,8 +66,14 @@ body {
   font-weight: 700;
 }
 
+.center {
+  text-align: center;
+}
+.margin-top {
+  margin-top: 10vh;
+}
 .margin-left {
-  margin-left: 10%;
+  margin-left: 10px;
 }
 
 .news-cant {
@@ -75,16 +85,19 @@ body {
 }
 
 .box {
-  top: 0px;
   border: 2px solid black;
   background-color: rgb(202, 209, 209);
 }
 
 .news-layout {
   display: flex;
+  align-items: center;
   flex-direction: column;
-  height: 50rem;
+  height: 90vh;
+  top: 10vh;
+  position: fixed;
   position: sticky;
+  background-color: rgb(176, 17, 239);
 }
 
 .news {
@@ -110,7 +123,7 @@ body {
 
 .news-tag {
   text-shadow: 0px 0px 7px rgb(12, 215, 15);
-  padding: 1rem 3rem;
+  padding: 5px 10px;
   border-radius: 1rem;
   text-decoration: none;
   color: red;
@@ -184,6 +197,10 @@ button.form-input:hover {
   background-color: rgb(113, 161, 177);
 }
 
+a.student {
+  text-align: center;
+}
+
 .student-info {
   text-align: center;
   margin: 5px;
@@ -191,44 +208,17 @@ button.form-input:hover {
   text-shadow: 1px 1px 3px rgb(255, 0, 0);
 }
 
-@media screen and (max-width: 1050px) {
-  .nav {
-    width: 14%;
-  }
-
-  .margin-left {
-    margin-left: 14%;
-  }
-}
-
-
-
-@media screen and (max-width: 650px) {
-  .nav {
-    width: 17%;
-  }
-  .margin-left {
-    margin-left: 17%;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .nav {
-    width: 23%;
-  }
-  .margin-left {
-    margin-left: 23%;
-  }
-}
-
-
-
 .input {
   margin: 1px 5px;
   padding: 3px;
   text-align: center;
+  background-size: contain;
+  border-radius: 5px;
 }
 
+button.input {
+  padding: 3px;
+}
 button.input:hover {
   background-color: blueviolet;
   color: white;
@@ -279,3 +269,80 @@ button.input:hover {
   text-shadow: 0 0 3px red;
   background: linear-gradient(rgb(255, 68, 0) , white , green);
 }
+
+
+@media screen and (max-width: 1080px) {
+  .student-cant {
+    grid-template-columns: 33% 33% 34%;
+  }
+  .news-cant {
+    grid-template-columns: 14% 86%;
+  }
+  
+  .news {
+    grid-template-columns: 33% 33% 34%;
+  }
+
+  .form-cant {
+    width: 74%;
+  }
+}
+
+
+@media screen and (max-width: 750px) {
+  .student-cant {
+    grid-template-columns: 50% 50%;
+  }
+  .news-tag {
+    display: none;
+  }
+  .input {
+    align-items: center;
+  }
+  .news-layout {
+    align-items: center;
+    flex-direction: row;
+    height: 5vh;
+  }
+  .news-cant {
+    grid-template-columns: auto;
+  }
+
+  .news {
+    grid-template-columns: 50% 50%;
+  }
+
+  .form-cant {
+    width: 80%;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .nav-tag {
+    border-radius: 8px;
+    padding: 5px;
+  }
+  .student-cant {
+    grid-template-columns: auto;
+  }
+
+  a.student {
+    height: 400px;
+  }
+  
+  .news-layout {
+    padding-left: 5px;
+    height: 4vh;
+    background: none;
+  }
+  .news {
+    grid-template-columns: auto;
+  }
+
+  .form-cant {
+    width: 90%;
+  }
+}
+
+

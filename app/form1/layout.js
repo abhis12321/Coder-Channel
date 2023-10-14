@@ -9,7 +9,3 @@ function layout({children}) {
 }
 
 export default layout
-
-export async function generateStaticParams() {
-  return null;
-}

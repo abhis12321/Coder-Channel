@@ -6,11 +6,11 @@ function NavBar() {
     <>
       <ul className='nav'>
         <Link href="/" className='nav-tag'>Home</Link>
-        <Link href="/news" className='nav-tag'> News</Link>
-        <Link href="/my_classmates" className='nav-tag'> Classmates</Link>
-        <Link href="/students" className='nav-tag'> Students</Link>
-        <Link href="/form1" className='nav-tag'> form1</Link>
-        <Link href="/tic" className='nav-tag'> Tic Tac Toe</Link>
+        <Link href="/news/india" className='nav-tag'>News</Link>
+        <Link href="/my_classmates" className='nav-tag'>Classmates</Link>
+        <Link href="/students" className='nav-tag'>Students</Link>
+        {/* <Link href="/form1" className='nav-tag'> form1</Link> */}
+        <Link href="/tic" className='nav-tag'>Game</Link>
       </ul>
     </>
   )

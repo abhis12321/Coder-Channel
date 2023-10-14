@@ -8,7 +8,7 @@ export async function GET(req) {
     await mongoose.connect(mongoUrl);
     let found = await students.find();
     // let found = await students.find({name:"abhishek singh"});
-    return NextResponse.json({found , Success:true});
+    return NextResponse.json({found , success:true});
 }
 
 export async function POST(req) {
@@ -16,7 +16,7 @@ export async function POST(req) {
         let data = await req.json();
         await mongoose.connect(mongoUrl);
         let check = await students.find({email:data.email});
-        // console.log(check);
+        console.log(check);
         if(check.length == 0) {
             // {let students = new students(data);
             // let saved = await students.save();

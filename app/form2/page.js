@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 const initial = {
     email:"",
@@ -48,26 +49,32 @@ const reduce = (curr , obj)=> {
 }
 
 export default function Page() {
+    const route = useRouter();
     const [data , dispatch] = React.useReducer(reduce , initial);
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let student = await fetch("https://abhis12321.github.io/first-next-app/api/mongo/form2" , {
-            method:"post",
-            body:JSON.stringify(data),
-        }).then(res => res.json());
+        // let student = await fetch("http://localhost:3000/api/mongo/form2" , {
+        let student = await fetch("https://second-next.vercel.app/api/mongo/form2" , {
+                            method:"post",
+                            body:JSON.stringify(data),
+                        })
+                        .then(res => res.json());
 
-        // console.log(student); required
+        // console.log(student); 
         if(student.success) {
             alert(`Form submitted & your id is: ${student.id}`);
         }
         else {
             alert(`Already an user is resitered with the same Email id: ${data.email}`);
         }
+
+        route.push("/students")
     }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value = {data.email} onChange={(e)=> dispatch({ip:"email" , value:e.target.value})} className='form-input' placeholder='email' required/>
+      <input type="email" value = {data.email} onChange={(e)=> dispatch({ip:"email" , value:e.target.value})} className='form-input' placeholder='email' required/>
       <input type="text" value = {data.name} onChange={(e)=> dispatch({ip:"name" , value:e.target.value})} className='form-input' placeholder='Name' required/>
       <input type="Number" value = {data.age} onChange={(e)=> dispatch({ip:"age" , value:e.target.value})} className='form-input' placeholder='age' required/>
       <input type="text" value = {data.gender} onChange={(e)=> dispatch({ip:"gender" , value:e.target.value})} className='form-input' placeholder='gender' required/>
@@ -79,11 +86,8 @@ export default function Page() {
       <input type="text" value = {data.course} onChange={(e)=> dispatch({ip:"course" , value:e.target.value})} className='form-input' placeholder='course' required/>
       <input type="text" value = {data.branch} onChange={(e)=> dispatch({ip:"branch" , value:e.target.value})} className='form-input' placeholder='branch' required/>
       <input type="Number" value = {data.semester} onChange={(e)=> dispatch({ip:"semester" , value:e.target.value})} className='form-input' placeholder='semester' required/>
+      {/* <input type='submit' className='form-input' value="submit"   /> */}
       <button type='submit' className='form-input' >submit</button>
     </form>
   )
 }
-
-// export async function generateStaticParams() {
-//     return null;
-// }
