@@ -28,3 +28,15 @@ export async function PUT(req , {params}) {
         return NextResponse.json({success:false});
     }
 }
+
+
+export async function DELETE(req , {params}) {
+    try {
+        await mongoose.connect(mongoUrl);
+        await students.deleteOne({_id:params.id});
+        return NextResponse.json({success:true});
+    }
+    catch(err) {
+        return NextResponse.json({success:false});
+    }
+}

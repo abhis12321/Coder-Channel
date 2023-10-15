@@ -1,7 +1,8 @@
 import Student from './Student'
+import {currUrl} from '/mongo/exp2';
+
 export default async function Page() {
-    // let data = await fetch('http://localhost:3000/api/classmates')
-    let data = await fetch('https://second-next.vercel.app/api/classmates')
+    let data = await fetch(`${currUrl}/api/classmates`)
                 .then(res => res.json())
 
     return (

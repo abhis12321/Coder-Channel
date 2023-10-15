@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// const {mongo_username3 , mongo_password3} = process.env;
 
 const model1 = new mongoose.Schema({        // data model
     fname:String,

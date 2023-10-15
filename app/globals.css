@@ -38,14 +38,14 @@ body {
 .nav {
   top: 0;
   /* margin: 0; */
-  background-color: rgb(84, 28, 28);
+  background-color: rgba(84, 28, 28, 0.753);
   background-size: cover;
   display: flex;
   justify-content: left;
   align-items: center;
   width: 100%;
 
-  height: 10vh;
+  height: 8vh;
   position: fixed;
 }
 
@@ -70,7 +70,7 @@ body {
   text-align: center;
 }
 .margin-top {
-  margin-top: 10vh;
+  margin-top: 8vh;
 }
 .margin-left {
   margin-left: 10px;
@@ -94,10 +94,11 @@ body {
   align-items: center;
   flex-direction: column;
   height: 90vh;
-  top: 10vh;
+  top: 8vh;
   position: fixed;
   position: sticky;
-  background-color: rgb(176, 17, 239);
+  background-color: rgb(202, 209, 209);
+  overflow: hidden;
 }
 
 .news {
@@ -198,6 +199,7 @@ button.form-input:hover {
 }
 
 a.student {
+  min-height: 400px;
   text-align: center;
 }
 
@@ -205,14 +207,14 @@ a.student {
   text-align: center;
   margin: 5px;
   color: white;
-  text-shadow: 1px 1px 3px rgb(255, 0, 0);
+  text-shadow:0 0 3px black;
+  /* text-shadow: 1px 1px 3px rgb(255, 0, 0); */
 }
 
 .input {
   margin: 1px 5px;
   padding: 3px;
   text-align: center;
-  background-size: contain;
   border-radius: 5px;
 }
 
@@ -346,3 +348,57 @@ button.input:hover {
 }
 
 
+
+
+
+.student-cant > .student:nth-child(even) {
+  background-color: rgba(43, 125, 226, 0.607);
+}
+/* 
+.align-left {
+  cursor: pointer;
+  text-align: left;
+} */
+
+.change {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.change-update {
+  padding: 1px;
+  text-decoration: none;
+  background-color: rgb(105, 155, 105);
+}
+
+.change-delete {
+  background-color: rgb(133, 88, 88);
+  padding: 2px 7px;
+}
+
+.change-tag {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  border: 2px solid black;
+  border-radius: 99%;
+}
+
+.change-update:hover {
+  background-color: rgb(6, 160, 6);
+}
+
+.change-delete:hover {
+  background-color: rgb(155, 5, 5);
+}
+
+span {
+  font-weight: 500;
+  text-shadow: 1px 1px 3px rgb(255, 0, 0);
+  /* color: rgb(112, 68, 68); */
+  /* text-shadow: 0 0 3px yellow */
+}

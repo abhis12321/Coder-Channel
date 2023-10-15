@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-export async function GET(request , props) {
+export async function GET(request , {params}) {
   // let payload = await request.json();
   // console.log(payload);
     // const page_str = request.nextUrl.searchParams.get("page");

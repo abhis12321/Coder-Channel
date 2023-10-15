@@ -1,5 +1,7 @@
 "use client"
 import React from 'react'
+import {currUrl} from '/mongo/exp2';
+
 const initialData = {
     fname:"",
     lname:"",
@@ -40,8 +42,7 @@ export default function Page() {
     const postIt = async(e) => {
         e.preventDefault()
         console.log('post');
-        // let post = await fetch("http://localhost:3000/api/mongo/form1" , {
-        let post = await fetch("https://second-next.vercel.app/api/mongo/form1" , {
+        let post = await fetch(`${currUrl}/api/mongo/form1` , {
             method:"post",
             body:JSON.stringify(data),
         }).then(res => res.json())

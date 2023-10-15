@@ -7,7 +7,7 @@ export default async function Page(props) {
     // console.log(posts);
     return (
         <>
-            <h1>News id is {newsTag}</h1>
+            <h1>News topic : {newsTag}</h1>
             <div className='news'> {
                 posts && posts.map(post => {
                     return (

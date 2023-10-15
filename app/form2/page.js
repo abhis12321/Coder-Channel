@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import {currUrl} from '/mongo/exp2';
 
 const initial = {
     email:"",
@@ -54,8 +55,7 @@ export default function Page() {
     
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // let student = await fetch("http://localhost:3000/api/mongo/form2" , {
-        let student = await fetch("https://second-next.vercel.app/api/mongo/form2" , {
+        let student = await fetch(`${currUrl}/api/mongo/form2` , {
                             method:"post",
                             body:JSON.stringify(data),
                         })

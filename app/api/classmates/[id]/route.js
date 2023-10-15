@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
+import {currUrl} from '/mongo/exp2';
 
 export async function GET(request , props) {
-    // let users = await fetch('http://localhost:3000/api/classmates')
-    let users = await fetch('https://second-next.vercel.app/api/classmates')
+    let users = await fetch(`${currUrl}/api/classmates`)
                 .then(res => res.json())
                 .catch(err => [{name:"Err", age:"0", id:"0"}])
 
