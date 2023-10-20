@@ -52,7 +52,7 @@ body {
 
 .nav-tag {
   border-radius: 20px;
-  padding: 15px 20px;
+  padding: 12px 20px;
   display: block;
   text-align: center;
   color: white;
@@ -64,6 +64,10 @@ body {
   color: black;
   background-color: rgb(207, 207, 207);
   font-weight: 700;
+}
+
+img.nav-tag:hover {
+  background:local;
 }
 
 .center {
@@ -162,7 +166,7 @@ body {
 }
 
 .form-input {
-  border-radius: 5px;
+  border-radius: 15px;
   border: 2px solid black;
   display: block;
   width: 60%;
@@ -367,9 +371,8 @@ button.input:hover {
 }
 
 .change-update {
-  padding: 1px;
-  text-decoration: none;
-  background-color: rgb(105, 155, 105);
+  padding: 2px 7px;
+  background-color: rgb(64, 125, 64);
 }
 
 .change-delete {
@@ -378,7 +381,7 @@ button.input:hover {
 }
 
 .change-tag {
-  font-weight: 700;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -386,6 +389,7 @@ button.input:hover {
   color: white;
   border: 2px solid black;
   border-radius: 99%;
+  text-shadow: 0 0 3px black;
 }
 
 .change-update:hover {
@@ -401,4 +405,43 @@ span {
   text-shadow: 1px 1px 3px rgb(255, 0, 0);
   /* color: rgb(112, 68, 68); */
   /* text-shadow: 0 0 3px yellow */
+}
+
+.resister {
+  margin: auto;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
+}
+
+.resister > .form-input {
+  cursor: pointer;
+  width: 35%;
+  color: white;
+  background-color: red;
+  font-weight: 600;
+}
+
+/* .resister > .form-input:hover {
+  background-color: rgb(72, 6, 134);
+  color: white;
+} */
+
+.hover:hover {
+  background-color: rgb(72, 6, 134);
+  color: white;  
+}
+
+button.nav-tag {
+  background:local;
+  border: none;
+}
+
+.left {
+  display: block;
+  left: 0;
 }

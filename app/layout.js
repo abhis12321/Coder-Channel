@@ -1,6 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import NavBar from './NavBar'
+import AuthProvider from '/mongo/AuthProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,10 +14,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <NavBar />
-        <div className='margin-top'>
-          {children}
-        </div>
+        <AuthProvider>
+          <NavBar />
+          <div className='margin-top'>
+            {children}
+          </div>
+        </AuthProvider>
       </body>
     </html>
   )
