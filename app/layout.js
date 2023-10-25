@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import NavBar from './NavBar'
 import AuthProvider from '/mongo/AuthProvider'
+import './style.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,8 +14,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      {/* <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;600&display=swap" rel="stylesheet" /> */}
       <body>
-        <AuthProvider>
+        <AuthProvider className='layout'>
           <NavBar />
           <div className='margin-top'>
             {children}

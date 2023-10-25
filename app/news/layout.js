@@ -7,7 +7,7 @@ export default function NewsLayout({children}) {
     // const date = new Date();
     // console.log(date.getDate() , date.getMonth()+1 , date.getFullYear(), date);
     const router = useRouter();
-    const [newsTag , setNewsTag] = React.useState("");
+    const [newsTag , setNewsTag] = React.useState("india");
     const handleTag = (e) => {
         e.preventDefault();
         setNewsTag(e.target.value);

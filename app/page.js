@@ -1,24 +1,116 @@
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faC, faN} from '@fortawesome/free-solid-svg-icons'
+import { faBootstrap, faCss3Alt, faHtml5, faJava, faReact, faSquareJs } from '@fortawesome/free-brands-svg-icons';
 export default function Home() {
+  
+      // var typed = new Typed("#element", {
+      //   strings: [" Problem Solver", "Web Designer", "Full Stack Developer"],
+      //   typeSpeed: 50,
+      // });
+      
+
   return (
     <div className='home'>
-      <h1 className='centre'>Hello Jack!</h1>
-      <p>
-      <strong>Rohit Sharma | Indian captain:</strong> The bowlers were the ones today as well who set the game up for us. I don&#39;t think it was a 190 pitch. At one stage we were looking at 280. The way they showed grit says a lot. That is something we pride ourselves in. Whoever gets the ball does the job. {`We've`} got 6 individuals who can do the job with the ball. My job as a captain is important there as well. {`It's`} to read the conditions and figure out {`who's`} the right guy to do the job. {`It's`} only because the guys - before entering the WC - they got a lot of runs. We were very clear what we wanted to do. {`Didn't`} want to be in two minds about {`who's`} going to bat where. All in all, {`it's `}looking good. Want to keep my fingers crossed. {`Don't`} want to get too excited. {`Don't`} want to get too low as well. Want to stay balanced. Keep calm and keep moving forward. Every opposition we come up against are all quality. You have to play well on that particular day, and that{`'`}s what {`we're`} looking at.
-      </p>
-      <br />
-      <p>
-      <strong>Jasprit Bumrah | Player of the Match:</strong> It felt good. Usually you try to analyse the wicket as soon as possible. We realised the wicket is on the slower side so we wanted to bowl hard lengths. We were trying to make it as difficult as possible. (On how he reads pitches quickly and understands what lengths work) Just being aware I guess. I used to ask a lot of questions when I was young and that helps me now. Now I{`'`}m experienced. In my younger days they (seniors) were used to being troubled by me sometimes (with questions), but it helps to read the wicket and try different options. (On the slower ball to get rid of Rizwan) We were bowling in the middle overs and I saw Jaddu{`'`}s ball was turning, not too much but a little bit. I count my slower ball as a spinner{`'`}s slower ball, one of those days where it came off. (On the ball that got Shadab) Little phase where there was reverse swing, one of the occasions when the white ball was reverse swinging.
-      </p>
-      <br />
-      
-      <p>
-      <strong>Babar Azam | Pakistan captain:</strong> We started well. Good partnership between me and Imam. We wanted to play normal cricket (me and Rizwan). Suddenly we had a collapse and didn{`'`}t finish well. The way we started, wanted to target 280-290. With the new ball we are not upto the mark. The way Rohit is playing - he played an outstanding innings.
-      </p>
+
+      <section className="study">
+        <div className="lang1 tech">
+          <div className="tech-tag">
+            <FontAwesomeIcon icon={faC} size='8x' /> 
+          </div>
+          <div className="tech-tag">
+            <h2>Dec 2021</h2>
+            <p>My first and the starting programming language is C as It was also in the course of my BTECH 1st year and 2nd year hence I learned the BASICS of C language and Data Structure in C language</p>
+          </div>
+        </div>
+
+        <div className="lang1 tech">
+          <div className="tech-tag">
+            <FontAwesomeIcon icon={faJava} size='8x' id='java'/> 
+            <h3>Java</h3>
+          </div>
+          <div className="tech-tag">
+            <h2>August 2022</h2>
+            <p>Java is my main programming language as I have spend a long time to study the BASICS of JAVA , Data Structure and Algorithm in JAVA language ans Object Oriented Programming in JAVA language</p>
+          </div>
+        </div>
+
+        <div className="lang1 tech">
+          <div className="tech-tag">
+            <FontAwesomeIcon icon={faHtml5} size='8x' /> 
+            <h3>HTML</h3>
+          </div>
+          <div className="tech-tag">
+            <h2>December 2022</h2>
+            <p>It was the initial Starting for my web development journey as a beginner I started with HTML(Hyper Text Markup Language)</p>
+          </div>
+        </div>
+
+        <div className="lang1 tech">
+          <div className="tech-tag">
+            <FontAwesomeIcon icon={faCss3Alt} size='8x' /> 
+            <h3>CSS</h3>
+          </div>
+          <div className="tech-tag">
+            <h2>December 2022</h2>
+            <p>It was the initial Starting for my web development journey as a beginner I started with HTML and here I also focused on CSS(Cascading Style Sheet) as It gives a good look to the HTML</p>
+          </div>
+        </div>
+
+        <div className="lang1 tech">
+          <div className="tech-tag">
+            <FontAwesomeIcon icon={faSquareJs} size='8x' /> 
+            <h3>JavaScript</h3>
+          </div>
+          <div className="tech-tag">
+            <h2>May 2021</h2>
+            <p>After having a good knowledge of HTML and CSS, I moved to JavaScript as It is used in Front-end and Back-end of and web-app and provides some Dynamic properties too</p>
+          </div>
+        </div>
+        
+        <div className="lang1 tech">
+          <div className="tech-tag">
+            <FontAwesomeIcon icon={faBootstrap} size='8x' /> 
+            <h3>Bootstrap</h3>
+          </div>
+          <div className="tech-tag">
+            <h2>May 2021</h2>
+            <p>Bootstrap is an toolkit which makes the web development very fast and dynamic, It is an predefined CSS and JavaScript containing tool, I spend some time to learn How to use Bootstrap in my projects</p>
+          </div>
+        </div>
+        
+        <div className="lang1 tech">
+          <div className="tech-tag">
+            <FontAwesomeIcon icon={faReact} size='8x' /> 
+            <h3>ReactJS</h3>
+          </div>
+          <div className="tech-tag">
+            <h2>May 2021</h2>
+            <p>React is an JavaScript library for front-end only and I spend a lot of time in learning ReactJS and its properties like : hooks, routing , etc</p>
+          </div>
+        </div>
+
+        <div className="lang1 tech">
+          <div className="tech-tag">
+            <FontAwesomeIcon icon={faN} size='8x' id='N'/> 
+            <h3>NextJS</h3>
+          </div>
+          <div className="tech-tag">
+            <h2>May 2021</h2>
+            <p>NextJs is an a complete package for web development, It is a ReactJS framework but as we know ReactJS is only an front-end libreary but NextJS is a not only for Front-end, It can be used for Back-end develoment too.</p>
+          </div>
+        </div>
+
+      </section>
+
+      <section className="project">
+        <div className="proj">
+
+        </div>
+      </section>
     </div>
   )
 }
 
-export async function generateStaticParams() {
-  return null;
-}
+// export async function generateStaticParams() {
+//   return null;
+// }

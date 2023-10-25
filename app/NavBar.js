@@ -2,8 +2,10 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import fav from "./favicon.ico";
 import { useAuth } from "/mongo/AuthProvider";
+import Im  from "/mongo/Abhis2.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 function NavBar() {
   let USER = useAuth();
@@ -16,37 +18,47 @@ function NavBar() {
     }
   } , [])
 
+  const handleRight = () => {
+    let right = document.querySelector('.nav-right');
+    right.style.display = right.style.display === 'flex' ? "none" : 'flex';
+    
+  }
   return (
-    <>
-      <div className="nav">
-        <Image src={fav} alt="jack" height="25" className="nav-tag" />
-        <Link href="/" className="nav-tag">
+    <div className="nav-cant">
+      <div className="nav-left">
+        <h2 className="nav-tag1">@bhishek singh</h2>
+      </div>
+      <div className="nav-right">
+        <div><Link href="/" className="nav-tag">
           Home
-        </Link>
-        <Link href="/news/india" className="nav-tag">
+        </Link></div>
+        <div><Link href="/news/india" className="nav-tag">
           News
-        </Link>
-        <Link href="/students" className="nav-tag">
+        </Link></div>
+        <div><Link href="/students" className="nav-tag">
           Students
-        </Link>
-        <Link href="/tic" className="nav-tag">
+        </Link></div>
+        <div><Link href="/tic" className="nav-tag">
           Game
-        </Link>
+        </Link></div>
         {!USER.user && (
-          <Link href="/login" className="nav-tag">
+          <div><Link href="/login" className="nav-tag">
             {" "}
             Login
-          </Link>
+          </Link></div>
         )}
         {USER.user && (
           <>
-            <Link href={`/profile`} className="nav-tag left">
+            <div><Link href={`/login`} className="nav-tag left">
               {USER.user.name}
-            </Link>
+            </Link></div>
           </>
         )}
       </div>
-    </>
+      <div className="anti-right">
+        <FontAwesomeIcon icon={faBars} size='sm' id="bar" className="nav-tag" onClick={handleRight}/> 
+      </div>
+    </div>
   );
 }
 

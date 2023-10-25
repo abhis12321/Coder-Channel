@@ -3,7 +3,6 @@ import nodemailer from "nodemailer";
 import { currUrl } from "/mongo/exp2";
 import mongoose from "mongoose";
 import { mongoUrl, login } from "/mongo/exp";
-import cryptoJS from 'crypto-js'
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -21,7 +20,7 @@ async function sendVerificationEmail(email, token) {
   const mailOptions = {
     from: "lucky104071@gmail.com",
     to: email,
-    subject: "Email Verification",
+    subject: "Email Verification Link",
     text: `Please click on this link to verify your email address:\n${link}\n\nIf you did not request this verification, please ignore this message.`,
     html: `<p>Hi,</p>
            <p>Please click on the link below to verify your email address.</p>
@@ -35,27 +34,26 @@ async function sendVerificationEmail(email, token) {
 export async function POST(req, res) {
   let data = await req.json();
   let email = data.email;
-  var secretKey = email;
-
-// Encrypt a message
-  let ciphertext = cryptoJS.AES.encrypt(data.password, secretKey).toString();
 
   if (!email) {
-    return NextResponse.json({ message: "Missing email or token" });
+    return NextResponse.json({ message: "Missing email...!" });
   }
 
   try {
     await mongoose.connect(mongoUrl);
     let check = await login.find({ email });
-    if (check.length > 0) {
-      return NextResponse.json({ message: "Email already resistered..!" });
+    
+    if (check.length == 0) {
+      return NextResponse.json({ message: "Email is not resistered..!" });
     }
-
-    let token = await login.insertMany([{...data , verify:false , password:ciphertext}]);
-    // console.log(token);
-    token = token[0]._id;
-    await sendVerificationEmail(email, token);
-    return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" });
+    else if(check[0].verify) {
+      return NextResponse.json({ message: "Email is already verified, you can login now..!" });
+    }
+    else {
+        let token = check[0]._id;
+        await sendVerificationEmail(email, token);
+        return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" });
+    }
   } catch (error) {
     return NextResponse.json({ message: error.message });
   }

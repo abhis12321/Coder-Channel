@@ -166,6 +166,7 @@ export default function Home(props) {
           ></button>
         </div>
 
+      </div>
         <div className="yellow">
           <div id="over" className="">
             <h1>
@@ -173,13 +174,12 @@ export default function Home(props) {
               Game
             </h1>
             {/* <Image src={img} alt="GAME IS OVER" /> */}
-            <Image src={img} alt="WON" width={400} height={500} />
+            <Image src={img} alt="WON" width={340} height={400} />
           </div>
           <button className="reset" onClick={handleReset}>
             Reset The Game & Play Again
           </button>
         </div>
-      </div>
     </div>
   );
 }

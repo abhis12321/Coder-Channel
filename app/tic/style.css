@@ -1,14 +1,18 @@
 
 .container {
+    padding: 5px;
     height: 100vh;
-    background-color: bisque;
+    /* background-color: bisque; */
 }
 .grid {
+    width: 15rem;
     display: flex;
     margin: 1rem auto;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border:2px solid rgb(5, 5, 143);
+    box-shadow: 0 0 3px black;
 }
 .row{
     margin: 0;
@@ -26,6 +30,8 @@
 .colomn {
     background: none;
     border:2px solid rgb(5, 5, 143);
+    /* border: none; */
+    box-shadow: 0 0 3px black;
     height: 5rem;
     width: 5rem;
     font-size: 3rem;
@@ -54,6 +60,7 @@
     padding: .4rem;
     font-size: 1.52rem;
     background-color: yellowgreen;
+    background-size: cover;
     border: 2px solid black;
 }
 
@@ -66,7 +73,7 @@
 } */
 
 .yellow {
-    border: 3px solid black;
+    /* border: 3px solid black; */
     border-radius: 1rem;
     background: none;
     padding: 1rem;

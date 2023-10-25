@@ -1,15 +1,15 @@
 import { useAuth } from "mongo/AuthProvider";
 import { useRouter } from "next/navigation";
+import { currUrl } from "/mongo/exp2";
 
-export default function Student({ student }) {
+export default function Student({ getData, student }) {
   let USER = useAuth();
   let router = useRouter();
 
   const handleDelete = async (id) => {
-    if(!USER.user) {
-        alert(`you haven't logged-in...!`)
-    }
-    else if (USER.user && USER.user.email != student.email) {
+    if (!USER.user) {
+      alert(`you haven't logged-in...!`);
+    } else if (USER.user && USER.user.email != student.email) {
       alert(`You can not delete any account of others...!`);
     } else if (
       USER.user &&
@@ -30,32 +30,31 @@ export default function Student({ student }) {
         alert("Sorry, the user is not been deleted...!");
       }
       getData();
+      USER.logout();
     }
   };
 
   const handleUpdate = () => {
-    if(!USER.user) {
-        alert(`you haven't logged-in...!`)
+    if (!USER.user) {
+      alert(`you haven't logged-in...!`);
+    } else if (USER.user && USER.user.email != student.email) {
+      alert(`You can not update any account of others...!`);
+    } else if (USER.user && USER.user.email == student.email) {
+      router.push(`/form2/${student._id}`);
     }
-    else if (USER.user && USER.user.email != student.email) {
-        alert(`You can not update any account of others...!`);
-    }
-    else if(USER.user && USER.user.email == student.email) {
-        router.push(`/form2/${student._id}`)
-    }
-  }
+  };
 
   return (
-    <div key={student._id} className="student">
-      <p className="student-info">
+    <div className="student">
+      {/* <p className="student-info">
         <span>Email: </span>
         {student.email}
-      </p>
+      </p> */}
       <h2 className="student-info">
         <span>Name: </span>
         {student.name}
       </h2>
-      <h2 className="student-info">
+      {/* <h2 className="student-info">
         <span>Age: </span>
         {student.age}
       </h2>
@@ -78,7 +77,7 @@ export default function Student({ student }) {
       <h2 className="student-info">
         <span>Pin code: </span>
         {student.pin_code}
-      </h2>
+      </h2> */}
       <h2 className="student-info">
         <span>University: </span>
         {student.university}
@@ -96,10 +95,7 @@ export default function Student({ student }) {
         {student.semester}
       </h2>
       <div className="change">
-        <button
-          className="change-update change-tag"
-          onClick={handleUpdate}
-        >
+        <button className="change-update change-tag" onClick={handleUpdate}>
           update
         </button>
         {/*Scroll will go to the top of the new page*/}
