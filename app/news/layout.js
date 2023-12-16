@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
+import './News.css'
 
 export default function NewsLayout({children}) {
     // const date = new Date();

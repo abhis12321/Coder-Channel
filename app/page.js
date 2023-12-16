@@ -3,19 +3,21 @@ import { faC, faN} from '@fortawesome/free-solid-svg-icons'
 import { faBootstrap, faCss3Alt, faHtml5, faJava, faReact, faSquareJs } from '@fortawesome/free-brands-svg-icons';
 export default function Home() {
   
-      // var typed = new Typed("#element", {
-      //   strings: [" Problem Solver", "Web Designer", "Full Stack Developer"],
-      //   typeSpeed: 50,
-      // });
-      
-
   return (
     <div className='home'>
+      <div className="intro">
+        <h3 className='intro-tag'>I am </h3>
+        <h1 className='intro-tag'>Abhishek Singh</h1>
+        <h4 className='intro-tag'>& I am a Passionate </h4>
+        <h1 className='intro-tag'>Web Developer ,</h1>
+        <h1 className='intro-tag'>Problem Solver ,</h1>
+        <h1 className='intro-tag'>Full Stack Developer</h1>
+      </div>
 
       <section className="study">
         <div className="lang1 tech">
           <div className="tech-tag">
-            <FontAwesomeIcon icon={faC} size='8x' /> 
+            <FontAwesomeIcon icon={faC} size='8x' id='c'/> 
           </div>
           <div className="tech-tag">
             <h2>Dec 2021</h2>
@@ -36,7 +38,7 @@ export default function Home() {
 
         <div className="lang1 tech">
           <div className="tech-tag">
-            <FontAwesomeIcon icon={faHtml5} size='8x' /> 
+            <FontAwesomeIcon icon={faHtml5} size='8x' id='html'/> 
             <h3>HTML</h3>
           </div>
           <div className="tech-tag">
@@ -47,7 +49,7 @@ export default function Home() {
 
         <div className="lang1 tech">
           <div className="tech-tag">
-            <FontAwesomeIcon icon={faCss3Alt} size='8x' /> 
+            <FontAwesomeIcon icon={faCss3Alt} size='8x' id='css'/> 
             <h3>CSS</h3>
           </div>
           <div className="tech-tag">
@@ -58,44 +60,44 @@ export default function Home() {
 
         <div className="lang1 tech">
           <div className="tech-tag">
-            <FontAwesomeIcon icon={faSquareJs} size='8x' /> 
+            <FontAwesomeIcon icon={faSquareJs} size='8x' id='js'/> 
             <h3>JavaScript</h3>
           </div>
           <div className="tech-tag">
-            <h2>May 2021</h2>
+            <h2>February 2023</h2>
             <p>After having a good knowledge of HTML and CSS, I moved to JavaScript as It is used in Front-end and Back-end of and web-app and provides some Dynamic properties too</p>
           </div>
         </div>
         
         <div className="lang1 tech">
           <div className="tech-tag">
-            <FontAwesomeIcon icon={faBootstrap} size='8x' /> 
+            <FontAwesomeIcon icon={faBootstrap} size='8x' id='boot'/> 
             <h3>Bootstrap</h3>
           </div>
           <div className="tech-tag">
-            <h2>May 2021</h2>
+            <h2>February 2023</h2>
             <p>Bootstrap is an toolkit which makes the web development very fast and dynamic, It is an predefined CSS and JavaScript containing tool, I spend some time to learn How to use Bootstrap in my projects</p>
           </div>
         </div>
         
         <div className="lang1 tech">
           <div className="tech-tag">
-            <FontAwesomeIcon icon={faReact} size='8x' /> 
+            <FontAwesomeIcon icon={faReact} size='8x' id='react'/> 
             <h3>ReactJS</h3>
           </div>
           <div className="tech-tag">
-            <h2>May 2021</h2>
+            <h2>May 2023</h2>
             <p>React is an JavaScript library for front-end only and I spend a lot of time in learning ReactJS and its properties like : hooks, routing , etc</p>
           </div>
         </div>
 
         <div className="lang1 tech">
           <div className="tech-tag">
-            <FontAwesomeIcon icon={faN} size='8x' id='N'/> 
+            <FontAwesomeIcon icon={faN} size='6x' id='N'/> 
             <h3>NextJS</h3>
           </div>
           <div className="tech-tag">
-            <h2>May 2021</h2>
+            <h2>September 2023</h2>
             <p>NextJs is an a complete package for web development, It is a ReactJS framework but as we know ReactJS is only an front-end libreary but NextJS is a not only for Front-end, It can be used for Back-end develoment too.</p>
           </div>
         </div>
@@ -110,7 +112,3 @@ export default function Home() {
     </div>
   )
 }
-
-// export async function generateStaticParams() {
-//   return null;
-// }

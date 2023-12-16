@@ -1,15 +1,14 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { currUrl } from "/mongo/exp2";
 import mongoose from "mongoose";
-import { mongoUrl, login } from "/mongo/exp";
+import { login } from "/mongo/exp";
 import cryptoJS from 'crypto-js'
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "lucky104071@gmail.com",
-    pass: "huys zgcq xbbt klui",
+    user: process.env.user,
+    pass: process.env.epass,
     // user: "jack2101660100005@gmail.com",
     // pass: "axgh psop xujz jetw",
   },
@@ -19,7 +18,7 @@ async function sendVerificationEmail(email, token) {
   const link = `${currUrl}/login/${token}?e=${email}`;
 
   const mailOptions = {
-    from: "lucky104071@gmail.com",
+    from: process.env.user,
     to: email,
     subject: "Email Verification",
     text: `Please click on this link to verify your email address:\n${link}\n\nIf you did not request this verification, please ignore this message.`,
@@ -45,7 +44,7 @@ export async function POST(req, res) {
   }
 
   try {
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(process.env.mongoUrl);
     let check = await login.find({ email });
     if (check.length > 0) {
       return NextResponse.json({ message: "Email already resistered..!" });
@@ -56,7 +55,8 @@ export async function POST(req, res) {
     token = token[0]._id;
     await sendVerificationEmail(email, token);
     return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" });
-  } catch (error) {
+  } 
+  catch (error) {
     return NextResponse.json({ message: error.message });
   }
 }

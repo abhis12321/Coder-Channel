@@ -1,6 +1,7 @@
 import { useAuth } from "mongo/AuthProvider";
 import { useRouter } from "next/navigation";
-import { currUrl } from "/mongo/exp2";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function Student({ getData, student }) {
   let USER = useAuth();
@@ -16,7 +17,7 @@ export default function Student({ getData, student }) {
       USER.user.email == student.email &&
       confirm("Are you sure you wanna delete this account...?")
     ) {
-      let del = await fetch(`${currUrl}/api/mongo/form2/${id}`, {
+      let del = await fetch(`/api/mongo/form2/${id}`, {
         method: "delete",
         body: JSON.stringify(id),
       })
@@ -45,39 +46,11 @@ export default function Student({ getData, student }) {
   };
 
   return (
-    <div className="student">
-      {/* <p className="student-info">
-        <span>Email: </span>
-        {student.email}
-      </p> */}
+    <div className="student">      
       <h2 className="student-info">
         <span>Name: </span>
         {student.name}
-      </h2>
-      {/* <h2 className="student-info">
-        <span>Age: </span>
-        {student.age}
-      </h2>
-      <h2 className="student-info">
-        <span>Gender: </span>
-        {student.gender}
-      </h2>
-      <h2 className="student-info">
-        <span>Address: </span>
-        {student.address}
-      </h2>
-      <h2 className="student-info">
-        <span>City: </span>
-        {student.city}
-      </h2>
-      <h2 className="student-info">
-        <span>State: </span>
-        {student.state}
-      </h2>
-      <h2 className="student-info">
-        <span>Pin code: </span>
-        {student.pin_code}
-      </h2> */}
+      </h2>      
       <h2 className="student-info">
         <span>University: </span>
         {student.university}
@@ -93,22 +66,9 @@ export default function Student({ getData, student }) {
       <h2 className="student-info">
         <span>Semester: </span>
         {student.semester}
-      </h2>
-      <div className="change">
-        <button className="change-update change-tag" onClick={handleUpdate}>
-          update
-        </button>
-        {/*Scroll will go to the top of the new page*/}
-        {/* <Link href={`/form2/${student._id}`} className='change-update change-tag' scroll={false}> update </Link>               Scroll will go to the top of the new page */}
-        {/* <Link href={`/form2#${student._id}`} className='change-update change-tag'> update </Link> */}{" "}
-        {/*Scroll will remain same in new page*/}
-        <button
-          onClick={() => handleDelete(student._id)}
-          className="change-delete change-tag"
-        >
-          delete
-        </button>
-      </div>
+      </h2> 
+      <FontAwesomeIcon icon={faPenToSquare} className="fontAwL" onClick={handleUpdate}/>
+      <FontAwesomeIcon icon={faTrash} className="fontAwR" onClick={handleDelete}/>
     </div>
   );
 }

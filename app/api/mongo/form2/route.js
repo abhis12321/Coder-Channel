@@ -1,11 +1,9 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
-import {mongoUrl , login} from '/mongo/exp'
+import { login} from '/mongo/exp'
 
 export async function GET(req) {
-    // let data = await req.json();
-    // console.log(data);
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(process.env.mongoUrl);
     let found = await login.find();
     // let found = await login.find({name:"abhishek singh"});
     return NextResponse.json({found , success:true});
@@ -14,7 +12,7 @@ export async function GET(req) {
 export async function POST(req) {
     try {
         let data = await req.json();
-        await mongoose.connect(mongoUrl);
+        await mongoose.connect(process.env.mongoUrl);
         let check = await login.find({email:data.email});
         // console.log(check);
         if(check.length == 0) {

@@ -1,22 +1,20 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import mongoose from "mongoose";
-import { mongoUrl, login } from "/mongo/exp";
+import {login } from "/mongo/exp";
 import cryptoJS from "crypto-js";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "lucky104071@gmail.com",
-    pass: "huys zgcq xbbt klui",
-    // user: "jack2101660100005@gmail.com",
-    // pass: "axgh psop xujz jetw",
+    user: process.env.user,
+    pass: process.env.epass,
   },
 });
 
 async function sendVerificationEmail(email, pass) {
   const mailOptions = {
-    from: "lucky104071@gmail.com",
+    from: process.env.user,
     to: email,
     subject: "password forgot",
     text: `Please use this password to login with your email address:\n${pass}\n\nIf you did not request this password, please ignore this message.`,
@@ -36,7 +34,7 @@ export async function POST(req) {
 
     if (!email) return NextResponse.json({ message: "Missing email or token" });
 
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(process.env.mongoUrl);
     let check = await login.find({ email });
 
     if (check.length == 0) {

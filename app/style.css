@@ -1,198 +1,300 @@
 
-.nav-right div {
-    position: relative;
-}
+ .nav-right div {
+     position: relative;
+ }
 
-.nav-tag:hover {
+ .nav-right div a:hover::after,
+ #bar:hover::after ,
+ #active::after {
+     left: 25px;
+     width: 40%;
+     bottom: 0px;
+     content: "";
+     height: 2px;
+     position: absolute;
+     background-color: green;
+ }
+ #active {
     color: green;
+    transform: scale(1.1);
+ }
+
+ .nav-cant {
+     top: 0;
+     width: 100%;
+     height: 8vh;
+     z-index: 999;
+     display: flex;
+     position: fixed;
+     align-items: center;
+     justify-content: space-between;
+     box-shadow: 0 0 10px rgb(112, 109, 109);
+     background-color: rgba(211, 211, 211, 1.85);
+ }
+
+ .nav-left {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding-left: 20px;
+ }
+
+ .nav-right {
+     right: 0;
+     z-index: 5;
+     display: flex;
+     position: absolute;
+     align-items: center;
+     transition: 1s;
+     /* justify-content: space-evenly; */
+ }
+
+ .nav-tag1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+     margin-left: 12px;
+ }
+
+ #tag {
+     width: 50px;
+     height: 50px;
+     border-radius: 30px;
+     box-shadow: 0 0 4px black;
+ }
+
+
+ .nav-tag {
+    transition:.2s;
+     display: block;
+     font-weight: 600;
+     text-align: center;
+     border-radius: 20px;
+     padding: 5px 1.5rem;
+     text-decoration: none;
+     color: rgb(82, 80, 80);
+ }
+
+ .nav-tag:hover {
+    color: green;
+    transform: scale(1.1);
 }
 
-.nav-right div a:hover::after {
-    content: "";
-    height: 2px;
-    width: 40%;
-    position: absolute;
-    background-color: green;
-    bottom: 0px;
-    left: 25px;
-}
+ img.nav-tag:hover {
+     background: local;
+ }
 
-.nav-cant {
-    top: 0;
-    position: fixed;
+ .home {
+    position: relative;
+ }
+ 
+ .intro {
+    z-index: 1;
+    opacity: .9;
+    height: 92vh;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    background-color: rgba(211, 211, 211, 0.753);
-    height: 8vh;
-    box-shadow: 0 0 10px rgb(112, 109, 109);
-  }
-  .nav-left {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* color: white; */
-  }
-  .nav-right {
-    top: 2vh;
-    position: absolute;
-    right: 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    z-index: 5;
-  }
-  
-  .nav-tag1 {
-    margin: 0 12px;
-  }
-  
-  #tag {
-    border-radius: 30px;
-    /* border: 2px solid black; */
-    box-shadow: 0 0 4px black;
-    height: 50px;
-    width: 50px;
-  }
-  
-  
-  .nav-tag {
-    border-radius: 20px;
-    padding: 5px 1.5rem;
-    display: block;
-    text-align: center;
-    color: rgb(82, 80, 80);
-    /* color: white; */
-    font-weight: 600;
-    text-decoration: none;
-  }
-  
-  /* .nav-tag:hover {
-    color: black;
-    background-color: rgb(207, 207, 207);
-    font-weight: 700;
-  } */
-  
-  img.nav-tag:hover {
-    background:local;
-  }
-  
-.home {
-    padding: 5px;
-}
-
-.study {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.tech {
-    width: 65%;
-    margin: 5px;
-    padding: 0 1rem;
-    /* display: flex;
-    justify-content: center;
-    align-items: center;  */
-    height: 40vh;
-    display: grid;
-    grid-template-columns: 30% 70%;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgb(173, 164, 164);
-}
-
-.tech:hover {
-    
-    box-shadow: 0 0 10px rgb(23, 22, 22);
-}
-.tech-tag {
-    padding: 0 1rem;
-    display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
+    background-size: contain;
+    box-shadow: 0 0 5px black;
+    background-repeat: no-repeat;
+    background-position: top 25% right 0;
+    background-color: rgb(240, 248, 255);
+    /* background-image: url('../mongo/A2.jpg'); */
 }
 
-.tech-tag p {
+ .intro-tag {
     text-align: center;
-}
-#N {
-    height: 6rem;
-    padding: 12px 20px;
-    border-radius: 50%;
-    color: white;
-    background-color: black;
-}
+ }
+ .study {
+     padding: 7px;
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: center;
+ }
 
-/* #java {
-    padding: 8px;
-    background-color: black;
-    color: white;
-    border-radius: 5px;
-} */
+ .tech {
+     width: 65%;
+     margin: 5px;
+     height: 40vh;
+     display: grid;
+     padding: 0 1rem;
+     border-radius: 10px;
+     transition: .2s ease;
+     grid-template-columns: 30% 70%;
+     box-shadow: 0 0 20px rgb(173, 164, 164);
+ }
+
+ .tech:hover {
+     box-shadow: 0 0 10px rgb(23, 22, 22);
+     background-color: rgb(240, 248, 255);
+ }
+
+ .tech-tag {
+     display: flex;
+     padding: 0 1rem;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .tech-tag p {
+     text-align: center;
+ }
+
+ .tech-tag h2 {
+     text-align: center;
+ }
+
+ .anti-right {
+     display: none;
+     cursor: pointer;
+ }
+
+ #bar {
+     height: 2rem;
+     margin-right: 25px;
+     transition: 1s;
+ }
 
 
-
-
-
-.anti-right {
+ #c {
+    background-color: rgb(195, 214, 230);
+    padding:8px 20px;
+    border-radius: 10px;
+ }
+ #react {
+    color: rgb(0, 132, 255);
+    background-color: rgb(195, 214, 230);
+    padding:7px;
+    border-radius: 10px;
+ }
+ #boot {
+    color: rgb(162, 0, 255);
+ }
+ #js {
+    height: 9rem;
+    color: rgb(183, 183, 12);
+ }
+ #css {
+    color: blue;
+ }
+ #html {
+    color: orangered;
+ }
+ #java {
+    background-color: orange;
+    padding: 10px 20px;
+    border-radius: 10px;
+ }
+ #N {
+     height: 5rem;
+     color: white;
+     padding: 25px 35px;
+     /* border-radius: 30px; */
+     border-radius: 50%;
+     background-color: rgb(31, 30, 30);
+ }
+#x {
     display: none;
-    cursor: pointer;
+    height: 1.5rem;
+    transition: .3s;
 }
-#bar {
-    height: 2rem;
-    margin-right: 5px;
+#x:hover {
+    transform: scale(1.5);
+    color: rgb(147, 7, 7);
 }
+ @media screen and (max-width: 1025px) { 
+    
+    .nav-right div a:hover::after,
+    #bar:hover::after ,
+    #active::after {
+        bottom: 17px;
+    }
+    .nav-tag1 {
+        margin-left: 45px;
+    }
+    #x {
+        display: block;
+    }
+     .nav-left {
+         padding-left: 0;
+     }
+
+     .anti-right {
+         display: flex;
+     }
+
+     .nav-right {
+         /* padding-top: 2vh; */
+         top: 0vh;
+         right: -500px;
+         background-color: rgba(211, 211, 211);
+         border-left: 2px solid rgb(116, 115, 115);
+         min-width: 200px;
+         width: 35%;
+         flex-direction: column;
+         height: 100vh;
+     }
+
+     .nav-right div a:hover::after {
+         left: 35px;
+         width: 30%;
+     }
+
+     .nav-tag {
+         padding: 20px 15px;
+         font-weight: 700;
+         font-size: 1.2rem;
+     }
+
+     .nav-tag:hover {
+         color: green;
+     }
 
 
-
-@media screen and (max-width: 750px) {
-    .anti-right {
-        display: flex;
-    }
-    .nav-right {
-        background-color: rgba(211, 211, 211, 0.753);
-        display: none;
-    }
-    .nav-right div a:hover::after {
-        left: 35px;
-        width: 30%;
-    }
-    .tech {
+     .nav-right div a:hover::after {
+         left: 15px;
+         width: 50%;
+     }
+     
+     .tech {
         width: 100%;
-    } 
-    .nav-tag {
-        padding: 5px 15px;
-    }
-    .nav-tag:hover {
-      color: rgb(82, 80, 80);
-    }
-    .nav-right {
-        top: 8vh;
     }
 
-    @media screen and (max-width: 300px) {
-        .nav-tag {
-            padding: 5px;
-        }
-        .nav-right div a:hover::after {
-            width: 0%;
-        }
-        svg {
-            width: 5rem;
-            color: red;
-        }
-        
-        #N {
-            height: 3.2rem;
-            padding: 8px 0px;
-            border-radius: 50%;
-            color: white;
-            background-color:red;
-        }
-        
+    .tech:hover {
+        width: 100%;
+        background-color: aliceblue;
+        box-shadow: 0 0 10px rgb(23, 22, 22);
     }
-}
 
+    .tech-tag:nth-child(2) {
+       padding: 0 8px;
+    }
+  
+ }
+
+
+
+ @media screen and (max-width: 500px) {
+    #bar {        
+     margin-right: 10px;
+    }
+    .nav-tag1 {
+        margin-left: 20px;
+    }
+    .tech-tag svg {
+        height: 5rem;
+    }
+    
+    #N {
+        height: 3.7rem;
+        padding: 10px 18px;
+    }
+
+ }
+ @media screen and (max-width: 300px) {
+    .nav-tag1 {
+        /* margin-left: 5px; */
+    }
+ }

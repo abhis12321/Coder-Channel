@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import { mongoUrl, login } from "/mongo/exp";
+import { login } from "/mongo/exp";
 import cryptoJS from "crypto-js";
 
 export async function POST(req, { params }) {
   try {
     let res = await req.json();
     let {email , pass} = res;
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(process.env.mongoUrl);
     let data = await login.find({ _id:params.token });
 
     let bytes = cryptoJS.AES.decrypt(data[0].password, email);
@@ -32,7 +32,8 @@ export async function POST(req, { params }) {
     } else {
       return NextResponse.json({ message: "Invalid Password", success: false });
     }
-  } catch (err) {
+  } 
+  catch (err) {
     return NextResponse.json({
       message: "bad request...! Wrong _id",
       success: false,

@@ -1,13 +1,13 @@
 "use client"
-import Link from 'next/link';
 import React from 'react';
-import {currUrl} from '/mongo/exp2';
 import Student from './Student'
+// import Link from 'next/link';
 
-export default function Page() {
+
+function Page() {
     const [students , setStd] = React.useState(null)
     const getData = async () => {
-        let datas = await fetch(`${currUrl}/api/mongo/form2`)
+        let datas = await fetch(`/api/mongo/form2`)
             .then(res => res.json())
             .catch(err => {success:false});
         
@@ -31,8 +31,10 @@ export default function Page() {
                     )})
                 }
             </div>
-
+            
         </>
     )
 }
 
+
+export default React.memo(Page);

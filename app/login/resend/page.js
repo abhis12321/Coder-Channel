@@ -1,6 +1,6 @@
 "use client"
 import React from "react"
-import {currUrl} from '/mongo/exp2';
+// import {currUrl} from '/mongo/exp2';
 import {useAuth} from '/mongo/AuthProvider'
 
 
@@ -9,7 +9,7 @@ export default function Page() {
     const [email , setEmail] = React.useState("");
     const handleSubmit = async(e) => {
         e.preventDefault();
-        let info = await fetch(`${currUrl}/api/gverify/resend` , {
+        let info = await fetch(`/api/gverify/resend` , {
                         method:"post",
                         body:JSON.stringify({email})
                     })

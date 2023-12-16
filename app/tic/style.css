@@ -1,8 +1,8 @@
 
 .container {
     padding: 5px;
-    height: 100vh;
-    /* background-color: bisque; */
+    height: 92vh;
+    box-sizing: border-box;
 }
 .grid {
     width: 15rem;

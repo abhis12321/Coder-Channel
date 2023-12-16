@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import { mongoUrl, login } from "/mongo/exp";
+import { login } from "/mongo/exp";
 import cryptoJS from 'crypto-js'
 
 export async function POST(req) {
@@ -12,7 +12,7 @@ export async function POST(req) {
   }
 
   try {
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(process.env.mongoUrl);
     let check = await login.find({ email });
   
     let bytes = cryptoJS.AES.decrypt(check[0].password , email);

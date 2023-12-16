@@ -1,7 +1,6 @@
 "use client"
 import React from 'react';
-// import { useRouter } from 'next/navigation';
-import {currUrl} from '/mongo/exp2';
+import Image from 'next/image';
 
 const initial = {
     password: "",
@@ -58,7 +57,7 @@ export default function Page() {
     
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let info = await fetch(`${currUrl}/api/gverify` , {
+        let info = await fetch(`/api/gverify` , {
                             method:"post",
                             body:JSON.stringify(data),
                         })
@@ -69,6 +68,7 @@ export default function Page() {
 
   return (
     <form onSubmit={handleSubmit} className='form-cant' autoComplete='on'>
+    <Image src={`/wheel.gif`} alt='spinning-ashoka-chakra' width={200} height={200} className='wheel' id='wheel'/>
       <h1 className="form-tag">New Resistration</h1>
       <input name='email' type="email" value = {data.email} onChange={(e)=> dispatch({ip:"email" , value:e.target.value})} className='form-input' placeholder='email' required/>
       <input name='pass' type="password" value = {data.password} onChange={(e)=> dispatch({ip:"pass" , value:e.target.value})} className='form-input' placeholder='password' required/>

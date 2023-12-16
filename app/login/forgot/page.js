@@ -1,14 +1,13 @@
 "use client"
 import React from "react"
-import {currUrl} from '/mongo/exp2';
-import {useAuth} from '/mongo/AuthProvider'
+import {useAuth} from '/mongo/AuthProvider';
 
 export default function Page() {
     let USER = useAuth();
     const [email , setEmail] = React.useState("");
     const handleSubmit = async(e) => {
         e.preventDefault();
-        let info = await fetch(`${currUrl}/api/gverify/forgot` , {
+        let info = await fetch(`/api/gverify/forgot` , {
                         method:"post",
                         body:JSON.stringify({email})
                     })

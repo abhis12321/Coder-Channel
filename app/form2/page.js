@@ -1,7 +1,8 @@
 "use client"
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import {currUrl} from '/mongo/exp2';
+import Image from 'next/image';
+// import {currUrl} from '/mongo/exp2';
 
 const initial = {
     email:"",
@@ -55,7 +56,7 @@ export default function Page() {
     
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let student = await fetch(`${currUrl}/api/mongo/form2` , {
+        let student = await fetch(`/api/mongo/form2` , {
                             method:"post",
                             body:JSON.stringify(data),
                         })
@@ -74,6 +75,7 @@ export default function Page() {
 
   return (
     <form onSubmit={handleSubmit} autoComplete='on'>
+      <Image src={`/wheel.gif`} alt='spinning-ashoka-chakra' width={300} height={300} className='wheel'/>
       <input name='email' type="email" value = {data.email} onChange={(e)=> dispatch({ip:"email" , value:e.target.value})} className='form-input' placeholder='email' required/>
       <input name='name' type="text" value = {data.name} onChange={(e)=> dispatch({ip:"name" , value:e.target.value})} className='form-input' placeholder='Name' required/>
       <input name='age' type="Number" value = {data.age} onChange={(e)=> dispatch({ip:"age" , value:e.target.value})} className='form-input' placeholder='age' required/>
