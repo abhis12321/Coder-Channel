@@ -23,6 +23,7 @@ export default function AuthProvider({ children }) {
 
   return (
     <context.Provider value={value}>
+      {/* <h1 className='form-tag'>Context Hook Used</h1> */}
       {children}
     </context.Provider>
   );
@@ -31,4 +32,3 @@ export default function AuthProvider({ children }) {
 export const useAuth = () => {
   return React.useContext(context);
 };
-

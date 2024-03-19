@@ -6,16 +6,18 @@ import { login } from "/mongo/exp";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.USER,
-    pass: process.env.E_PASS,
+    user: process.env.user,
+    pass: process.env.epass,
+    // user: "jack2101660100005@gmail.com",
+    // pass: "axgh psop xujz jetw",
   },
 });
 
 async function sendVerificationEmail(email, token) {
-  const link = `${process.env.CURR_URL}/login/${token}?e=${email}`;
+  const link = `${process.env.currUrl}/login/${token}?e=${email}`;
 
   const mailOptions = {
-    from: process.env.USER,
+    from: process.env.user,
     to: email,
     subject: "Email Verification Link",
     text: `Please click on this link to verify your email address:\n${link}\n\nIf you did not request this verification, please ignore this message.`,
@@ -37,7 +39,7 @@ export async function POST(req, res) {
   }
 
   try {
-    await mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect(mongoUrl);
     let check = await login.find({ email });
     
     if (check.length == 0) {

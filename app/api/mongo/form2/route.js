@@ -3,15 +3,16 @@ import { NextResponse } from "next/server";
 import { login} from '/mongo/exp'
 
 export async function GET(req) {
-    await mongoose.connect(process.env.MONGO_URL , { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(process.env.mongoUrl);
     let found = await login.find();
+    // let found = await login.find({name:"abhishek singh"});
     return NextResponse.json({found , success:true});
 }
 
 export async function POST(req) {
     try {
         let data = await req.json();
-        await mongoose.connect(process.env.MONGO_URL);
+        await mongoose.connect(process.env.mongoUrl);
         let check = await login.find({email:data.email});
         // console.log(check);
         if(check.length == 0) {

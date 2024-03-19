@@ -1,8 +1,4 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+
  .nav-right div {
      position: relative;
  }
@@ -88,9 +84,6 @@
 
  .home {
     position: relative;
-    /* background-image: url('../public/Ab1.jpg');
-    background-size: cover;
-    background-position: center; */
  }
  
  .intro {
@@ -107,23 +100,10 @@
     background-position: top 25% right 0;
     background-color: rgb(240, 248, 255);
     /* background-image: url('../mongo/A2.jpg'); */
-    background-image: url('../public/Ab1.jpg');
-    background-size: cover;
-    background-position-x: center;
-    /* gap: 20px; */
 }
 
  .intro-tag {
-    /* transform: scale(2); */
     text-align: center;
-    text-shadow: 0 0 4px rgb(255, 255, 0);
-    /* background-color: rgba(30, 0, 255, 0.17); */
- }
- h1.intro-tag {
-    font-size: 3.5rem;
- }
- h3.intro-tag {
-    font-size: 2rem;
  }
  .study {
      padding: 7px;
@@ -193,7 +173,7 @@
     color: rgb(162, 0, 255);
  }
  #js {
-    height: 8rem;
+    height: 9rem;
     color: rgb(183, 183, 12);
  }
  #css {
@@ -223,34 +203,6 @@
 #x:hover {
     transform: scale(1.5);
     color: rgb(147, 7, 7);
-}
-.social-media {
-    padding: 10px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    min-width: 300px;
-}
-.social-platform {
-    text-decoration: none;
-    color: rgb(0, 85, 255);
-}
-.social-platform:hover {
-    transform: scale(1.2);
-}
-#github {
-    color: rgb(4, 13, 29);
-}
-#insta {
-    /* color: rgb(133, 3, 255); */    
-    color: rgb(193, 53, 132);
-}
-#insta:hover {
-    color: rgb(193, 53, 13);
-}
-.proj img {
-    border-radius: 50%;
-    border: 5px solid green;
 }
  @media screen and (max-width: 1025px) { 
     
@@ -308,7 +260,7 @@
      
      .tech {
         width: 100%;
-     }
+    }
 
     .tech:hover {
         width: 100%;
@@ -320,12 +272,6 @@
        padding: 0 8px;
     }
   
-    h1.intro-tag {
-        font-size: 2.8rem;
-    }
-    h3.intro-tag {
-        font-size: 1.5rem;
-    }
  }
 
 
@@ -345,37 +291,7 @@
         height: 3.7rem;
         padding: 10px 18px;
     }
-    #js {
-        height: 5rem;
-    }
-    #c {
-        font-size: 4rem;
-        padding: 4px 12px;
-    }
-    #java {
-        height: 4.8rem;
-        padding: 4px 12px;
-    }
-    #react {
-        height: 4.5rem;
-        padding: 5px;
-    }
-    .study {
-        padding: 0;
-    }
-    .tech {
-        width: 98%;
-        margin: 5px 4px;
-    }
-    .tech:hover {
-        width: 100%;
-    }
-    h1.intro-tag {
-       font-size: 2.4rem;
-    }
-    h3.intro-tag {
-       font-size: 1.4rem;
-    }
+
  }
  @media screen and (max-width: 300px) {
     .nav-tag1 {

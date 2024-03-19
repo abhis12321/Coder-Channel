@@ -1,8 +1,7 @@
 "use client"
 import React from 'react';
-// import Student from './Student'
+import Student from './Student'
 // import Link from 'next/link';
-import Card from './Card'
 
 
 function Page() {
@@ -23,19 +22,12 @@ function Page() {
     
     return (
         <>
-            <div className="profile-info-card-cant ">     
-            {!students && <h1 className='searching'></h1>}           
-            {/* <div className="student-cant ">                 */}
+            <div className="student-cant">
                 {/* <Link href={"login/resistration"} className="student" id='flex'>Add New Students</Link> */}
-                {students && (students.found).map((student , index) => {
+                {students && (students.found).map(student => {
                     if(student.verify)
-                    return (                
-                            <Card  key={student._id+index} student={student}/>
-                    //     <>
-                    //     {/* <p>{student._id}</p> */}
-                    //         {/* <Student key={`${student._id}`} student={student} getData={getData}/> */}
-                    //         <Card  key={student._id+index} student={student}/>
-                    //     </>
+                    return (
+                        <Student key={student._id} student={student} getData={getData}/>
                     )})
                 }
             </div>

@@ -620,17 +620,19 @@ a.profile-tag:hover {
 
 @media screen and (max-width: 450px) {
   .project {
-    width: 98%;
-  }
-  .project .desc {
     width: 90%;
   }
+  .project .desc {
+    width: 86%;
+  }
 }
-/* @media screen and (max-width: 350px) {
+@media screen and (max-width: 350px) {
   .project {
     width: 98%;
   }
   .project .desc {
     width: 95%;
   }
-} */
+}
+
+

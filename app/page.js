@@ -1,37 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faC, faN} from '@fortawesome/free-solid-svg-icons'
-import { faBootstrap, faCss3Alt, faGithub, faHtml5, faInstagram, faJava, faLinkedin, faLinkedinIn, faReact, faSquareJs } from '@fortawesome/free-brands-svg-icons';
-import Image from 'next/image';
-import Link from 'next/link';
-// import Typewriter from "typewriter-effect";
-// import  A from '../public/Ab1.jpg'
-
+import { faBootstrap, faCss3Alt, faHtml5, faJava, faReact, faSquareJs } from '@fortawesome/free-brands-svg-icons';
 export default function Home() {
   
   return (
     <div className='home'>
       <div className="intro">
-          <h3 className='intro-tag'>My name is </h3>
-          <h1 className='intro-tag'>Abhishek Singh</h1>
-          <h3 className='intro-tag'>& I am a Passionate </h3>
-          <h1 className='intro-tag'>Web Developer ,</h1>
-          <h1 className='intro-tag'>Problem Solver</h1>
-          <h1 className='intro-tag'>Full Stack Developer</h1>
-          {/* <Typewriter
-                onInit={(typewriter) => {
-                    typewriter
-                        .typeString("GeeksForGeeks")
-                        .pauseFor(1000)
-                        .deleteAll()
-                        .typeString("Welcomes You")
-                        .start();
-                }}
-            /> */}
-        <div className='social-media'>
-          <Link target='_blank'  href={`https://github.com/abhis12321`} className='social-platform'><FontAwesomeIcon icon={faGithub} size='3x' id='github'/></Link>
-          <Link target='_blank'  href={`https://www.linkedin.com/in/abhishek-singh-b82427256/`}  className='social-platform'><FontAwesomeIcon icon={faLinkedin} size='3x' /></Link>          
-          <Link target='_blank'  href={`/`}><FontAwesomeIcon icon={faInstagram} size='3x' className='social-platform' id='insta' /></Link>
-        </div>
+        <h3 className='intro-tag'>I am </h3>
+        <h1 className='intro-tag'>Abhishek Singh</h1>
+        <h4 className='intro-tag'>& I am a Passionate </h4>
+        <h1 className='intro-tag'>Web Developer ,</h1>
+        <h1 className='intro-tag'>Problem Solver ,</h1>
+        <h1 className='intro-tag'>Full Stack Developer</h1>
       </div>
 
       <section className="study">
@@ -126,15 +106,9 @@ export default function Home() {
 
       <section className="project">
         <div className="proj">
-          <Image  
-          // src={A}
-          src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT44xyPyV2KNaYbm0oO-E5sn0NyanhpjfjI7pd6ozdrRTJRl9Y5ixHj5dIQsAso7d9A1ms&usqp=CAU'} 
-           alt='profile' width={200} height={200}/>
 
-           <Image src={'/uploads/1710806250731insta6.jpg'} height={100} width={100} alt='profile'/>
         </div>
       </section>
-
     </div>
   )
 }
