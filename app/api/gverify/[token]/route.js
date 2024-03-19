@@ -7,7 +7,7 @@ export async function POST(req, { params }) {
   try {
     let res = await req.json();
     let {email , pass} = res;
-    await mongoose.connect(process.env.mongoUrl);
+    await mongoose.connect(process.env.MONGO_URL);
     let data = await login.find({ _id:params.token });
 
     let bytes = cryptoJS.AES.decrypt(data[0].password, email);

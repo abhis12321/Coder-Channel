@@ -6,7 +6,7 @@ export async function GET(req , {params}) {
     let data;
     
     try {
-        await mongoose.connect(process.env.mongoUrl);
+        await mongoose.connect(process.env.MONGO_URL);
         data = await login.findOne({_id:params.id})
         // console.log(data);
     }
@@ -21,7 +21,7 @@ export async function GET(req , {params}) {
 export async function PUT(req , {params}) {
     try {
         let data = await req.json();
-        await mongoose.connect(process.env.mongoUrl);
+        await mongoose.connect(process.env.MONGO_URL);
         let new_data = await login.findOneAndUpdate({_id:params.id} , {$set: {...data}});
         return NextResponse.json({new_data , success:true});
     }
@@ -33,7 +33,7 @@ export async function PUT(req , {params}) {
 
 export async function DELETE(req , {params}) {
     try {
-        await mongoose.connect(process.env.mongoUrl);
+        await mongoose.connect(process.env.MONGO_URL);
         await login.deleteOne({_id:params.id});
         return NextResponse.json({success:true});
     }
