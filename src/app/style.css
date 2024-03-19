@@ -107,7 +107,7 @@
     background-position: top 25% right 0;
     background-color: rgb(240, 248, 255);
     /* background-image: url('../mongo/A2.jpg'); */
-    background-image: url('../public/Ab1.jpg');
+    background-image: url('../../public/Ab1.jpg');
     background-size: cover;
     background-position-x: center;
     /* gap: 20px; */

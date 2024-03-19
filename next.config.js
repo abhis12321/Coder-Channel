@@ -15,8 +15,9 @@ const nextConfig = {
           },
         ];
       },
-    // contentType:['multipart/form-data'],
-
+      
+    reactStrictMode: false,
+    
     // redirects:async () => 
     // [
     //     {

@@ -30,7 +30,7 @@ export default function Home() {
         <div className='social-media'>
           <Link target='_blank'  href={`https://github.com/abhis12321`} className='social-platform'><FontAwesomeIcon icon={faGithub} size='3x' id='github'/></Link>
           <Link target='_blank'  href={`https://www.linkedin.com/in/abhishek-singh-b82427256/`}  className='social-platform'><FontAwesomeIcon icon={faLinkedin} size='3x' /></Link>          
-          <Link target='_blank'  href={`/`}><FontAwesomeIcon icon={faInstagram} size='3x' className='social-platform' id='insta' /></Link>
+          <Link target='_blank'  href={`https://www.instagram.com/____abhis____/`}><FontAwesomeIcon icon={faInstagram} size='3x' className='social-platform' id='insta' /></Link>
         </div>
       </div>
 

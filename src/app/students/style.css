@@ -132,7 +132,8 @@
     width: 100vw;
     height: 90vh;
     /* background-color: blueviolet; */
-    background-image: url('../../public/loading.gif');
+    background-image: url('../../../public/loading.gif');
     background-repeat: no-repeat;
     background-position: center;
+    background-size: 20%;
 }
