@@ -2,8 +2,20 @@
 const nextConfig = {
     // output:"export",
     images:{
-        domains:['insidethemagic.net']
+        domains:['insidethemagic.net' , 'dfstudio-d420.kxcdn.com' , "encrypted-tbn0.gstatic.com" , "avatars.githubusercontent.com"],
     },
+    async headers() {
+        return [
+          {
+            source: '/about',
+            headers: [
+              { key: 'x-custom-header', value: 'my custom header value' },
+              { key: 'x-another-custom-header', value: 'my other custom header value' },
+            ],
+          },
+        ];
+      },
+    // contentType:['multipart/form-data'],
 
     // redirects:async () => 
     // [

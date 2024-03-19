@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { login } from "/mongo/exp";
 import cryptoJS from 'crypto-js'
 
-export async function POST(req) {
+export async function POST(req) {  
   let data = await req.json();
   let {email , password} = data;
   
@@ -12,7 +12,7 @@ export async function POST(req) {
   }
 
   try {
-    await mongoose.connect(process.env.mongoUrl);
+    await mongoose.connect(process.env.MONGO_URL);
     let check = await login.find({ email });
   
     let bytes = cryptoJS.AES.decrypt(check[0].password , email);

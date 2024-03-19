@@ -7,14 +7,14 @@ import cryptoJS from "crypto-js";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.user,
-    pass: process.env.epass,
+    user: process.env.USER,
+    pass: process.env.E_PASS,
   },
 });
 
 async function sendVerificationEmail(email, pass) {
   const mailOptions = {
-    from: process.env.user,
+    from: process.env.USER,
     to: email,
     subject: "password forgot",
     text: `Please use this password to login with your email address:\n${pass}\n\nIf you did not request this password, please ignore this message.`,
@@ -34,7 +34,7 @@ export async function POST(req) {
 
     if (!email) return NextResponse.json({ message: "Missing email or token" });
 
-    await mongoose.connect(process.env.mongoUrl);
+    await mongoose.connect(process.env.MONGO_URL);
     let check = await login.find({ email });
 
     if (check.length == 0) {
