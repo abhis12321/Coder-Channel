@@ -1,79 +1,31 @@
-
 "use client"
 
 
 import '../globals.css';
 import React from "react";
-import io from "socket.io-client";
-
+import { useAuth , handleMessage} from "/mongo/AuthProvider";
+// import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 function Page() {
-    let [name , setName] = React.useState(null);
-    let [socket , setSocket] = React.useState();
-    const [content , setContent] = React.useState();
+    const [content , setContent] = React.useState("");
+    const router = useRouter();
+    let USER = useAuth();
+
     React.useEffect(() => {
-        console.log("mounting.");
-        initializing();
+        if(!USER.user) {
+            router.push('/login');
+        }
+        else {
+            console.log("mounting.");
+        }
     } , [])
 
-
-    async function initializing() {
-        // name="heroku"
-        name = prompt('Enter you name to join the chat');
-        await fetch('/api/socket')
-        .then(r => {
-            socket = io(undefined , {
-                path:"/api/socket_io",
-                addTrailingSlash: false,
-            });
-            
-
-            socket?.on('connect' , () => { 
-                console.log("connected.." , socket.id);
-                socket.emit('new-user' , name);
-            });
-            
-            socket?.on('newUser' , Name => {                
-                const box = document.querySelector('.chat-box');
-                let message = chatModel(Name , "joined the chat" , 'center');
-                box.appendChild(message);
-            });
-
-            socket?.on('welcome' , data => {
-                console.log("welcome message" , socket.id);
-            })
-            
-            socket?.on('receiveMessage' , data => {    
-                  const box = document.querySelector('.chat-box');
-                  let message = chatModel(data.Name , data.message , 'left');
-                  box.appendChild(message);
-        
-                console.log("client received the message " , socket.id);
-            });
-        
-            socket?.on('disconnect' , () => {
-                console.log("Disconnected");
-            });
-        
-            setName(name);
-            setSocket(socket);
-            return () => {
-                socket.disconnect();
-              };
-        })
+    const handleClick = e => {  
+        handleMessage(content , USER.user.name , USER.socket); 
+        setContent("");
     }
 
-    
-    const handleClick = e => {
-          const box = document.querySelector('.chat-box');
-          let message = chatModel("you" , content , 'right');
-          box.appendChild(message);
-
-        console.log("Clicking" , socket.id);
-        socket?.emit('sendMessage' , {Name: name, message:content});
-        setContent("");
-    };
-    
     return (
         <div>
             <div className='chat-box'>
@@ -88,15 +40,6 @@ function Page() {
 
         </div>
     )
-}
-
-const chatModel = (name , message , dir) => {
-  const node = document.createElement('p');
-  node.innerText = name + ": " + message;
-  node.classList.add(dir);
-  return (
-    node
-  )
 }
 
 export default React.memo(Page);

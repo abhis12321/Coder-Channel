@@ -57,6 +57,9 @@ export default function NavBar() {
         <div><Link href="/projects" className="nav-tag hom" onClick={e => addActive('hom')}>
           Projects
         </Link></div>
+        <div><Link href="/chat" className="nav-tag hom" onClick={e => addActive('hom')}>
+          Chat
+        </Link></div>
         {/* <div><Link href="/news/india" className="nav-tag nws" onClick={e => addActive('nws')}>
           News-Hunt
         </Link></div> */}
