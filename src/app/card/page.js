@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import Image from 'next/image';
-import A from '../../public/Ab1.jpg'
+import A from '../../../public/Ab1.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faCommentDots, faHeart,  faShareNodes } from '@fortawesome/free-solid-svg-icons';

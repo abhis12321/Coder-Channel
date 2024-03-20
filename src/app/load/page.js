@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import Link from "next/link";
-import { uploadPhoto } from "../../mongo/Uploader";
+// import Link from "next/link";
+// import { uploadPhoto } from "../../../mongo/Uploader";
 import { PhotoCard } from "./PhotoCard";
 
 
