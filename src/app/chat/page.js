@@ -12,14 +12,14 @@ function Page() {
     const router = useRouter();
     let USER = useAuth();
 
-    React.useEffect(() => {
-        if(!USER.user) {
-            router.push('/login');
-        }
-        else {
-            console.log("mounting.");
-        }
-    } , [])
+    // React.useEffect(() => {
+    //     if(!USER.user) {
+    //         router.push('/login');
+    //     }
+    //     else {
+    //         console.log("mounting.");
+    //     }
+    // } , [])
 
     const handleClick = e => {  
         handleMessage(content , USER.user.name , USER.socket); 
@@ -29,7 +29,7 @@ function Page() {
     return (
         <div>
             <div className='chat-box'>
-                <h1>Chat Group..</h1>
+                <h1>Chat Group...</h1>
                 <p className='left'>Welcome in this chat group</p>
             </div>
 

@@ -53,9 +53,12 @@
      /* justify-content: space-evenly; */
  }
 
- .nav-tag1 {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-     margin-left: 12px;
+ .nav-tag-logo-name {
+    font-family: Georgia, Verdana, sans-serif;
+    margin-left: 12px;
+ }
+ .nav-tag-logo-name span {
+    font-family: sans-serif;
  }
 
  #tag {
@@ -114,9 +117,11 @@
 }
 
  .intro-tag {
+    /* color: rgba(0, 0, 0, 0.89); */
     /* transform: scale(2); */
     text-align: center;
     text-shadow: 0 0 4px rgb(255, 255, 0);
+    /* text-shadow: 0 0 2px rgb(255, 255, 255); */
     /* background-color: rgba(30, 0, 255, 0.17); */
  }
  h1.intro-tag {

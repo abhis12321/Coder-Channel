@@ -74,13 +74,13 @@
 .git {
     color: rgb(6, 6, 24);
 }
-.profile-info-card .connect {
+.profile-info-card .social-connect {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px
 }
-.profile-info-card .connect button{
+.profile-info-card .social-connect .social-connect-tag {
     border: none;
     padding: 10px 30px;
     border-radius: .91rem;
@@ -88,8 +88,9 @@
     color: white;
     background-color: rgb(20, 179, 20);
     box-shadow: 0 0 3px black;
+    text-decoration: none;
 }
-.profile-info-card .connect button:hover {
+.profile-info-card .social-connect .social-connect-tag:hover {
     background-color: rgb(20, 208, 20);
     box-shadow: 0 0 8px black;
 }
@@ -109,10 +110,10 @@
 .left-border {
     border-left: 1px solid rgb(71, 71, 71);
 }
-.heart {
+.likes {
     color: red;
 }
-.profile-info-card .impression .heart:hover {
+.profile-info-card .impression .likes:hover {
     color: rgb(255, 52, 52);
 }
 .chat {
@@ -121,10 +122,10 @@
 .profile-info-card .impression .chat:hover {
     color: rgb(14, 97, 222);
 }
-.heart {
+.likes {
     color: red;
 }
-.profile-info-card .impression .heart:hover {
+.profile-info-card .impression .likes:hover {
     color: rgb(255, 52, 52);
 }
 
