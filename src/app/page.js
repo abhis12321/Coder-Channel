@@ -15,7 +15,8 @@ export default function Home() {
           <h1 className='intro-tag'>Abhishek Singh</h1>
           <h3 className='intro-tag'>& I am a Passionate </h3>
           <h1 className='intro-tag'>Web Developer ,</h1>
-          <h1 className='intro-tag'>Problem Solver</h1>
+          <h1 className='intro-tag'>Problem Solver &</h1>
+          {/* <h3 className='intro-tag'>&</h3> */}
           <h1 className='intro-tag'>Full Stack Developer</h1>
           {/* <Typewriter
                 onInit={(typewriter) => {

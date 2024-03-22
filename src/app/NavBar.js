@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 import { useAuth } from "/mongo/AuthProvider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -45,7 +45,7 @@ export default function NavBar() {
   return (
     <div className="nav-cant">
       <div className="nav-left">
-        <h2 className="nav-tag1">@bhishek singh</h2>
+        <h2 className="nav-tag-logo-name"><span>@</span>bhishek singh</h2>
       </div>
       <div className="nav-right">
         <div >
