@@ -69,6 +69,17 @@ async function initializing(name , setSocket) {
         let message = chatModel(data.Name , data.message , 'left');
         box.appendChild(message);  
       });
+      
+      socket?.on('receiveSoloMessage' , data => {    
+        // let USER = useAuth();
+        // if(data.senderId == USER.user._id && data.receiverId == "") {
+          console.log("client received the message " , data);
+
+          const box = document.querySelector('.chat-message-box');
+          let message = chatModel(data.Name , data.message , 'left');
+          box.appendChild(message);  
+        // }
+      });
   
       socket?.on('userDisconnected' , Name => {       
         // console.log("lalu" , Name + " diconnected now...");   
@@ -92,13 +103,21 @@ async function initializing(name , setSocket) {
 
 
 export function handleMessage(content , name , socket) {
-  // console.log("Sending message" , socket.id);
-
     const box = document.querySelector('.chat-box');
+
     let message = chatModel("you" , content , 'right');
     box.appendChild(message);
 
     socket?.emit('sendMessage' , {Name:name, message:content});
+};
+
+
+export function handleSoloMessage(content , name , socket, senderId , receiverId) {
+  const box = document.querySelector('.chat-message-box');
+  let message = chatModel("you" , content , 'right');
+
+  box.appendChild(message);
+  socket?.emit('sendSoloMessage' , {Name:name, message:content , senderId , receiverId});
 };
 
 

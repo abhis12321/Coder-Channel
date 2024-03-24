@@ -22,9 +22,9 @@ export default function Card({ getData, student }) {
       {student.university}
       </div>
       <div className="social-medias">
-        <Link href={`/card`}><FontAwesomeIcon icon={faInstagram} size='2x' className='insta'/></Link>
-        <Link href={`/card`}><FontAwesomeIcon icon={faLinkedin} size='2x' className='lnkdn'/></Link>
-        <Link href={`/card`}><FontAwesomeIcon icon={faGithub} size='2x' className='git'/></Link>
+        <Link href={`/student`}><FontAwesomeIcon icon={faInstagram} size='2x' className='insta'/></Link>
+        <Link href={`/student`}><FontAwesomeIcon icon={faLinkedin} size='2x' className='lnkdn'/></Link>
+        <Link href={`/student`}><FontAwesomeIcon icon={faGithub} size='2x' className='git'/></Link>
       </div>
       <div className="social-connect">
         <button className='social-connect-tag follow-btn'>follow</button>

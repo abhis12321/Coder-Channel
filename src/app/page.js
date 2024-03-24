@@ -4,7 +4,6 @@ import { faBootstrap, faCss3Alt, faGithub, faHtml5, faInstagram, faJava, faLinke
 import Image from 'next/image';
 import Link from 'next/link';
 // import Typewriter from "typewriter-effect";
-// import  A from '../public/Ab1.jpg'
 
 export default function Home() {
   
@@ -131,8 +130,6 @@ export default function Home() {
           // src={A}
           src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT44xyPyV2KNaYbm0oO-E5sn0NyanhpjfjI7pd6ozdrRTJRl9Y5ixHj5dIQsAso7d9A1ms&usqp=CAU'} 
            alt='profile' width={200} height={200}/>
-
-           <Image src={'/uploads/1710806250731insta6.jpg'} height={100} width={100} alt='profile'/>
         </div>
       </section>
 
