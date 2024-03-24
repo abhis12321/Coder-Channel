@@ -20,18 +20,18 @@ export default async function SocketHandler(req, res) {
                 socket.broadcast.emit('newUser' , name);
             });
 
-            socket.on('sendMessage' , data => {
+            socket.on('sendGroupMessage' , data => {
                 // console.log(data , "received on the server");
-                socket.broadcast.emit('receiveMessage' , data);
+                socket.broadcast.emit('receiveGroupMessage' , data);
             });
 
-            socket.on('sendSoloMessage' , data => {
+            socket.on('sendPersonalMessage' , data => {
                 // console.log(data , "received on the server");
-                socket.broadcast.emit('receiveSoloMessage' , data);
+                socket.broadcast.emit('receivePersonalMessage' , data);
             });
 
             socket.on('disconnect' , async (name) => {
-                socket.broadcast.emit('userDisconnected' , name);
+                socket.broadcast.emit('userLeftGroup' , name);
                 // console.log("A user disconnected");
             });
         });

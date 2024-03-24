@@ -6,9 +6,11 @@ const context = React.createContext();
 export default function AuthProvider({ children }) {
   const [user, setUser] = React.useState(null);
   let [socket , setSocket] = React.useState();
+  const [receiver, setReceiver] = React.useState(null);
   
+
   const login = (person) => {
-    initializing(person.name , setSocket);
+    Initializing(person , setSocket , receiver);
     setUser(person);
     localStorage.setItem('user', JSON.stringify(person));
   };
@@ -18,14 +20,23 @@ export default function AuthProvider({ children }) {
     socket.disconnect();
     setUser(null);
     setSocket(null);
+    setReceiver(null);
   };
+
+  const setReceiverUser = userData => {
+    setReceiver(userData);
+    socket?.disconnect();
+    Initializing(user , setSocket , userData);
+  }
 
   const value = {
     user,
     login,
     logout,
     socket,
+    setReceiverUser,
   };
+
 
   return (
     <context.Provider value={value}>
@@ -35,9 +46,8 @@ export default function AuthProvider({ children }) {
 }
 
 
-async function initializing(name , setSocket) { 
-  
-  await fetch('/api/socket')
+function Initializing(sender , setSocket , receiver) { 
+  fetch('/api/socket')
   .then(r => {
       let socket = io(undefined , {
           path:"/api/socket_io",
@@ -46,10 +56,9 @@ async function initializing(name , setSocket) {
       
 
       socket?.on('connect' , () => { 
-          // console.log("connected.." , socket.id);
-
-          socket.emit('new-user' , name);
+          socket.emit('new-user' , sender?.name);
       });
+   
       
       socket?.on('newUser' , Name => {                
           const box = document.querySelector('.chat-box');
@@ -57,40 +66,37 @@ async function initializing(name , setSocket) {
           box?.appendChild(message);
       });
 
+
       socket?.on('welcome' , data => {
-          // console.log("welcome message" , socket.id);
-
+          // console.log("welcome message" , data);
       })
+        
       
-      socket?.on('receiveMessage' , data => {    
-        // console.log("client received the message " , socket.id);
+      socket?.on('receivePersonalMessage' , data => {  
+        if(data.senderId == receiver?._id && data.receiverId == sender?._id) {
+          const box = document.querySelector('.chat-message-box');
+          let message = chatModel(data.Name , data.message , 'left');
+          box.appendChild(message);  
+        }
+      });
+  
 
+      socket?.on('receiveGroupMessage' , data => {    
         const box = document.querySelector('.chat-box');
         let message = chatModel(data.Name , data.message , 'left');
         box.appendChild(message);  
       });
       
-      socket?.on('receiveSoloMessage' , data => {    
-        // let USER = useAuth();
-        // if(data.senderId == USER.user._id && data.receiverId == "") {
-          console.log("client received the message " , data);
 
-          const box = document.querySelector('.chat-message-box');
-          let message = chatModel(data.Name , data.message , 'left');
-          box.appendChild(message);  
-        // }
-      });
-  
-      socket?.on('userDisconnected' , Name => {       
-        // console.log("lalu" , Name + " diconnected now...");   
-
+      socket?.on('userLeftGroup' , Name => {     
         const box = document.querySelector('.chat-box');
         let message = chatModel(Name , "left the chat" , 'center');
         box?.appendChild(message);
-    });
+      });
+
 
       socket?.on('disconnect' , () => {
-          console.log("socket.io Disconnected");
+          // console.log("socket.io Disconnected");
       });
   
       setSocket(socket);
@@ -102,13 +108,15 @@ async function initializing(name , setSocket) {
 
 
 
+
+
 export function handleMessage(content , name , socket) {
     const box = document.querySelector('.chat-box');
 
     let message = chatModel("you" , content , 'right');
     box.appendChild(message);
 
-    socket?.emit('sendMessage' , {Name:name, message:content});
+    socket?.emit('sendGroupMessage' , {Name:name, message:content});
 };
 
 
@@ -117,7 +125,7 @@ export function handleSoloMessage(content , name , socket, senderId , receiverId
   let message = chatModel("you" , content , 'right');
 
   box.appendChild(message);
-  socket?.emit('sendSoloMessage' , {Name:name, message:content , senderId , receiverId});
+  socket?.emit('sendPersonalMessage' , {Name:name, message:content , senderId , receiverId});
 };
 
 

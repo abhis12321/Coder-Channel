@@ -29,6 +29,8 @@ export async function POST(req) {
       else {
         return NextResponse.json({message:"email verification required...!" , success:false})
       }
+    } else {
+      return NextResponse.json({success:false , message:"Wrong credentials!"})
     }
   } catch (error) {
     return NextResponse.json({message:"bad request, Try again...!" , success:false});

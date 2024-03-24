@@ -13,9 +13,10 @@ export default function Page(props) {
     fetch(`/api/mongo/form2/${props.params.newUserChat}`)
             .then(res => res.json())
             .then(data => {
-              if(data.success)
-              setUser(data)
-              // console.log(data);
+              if(data.success) {
+                USER.setReceiverUser(data);
+                setUser(data);
+              }
             });
   } , []);
 
