@@ -33,7 +33,7 @@
      align-items: center;
      justify-content: space-between;
      box-shadow: 0 0 10px rgb(112, 109, 109);
-     background-color: rgba(211, 211, 211, 1.85);
+     background-color: rgba(211, 211, 211, .65);
  }
 
  .nav-left {

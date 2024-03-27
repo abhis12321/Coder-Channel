@@ -1,13 +1,20 @@
 *{
     box-sizing: border-box;
 }
+.chat-app-box {
+    background: linear-gradient(to right , rgb(85, 0, 255) , white , rgb(204, 16, 2));
+}
 .live-chat-box {
-    /* width: 100vw; */
-    /* height: 92vh; */
+    border-radius: .7rem;
+    box-shadow: 0 0 5px black;
+    background-color: white;
+    /* background-color: aliceblue; */
+    margin: auto;
+    max-width: 900px;
+    min-height: 92vh;
     padding: 1rem;
     position: relative;
     padding-bottom: 3rem;
-    /* background-color: rgb(168, 172, 107); */
 }
 .user-info-for-chat {
     background-color: aliceblue;
@@ -27,8 +34,9 @@
     position: fixed;
     bottom: 0;
     width: 90vw;
+    max-width: 860px;
 }
-.new-message-sending-box .style {
+.new-message-sending-box .message-input-box-tag {
     padding: 7px 20px;
     border-radius: .5rem;
     outline: none;
@@ -41,7 +49,10 @@
     width: 90%;
     background-color: rgba(255, 255, 255, 0.51);
 }
-.new-message-sending-box button:hover:active {
+.new-message-sending-box button:hover {
+    background-color: rgb(224, 217, 255);
+}
+.new-message-sending-box button:active {
     background-color: rgb(60, 49, 107);
     color: white;
 }
@@ -89,4 +100,9 @@
     background-color:rgb(129, 114, 4);
   }
   
+  
+  .chat-message-box .right span , 
+  .chat-message-box .left span{
+    color: gray;
+  }
   /* temporary */

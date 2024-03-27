@@ -15,7 +15,7 @@ export default function Layout({children}) {
   } , []);
 
   return (
-    <div>
+    <div className='chat-app-box'>
       {children}
     </div>
   )

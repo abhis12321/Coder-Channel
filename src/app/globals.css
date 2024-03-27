@@ -454,7 +454,7 @@ button.nav-tag {
   border-radius: 30px;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.505);
+  background-color: rgba(255, 255, 255, 0.55);
   box-shadow: 0 0 10px rgb(70, 70, 70);
 }
 .profile:hover {
@@ -464,6 +464,9 @@ button.nav-tag {
 .profile-tag {
   margin: 5px;
   text-align: justify;
+}
+.profile-tag span {
+  color: rgb(95, 91, 91);
 }
 a.profile-tag {
   width: 70px;
@@ -485,69 +488,6 @@ a.profile-tag:hover {
 
 
 
-
-
-
-
-
-
-/* Projects-cant */
-.projects-cant {
-  display: flex;
-  flex-direction: column;
-  /* margin: 10px 5px; */
-  background-color: aquamarine;
-}
-.projects-cant h1 {
-  margin: 10px auto;
-  font-size: 4rem;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.project {
-  width: 70%;
-  margin: 10px auto;
-  padding: 20px;
-  background-color: white;
-  min-height: 180px;
-  text-align: center;
-  border-radius: 20px;
-  box-shadow: 0 0 5px black;
-}
-.project:hover {
-  box-shadow: 0 0 10px black;
-  background-color: aliceblue;
-}
-.project-tag {
-  margin: 15px 0;
-}
-.project p {
-  font-size: 12px;
-  font-style: italic;
-  opacity: .7;
-  padding: 10px;
-  font-weight: 600;
-}
-.project .desc {
-  width: 70%;
-  margin: auto;
-  font-size: 13px;
-  opacity: .9;
-}
-.project a {
-  display: flex;
-  text-decoration: none;
-  color: white;
-  background-color: rgb(22, 4, 63);
-  width: max-content;
-  padding: 7px 15px;
-  margin: 10px auto;
-  border-radius: 5px;
-}
-
-.project a:hover {
-  background-color: rgb(43, 2, 154);  
-}
 
 @media screen and (max-width: 1080px) {  
   #logout-cant #logout {

@@ -22,8 +22,10 @@ export default function Page(props) {
 
   const handleSendNewMessage = e => {
     e.preventDefault();
-    handleSoloMessage(message , USER.user.name , USER.socket , USER?.user?._id , user?._id); 
-    setMessage("");
+    if(message.length > 0) {
+      handleSoloMessage(message , USER.user.name , USER.socket , USER?.user?._id , user?._id); 
+      setMessage("");
+    }
   }
 
   return (
@@ -37,8 +39,8 @@ export default function Page(props) {
         
       </div>
       <form className='new-message-sending-box' onSubmit={handleSendNewMessage}>
-        <input type='text' className='style' value={message} onChange={e => setMessage(e.target.value)}/>
-        <button className='style'>send</button>
+        <input type='text' className='message-input-box-tag' value={message} onChange={e => setMessage(e.target.value)}/>
+        <button className='message-input-box-tag'>send</button>
       </form>
     </div>
   )

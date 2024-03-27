@@ -134,10 +134,10 @@ export const useAuth = () => {
 };
 
 
-function chatModel(name , message , dir) {
+function chatModel(name , message , directionClass) {
   const node = document.createElement('p');
-  node.innerText = name + ": " + message;
-  node.classList.add(dir);
+  node.innerHTML = `<span>${name}</span> : ${message}`;
+  node.classList.add(directionClass);
   
   return (
     node
