@@ -13,7 +13,9 @@ export default async function SocketHandler(req, res) {
 
 
         io.on("connection", (socket) => {
-            console.log("Client connected");
+            // const sender = socket.handshake.auth.name;
+            // console.log(socket.handshake.auth);
+
             socket.broadcast.emit('welcome' ,{name: "captain jack sparrow"});
             
             socket.on('new-user' , name => {
@@ -30,9 +32,9 @@ export default async function SocketHandler(req, res) {
                 socket.broadcast.emit('receivePersonalMessage' , data);
             });
 
-            socket.on('disconnect' , async (name) => {
-                socket.broadcast.emit('userLeftGroup' , name);
-                console.log("A user disconnected");
+            socket.on('disconnect' , async (sender) => {
+                // console.log("A user disconnected");
+                socket.broadcast.emit('userLeftGroup' , sender);
             });
         });
     }

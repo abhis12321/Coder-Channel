@@ -105,4 +105,8 @@
   .chat-message-box .left span{
     color: gray;
   }
+
+  .chatter-name {
+    color: rgb(142, 142, 142);
+  }
   /* temporary */
