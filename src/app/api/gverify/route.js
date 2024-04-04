@@ -12,8 +12,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-async function sendVerificationEmail(email, token) {
-  const link = `${process.env.CURR_URL}/login/${token}?e=${email}`;
+async function sendVerificationEmail(email, token , origin) {
+  const link = `${origin}/login/${token}?e=${email}`;
 
   const mailOptions = {
     from: process.env.USER,
@@ -30,6 +30,7 @@ async function sendVerificationEmail(email, token) {
 }
 
 export async function POST(req, res) {
+  let origin = (req.url).slice(0 , -12);
   let data = await req.json();
   let email = data.email;
   var secretKey = email;
@@ -51,7 +52,7 @@ export async function POST(req, res) {
     let token = await login.insertMany([{...data , verify:false , password:ciphertext}]);
     // console.log(token);
     token = token[0]._id;
-    await sendVerificationEmail(email, token);
+    await sendVerificationEmail(email, token , origin);
     return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" });
   } 
   catch (error) {

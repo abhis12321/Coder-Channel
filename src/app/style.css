@@ -138,7 +138,7 @@
      justify-content: center;
  }
 
- .tech {
+ .technology {
      width: 65%;
      margin: 5px;
      height: 40vh;
@@ -150,12 +150,12 @@
      box-shadow: 0 0 20px rgb(173, 164, 164);
  }
 
- .tech:hover {
+ .technology:hover {
      box-shadow: 0 0 10px rgb(23, 22, 22);
      background-color: rgb(240, 248, 255);
  }
 
- .tech-tag {
+ .technology-tag {
      display: flex;
      padding: 0 1rem;
      flex-direction: column;
@@ -163,11 +163,11 @@
      align-items: center;
  }
 
- .tech-tag p {
+ .technology-tag p {
      text-align: center;
  }
 
- .tech-tag h2 {
+ .technology-tag h2 {
      text-align: center;
  }
 
@@ -311,17 +311,17 @@
          width: 50%;
      }
      
-     .tech {
+     .technology {
         width: 100%;
      }
 
-    .tech:hover {
+    .technology:hover {
         width: 100%;
         background-color: aliceblue;
         box-shadow: 0 0 10px rgb(23, 22, 22);
     }
 
-    .tech-tag:nth-child(2) {
+    .technology-tag:nth-child(2) {
        padding: 0 8px;
     }
   
@@ -342,7 +342,7 @@
     .nav-tag1 {
         margin-left: 20px;
     }
-    .tech-tag svg {
+    .technology-tag svg {
         height: 5rem;
     }
     
@@ -368,11 +368,11 @@
     .study {
         padding: 0;
     }
-    .tech {
+    .technology {
         width: 98%;
         margin: 5px 4px;
     }
-    .tech:hover {
+    .technology:hover {
         width: 100%;
     }
     h1.intro-tag {
@@ -383,7 +383,7 @@
     }
  }
  @media screen and (max-width: 300px) {
-    .nav-tag1 {
+    /* .nav-tag1 { */
         /* margin-left: 5px; */
-    }
+    /* } */
  }

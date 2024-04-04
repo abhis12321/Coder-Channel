@@ -13,7 +13,7 @@ export default async function SocketHandler(req, res) {
 
 
         io.on("connection", (socket) => {
-            // console.log("Client connected");
+            console.log("Client connected");
             socket.broadcast.emit('welcome' ,{name: "captain jack sparrow"});
             
             socket.on('new-user' , name => {
@@ -32,7 +32,7 @@ export default async function SocketHandler(req, res) {
 
             socket.on('disconnect' , async (name) => {
                 socket.broadcast.emit('userLeftGroup' , name);
-                // console.log("A user disconnected");
+                console.log("A user disconnected");
             });
         });
     }

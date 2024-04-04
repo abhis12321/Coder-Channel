@@ -14,13 +14,13 @@ export default function page() {
         <div className="desc">A React based News Application for current/Daily news (data from news api)I created a news website for current(daily) news using the data of a NEWS API and I created some sections of interests</div>
         <div className="project-link">
           <Link target='_blank' href={`https://github.com/abhis12321/student-login-app-nextjs`}>Github Repository...</Link>
-          <Link target='_blank' href={`/projects`}>Take a Look...</Link>
+          <Link target='_blank' href={`/`}>Take a Look...</Link>
         </div>  
       </div>
       
       
       <div className="project">
-        <h2 className="project-tag">e-commerce Web App</h2>
+        <h2 className="project-tag">E-commerce Web App</h2>
         <p><span>Tools & technologies used:</span> HTML , EJS , CSS , Node.js , Expess.js , MongoDB</p>
         <div className="desc">A React based News Application for current/Daily news (data from news api)I created a news website for current(daily) news using the data of a NEWS API and I created some sections of interests</div>
         <div className="project-link">
@@ -45,7 +45,7 @@ export default function page() {
         <div className="desc">A React based News Application for current/Daily news (data from news api)I created a news website for current(daily) news using the data of a NEWS API and I created some sections of interests</div>
         <div className="project-link">
           <Link target='_blank' href={`https://github.com/abhis12321/password-generator`}>Github Repository...</Link>
-          <Link target='_blank' href={`/projects`}>Take a Look...</Link>
+          <Link target='_blank' href={`https://abhis12321.github.io/password-generator/`}>Take a Look...</Link>
         </div>  
       </div>
 
@@ -55,7 +55,7 @@ export default function page() {
         <div className="desc">A React based News Application for current/Daily news (data from news api)I created a news website for current(daily) news using the data of a NEWS API and I created some sections of interests</div>
         <div className="project-link">
           <Link target='_blank' href={`https://github.com/abhis12321/simen_says`}>Github Repository...</Link>
-          <Link target='_blank' href={`/projects`}>Take a Look...</Link>
+          <Link target='_blank' href={`https://abhis12321.github.io/simen_says/`}>Take a Look...</Link>
         </div>  
       </div>
 
@@ -65,7 +65,7 @@ export default function page() {
         <div className="desc">A React based News Application for current/Daily news (data from news api)I created a news website for current(daily) news using the data of a NEWS API and I created some sections of interests</div>
         <div className="project-link">
           <Link target='_blank' href={`https://github.com/abhis12321/Temp_Converter`}>Github Repository...</Link>
-          <Link target='_blank' href={`/projects`}>Take a Look...</Link>
+          <Link target='_blank' href={`https://abhis12321.github.io/Temp_Converter/`}>Take a Look...</Link>
         </div>  
       </div>
 
@@ -75,7 +75,7 @@ export default function page() {
         <div className="desc">A React based News Application for current/Daily news (data from news api)I created a news website for current(daily) news using the data of a NEWS API and I created some sections of interests</div>
         <div className="project-link">
           <Link target='_blank' href={`https://github.com/abhis12321/To-Do-List-or-Task-Manager`}>Github Repository...</Link>
-          <Link target='_blank' href={`/projects`}>Take a Look...</Link>
+          <Link target='_blank' href={`https://abhis12321.github.io/To-Do-List-or-Task-Manager/`}>Take a Look...</Link>
         </div>  
       </div>
       
@@ -116,7 +116,7 @@ export default function page() {
         <div className="desc">A React based News Application for current/Daily news (data from news api)I created a news website for current(daily) news using the data of a NEWS API and I created some sections of interests</div>
         <div className="project-link">
           <Link target='_blank' href={`https://github.com/abhis12321/Real-time-Leaderboard-Management`}>Github Repository...</Link>
-          <Link target='_blank' href={`/projects`}>Take a Look...</Link>
+          <Link target='_blank' href={`https://abhis12321.github.io/Real-time-Leaderboard-Management/`}>Take a Look...</Link>
         </div>  
       </div>
 
@@ -137,7 +137,7 @@ export default function page() {
         <div className="desc">A React based News Application for current/Daily news (data from news api)I created a news website for current(daily) news using the data of a NEWS API and I created some sections of interests</div>
         <div className="project-link">
           <Link target='_blank' href={`https://github.com/abhis12321/weather-app`}>Github Repository...</Link>
-          <Link target='_blank' href={`/projects`}>Take a Look...</Link>
+          <Link target='_blank' href={`https://abhis12321.github.io/weather-app/`}>Take a Look...</Link>
         </div>  
       </div>
       

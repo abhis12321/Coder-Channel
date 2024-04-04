@@ -17,7 +17,7 @@ export default function AuthProvider({ children }) {
 
   const logout = () => {
     localStorage.setItem('user', JSON.stringify(null));
-    socket.disconnect();
+    socket?.disconnect();
     setUser(null);
     setSocket(null);
     setReceiver(null);
