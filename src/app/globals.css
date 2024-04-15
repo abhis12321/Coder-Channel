@@ -55,21 +55,24 @@ input {
   background-color: rgb(239, 233, 227);
 }
 
+.login-cant {
+
+}
 
 
 
 /* form-cant */
 .form-cant {
   top: 10px;
-  width: 60%;
+  position: relative;
+  /* width: 60%;
   min-height:280px;
   margin: 1rem auto;
-  position: relative;
   border-radius: 1rem;
   box-sizing: border-box;
-  padding:2rem 0rem 2rem 0rem;
-  box-shadow: 0 0 10px black;
-  background: linear-gradient(rgb(255, 68, 0) , white , green);
+  padding:2rem 0rem 2rem 0rem; */
+  /* box-shadow: 0 0 10px black; */
+  /* background: linear-gradient(rgb(255, 68, 0) , white , green); */
 }
 .wheel {
   position: absolute;
@@ -441,13 +444,12 @@ button.nav-tag {
 
 
 /* login-cant */
-#login-cant {
-  height: 92vh;
+/* #login-cant {
+  height: calc();
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(82, 7, 82, 0.3);
-  /* background-image: url("../../public/wheel.gif"); */
   background-image: url("../../public/wheel.gif");
   background-repeat: no-repeat;
   background-position: center;
@@ -455,7 +457,7 @@ button.nav-tag {
 }
 #login-cant .form-cant {
   background: linear-gradient(rgba(255, 68, 0, 0.87) , rgba(255, 255, 255, 0.87) , rgba(0, 128, 0, 0.87));  
-}
+} */
 .profile {
   width: 50vw;
   display: flex;

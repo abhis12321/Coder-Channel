@@ -28,20 +28,22 @@ export default function Page() {
   }
 
   return (
-    <div  id="login-cant">
+    <div className="flex flex-col gap-5 items-center justify-center bg-slate-950 bg-no-repeat bg-center bg-contain " style={{ height:'calc(100vh - 4rem)', }}>
+      <h1 className='mx-auto text-center py-4 px-8 my-2 text-4xl rounded-md border-2 border-white font-extrabold  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit'>Login Page</h1>
+      
       {!USER.user ?
-        <form onSubmit={handleLogin} className='form-cant' autoComplete='on'>
-          <h1 className='form-tag'>Login with your email-id</h1>
+        <form onSubmit={handleLogin} className='bg-gradient-to-b from-slate-700 to-slate-950  shadow-[0_0_10px_white] w-[98%] sm:w-[95%] md:w-[60%] py-8 rounded-xl min-h-[280px] text-white opacity-90' autoComplete='on'>
+          <h1 className=" mb-5 text-center text-2xl font-semibold drop-shadow-[0_0_5px_black]">Login with your email-id</h1>
           
-          <input type="email" value = {email} onChange={(e)=> setEmail(e.target.value)} className='form-input' placeholder='email' name='email' id='email'required/>
-          <input type="password" value = {password} onChange={(e)=> setPass(e.target.value)} className='form-input' placeholder='password' name='password' id='password' required/>
-          <div className='center space-between ' id='m-10'>
-            <Link href={`/login/resend`}>Resend Verification Link</Link>
-            <Link href={`/login/forgot`}>forgot password</Link>
+          <input type="email" value = {email} onChange={(e)=> setEmail(e.target.value)} className='block m-4 p-2 rounded mx-auto text-center w-[90%] max-w-[500px] bg-inherit shadow-[0_0_8px_white]' placeholder='email' name='email' required/>
+          <input type="password" value = {password} onChange={(e)=> setPass(e.target.value)} className='block m-4 p-2 rounded mx-auto text-center w-[90%] max-w-[500px] bg-inherit shadow-[0_0_8px_white]' placeholder='password' name='password' required/>
+          <div className="flex items-center justify-evenly" >
+            <Link href={`/login/resend`} className="drop-shadow-[0_0_5px_red]">Resend Verification Link</Link>
+            <Link href={`/login/forgot`} className="drop-shadow-[0_0_5px_red]">forgot password</Link>
           </div>
-          <div className="resister">
-            <button type='submit' className='form-input hover' >Login</button>
-            <Link href={`/login/resistration`} className='form-input hover' >Resister New</Link>
+          <div className="w-[90%] max-w-[500px] m-auto flex justify-between pt-2">
+            <button type='submit' className='w-[120px] xm:w-[150px] text-center rounded-md bg-red-900 py-2 hover:bg-red-700 font-mono' >Login</button>
+            <Link href={`/login/resistration`} className='w-[120px] xm:w-[150px] text-center rounded-md bg-red-900 py-2 hover:bg-red-700 font-mono' >Resister New</Link>
           </div>
         </form>
         :

@@ -32,7 +32,7 @@ export default function page() {
           </div>
           <div className="technology-tag w-[70%]">
             <h2 className='bg-gray-950 font-bold px-4 py-2 rounded'>Dec 2021</h2>
-            <p className='font-mono text-[14px] text-gray-100' >My first and the starting programming language is C as It was also in the course of my BTECH 1st year and 2nd year hence I learned the BASICS of C language and Data Structure in C language</p>
+            <p className='font-mono text-[14px] text-gray-400 py-3' >My first and the starting programming language is C as It was also in the course of my BTECH 1st year and 2nd year hence I learned the BASICS of C language and Data Structure in C language</p>
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export default function page() {
           </div>
           <div className="technology-tag w-[70%]">
             <h2 className='bg-gray-950 font-bold px-4 py-2 rounded'>August 2022</h2>
-            <p className='font-mono text-[14px] text-gray-100' >Java is my main programming language as I have spend a long time to study the BASICS of JAVA , Data Structure and Algorithm in JAVA language ans Object Oriented Programming in JAVA language</p>
+            <p className='font-mono text-[14px] text-gray-400 py-3' >Java is my main programming language as I have spend a long time to study the BASICS of JAVA , Data Structure and Algorithm in JAVA language ans Object Oriented Programming in JAVA language</p>
           </div>
         </div>
 
@@ -54,7 +54,7 @@ export default function page() {
           </div>
           <div className="technology-tag w-[70%]">
             <h2 className='bg-gray-950 font-bold px-4 py-2 rounded'>December 2022</h2>
-            <p className='font-mono text-[14px] text-gray-100' >It was the initial Starting for my web development journey as a beginner I started with HTML(Hyper Text Markup Language)</p>
+            <p className='font-mono text-[14px] text-gray-400 py-3' >It was the initial Starting for my web development journey as a beginner I started with HTML(Hyper Text Markup Language)</p>
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export default function page() {
           </div>
           <div className="technology-tag  w-[70%]">
             <h2 className='bg-gray-950 font-bold px-4 py-2 rounded'>December 2022</h2>
-            <p className='font-mono text-[14px] text-gray-100' >It was the initial Starting for my web development journey as a beginner I started with HTML and here I also focused on CSS(Cascading Style Sheet) as It gives a good look to the HTML</p>
+            <p className='font-mono text-[14px] text-gray-400 py-3' >It was the initial Starting for my web development journey as a beginner I started with HTML and here I also focused on CSS(Cascading Style Sheet) as It gives a good look to the HTML</p>
           </div>
         </div>
 
@@ -76,7 +76,7 @@ export default function page() {
           </div>
           <div className="technology-tag  w-[70%]">
             <h2 className='bg-gray-950 font-bold px-4 py-2 rounded'>February 2023</h2>
-            <p className='font-mono text-[14px] text-gray-100' >After having a good knowledge of HTML and CSS, I moved to JavaScript as It is used in Front-end and Back-end of and web-app and provides some Dynamic properties too</p>
+            <p className='font-mono text-[14px] text-gray-400 py-3' >After having a good knowledge of HTML and CSS, I moved to JavaScript as It is used in Front-end and Back-end of and web-app and provides some Dynamic properties too</p>
           </div>
         </div>
 
@@ -87,7 +87,7 @@ export default function page() {
           </div>
           <div className="technology-tag  w-[70%]">
             <h2 className='bg-gray-950 font-bold px-4 py-2 rounded'>February 2023</h2>
-            <p className='font-mono text-[14px] text-gray-100' >Bootstrap is an toolkit which makes the web development very fast and dynamic, It is an predefined CSS and JavaScript containing tool, I spend some time to learn How to use Bootstrap in my projects</p>
+            <p className='font-mono text-[14px] text-gray-400 py-3' >Bootstrap is an toolkit which makes the web development very fast and dynamic, It is an predefined CSS and JavaScript containing tool, I spend some time to learn How to use Bootstrap in my projects</p>
           </div>
         </div>
 
@@ -98,18 +98,18 @@ export default function page() {
           </div>
           <div className="technology-tag  w-[70%]">
             <h2 className='bg-gray-950 font-bold px-4 py-2 rounded'>May 2023</h2>
-            <p className='font-mono text-[14px] text-gray-100' >React is an JavaScript library for front-end only and I spend a lot of time in learning ReactJS and its properties like : hooks, routing , etc</p>
+            <p className='font-mono text-[14px] text-gray-400 py-3' >React is an JavaScript library for front-end only and I spend a lot of time in learning ReactJS and its properties like : hooks, routing , etc</p>
           </div>
         </div>
 
         <div className="min-h-[40vh] flex w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
           <div className="technology-tag  w-[30%]">
-            <FontAwesomeIcon icon={faN} size='6x' id='N1' className='bg-black px-7 py-4 rounded-full' />
+            <FontAwesomeIcon icon={faN} size='5x' id='N1' className='bg-black px-9 py-6 rounded-full' />
             <h3 className='font-bold ' >NextJS</h3>
           </div>
           <div className="technology-tag  w-[70%]">
             <h2 className='bg-gray-950 font-bold px-4 py-2 rounded'>September 2023</h2>
-            <p className='font-mono text-[14px] text-gray-100' >NextJs is an a complete package for web development, It is a ReactJS framework but as we know ReactJS is only an front-end libreary but NextJS is a not only for Front-end, It can be used for Back-end develoment too.</p>
+            <p className='font-mono text-[14px] text-gray-400 py-3' >NextJs is an a complete package for web development, It is a ReactJS framework but as we know ReactJS is only an front-end libreary but NextJS is a not only for Front-end, It can be used for Back-end develoment too.</p>
           </div>
         </div>
 
