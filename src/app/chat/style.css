@@ -110,3 +110,7 @@
     color: rgb(142, 142, 142);
   }
   /* temporary */
+
+  .group-chat-box {
+    min-height: 92vh;
+  }

@@ -39,9 +39,9 @@ export default function AuthProvider({ children }) {
 
 function Initializing(sender , setSocket ) { 
   fetch('/api/socket' , {
-        auth:JSON.stringify({
-            name : sender.name,
-        })
+        auth:{
+            senderName : sender.name,
+        }
     })
   .then(r => {
       let socket = io(undefined , {

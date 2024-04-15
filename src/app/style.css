@@ -142,12 +142,21 @@
      width: 65%;
      margin: 5px;
      height: 40vh;
-     display: grid;
+     /* display: grid; */
      padding: 0 1rem;
      border-radius: 10px;
      transition: .2s ease;
-     grid-template-columns: 30% 70%;
+     /* grid-template-columns: 30% 70%; */
      box-shadow: 0 0 20px rgb(173, 164, 164);
+
+     display: flex;
+ }
+
+ .technology .technology-tag:nth-child(even) {
+    width: 70%;
+ }
+ .technology .technology-tag:nth-child(odd) {
+    width: 30%;
  }
 
  .technology:hover {

@@ -16,7 +16,7 @@ export default function Page(props) {
   const handlePersonalMessage =  (data) => {
     if (data.senderId == user?._id && data.receiverId == USER.user?._id) {
       const box = document.querySelector(".chat-message-box");
-      let message = chatModel(data.Name, data.message, "left");
+      let message = chatModel(data.message, "left");
       box.appendChild(message);
     }
   }
@@ -56,7 +56,7 @@ export default function Page(props) {
     e.preventDefault();
     if (message.length > 0) {      
       const box = document.querySelector('.chat-message-box');
-      let content = chatModel("you" , message , 'right');
+      let content = chatModel(message , 'right');
       box.appendChild(content);
       socket?.emit('sendPersonalMessage' , { Name : USER.user?.name , message , senderId : USER?.user?._id , receiverId : user?._id });
       setMessage("");
@@ -86,9 +86,9 @@ export default function Page(props) {
 
 
 
-function chatModel(name , message , directionClass) {
+function chatModel(message , directionClass) {
   const node = document.createElement('p');
-  node.innerHTML = `<span>${name} : </span>${message}`;
+  node.innerHTML = `${message}`;
   node.classList.add(directionClass);
   
   return (

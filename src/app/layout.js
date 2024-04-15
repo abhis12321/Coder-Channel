@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
       <body>
         <AuthProvider className='layout'>
           <NavBar />
-          <div className='margin-top'>
+          <div className='margin-op'>
             {children}
           </div>
         </AuthProvider>

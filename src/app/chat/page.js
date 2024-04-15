@@ -63,10 +63,10 @@ function Page() {
     }
 
     return (
-        <div>
+        <div className='group-chat-box'>
             <div className='chat-box'>
                 <h1>Chat Group...</h1>
-                <p className='left'>Welcome in this chat group</p>
+                <p className='center'>Welcome in this chat group</p>
             </div>
 
             <form className='center chat-input-form'  onSubmit={handleMessage}>
