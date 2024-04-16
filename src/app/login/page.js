@@ -51,7 +51,7 @@ export default function Page() {
       
         :
         
-        <div className="bg-gradient-to-b from-gray-800 to-slate-900 shadow-[0_0_7px_white] hover:shadow-[0_0_15px_white] text-white rounded-3xl w-[95%] md:w-[80%] max-w-[800px] flex flex-col justify-center gap-3  min-h-[40vh] px-2 md:px-14 py-9">
+        <div className="bg-gradient-to-b from-gray-800 to-slate-900 shadow-[0_0_7px_white] hover:shadow-[0_0_15px_white] text-white rounded-3xl w-[95%] md:w-[80%] max-w-[800px] flex flex-col justify-center gap-3  min-h-[40vh] px-3 sm:px-14 py-9">
       
           <p className= "font-bold text-justify">
             <span className="text-gray-500 font-semibold">Email : </span>

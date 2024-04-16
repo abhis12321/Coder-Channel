@@ -15,7 +15,7 @@ export default function Layout({children}) {
   } , []);
 
   return (
-    <div className='bg-slate-950 text-white h-[90.9vh]'  style={{height:'calc(100vh-4rem)',}}>
+    <div className='bg-slate-950 text-white min-h-[90.9vh]'  style={{height:'calc(100vh-4rem)',}}>
       {children}
     </div>
   )

@@ -10,19 +10,19 @@ function Page() {
     const socket = USER.socket;
 
     const handleNewUser = (Name) => {
-        const box = document.querySelector(".chat-box");
+        const box = document.querySelector(".chatting-box");
         let message = chatModel(Name, "joined the chat", "center");
         box?.appendChild(message);
     }
 
     const handleGroupMessage = (data) => {
-        const box = document.querySelector(".chat-box");
+        const box = document.querySelector(".chatting-box");
         let message = chatModel(data.Name, data.message, "left");
         box.appendChild(message);
     }
 
     const handleUserLeft = (Name) => {
-        const box = document.querySelector(".chat-box");
+        const box = document.querySelector(".chatting-box");
         let message = chatModel(Name, "left the chat", "center");
         box?.appendChild(message);
     }
@@ -54,7 +54,7 @@ function Page() {
     const handleMessage = e => {  
         e.preventDefault();
         if(content.length > 0) {
-            const box = document.querySelector('.chat-box');
+            const box = document.querySelector('.chatting-box');
             let message = chatModel("you" , content , 'right');
             box.appendChild(message);
             socket?.emit('sendGroupMessage' , {Name:USER.user?.name, message:content});
@@ -63,10 +63,10 @@ function Page() {
     }
 
     return (
-        <div className='h-[100%] relative max-w-[900px] mx-auto bg-slate-900 rounded-lg'  style={{height:'calc(100vh-4rem)'}}>
-            <div className='chat-box px-4 flex flex-col'>
-                <h1>Chat Group...</h1>
-                <p className='center'>Welcome in this chat group</p>
+        <div className='h-[100%] min-h-[90.9vh] relative max-w-[900px] mx-auto bg-slate-900 rounded-lg pb-14  overflow-auto '  style={{height:'calc(100vh-4rem)'}}>
+            <div className='chatting-box px-4 flex flex-col gap-3 p-3max-h-[90.9vh] pb-14'>
+                <h1 className='drop-shadow-[0_0_5px_yellow]' >It&apos;s a Public Chat Group...</h1>
+                <p className='text-center text-3xl drop-shadow-[0_0_5px_red] font-semibold mb-8'>Welcome in this chat group</p>
             </div>
 
             <form className='flex items-center justify-center px-4 w-[100%] absolute bottom-2 bg-ed-500 gap-4'  onSubmit={handleMessage}>
