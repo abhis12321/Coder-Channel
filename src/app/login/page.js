@@ -29,9 +29,10 @@ export default function Page() {
 
   return (
     <div className="flex flex-col gap-5 items-center justify-center bg-slate-950 bg-no-repeat bg-center bg-contain " style={{ height:'calc(100vh - 4rem)', }}>
-      <h1 className='mx-auto text-center py-4 px-8 my-2 text-4xl rounded-md border-2 border-white font-extrabold  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit'>Login Page</h1>
       
       {!USER.user ?
+      <>
+        <h1 className='mx-auto text-center py-4 px-8 my-2 text-4xl rounded-md border-2 border-white font-extrabold  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit'>Login Page</h1>
         <form onSubmit={handleLogin} className='bg-gradient-to-b from-slate-700 to-slate-950  shadow-[0_0_10px_white] w-[98%] sm:w-[95%] md:w-[60%] py-8 rounded-xl min-h-[280px] text-white opacity-90' autoComplete='on'>
           <h1 className=" mb-5 text-center text-2xl font-semibold drop-shadow-[0_0_5px_black]">Login with your email-id</h1>
           
@@ -46,35 +47,37 @@ export default function Page() {
             <Link href={`/login/resistration`} className='w-[120px] xm:w-[150px] text-center rounded-md bg-red-900 py-2 hover:bg-red-700 font-mono' >Resister New</Link>
           </div>
         </form>
+      </>
+      
         :
         
-        <div className="profile">
+        <div className="bg-gradient-to-b from-gray-800 to-slate-900 shadow-[0_0_7px_white] hover:shadow-[0_0_15px_white] text-white rounded-3xl w-[50vw] flex flex-col justify-center gap-3 my-[10vh] min-h-[40vh] px-14 py-9">
       
-          <p className="profile-tag">
-            <span>Email: </span>
+          <p className= "font-bold text-justify">
+            <span className="text-gray-500 font-semibold">Email : </span>
             {student.email}
           </p>
-          <h2 className="profile-tag">
-            <span>Name: </span>
+          <h2 className="font-bold text-justify">
+            <span className="text-gray-500 font-semibold">Name : </span>
             {student.name}
           </h2>
-          <h2 className="profile-tag">
-            <span>University: </span>
+          <h2 className="font-bold text-justify">
+            <span className="text-gray-500 font-semibold">University : </span>
             {student.university}
           </h2>
-          <h2 className="profile-tag">
-            <span>Course: </span>
+          <h2 className="font-bold text-justify">
+            <span className="text-gray-500 font-semibold">Course : </span>
             {student.course}
           </h2>
-          <h2 className="profile-tag">
-            <span>Branch: </span>
+          <h2 className="font-bold text-justify">
+            <span className="text-gray-500 font-semibold">Branch : </span>
             {student.branch}
           </h2>
-          <h2 className="profile-tag">
-            <span>Semester: </span>
+          <h2 className="font-bold text-justify">
+            <span className="text-gray-500 font-semibold">Semester : </span>
             {student.semester}
           </h2>
-          <Link href={`/login/logout`} className="profile-tag"> Logout</Link>
+          <Link href={`/login/logout`} className="m-1 bg-red-700 hover:bg-violet-700 inline-block w-[74px] font-semibold py-1 rounded text-center shadow-[0_0_8px_black]"> Logout</Link>
         </div>
       }
     </div>
