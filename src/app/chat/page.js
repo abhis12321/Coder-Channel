@@ -63,15 +63,15 @@ function Page() {
     }
 
     return (
-        <div className='group-chat-box'>
-            <div className='chat-box'>
+        <div className='h-[100%] relative max-w-[900px] mx-auto bg-slate-900 rounded-lg'  style={{height:'calc(100vh-4rem)'}}>
+            <div className='chat-box px-4 flex flex-col'>
                 <h1>Chat Group...</h1>
                 <p className='center'>Welcome in this chat group</p>
             </div>
 
-            <form className='center chat-input-form'  onSubmit={handleMessage}>
-                <input type='text' value = {content} onChange={e => setContent(e.target.value)}  required/>
-                <button>click</button>
+            <form className='flex items-center justify-center px-4 w-[100%] absolute bottom-2 bg-ed-500 gap-4'  onSubmit={handleMessage}>
+                <input className='bg-inherit shadow-[0_0_5px_white] w-[80%] px-4 py-2 rounded-lg' type='text' value = {content} onChange={e => setContent(e.target.value)}  required/>
+                <button className='bg-inherit shadow-[0_0_5px_white] px-8 py-2 rounded-lg bg-blue-800 font-semibold opacity-80 hover:opacity-100 active:bg-violet-950'>click</button>
             </form>
 
         </div>
@@ -80,10 +80,10 @@ function Page() {
 
 
 
-function chatModel(name , message , directionClass) {
+function chatModel(name , message , direction) {
     const node = document.createElement('p');
     node.innerHTML = `<span class="chatter-name">${name} : </span>${message}`;
-    node.classList.add(directionClass);
+    node.classList.add(`text-${direction}` , `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}` , "py-2" , "px-4" , "rounded-lg" , "max-w-[80%]" , "w-fit" , "bg-gray-800");
     
     return (
       node

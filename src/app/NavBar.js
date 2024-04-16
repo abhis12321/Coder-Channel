@@ -48,13 +48,12 @@ export default function NavBar() {
 
 
   return (
-    <div className="bg-gradient-to-b from-slate-950 to-slate-800  text-white flex items-center justify-between h-4rem leading-[4rem] px-8 ">
-      {/* <h1 className='mx-auto text-center py-4 px-8 my-2 text-4xl rounded-md border-2 border-white font-extrabold  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit'>Home Page</h1> */}
+    <div className="bg-gradient-to-b from-slate-950 to-slate-800  text-white flex items-center justify-between h-4rem leading-[4rem] px-8">
       <div className="">
         <h2 className="font-bold text-3xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit leading-[4rem]"><span>@</span>bhishek singh</h2>
       </div>
 
-      <div className="fixed top-0 right-0 lg:static lg:flex gap-1 hidden right-navbar bg-gradient-to-b from-slate-950 to-slate-800  lg:bg-inherit min-h-[100vh] lg:min-h-fit">
+      <div className="fixed top-0 right-0 lg:static lg:flex gap-1 hidden right-navbar bg-gradient-to-b from-slate-950 to-slate-800  lg:bg-inherit min-h-[100vh] lg:min-h-fit z-10">
         <div className="text-3xl py-2 hover:bg-slate-950 hover:text-red-800 text-center cursor-pointer"  onClick={handleRight}>
           <FontAwesomeIcon icon={faXmark} size='sm' className="hidden cutX"/> 
         </div>

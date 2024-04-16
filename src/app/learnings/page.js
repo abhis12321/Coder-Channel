@@ -9,7 +9,7 @@ export default function page() {
   return (
 
     <div className=''>
-      {/* <div className="intro">
+      <div className="flex flex-col items-end pr-8 justify-center bg-gray-900 h-[90.9vh] text-white bg-[url('/Ab2.png')] bg-no-repeat bg-center">
         <h3 className='intro-tag'>My name is </h3>
         <h1 className='intro-tag'>Abhishek Singh</h1>
         <h3 className='intro-tag'>& I am a Passionate </h3>
@@ -17,11 +17,11 @@ export default function page() {
         <h1 className='intro-tag'>Problem Solver &</h1>
         <h1 className='intro-tag'>Full Stack Developer</h1>
         <div className='social-media'>
-          <Link target='_blank' href={`https://github.com/abhis12321`} className='social-platform'><FontAwesomeIcon icon={faGithub} size='3x' id='github' /></Link>
+          <Link target='_blank' href={`https://github.com/abhis12321`} className='social-platform'><FontAwesomeIcon icon={faGithub} size='3x' id='gitub' className=' text-gray-500' /></Link>
           <Link target='_blank' href={`https://www.linkedin.com/in/abhishek-singh-b82427256/`} className='social-platform'><FontAwesomeIcon icon={faLinkedin} size='3x' /></Link>
           <Link target='_blank' href={`https://www.instagram.com/____abhis____/`}><FontAwesomeIcon icon={faInstagram} size='3x' className='social-platform' id='insta' /></Link>
         </div>
-      </div> */}
+      </div>
 
       <section className="gap-6 bg-gray-950  text-white py-4 flex items-center justify-center flex-col ">
         <h1 className='mx-auto text-center py-4 px-8 my-2 text-4xl rounded-md border-2 border-white font-extrabold  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit'>My Learnings</h1>
