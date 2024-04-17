@@ -1,8 +1,7 @@
 "use client"
 import React from 'react';
-// import Student from './Student'
-// import Link from 'next/link';
-import Card from './Card'
+import Card from './Student';
+// import '../style.css';
 
 
 function Page() {
@@ -23,19 +22,12 @@ function Page() {
     
     return (
         <>
-            <div className="profile-info-card-cant ">     
-            {!students && <h1 className='searching'></h1>}           
-            {/* <div className="student-cant ">                 */}
-                {/* <Link href={"login/resistration"} className="student" id='flex'>Add New Students</Link> */}
+            <div className="flex justify-evenly items-center py-5 flex-wrap gap-6 min-h-[92vh] bg-slate-950 "> 
+                {!students &&  <div className="mx-auto h-40 w-40 rounded-full animate-spin border-t-4 border-white"></div>}           
                 {students && (students.found).map((student , index) => {
                     if(student.verify)
                     return (                
                             <Card  key={student._id+index} student={student}/>
-                    //     <>
-                    //     {/* <p>{student._id}</p> */}
-                    //         {/* <Student key={`${student._id}`} student={student} getData={getData}/> */}
-                    //         <Card  key={student._id+index} student={student}/>
-                    //     </>
                     )})
                 }
             </div>

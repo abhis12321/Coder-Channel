@@ -36,8 +36,8 @@ export default function Page() {
         <form onSubmit={handleLogin} className='bg-gradient-to-b from-slate-700 to-slate-950  shadow-[0_0_10px_white] w-[98%] sm:w-[95%] md:w-[60%] py-8 rounded-xl min-h-[280px] text-white opacity-90' autoComplete='on'>
           <h1 className=" mb-5 text-center text-2xl font-semibold drop-shadow-[0_0_5px_black]">Login with your email-id</h1>
           
-          <input type="email" value = {email} onChange={(e)=> setEmail(e.target.value)} className='block m-4 p-2 rounded mx-auto text-center w-[90%] max-w-[500px] bg-inherit shadow-[0_0_8px_white]' placeholder='email' name='email' required/>
-          <input type="password" value = {password} onChange={(e)=> setPass(e.target.value)} className='block m-4 p-2 rounded mx-auto text-center w-[90%] max-w-[500px] bg-inherit shadow-[0_0_8px_white]' placeholder='password' name='password' required/>
+          <input type="email" value = {email} onChange={(e)=> setEmail(e.target.value)} className=' bg-slate-950 block m-4 p-2 rounded mx-auto text-center w-[90%] max-w-[500px] bg-inherit shadow-[0_0_4px_white]' placeholder='email' name='email' required/>
+          <input type="password" value = {password} onChange={(e)=> setPass(e.target.value)} className=' bg-slate-950 block m-4 p-2 rounded mx-auto text-center w-[90%] max-w-[500px] bg-inherit shadow-[0_0_4px_white]' placeholder='password' name='password' required/>
           <div className="flex items-center justify-evenly" >
             <Link href={`/login/resend`} className="drop-shadow-[0_0_5px_red]">Resend Verification Link</Link>
             <Link href={`/login/forgot`} className="drop-shadow-[0_0_5px_red]">forgot password</Link>

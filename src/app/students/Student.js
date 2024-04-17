@@ -1,74 +1,38 @@
-import { useAuth } from "mongo/AuthProvider";
-import { useRouter } from "next/navigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faHeart,  faShareNodes , faMicroscope} from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
+import A from './/profile.jpg'
 
-export default function Student({ getData, student }) {
-  let USER = useAuth();
-  let router = useRouter();
 
-  const handleDelete = async (id) => {
-    if (!USER.user) {
-      alert(`you haven't logged-in...!`);
-    } else if (USER.user && USER.user.email != student.email) {
-      alert(`You can not delete any account of others...!`);
-    } else if (
-      USER.user &&
-      USER.user.email == student.email &&
-      confirm("Are you sure you wanna delete this account...?")
-    ) {
-      let del = await fetch(`/api/mongo/form2/${id}`, {
-        method: "delete",
-        body: JSON.stringify(id),
-      })
-        .then((res) => res.json())
-        .catch((err) => {
-          success: false;
-        });
-      if (del.success) {
-        alert("The user is been deleted...!");
-      } else {
-        alert("Sorry, the user is not been deleted...!");
-      }
-      getData();
-      USER.logout();
-    }
-  };
-
-  const handleUpdate = () => {
-    if (!USER.user) {
-      alert(`you haven't logged-in...!`);
-    } else if (USER.user && USER.user.email != student.email) {
-      alert(`You can not update any account of others...!`);
-    } else if (USER.user && USER.user.email == student.email) {
-      router.push(`/form2/${student._id}`);
-    }
-  };
-
+export default function Card({ getData, student }) {
   return (
-    <div className="student">      
-      <h2 className="student-info">
-        <span>Name: </span>
+    <div className=' bg-slate-900 py-4 px-4 h-[444px] w-[325px] shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] rounded-lg text-white flex flex-col justify-evenly items-center gap-3'>
+      <div className="">
+        <Image src={A} alt='profile-img' className="h-[140px] m-auto rounded-full overflow-hidden border-4 border-green-700 opacity-80" width={140} height={140}/>
+      </div>
+      <div className="text-2xl font-bold">
         {student.name}
-      </h2>      
-      <h2 className="student-info">
-        <span>University: </span>
-        {student.university}
-      </h2>
-      <h2 className="student-info">
-        <span>Course: </span>
-        {student.course}
-      </h2>
-      <h2 className="student-info">
-        <span>Branch: </span>
-        {student.branch}
-      </h2>
-      <h2 className="student-info">
-        <span>Semester: </span>
-        {student.semester}
-      </h2> 
-      <FontAwesomeIcon icon={faPenToSquare} className="fontAwL" onClick={handleUpdate}/>
-      <FontAwesomeIcon icon={faTrash} className="fontAwR" onClick={handleDelete}/>
+      </div>
+      <div className="text-center text-slate-400">
+      {student.university}
+      </div>
+      <div className="flex justify-center items-center gap-8">
+        <Link href={`/student`}><FontAwesomeIcon icon={faInstagram} size='2x' className='hover:scale-110 text-rose-800'/></Link>
+        <Link href={`/student`}><FontAwesomeIcon icon={faLinkedin} size='2x' className='hover:scale-110 text-blue-700 '/></Link>
+        <Link href={`/student`}><FontAwesomeIcon icon={faGithub} size='2x' className='hover:scale-110 text-gray-400'/></Link>
+      </div>
+      <div className="flex items-center justify-center gap-4">
+        <button className='w-[100px] text-center py-[10px] rounded-lg bg-green-700 hover:bg-green-600 font-semibold font-mn text-gray-200'>follow</button>
+        <Link href={`chat/${student._id}`} className='w-[100px] text-center py-[10px] rounded-lg bg-green-700 hover:bg-green-600 font-semibold font-mn text-gray-200'>Message</Link>
+      </div>
+      <div className="flex items-center justify-center">        
+        <FontAwesomeIcon icon={faHeart} size='1x' className=' text-rose-700 hover:drop-shadow-[0_0_3px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  '/>
+        <FontAwesomeIcon icon={faMicroscope} size='1x' className='border-x-2 border-gray-600 text-blue-700 hover:drop-shadow-[0_0_3px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  '/>
+        <FontAwesomeIcon icon={faShareNodes} size='1x' className='text-gray-400 hover:drop-shadow-[0_0_3px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  '/>
+      </div>
     </div>
-  );
+  )
 }

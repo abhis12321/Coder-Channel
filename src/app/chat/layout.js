@@ -1,5 +1,5 @@
 'use client'
-import './style.css'
+
 import React from 'react'
 import { useRouter } from 'next/navigation';
 import { useAuth , handleMessage} from "/mongo/AuthProvider";

@@ -67,24 +67,17 @@ export default function Page() {
     }
 
   return (
-    <form onSubmit={handleSubmit} className='form-cant' autoComplete='on'>
-    <Image src={`/wheel.gif`} alt='spinning-ashoka-chakra' width={200} height={200} className='wheel' id='wheel'/>
-      <h1 className="form-tag">New Resistration</h1>
-      <input name='email' type="email" value = {data.email} onChange={(e)=> dispatch({ip:"email" , value:e.target.value})} className='form-input' placeholder='email' required/>
-      <input name='pass' type="password" value = {data.password} onChange={(e)=> dispatch({ip:"pass" , value:e.target.value})} className='form-input' placeholder='password' required/>
-      <input name='name' type="text" value = {data.name} onChange={(e)=> dispatch({ip:"name" , value:e.target.value})} className='form-input' placeholder='Name' required/>
-      {/* <input name='age' type="Number" value = {data.age} onChange={(e)=> dispatch({ip:"age" , value:e.target.value})} className='form-input' placeholder='age' required/> */}
-      {/* <input name='gender' type="text" value = {data.gender} onChange={(e)=> dispatch({ip:"gender" , value:e.target.value})} className='form-input' placeholder='gender' required/> */}
-      {/* <input name='address' type="text" value = {data.address} onChange={(e)=> dispatch({ip:"address" , value:e.target.value})} className='form-input' placeholder='address' required/>
-      <input name='city' type="text" value = {data.city} onChange={(e)=> dispatch({ip:"city" , value:e.target.value})} className='form-input' placeholder='city' required/> */}
-      {/* <input name='state' type="text" value = {data.state} onChange={(e)=> dispatch({ip:"state" , value:e.target.value})} className='form-input' placeholder='state' required/> */}
-      {/* <input name='pin' type="Number" value = {data.pin_code} onChange={(e)=> dispatch({ip:"pin_code" , value:e.target.value})} className='form-input' placeholder='pin code' required/> */}
-      <input name='university' type="text" value = {data.university} onChange={(e)=> dispatch({ip:"university" , value:e.target.value})} className='form-input' placeholder='University' required/>
-      <input name='course' type="text" value = {data.course} onChange={(e)=> dispatch({ip:"course" , value:e.target.value})} className='form-input' placeholder='course' required/>
-      <input name='branch' type="text" value = {data.branch} onChange={(e)=> dispatch({ip:"branch" , value:e.target.value})} className='form-input' placeholder='branch' required/>
-      <input name='sem' type="Number" value = {data.semester} onChange={(e)=> dispatch({ip:"semester" , value:e.target.value})} className='form-input' placeholder='semester' required/>
-      {/* <input type='submit' className='form-input' value="submit"   /> */}
-      <button type='submit' className='form-input' >submit</button>
+    <form onSubmit={handleSubmit} className='text-white relative top-3 bg-slate-900 w-[95%] max-w-[900px] m-auto rounded-2xl py-8 flex flex-col gap-3 items-center justify-center' autoComplete='on'>
+      {/* <Image src={`/wheel.gif`} alt='spinning-ashoka-chakra' width={200} height={200} className='wheel' id='wheel'/> */}
+      <h1 className=" mx-auto mb-4 py-4 px-8 rounded-xl text-3xl font-bold bg-teal-950 text-center w-fit shadow-[0_0_5px_white]">New Resistration</h1>
+      <input name='email' type="email" value = {data.email} onChange={(e)=> dispatch({ip:"email" , value:e.target.value})} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950 py-2 px-3 rounded-xl mx-auto text-center focus:bg-cyan-950' placeholder='email' required/>
+      <input name='pass' type="password" value = {data.password} onChange={(e)=> dispatch({ip:"pass" , value:e.target.value})} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950 py-2 px-3 rounded-xl mx-auto text-center focus:bg-cyan-950' placeholder='password' required/>
+      <input name='name' type="text" value = {data.name} onChange={(e)=> dispatch({ip:"name" , value:e.target.value})} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950 py-2 px-3 rounded-xl mx-auto text-center focus:bg-cyan-950' placeholder='Name' required/>
+      <input name='university' type="text" value = {data.university} onChange={(e)=> dispatch({ip:"university" , value:e.target.value})} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950 py-2 px-3 rounded-xl mx-auto text-center focus:bg-cyan-950' placeholder='University' required/>
+      <input name='course' type="text" value = {data.course} onChange={(e)=> dispatch({ip:"course" , value:e.target.value})} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950 py-2 px-3 rounded-xl mx-auto text-center focus:bg-cyan-950' placeholder='course' required/>
+      <input name='branch' type="text" value = {data.branch} onChange={(e)=> dispatch({ip:"branch" , value:e.target.value})} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950 py-2 px-3 rounded-xl mx-auto text-center focus:bg-cyan-950' placeholder='branch' required/>
+      <input name='sem' type="Number" value = {data.semester} onChange={(e)=> dispatch({ip:"semester" , value:e.target.value})} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950 py-2 px-3 rounded-xl mx-auto text-center focus:bg-cyan-950' placeholder='semester' required/>
+      <button type='submit' className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-red-900 hover:bg-red-700 active:bg-violet-900 py-2 focus:bg-cyan-950 px-3 rounded-xl mx-auto text-center' >submit</button>
     </form>
   )
 }

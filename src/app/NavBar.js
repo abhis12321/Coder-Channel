@@ -57,26 +57,26 @@ export default function NavBar() {
         <div className="text-3xl py-2 hover:bg-slate-950 hover:text-red-800 text-center cursor-pointer"  onClick={handleRight}>
           <FontAwesomeIcon icon={faXmark} size='sm' className="hidden cutX"/> 
         </div>
-        <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href="/" className="py-3 px-12 lg:px-8 rounded-lg font-bold hover:bg-slate-950" onClick={e => addActive('hom')}>
+        <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href="/" className="py-3 px-12 lg:px-8 rounded-lg font-semibold hover:bg-slate-950" onClick={e => addActive('hom')}>
           Home
         </Link></div>
-        <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href="/projects" className="py-3 px-12 lg:px-8 rounded-lg font-bold hover:bg-slate-950" onClick={e => addActive('hom')}>
+        <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href="/projects" className="py-3 px-12 lg:px-8 rounded-lg font-semibold hover:bg-slate-950" onClick={e => addActive('hom')}>
           Projects
         </Link></div>
-        <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href="/chat" className="py-3 px-12 lg:px-8 rounded-lg font-bold hover:bg-slate-950" onClick={e => addActive('hom')}>
+        <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href="/chat" className="py-3 px-12 lg:px-8 rounded-lg font-semibold hover:bg-slate-950" onClick={e => addActive('hom')}>
           Chat
         </Link></div>
-        <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href="/students" className="py-3 px-12 lg:px-8 rounded-lg font-bold hover:bg-slate-950" onClick={e => addActive('stu')}>
+        <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href="/students" className="py-3 px-12 lg:px-8 rounded-lg font-semibold hover:bg-slate-950" onClick={e => addActive('stu')}>
           Students
         </Link></div>
         {!USER.user && (
-          <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href="/login" className="py-3 px-12 lg:px-8 rounded-lg font-bold hover:bg-slate-950" onClick={e => addActive('log')}>
+          <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href="/login" className="py-3 px-12 lg:px-8 rounded-lg font-semibold hover:bg-slate-950" onClick={e => addActive('log')}>
             Login
           </Link></div>
         )}
         {USER.user && (
           <>
-            <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href={`/login`} className="py-3 px-12 lg:px-8 rounded-lg font-bold hover:bg-slate-950"  onClick={e => addActive('lg')}>
+            <div className="lg:bg-gradient-to-b lg:from-slate-950 lg:to-slate-800 hover:bg-slate-950 text-center"><Link href={`/login`} className="py-3 px-12 lg:px-8 rounded-lg font-semibold hover:bg-slate-950"  onClick={e => addActive('lg')}>
               {USER.user.name}
             </Link></div>
           </>

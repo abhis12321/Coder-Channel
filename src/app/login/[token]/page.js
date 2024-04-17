@@ -25,15 +25,16 @@ export default function Page({params , searchParams}) {
     }
 
   return (
-    <>
-    {!USER.user ?
-      <form onSubmit={handleSubmit}>
-        <input type="password" placeholder='enter the password to verify' id='pass' className='form-input' value={pass} onChange={(e) => setPass(e.target.value)} required/>
-        <button type='submit' className='form-input'>verify</button>
-      </form>
-      :
-      <h1 className="center">You are already logged-in with email: {USER.user.email}</h1>
+    <div className="flex items-center justify-center min-h-[90.8vh]">
+      {!USER.user ?
+            <form className="bg-gray-900 py-12 flex flex-col gap-4 items-center justify-center w-[95%] max-w-[800px] rounded-xl text-white" onSubmit={handleSubmit} autoComplete="on">
+                <h1 className=" mx-auto py-4 px-8 rounded-xl text-xl font-bold bg-cyan-950 text-center w-fit shadow-[0_0_5px_white] text-yellow-600">Verify Your Email</h1>
+                <input type="password" name = 'email'  className="bg-slate-950 w-[95%] xm:w-[80%] font-semibold shadow-[0_0_3px_white] py-2 px-4 text-md rounded-lg text-center" value={pass} onChange={(e) => setPass(e.target.value)} placeholder="enter password" required/>
+                <button type='submit' className='w-[95%] xm:w-[80%] font-semibold shadow-[0_0_3px_white] bg-red-900 hover:bg-red-700 active:bg-violet-900 py-2 focus:bg-cyan-950 px-4 rounded-xl mx-auto text-center' >verify</button>
+            </form>
+        :
+          <h1 className="max-w-[95%] mx-auto py-4 px-8 rounded-xl text-xl font-bold bg-cyan-950 text-center w-fit shadow-[0_0_5px_white] text-yellow-600">You are already logged-in with email: {USER.user.email}</h1>
       }
-    </>
+    </div>
   )
 }

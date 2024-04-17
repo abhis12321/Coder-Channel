@@ -1,6 +1,6 @@
 "use client"
 
-import '../globals.css';
+// import '../globals.css';
 import React from "react";
 import { useAuth } from "/mongo/AuthProvider";
 
@@ -82,7 +82,7 @@ function Page() {
 
 function chatModel(name , message , direction) {
     const node = document.createElement('p');
-    node.innerHTML = `<span class="chatter-name">${name} : </span>${message}`;
+    node.innerHTML = `<span class="text-gray-500">${name} : </span>${message}`;
     node.classList.add(`text-${direction}` , `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}` , "py-2" , "px-4" , "rounded-lg" , "max-w-[80%]" , "w-fit" , "bg-gray-800");
     
     return (
