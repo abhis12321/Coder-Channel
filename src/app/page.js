@@ -15,33 +15,26 @@ import {
 import Link from "next/link";
 import AnimatedPhoto from "./animated_avatar";
 import Writer from './animated_typewritter'
+import Image from "next/image";
+import avatarphoto from '../../public/Ab5.jpg'
 
 export default function page() {
   return (
     <div className="">
-      <div className="flex flex-col-reverse sm:flex-row items-center justify-evenly bg-gray-900 text-white bg-[ul('/Ab2.png')] bg-no-repeat bg-center" style={{minHeight:"calc(100vh - 4rem)"}}>
-        <div className="flex flex-col gap-4 max-w-[95%]">
-          <h3 className="text-justify drop-shadow-[0_0_7px_red] sm:text-2xl md:text-3xl">
-          Hi👋🏻, My name is{" "}
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center bg-gray-900 text-whit text-slate-950 bg-[ul('/Ab2.png')] bg-no-repeat bg-center py-2" style={{ minHeight: "calc(100vh - 4rem)" }}>
+        <div className="flex flex-col gap-4 max-w-[95%] md:w-[55%] mx-auto items-center">
+          <h3 className="text-justify drop-shadow-[0_0_5px_red] text-2xl md:text-3xl font-semibold">
+            Hi there👋🏻, I&apos;m
           </h3>
-          <h1 className="text-justify drop-shadow-[0_0_7px_red] text-4xl md:text-5xl font-semibold">
+          <h1 className="text-justify drop-shadow-[0_0_7px_red] text-4xl md:text-5xl font-bold">
             Abhishek Singh
           </h1>
-          <h3 className="text-justify drop-shadow-[0_0_7px_red] text-2xl md:text-3xl">
-            & I am a Passionate{" "}
+          <h3 className="text-justify drop-shadow-[0_0_5px_red] text-2xl md:text-3xl font-semibold">
+            & I am a Passionate
           </h3>
-          <h1 className="text-justify drop-shadow-[0_0_7px_red] text-4xl md:text-5xl font-semibold">
-            Web Developer ,
-          </h1>
-          <h1 className="text-justify drop-shadow-[0_0_7px_red] text-4xl md:text-5xl font-semibold">
-            Problem Solver &
-          </h1>
-          <h1 className="text-justify drop-shadow-[0_0_7px_red] text-4xl md:text-5xl font-semibold">
-            Full Stack Developer
-          </h1>
-          
+          <Writer />
 
-          <div className="py-4 flex justify-evenly items-center min-w-[300px] bg-slate-950 rounded-lg">
+          <div className="py-4 flex justify-evenly items-center w-[330px] bg-slate-950 rounded-lg self-center sm:self-auto">
             <Link
               target="_blank"
               href={`https://github.com/abhis12321`}
@@ -77,11 +70,10 @@ export default function page() {
             </Link>
           </div>
         </div>
-
-        <AnimatedPhoto/>
+        <AnimatedPhoto width={64} />
       </div>
 
-      <Writer />
+      {/* <Writer /> */}
 
       <section className="gap-6 bg-gray-950  text-white py-4 flex items-center justify-center flex-col ">
         <h1 className="mx-auto text-center py-4 px-8 my-2 text-4xl rounded-md border-2 border-white font-extrabold  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit">
@@ -107,7 +99,7 @@ export default function page() {
             </p>
           </div>
         </div>
-        
+
 
         <div className="min-h-[40vh] flex w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 xm:px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
           <div className="flex flex-col justify-center items-center py-4 w-[35%] xm:w-[30%] ">

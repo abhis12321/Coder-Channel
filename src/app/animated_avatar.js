@@ -3,10 +3,10 @@ import me from '../../public/Ab5.jpg';
 import me2 from '../../public/Ab6.jpg';
 import React from "react";
 
-export default function AnimationReact() {
+export default function AnimationReact({width}) {
   return (
-        <div className="hidden sm:block group cursor-pointer">
-          <div className="w-64 h-64 rounded-full bg-transparent cursor-pointer [perspective:1000px] relative [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] duration-[1200ms] border-4 border-green-800">
+        <div className="hiddn md:block group cursor-pointer md:w-[40%]">
+          <div className=" w-20 h-20 md:w-64 md:h-64 rounded-full bg-transparent cursor-pointer [perspective:1000px] relative [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] duration-[1200ms] border-4 border-green-800">
               <Image
                 src={me}
                 alt="@me"
