@@ -23,8 +23,8 @@ export default function Page() {
         <div className="flex items-center justify-center min-h-[90.9vh] text-white">
             {USER?.user &&
                 <div className="w-[95%] max-w-[800px] h-[40vh] flex flex-col justify-center items-center rounded-xl p-3 bg-gradient-to-tr from-gray-900/40 via-cyan-950/70 to-gray-950/40 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-950 shadow-[0_0_8px_red]">
-                    <p>you are going to logout from our website</p> 
-                    <span className='drop-shadow-[0_0_2px_red]'>&quot;Abhishek&apos;s Students Social Media App&quot;</span>
+                    <p>You are going to logout from our website</p> 
+                    <span className='drop-shadow-[0_0_2px_red]'>Student&apos;Media App&quot;</span>
                     <h5 className='mb-4 text-center text-lg font-semibold'>You can login-back with your Email and Password later whenever you want</h5>
                     <p>Are you sure, You wanna logout ?</p>
                     <div className="w-[60%] min-w-[180px] m-2 flex items-center justify-evenly font-semibold">

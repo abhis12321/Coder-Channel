@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
-import { login} from '/mongo/exp'
+import { login} from '/mongo/UserModel'
 
 export async function GET(req) {
     await mongoose.connect(process.env.MONGO_URL , { useNewUrlParser: true, useUnifiedTopology: true });

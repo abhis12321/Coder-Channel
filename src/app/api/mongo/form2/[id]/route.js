@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import {login} from '/mongo/exp';
+import {login} from '/mongo/UserModel';
 import mongoose from "mongoose";
 
 export async function GET(req , {params}) {

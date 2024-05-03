@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import { login } from "/mongo/exp";
+import { login } from "/mongo/UserModel";
 import cryptoJS from 'crypto-js'
 
 export async function POST(req) {  

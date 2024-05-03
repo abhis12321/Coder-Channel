@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import mongoose from "mongoose";
-import { login } from "/mongo/exp";
+import { login } from "/mongo/UserModel";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",

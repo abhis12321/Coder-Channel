@@ -51,16 +51,16 @@ export default function Footer() {
           </div>
 
         </div>
-        <div className="flex justify-center md:justify-around gap-4 items-center w-full md:w-[60%]">
-          <div className="flex flex-col gap-2 justify-between items-start">
-            <Link href={'/'} className='font-semibold py-1 px-3 rounded-md hover:text-gray-400 text-center'>home</Link>
-            <Link href={'/about'} className='font-semibold py-1 px-3 rounded-md hover:text-gray-400 text-center'>about</Link>
-            <Link href={'#learnings'} className='font-semibold py-1 px-3 rounded-md hover:text-gray-400 text-center'>learnings</Link>
+        <div className="flex flex-col md:flex-row justify-center md:justify-around gap-4 items-center w-full md:w-[60%]">
+          <div className="flex md:flex-col md:gap-2 justify-between items-start">
+            <Link href={'/'} className='py-1 px-3 rounded-md hover:text-gray-400 text-center'>home</Link>
+            <Link href={'/about'} className='py-1 px-3 rounded-md hover:text-gray-400 text-center'>about</Link>
+            <Link href={'/posts'} className='py-1 px-3 rounded-md hover:text-gray-400 text-center'>posts</Link>
           </div>
-          <div className="flex flex-col gap-2 justify-between items-start">
-            <Link href={'/projects'} className='font-semibold py-1 px-3 rounded-md hover:text-gray-400 text-center'>projects</Link>
-            <Link href={'/contact'} className='font-semibold py-1 px-3 rounded-md hover:text-gray-400 text-center'>contact</Link>
-            <Link href={'https://student-login-app-nextjs.onrender.com/'} className='font-semibold py-1 px-3 rounded-md hover:text-gray-400 text-center' target='_blank'>chat with me</Link>
+          <div className="flex md:flex-col md:gap-2 justify-between items-start">
+            <Link href={'/students'} className='py-1 px-3 rounded-md hover:text-gray-400 text-center'>students</Link>
+            <Link href={'/contact'} className='py-1 px-3 rounded-md hover:text-gray-400 text-center'>contact</Link>
+            <Link href={'/chat'} className='py-1 px-3 rounded-md hover:text-gray-400 text-center'>public chat</Link>
           </div>
         </div>
       </div>
