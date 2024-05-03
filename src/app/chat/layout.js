@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useRouter } from 'next/navigation';
-import { useAuth , handleMessage} from "/mongo/AuthProvider";
+import { useAuth } from "../_components/AuthProvider";
 
 export default function Layout({children}) {
   const USER = useAuth();
@@ -15,7 +15,7 @@ export default function Layout({children}) {
   } , []);
 
   return (
-    <div className=''  style={{minHeight:'calc(100vh-4rem)',}}>
+    <div className='py-1'  style={{minHeight:'calc(100vh-4rem)'}}>
       {children}
     </div>
   )

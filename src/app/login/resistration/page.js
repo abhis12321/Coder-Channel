@@ -1,6 +1,5 @@
 "use client"
 import React from 'react';
-import Image from 'next/image';
 
 const initial = {
     password: "",
@@ -52,7 +51,6 @@ const reduce = (curr , obj)=> {
 }
 
 export default function Page() {
-    // const route = useRouter();
     const [data , dispatch] = React.useReducer(reduce , initial);
     
     const handleSubmit = async (e) => {
@@ -68,7 +66,6 @@ export default function Page() {
 
   return (
     <form onSubmit={handleSubmit} className='text-white relative top-3 bg-gradient-to-br from-gray-900 via-cyan-950 to-indigo-950 w-[95%] max-w-[900px] m-auto rounded-2xl py-8 flex flex-col gap-3 items-center justify-center' autoComplete='on'>
-      {/* <Image src={`/wheel.gif`} alt='spinning-ashoka-chakra' width={200} height={200} className='wheel' id='wheel'/> */}
       <h1 className=" mx-auto mb-4 py-4 px-8 rounded-xl text-3xl font-bold bg-teal-950 text-center w-fit shadow-[0_0_5px_white]">New Resistration</h1>
       <input name='email' type="email" value = {data.email} onChange={(e)=> dispatch({ip:"email" , value:e.target.value})} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950/50 outline-none py-2 px-3 rounded-xl mx-auto text-center focus:text-cyan-700' placeholder='email' required/>
       <input name='pass' type="password" value = {data.password} onChange={(e)=> dispatch({ip:"pass" , value:e.target.value})} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950/50 outline-none py-2 px-3 rounded-xl mx-auto text-center focus:text-cyan-700' placeholder='password' required/>

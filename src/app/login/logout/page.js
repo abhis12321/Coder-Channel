@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import Link from 'next/link';
-import {useAuth} from '/mongo/AuthProvider'
+import {useAuth} from '../../_components/AuthProvider'
 import { useRouter } from 'next/navigation';
 
 export default function Page() {

@@ -23,7 +23,7 @@ function Page() {
     return (
         <>
             <div className="flex justify-evenly items-center py-5 flex-wrap gap-6 min-h-[92vh]"> 
-                {!students &&  <div className="mx-auto h-40 w-40 rounded-full animate-spin border-t-4 border-gray-900 dark:border-white"></div>}           
+                {!students &&  <div className="mx-auto h-40 w-40 rounded-full animate-spin border-t-4 border-slate-900 dark:border-white"></div>}           
                 {students && (students.found).map((student , index) => {
                     if(student.verify)
                     return (                

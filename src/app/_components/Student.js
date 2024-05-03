@@ -14,7 +14,8 @@ import {
 import Link from "next/link";
 import A from ".//profile.jpg";
 
-export default function Card({ getData, student }) {
+
+export default function Card({ student }) {
   return (
     <div className="bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-4 px-4 h-[444px] w-[325px] shadow-[0_0_6px_black] dark:shadow-[0_0_10px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_15px_red] rounded-lg flex flex-col justify-evenly items-center gap-3">
       <div className="">

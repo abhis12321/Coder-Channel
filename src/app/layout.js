@@ -1,6 +1,6 @@
 import './globals.css'
 import NavBar from './_components/NavBar'
-import AuthProvider from '/mongo/AuthProvider'
+import AuthProvider from './_components/AuthProvider'
 import Footer from './_components/Footer'
 
 

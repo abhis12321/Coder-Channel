@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import {useAuth} from '/mongo/AuthProvider';
+import {useAuth} from '../../_components/AuthProvider';
 
 export default function Page({params , searchParams}) {
   let USER = useAuth();

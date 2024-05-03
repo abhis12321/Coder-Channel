@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import { useAuth } from "/mongo/AuthProvider";
+import { useAuth } from "../_components/AuthProvider";
 
 function Page() {
     const [content , setContent] = React.useState("");
@@ -56,15 +56,15 @@ function Page() {
     }
 
     return (
-        <div className='h-[100%] min-h-[90.9vh] relative max-w-[900px] mx-auto bg-gradient-to-r from-gray-600 via-gray-300 to-gray-600 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white rounded-lg pb-1 overflow-auto my-1'  style={{height:'calc(100vh-4rem)'}}>
+        <div className='h-[100%] relative max-w-[900px] mx-auto bg-gradient-to-r from-gray-500 via-gray-300 to-gray-500 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white rounded-lg pb-1 overflow-auto'  style={{minHeight:'calc(100vh - 4.5rem)'}}>
             <div className='chatting-box px-4 flex flex-col gap-3 p-3max-h-[90.9vh] pt-3 pb-14 text-gray-100'>
                 <h1 className='drop-shadow-[0_0_4px_yellow]' >It&apos;s a Public Chat Group...</h1>
                 <p className='text-center text-3xl drop-shadow-[0_0_5px_red] font-semibold '>Welcome in this chat group</p>
             </div>
 
             <form className='flex items-center justify-center px-4 w-[100%] absolute bottom-2 bg-ed-500 gap-2 text-gray-100'  onSubmit={handleMessage}>
-                <input className='shadow-[0_0_3px_white] focus:shadow-[0_0_3px_cyan] flex-1 px-4 py-2 rounded-lg outline-none bg-slate-950/20 focus:' placeholder="Enter your message" type='text' value = {content} onChange={e => setContent(e.target.value)}  required/>
-                <button className='hidden xs:block shadow-[0_0_3px_white] px-8 py-2 rounded-lg bg-blue-900 font-semibold opacity-80 hover:opacity-100 hover:text-yellow-500 active:bg-violet-950'>send</button>
+                <input className='shadow-[0_0_3px_white] focus:shadow-[0_0_3px_cyan] flex-1 px-4 py-2 rounded-lg outline-none bg-slate-950/30 focus:' placeholder="Enter your message" type='text' value = {content} onChange={e => setContent(e.target.value)}  required/>
+                <button className='hidden sm:block shadow-[0_0_3px_white] px-8 py-2 rounded-lg bg-blue-900 font-semibold opacity-80 hover:opacity-100 hover:text-yellow-500 active:bg-violet-950'>send</button>
             </form>
 
         </div>
