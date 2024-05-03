@@ -32,12 +32,12 @@ export default function Page() {
       
       {!USER.user ?
       <>
-        <h1 className='mx-auto text-center py-4 px-8 my-2 text-4xl rounded-md border-2 border-white font-extrabold  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit'>Login Page</h1>
-        <form onSubmit={handleLogin} className='bg-gradient-to-br from-gray-500 via-gray-300 to-gray-500 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-950 shadow-[0_0_10px_white] w-[98%] sm:w-[95%] md:w-[60%] py-8 rounded-xl min-h-[280px] text-white opacity-90' autoComplete='on'>
+        <h1 className='mx-auto text-center py-4 px-8 my-2 text-4xl rounded-md font-extrabold  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit'>Login Page</h1>
+        <form onSubmit={handleLogin} className='bg-gradient-to-br from-gray-500 via-lime-950/40 to-gray-500 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-950 shadow-[0_0_10px_white] w-[98%] sm:w-[95%] md:w-[60%] py-8 rounded-xl min-h-[280px] text-white opacity-90' autoComplete='on'>
           <h1 className=" mb-5 text-center text-2xl font-semibold drop-shadow-[0_0_5px_black]">Login with your email-id</h1>
           
-          <input type="email" value = {email} onChange={(e)=> setEmail(e.target.value)} className=' bg-slate-950 block m-4 p-2 rounded mx-auto text-center w-[90%] max-w-[500px] bg-inherit shadow-[0_0_4px_white]' placeholder='email' name='email' required/>
-          <input type="password" value = {password} onChange={(e)=> setPass(e.target.value)} className=' bg-slate-950 block m-4 p-2 rounded mx-auto text-center w-[90%] max-w-[500px] bg-inherit shadow-[0_0_4px_white]' placeholder='password' name='password' required/>
+          <input type="email" value = {email} onChange={(e)=> setEmail(e.target.value)} className='bg-slate-950/40 dark:bg-slate-950 block m-4 p-2 rounded mx-auto text-center w-[90%] max-w-[500px] shadow-[0_0_4px_white]' placeholder='email' name='email' required/>
+          <input type="password" value = {password} onChange={(e)=> setPass(e.target.value)} className='bg-slate-950/40 dark:bg-slate-950 block m-4 p-2 rounded mx-auto text-center w-[90%] max-w-[500px] shadow-[0_0_4px_white]' placeholder='password' name='password' required/>
           <div className="flex items-center justify-evenly" >
             <Link href={`/login/resend`} className="drop-shadow-[0_0_5px_red] hover:text-yellow-500">Resend Verification Link</Link>
             <Link href={`/login/forgot`} className="drop-shadow-[0_0_5px_red] hover:text-yellow-500">forgot password</Link>

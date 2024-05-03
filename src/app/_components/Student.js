@@ -17,7 +17,7 @@ import A from ".//profile.jpg";
 
 export default function Card({ student }) {
   return (
-    <div className="bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-4 px-4 h-[444px] w-[325px] shadow-[0_0_6px_black] dark:shadow-[0_0_10px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_15px_red] rounded-lg flex flex-col justify-evenly items-center gap-3">
+    <div className="bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_6px_black] dark:shadow-[0_0_10px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_15px_red] rounded-lg flex flex-col justify-evenly items-center gap-3">
       <div className="">
         <Image
           src={A}
@@ -57,12 +57,12 @@ export default function Card({ student }) {
         </Link>
       </div>
       <div className="flex items-center justify-center gap-6 font-serif">
-        <button className="w-[100px] text-center py-[10px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-700 dark:hover:bg-green-600 font-mn text-gray-200">
+        <button className="w-[100px] text-center py-[8px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-700 dark:hover:bg-green-600 font-mn text-gray-200">
           follow
         </button>
         <Link
           href={`chat/${student._id}`}
-          className="w-[100px] text-center py-[10px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-700 dark:hover:bg-green-600 font-mn text-gray-200"
+          className="w-[100px] text-center py-[8px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-700 dark:hover:bg-green-600 font-mn text-gray-200"
         >
           Message
         </Link>
