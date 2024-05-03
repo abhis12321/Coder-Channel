@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { useAuth } from "/mongo/AuthProvider";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faStaffSnake, faXmark } from "@fortawesome/free-solid-svg-icons";
 import ToggleMode from './ToggleMode';
 
 export default function NavBar() {
@@ -26,7 +26,7 @@ export default function NavBar() {
   return (
     <div className="w-full bg-gradient-to-b from-gray-400 to-slate-500 dark:from-slate-950 dark:to-slate-800 text-gray-300 lg:text-red-900 dark:text-gray-300 font-semibold flex items-center justify-between h-16 px-4 xm:px-8 overflow-hidden">
       <div className="">
-        <h2 className="font-bold text-3xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-violet-600 w-fit leading-[4rem]"><span>$</span>tudent&apos;media</h2>
+        <h2 className="font-bold text-3xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-violet-600 w-fit leading-[4rem] overflow-hidden"><FontAwesomeIcon icon={faStaffSnake} className="text-4xl text-pink-700" />tudent&apos;media</h2>
       </div>
 
       <div className="right-navbar fixed lg:static top-0 right-0 hidden lg:flex gap-1 bg-gradient-to-r lg:[background:none] from-gray-700 to-gray-600  dark:from-slate-800 dark:to-slate-950 min-h-[100vh] lg:min-h-fit z-10 items-center min-w-[170px] dark:font-normal font-medium">

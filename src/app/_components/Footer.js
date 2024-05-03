@@ -3,14 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link';
 import { faGithub, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
+import { faStaffSnake } from '@fortawesome/free-solid-svg-icons';
 
 export default function Footer() {
   return (
-    <div className="flex flex-col [background-color:black] border-t-2 border-gray-900 opacity-85">
+    <div className="flex flex-col [background-color:black] border-t-2 border-gray-900 opacity-85 text-gray-50">
       <div className='px-3 xs:px-8 flex flex-col md:flex-row items-center justify-around flex-1'>
         <div className="md:w-[40%] w-full flex flex-col items-center">
           <div className="">
-            <h2 className="font-bold text-4xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit leading-[4rem]"><span>$</span>tudent&apos;media</h2>
+            <h2 className="font-bold text-4xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-violet-600 w-fit leading-[4rem] overflow-hidden"><FontAwesomeIcon icon={faStaffSnake} className="text-4xl text-pink-700" />tudent&apos;media</h2>
             <p className="text-center text-yellow-400 font-semibold drop-shadow-[0_0_7px_white]">creator&apos;s info</p>
           </div>
           <div className="py-4 flex justify-around items-center bg-slate50 rounded-lg self-center sm:self-auto w-[267px]">
