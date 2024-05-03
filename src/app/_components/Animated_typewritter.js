@@ -14,8 +14,7 @@ export default function TypingEffect() {
 } , []);
 
   return (
-    <div id="typewriter" className="drop-shadow-[0_0_7px_red] text-4xl md:text-5xl font-bold text-center self-center mx-auto">
-      {/* MERN-Stack Developer */}
+    <div id="typewriter" className="drop-shadow-[0_0_7px_red] text-4xl md:text-5xl font-bold text-center md:text-left self-center md:self-auto mx-auto md:mx-0">
     </div>
   );
 }

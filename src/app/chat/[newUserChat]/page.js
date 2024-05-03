@@ -1,7 +1,7 @@
 "use client";
-
 import React from "react";
 import { useAuth } from "/mongo/AuthProvider";
+
 
 export default function Page(props) {
   const USER = useAuth();
@@ -37,17 +37,12 @@ export default function Page(props) {
 
   React.useEffect(() => {
     socket?.on("connect", handleConnection);
-
     socket?.on("receivePersonalMessage", handlePersonalMessage);
-
     socket?.on("disconnect", handleDisconnection);
-
 
     return () => {
       socket?.off("connect", handleConnection);
-
       socket?.off("receivePersonalMessage", handlePersonalMessage);
-
       socket?.off("disconnect", handleDisconnection);
     }
   });
@@ -64,9 +59,9 @@ export default function Page(props) {
   };
 
   return (
-    <div className="rounded-md bg-slate-900 text-white w-[100%] max-w-[900px] mx-auto min-h-[90.9vh] py-4 pb-12 overflow-hidden relative">
-      <div className="bg-slate-950 shadow-[0_0_7px_red] rounded-md p-2 mx-4 md:mx-9">
-        <h1>{user?.name}</h1>
+    <div className="rounded-md bg-gradient-to-r from-gray-600 to-gray-300 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white w-[100%] max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative lg:my-1" style={{minHeight:"calc(100vh - 4rem)"}}>
+      <div className="bg-slate-900 shadow-[0_0_3px_red] rounded-md p-2 mx-4 md:mx-9">
+        <h1 className="text-2xl">{user?.name}</h1>
         <p>loading...</p>
       </div>
 
@@ -74,9 +69,9 @@ export default function Page(props) {
 
       </div>
       
-      <form className='flex items-center justify-center px-4 w-[100%] absolute bottom-2 bg-ed-500 gap-4' onSubmit={handleSendNewMessage}>
-        <input className='bg-inherit shadow-[0_0_5px_white] w-[80%] px-4 py-2 rounded-lg' type='text' value={message} onChange={e => setMessage(e.target.value)} required />
-        <button className='bg-inherit shadow-[0_0_5px_white] px-8 py-2 rounded-lg bg-blue-800 font-semibold opacity-80 hover:opacity-100 active:bg-violet-950'>click</button>
+      <form className='flex items-center justify-center px-4 md:px-9 w-[100%] absolute bottom-2 bg-ed-500 gap-2' onSubmit={handleSendNewMessage}>
+        <input className='bg-slate-950/20 shadow-[0_0_3px_white] focus:shadow-[0_0_3px_cyan] outline-none flex-1 px-4 py-2 rounded-lg' type='text' placeholder="Enter your message" value={message} onChange={e => setMessage(e.target.value)} required />
+        <button className='hidden xs:block shadow-[0_0_3px_white] px-8 py-2 rounded-lg bg-sky-900 font-semibold opacity-80 hover:opacity-100 hover:text-yellow-500 active:bg-violet-950'>send</button>
       </form>
     </div>
   );
@@ -86,7 +81,7 @@ export default function Page(props) {
 function chatModel(name , message, direction) {
   const node = document.createElement('p');
   node.innerHTML = `<span class="text-gray-500">${name} : </span>${message}`;
-  node.classList.add(`text-${direction}`, `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}`, "py-1", "px-4", "rounded-lg", "max-w-[80%]", "w-fit", "bg-slate-950");
+  node.classList.add(`text-${direction}`, `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}`, "py-1", "px-4", "rounded-md", "max-w-[80%]", "w-fit", "dark:bg-slate-950 bg-red-600");
 
   return (
     node

@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 
 export default async function SocketHandler(req, res) {
     if (!res.socket.server.io) {
-        console.log("New Socket.io server...");
+        // console.log("New Socket.io server...");
         const io = new Server(res.socket.server, {
             path: "/api/socket_io", 
             addTrailingSlash: false,
@@ -38,9 +38,9 @@ export default async function SocketHandler(req, res) {
             });
         });
     }
-    else {
-        console.log("Socket is already running");    
-    }
+    // else {
+    //     console.log("Socket is already running");    
+    // }
     res.end();
 }
 

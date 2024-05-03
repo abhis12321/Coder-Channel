@@ -13,28 +13,26 @@ import {
   faSquareJs,
 } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
-import AnimatedPhoto from "./animated_avatar";
-import Writer from './animated_typewritter'
-import Image from "next/image";
-import avatarphoto from '../../public/Ab5.jpg'
+import AnimatedPhoto from "./_components/Animated_avatar";
+import Writer from './_components/Animated_typewritter';
 
 export default function page() {
   return (
     <div className="">
-      <div className="flex flex-col-reverse md:flex-row items-center justify-center bg-gray-900 text-whit text-slate-950 bg-[ul('/Ab2.png')] bg-no-repeat bg-center py-2" style={{ minHeight: "calc(100vh - 4rem)" }}>
-        <div className="flex flex-col gap-4 max-w-[95%] md:w-[55%] mx-auto items-center">
-          <h3 className="text-justify drop-shadow-[0_0_5px_red] text-2xl md:text-3xl font-semibold">
-            Hi there👋🏻, I&apos;m
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center bg-gradient-to-br from-gray-950 via-cyan-950 via-2% to-slate-950 text-white bg-no-repeat bg-center py-2 border-b-2 border-gray-800" style={{ minHeight: "calc(100vh - 4rem)" }}>
+        <div className="flex flex-col gap-4 max-w-[95%] md:w-[55%] lg:w-[45%] mx-auto items-center md:items-start text-gray-400">
+          <h3 className="text-justify drop-shadow-[0_0_10px_red] text-2xl md:text-3xl font-bold">
+          👋🏻 Hi there, I&apos;m
           </h3>
-          <h1 className="text-justify drop-shadow-[0_0_7px_red] text-4xl md:text-5xl font-bold">
+          <h1 className="text-justify drop-shadow-[0_0_8px_red] text-4xl md:text-5xl font-bold">
             Abhishek Singh
           </h1>
-          <h3 className="text-justify drop-shadow-[0_0_5px_red] text-2xl md:text-3xl font-semibold">
+          <h3 className="text-justify drop-shadow-[0_0_10px_red] text-2xl md:text-3xl font-bold">
             & I am a Passionate
           </h3>
           <Writer />
 
-          <div className="py-4 flex justify-evenly items-center w-[330px] bg-slate-950 rounded-lg self-center sm:self-auto">
+          <div className="py-4 flex justify-evenly items-center w-[330px] md:w-[351px] bg-slate-900 rounded-lg self-center sm:self-auto">
             <Link
               target="_blank"
               href={`https://github.com/abhis12321`}
@@ -43,7 +41,7 @@ export default function page() {
               <FontAwesomeIcon
                 icon={faGithub}
                 size="3x"
-                className=" text-gray-400 hover:text-gray-300 hover:scale-110"
+                className="text-gray-400 hover:text-gray-300 hover:scale-110"
               />
             </Link>
             <Link
@@ -70,39 +68,37 @@ export default function page() {
             </Link>
           </div>
         </div>
-        <AnimatedPhoto width={64} />
+        <AnimatedPhoto />
       </div>
 
-      {/* <Writer /> */}
-
-      <section className="gap-6 bg-gray-950  text-white py-4 flex items-center justify-center flex-col ">
-        <h1 className="mx-auto text-center py-4 px-8 my-2 text-4xl rounded-md border-2 border-white font-extrabold  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-fit">
-          My Learnings
+      <section className="gap-6 bg-gray-300 dark:bg-gray-950 text-white py-5 flex items-center justify-center flex-col " id="learnings">
+        <h1 className="mx-auto text-center py-4 xs:px-8 my-2 text-4xl rounded-md border-2 border-white font-extrabold  text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 w-[95%] xs:w-fit">
+          Coding Journey
         </h1>
 
-        <div className="min-h-[40vh] flex w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 xm:px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
-          <div className="flex flex-col justify-center items-center py-4 w-[35%] xm:w-[30%] ">
+        <div className="min-h-[40vh] flex gap-3 w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
+          <div className="flex flex-col justify-center items-center py-4  xs:w-[30%] ">
             <FontAwesomeIcon
               icon={faC}
               size="8x"
               className="bg-blue-950 px-4 py-2 md:px-5 md:py-3 rounded-lg h-[5rem] md:h-[6rem]"
             />
           </div>
-          <div className="flex flex-col justify-center items-center py-4 w-[65%] xm:w-[70%]">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[70%]">
             <h2 className="bg-gray-950 font-bold px-4 py-2 rounded">
-              Dec 2021
+              February 2022
             </h2>
-            <p className="font-mono text-[14px] text-gray-400 py-3">
+            <p className="font-mono text-[14px] text-gray-300 py-3">
               My first and the starting programming language is C as It was also
-              in the course of my BTECH 1st year and 2nd year hence I learned
-              the BASICS of C language and Data Structure in C language
+              in the course of my BTECH 1st year and 2nd year hence I gone through
+              the BASICS of C language and Data Structure in C language along with some sorting-algorithms.
             </p>
           </div>
         </div>
 
 
-        <div className="min-h-[40vh] flex w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 xm:px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
-          <div className="flex flex-col justify-center items-center py-4 w-[35%] xm:w-[30%] ">
+        <div className="min-h-[40vh] flex gap-3 w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[30%] ">
             <FontAwesomeIcon
               icon={faJava}
               size="8x"
@@ -110,7 +106,7 @@ export default function page() {
             />
             <h3 className="font-bold ">Java</h3>
           </div>
-          <div className="flex flex-col justify-center items-center py-4 w-[65%] xm:w-[70%]">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[70%]">
             <h2 className="bg-gray-950 font-bold px-4 py-2 rounded">
               August 2022
             </h2>
@@ -122,8 +118,8 @@ export default function page() {
           </div>
         </div>
 
-        <div className="min-h-[40vh] flex w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 xm:px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
-          <div className="flex flex-col justify-center items-center py-4 w-[35%] xm:w-[30%] ">
+        <div className="min-h-[40vh] flex gap-3 w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[30%] ">
             <FontAwesomeIcon
               icon={faHtml5}
               size="8x"
@@ -131,7 +127,7 @@ export default function page() {
             />
             <h3 className="font-bold ">HTML</h3>
           </div>
-          <div className="flex flex-col justify-center items-center py-4 w-[65%] xm:w-[70%]">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[70%]">
             <h2 className="bg-gray-950 font-bold px-4 py-2 rounded">
               December 2022
             </h2>
@@ -142,8 +138,8 @@ export default function page() {
           </div>
         </div>
 
-        <div className="min-h-[40vh] flex w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 xm:px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
-          <div className="flex flex-col justify-center items-center py-4  w-[35%] xm:w-[30%] ">
+        <div className="min-h-[40vh] flex gap-3 w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
+          <div className="flex flex-col justify-center items-center py-4] xs:w-[30%] ">
             <FontAwesomeIcon
               icon={faCss3Alt}
               size="8x"
@@ -151,7 +147,7 @@ export default function page() {
             />
             <h3 className="font-bold ">CSS</h3>
           </div>
-          <div className="flex flex-col justify-center items-center py-4  w-[65%] xm:w-[70%]">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[70%]">
             <h2 className="bg-gray-950 font-bold px-4 py-2 rounded">
               December 2022
             </h2>
@@ -163,8 +159,8 @@ export default function page() {
           </div>
         </div>
 
-        <div className="min-h-[40vh] flex w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 xm:px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
-          <div className="flex flex-col justify-center items-center py-4  w-[35%] xm:w-[30%] ">
+        <div className="min-h-[40vh] flex gap-3 w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
+          <div className="flex flex-col justify-center items-center py-4] xs:w-[30%] ">
             <FontAwesomeIcon
               icon={faSquareJs}
               size="8x"
@@ -172,7 +168,7 @@ export default function page() {
             />
             <h3 className="font-bold ">JavaScript</h3>
           </div>
-          <div className="flex flex-col justify-center items-center py-4  w-[65%] xm:w-[70%]">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[70%]">
             <h2 className="bg-gray-950 font-bold px-4 py-2 rounded">
               February 2023
             </h2>
@@ -184,8 +180,8 @@ export default function page() {
           </div>
         </div>
 
-        <div className="min-h-[40vh] flex w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 xm:px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
-          <div className="flex flex-col justify-center items-center py-4  w-[35%] xm:w-[30%] ">
+        <div className="min-h-[40vh] flex gap-3 w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
+          <div className="flex flex-col justify-center items-center py-4] xs:w-[30%] ">
             <FontAwesomeIcon
               icon={faBootstrap}
               size="8x"
@@ -193,9 +189,9 @@ export default function page() {
             />
             <h3 className="font-bold ">Bootstrap</h3>
           </div>
-          <div className="flex flex-col justify-center items-center py-4  w-[65%] xm:w-[70%]">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[70%]">
             <h2 className="bg-gray-950 font-bold px-4 py-2 rounded">
-              February 2023
+              April 2023
             </h2>
             <p className="font-mono text-[14px] text-gray-400 py-3">
               Bootstrap is an toolkit which makes the web development very fast
@@ -206,8 +202,27 @@ export default function page() {
           </div>
         </div>
 
-        <div className="min-h-[40vh] flex w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 xm:px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
-          <div className="flex flex-col justify-center items-center py-4  w-[35%] xm:w-[30%] ">
+        <div className="min-h-[40vh] flex gap-3 w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
+          <div className="flex flex-col justify-center items-center py-4] xs:w-[30%] ">
+            <FontAwesomeIcon
+              icon={faGithub}
+              size="8x"
+              className="text-gray-400 h-[5.7rem] md:h-[6.7rem]"
+            />
+            <h3 className="font-bold ">Git & Github</h3>
+          </div>
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[70%]">
+            <h2 className="bg-gray-950 font-bold px-4 py-2 rounded">
+              May 2023
+            </h2>
+            <p className="font-mono text-[14px] text-gray-400 py-3">
+              I gone through the basics of Git & Github, As Git & Github is a version control system that is a necessity in today&apos;s programming world for mantaining record of the code versions and also tracking the development of any program or project. Git & Github makes the code management easy and trackable.
+            </p>
+          </div>
+        </div>
+
+        <div className="min-h-[40vh] flex gap-3 w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg p-1 px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
+          <div className="flex flex-col justify-center items-center py-4] xs:w-[30%] ">
             <FontAwesomeIcon
               icon={faReact}
               size="7x"
@@ -215,20 +230,20 @@ export default function page() {
             />
             <h3 className="font-bold ">ReactJS</h3>
           </div>
-          <div className="flex flex-col justify-center items-center py-4  w-[65%] xm:w-[70%]">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[70%]">
             <h2 className="bg-gray-950 font-bold px-4 py-2 rounded">
-              May 2023
+              June 2023
             </h2>
             <p className="font-mono text-[14px] text-gray-400 py-3">
-              React is an JavaScript library for front-end only and I spend a
+              I gone through the basics and the advance concepts of ReactJs. React is an JavaScript library for front-end only and I spend a
               lot of time in learning ReactJS and its properties like : hooks,
-              routing , etc
+              routing , rendering, etc
             </p>
           </div>
         </div>
 
-        <div className="min-h-[40vh] flex w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg px-1 xm:px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
-          <div className="flex flex-col justify-center items-center py-4  w-[35%] xm:w-[30%] ">
+        <div className="min-h-[40vh] flex gap-3 w-[95%] md:w-[80%] lg:max-w-[65%] rounded-lg px-4 shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] bg-gray-900 ">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[30%] ">
             <FontAwesomeIcon
               icon={faN}
               size="5x"
@@ -236,7 +251,7 @@ export default function page() {
             />
             <h3 className="font-bold ">NextJS</h3>
           </div>
-          <div className="flex flex-col justify-center items-center py-4 w-[65%] xm:w-[70%]">
+          <div className="flex flex-col justify-center items-center py-4 xs:w-[70%]">
             <h2 className="bg-gray-950 font-bold px-4 py-2 rounded">
               September 2023
             </h2>

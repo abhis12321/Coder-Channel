@@ -9,7 +9,7 @@ import A from './/profile.jpg'
 
 export default function Card({ getData, student }) {
   return (
-    <div className=' bg-slate-900 py-4 px-4 h-[444px] w-[325px] shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] rounded-lg text-white flex flex-col justify-evenly items-center gap-3'>
+    <div className='bg-slate-900 py-4 px-4 h-[444px] w-[325px] shadow-[0_0_10px_white] hover:shadow-[0_0_15px_red] rounded-lg text-white flex flex-col justify-evenly items-center gap-3'>
       <div className="">
         <Image src={A} alt='profile-img' className="h-[140px] m-auto rounded-full overflow-hidden border-4 border-green-700 opacity-80" width={140} height={140}/>
       </div>
@@ -20,9 +20,9 @@ export default function Card({ getData, student }) {
       {student.university}
       </div>
       <div className="flex justify-center items-center gap-8">
-        <Link href={`/student`}><FontAwesomeIcon icon={faInstagram} size='2x' className='hover:scale-110 text-rose-800'/></Link>
-        <Link href={`/student`}><FontAwesomeIcon icon={faLinkedin} size='2x' className='hover:scale-110 text-blue-700 '/></Link>
-        <Link href={`/student`}><FontAwesomeIcon icon={faGithub} size='2x' className='hover:scale-110 text-gray-400'/></Link>
+        <Link href={`/students`}><FontAwesomeIcon icon={faInstagram} size='2x' className='hover:scale-110 text-rose-800'/></Link>
+        <Link href={`/students`}><FontAwesomeIcon icon={faLinkedin} size='2x' className='hover:scale-110 text-blue-700 '/></Link>
+        <Link href={`/students`}><FontAwesomeIcon icon={faGithub} size='2x' className='hover:scale-110 text-gray-400'/></Link>
       </div>
       <div className="flex items-center justify-center gap-4">
         <button className='w-[100px] text-center py-[10px] rounded-lg bg-green-700 hover:bg-green-600 font-semibold font-mn text-gray-200'>follow</button>

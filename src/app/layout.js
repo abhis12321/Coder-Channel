@@ -1,10 +1,8 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
-import NavBar from './NavBar'
+import NavBar from './_components/NavBar'
 import AuthProvider from '/mongo/AuthProvider'
-// import './style.css'
+import Footer from './_components/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'First Next App',
@@ -13,14 +11,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className='bg-slate-950'>
-      {/* <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;600&display=swap" rel="stylesheet" /> */}
-      <body>
-        <AuthProvider className='layout'>
+    <html lang="en" className="">
+      <body className="dark bg-gray-300 text-gray-950 dark:bg-slate-950 dark:text-white">
+        <AuthProvider>
           <NavBar />
           <div className='min-h-[90.9vh]'>
             {children}
           </div>
+          <Footer />
         </AuthProvider>
       </body>
     </html>
