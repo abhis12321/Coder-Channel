@@ -5,6 +5,7 @@ import { useAuth } from "./AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
+  faCommentDots,
   faHome,
   faPaperPlane,
   faStaffSnake,
@@ -36,6 +37,7 @@ export default function NavBar() {
         <h2 className="font-bold text-3xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-700 to-violet-600 w-fit leading-[4rem] overflow-hidden">
           <FontAwesomeIcon
             icon={faStaffSnake}
+            size="2x"
             className="text-4xl text-pink-700"
           />
           tudent&apos;media
@@ -55,7 +57,7 @@ export default function NavBar() {
             href="/"
             className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]"
           >
-            <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon={faHome} size="sm"/>
           </Link>
         </div>
 
@@ -64,16 +66,16 @@ export default function NavBar() {
             href="/students"
             className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]"
           >
-            <FontAwesomeIcon icon={faUserGroup} />
+            <FontAwesomeIcon icon={faUserGroup} size="sm"/>
           </Link>
         </div>
 
         <div className="w-full lg:w-fit flex items-center justify-center">
           <Link
             href="/chat"
-            className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]"
+            className="w-full text-3xl overflow-hidden flex items-center justify-center py-3 lg:py-2 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]"
           >
-            <FontAwesomeIcon icon={faPaperPlane} />
+            <FontAwesomeIcon icon={faCommentDots} size="sm"/>
           </Link>
         </div>
 
@@ -82,7 +84,7 @@ export default function NavBar() {
             href="/login"
             className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]"
           >
-            <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon icon={faUser} size="sm"/>
           </Link>
         </div>
 

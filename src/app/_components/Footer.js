@@ -11,7 +11,7 @@ export default function Footer() {
       <div className='px-3 xs:px-8 flex flex-col md:flex-row items-center justify-around flex-1'>
         <div className="md:w-[40%] w-full flex flex-col items-center">
           <div className="">
-            <h2 className="font-bold text-4xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-violet-600 w-fit leading-[4rem] overflow-hidden"><FontAwesomeIcon icon={faStaffSnake} className="text-4xl text-pink-700" />tudent&apos;media</h2>
+            <h2 className="max-h-12 font-bold text-4xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-violet-600 w-fit leading-[4rem] overflow-hidden"><FontAwesomeIcon icon={faStaffSnake} size='x' className="text-4xl text-pink-700" />tudent&apos;media</h2>
             <p className="text-center text-yellow-400 font-semibold drop-shadow-[0_0_7px_white]">creator&apos;s info</p>
           </div>
           <div className="py-4 flex justify-around items-center bg-slate50 rounded-lg self-center sm:self-auto w-[267px]">
@@ -65,7 +65,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-gray-500 text-center p-2 font-semibold"><FontAwesomeIcon icon={faCopyright} className='text-sm'/><span className="font-mono">$</span>tudent&apos;media! A public social-media platform.</div>
+      <div className="text-gray-500 text-center p-2 font-semibold max-h-5 overflow-hidden"><FontAwesomeIcon icon={faCopyright} size='x' className='text-sm'/><span className="font-mono">$</span>tudent&apos;media! A public social-media platform.</div>
     </div>
   )
 }

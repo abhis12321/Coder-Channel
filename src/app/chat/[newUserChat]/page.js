@@ -81,7 +81,7 @@ export default function Page(props) {
 function chatModel(name , message, direction) {
   const node = document.createElement('p');
   node.innerHTML = `<span class="text-gray-500">${name} : </span>${message}`;
-  node.classList.add(`text-${direction}`, `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}`, "py-1", "px-4", "rounded-md", "max-w-[80%]", "w-fit", "dark:bg-slate-950 bg-red-600");
+  node.classList.add(`text-${direction}`, `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}`, "py-1", "px-4", "rounded-md", "max-w-[80%]", "w-fit", "dark:bg-slate-950" , "bg-gray-600");
 
   return (
     node

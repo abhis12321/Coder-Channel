@@ -2,7 +2,7 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
-export default function ToggleMode() {
+export default function ToggleModeB() {
     const toggleMode = e => {
         document.querySelector('#dark').classList.toggle('hidden');
         document.querySelector('#light').classList.toggle('hidden');
