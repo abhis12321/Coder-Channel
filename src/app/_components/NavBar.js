@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { useAuth } from "./AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -16,15 +15,6 @@ import {
 import ToggleMode from "./ToggleMode";
 
 export default function NavBar() {
-  let USER = useAuth();
-
-  React.useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("user"));
-    if (data != null) {
-      USER.login(data);
-    }
-  }, []);
-
   const handleRight = () => {
     document.querySelector(".right-navbar").classList.toggle("hidden");
     document.querySelector(".cutX").classList.toggle("hidden");
@@ -75,7 +65,7 @@ export default function NavBar() {
             href="/chat"
             className="w-full text-3xl overflow-hidden flex items-center justify-center py-3 lg:py-2 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]"
           >
-            <FontAwesomeIcon icon={faCommentDots} size="sm"/>
+            <FontAwesomeIcon icon={faPaperPlane} size="sm"/>
           </Link>
         </div>
 

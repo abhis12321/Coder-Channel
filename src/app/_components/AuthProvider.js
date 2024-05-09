@@ -29,6 +29,14 @@ export default function AuthProvider({ children }) {
   };
 
 
+  React.useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("user"));
+    if(data != null) {
+      login(data);
+    }
+  }, []);
+
+
   return (
     <context.Provider value={value}>
       {children}
@@ -49,7 +57,7 @@ function Initializing(sender , setSocket ) {
           addTrailingSlash: false,
       });
       
-      console.log(sender.name);
+      // console.log(sender.name);
       socket.emit('new-user' , sender.name);
       setSocket(socket);
       return () => {

@@ -3,18 +3,17 @@ import mongoose from "mongoose";
 import { login } from "/mongo/UserModel";
 import cryptoJS from 'crypto-js'
 
-export async function POST(req) {  
-  let data = await req.json();
-  let {email , password} = data;
-  
-  if (!email) {
-    return NextResponse.json({ message: "bad request", success:false });
-  }
+export async function POST(req) {   
+  try { 
+    let data = await req.json();
+    let {email , password} = data;
 
-  try {
+    if (!email) {
+      return NextResponse.json({ message: "bad request! No email found.", success:false });
+    }
     await mongoose.connect(process.env.MONGO_URL);
     let check = await login.find({ email });
-  
+    
     let bytes = cryptoJS.AES.decrypt(check[0].password , email);
     let pass = bytes.toString(cryptoJS.enc.Utf8);
   
@@ -33,6 +32,7 @@ export async function POST(req) {
       return NextResponse.json({success:false , message:"Wrong credentials!"})
     }
   } catch (error) {
+    console.log(error.message);
     return NextResponse.json({message:"bad request, Try again...!" , success:false});
   }
 }

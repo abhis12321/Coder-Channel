@@ -10,8 +10,8 @@ export default function ToggleModeB() {
     }
   return (
     <div className='cursor-pointer *:bg-gray-400 *:rounded-full flex items-center *:hover:scale-110 justify-center h-8 w-8 mx-auto py-8 lg:py-0' onClick={toggleMode}>
-      <FontAwesomeIcon icon={faSun} className='p-2 text-white' id='dark'/>
-      <FontAwesomeIcon icon={faMoon} className='text-slate-900 py-2 px-[10px] hidden' id='light'/>
+      <FontAwesomeIcon icon={faSun} size='1x' className='p-2 text-white' id='dark'/>
+      <FontAwesomeIcon icon={faMoon} size='1x' className='text-slate-900 py-2 px-[10px] hidden' id='light'/>
     </div>
   )
 }

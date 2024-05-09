@@ -1,6 +1,4 @@
 import Image from 'next/image';
-// import me from '../../public/Ab5.jpg';
-// import me2 from '../../public/Ab3.jpg';
 import React from "react";
 
 export default function AnimationReact({width}) {
