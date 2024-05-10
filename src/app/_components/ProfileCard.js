@@ -14,6 +14,10 @@ export default function ProfileCard({student}) {
             {student.name}
           </h2>
           <h2 className="font-bold text-justify">
+            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Gender : </span>
+            {student.gender}
+          </h2>
+          <h2 className="font-bold text-justify">
             <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">University : </span>
             {student.university}
           </h2>
@@ -22,12 +26,16 @@ export default function ProfileCard({student}) {
             {student.course}
           </h2>
           <h2 className="font-bold text-justify">
-            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Branch : </span>
-            {student.branch}
+            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">followers : </span>
+            {student.followers}
           </h2>
           <h2 className="font-bold text-justify">
-            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Semester : </span>
-            {student.semester}
+            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Following : </span>
+            {student.followings}
+          </h2>
+          <h2 className="font-bold text-justify">
+            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Likes : </span>
+            {student.likes}
           </h2>
           <Link href={`/login/logout`} className="m-1 opacity-80 dark:opacity-100 bg-red-700 hover:bg-violet-950 inline-block w-[74px] font-semibold py-1 rounded text-center shadow-[0_0_8px_black]"> Logout</Link>
         </div>

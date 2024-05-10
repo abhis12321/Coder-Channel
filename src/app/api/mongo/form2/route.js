@@ -3,6 +3,7 @@ import Users from '/mongo/UserModel'
 
 export async function GET() {
     let found = await Users.find();
+    console.log(found);
     return NextResponse.json({found , success:true});
 }
 

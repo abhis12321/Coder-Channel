@@ -22,7 +22,7 @@ export default function Card({ student }) {
         <Image
           src={A}
           alt="profile-img"
-          className={`h-[140px] m-auto rounded-full overflow-hidden border-4 ${student.__v ? 'border-lime-900' : 'border-red-900'} dark:${student.__v ? 'border-green-700' : 'border-red-700'} opacity-80`}
+          className={`h-[140px] m-auto rounded-full overflow-hidden border-4 ${student.isOnline ? 'border-lime-900 dark:border-green-700' : 'border-red-900 dark:border-red-700'} opacity-80`}
           width={140}
           height={140}
         />
