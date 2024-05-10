@@ -9,11 +9,12 @@ export default function Page(props) {
   const [user, setUser] = React.useState();
   const [message, setMessage] = React.useState("");
 
-  const handleConnection = () => {
-    socket.emit("new-user", USER.user?.name);
-  }
+  // const handleConnection = () => {
+  //   socket.emit("new-user", USER.user?.name);
+  // }
 
   const handlePersonalMessage = (data) => {
+    console.log("receiving..");
     if (data.senderId == user?._id && data.receiverId == USER.user?._id) {
       const box = document.querySelector(".chatting-message-box");
       let message = chatModel(data.Name  , data.message, "left");
@@ -22,7 +23,7 @@ export default function Page(props) {
   }
 
   const handleDisconnection = () => {
-    console.log("socket.io Disconnected");
+    console.log("socket.io Disconnected...");
   }
 
   React.useState(async () => {
@@ -36,12 +37,12 @@ export default function Page(props) {
   }, []);
 
   React.useEffect(() => {
-    socket?.on("connect", handleConnection);
+    // socket?.on("connect", handleConnection);
     socket?.on("receivePersonalMessage", handlePersonalMessage);
     socket?.on("disconnect", handleDisconnection);
 
     return () => {
-      socket?.off("connect", handleConnection);
+      // socket?.off("connect", handleConnection);
       socket?.off("receivePersonalMessage", handlePersonalMessage);
       socket?.off("disconnect", handleDisconnection);
     }
@@ -55,6 +56,7 @@ export default function Page(props) {
       box.appendChild(content);
       socket?.emit('sendPersonalMessage', { Name: USER.user?.name, message, senderId: USER?.user?._id, receiverId: user?._id });
       setMessage("");
+      console.log("Sending..");
     }
   };
 
