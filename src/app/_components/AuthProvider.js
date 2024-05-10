@@ -6,6 +6,7 @@ const context = React.createContext();
 export default function AuthProvider({ children }) {
   const [user, setUser] = React.useState(null);
   let [socket , setSocket] = React.useState();
+  const [sender, setSender] = React.useState();
   
 
   const login = (person) => {
@@ -23,6 +24,8 @@ export default function AuthProvider({ children }) {
   };
 
   const value = {
+    sender,
+    setSender,
     user,
     login,
     logout,

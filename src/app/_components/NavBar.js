@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
-  faCommentDots,
   faHome,
   faPaperPlane,
   faStaffSnake,
@@ -35,11 +34,8 @@ export default function NavBar() {
       </div>
 
       <div className="right-navbar fixed lg:static top-0 right-0 hidden lg:flex gap-8 bg-gradient-to-r lg:[background:none] from-gray-700 to-gray-600  dark:from-slate-800 dark:to-slate-950 min-h-[100vh] lg:min-h-fit z-10 items-center min-w-[170px] dark:font-normal font-medium">
-        <div
-          className="text-4xl py-2 hover:text-red-800 text-center cursor-pointer"
-          onClick={handleRight}
-        >
-          <FontAwesomeIcon icon={faXmark} size="sm" className="hidden cutX" />
+        <div className="text-4xl py-2 text-center"  >
+          <FontAwesomeIcon icon={faXmark} size="sm" className="hidden hover:text-red-800 cursor-pointer cutX" onClick={handleRight}/>
         </div>
 
         <div className="w-full lg:w-fit flex items-center justify-center">
@@ -63,7 +59,7 @@ export default function NavBar() {
         <div className="w-full lg:w-fit flex items-center justify-center">
           <Link
             href="/chat"
-            className="w-full text-2xl overflow-hidden flex items-center justify-center py-3 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]"
+            className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]"
           >
             <FontAwesomeIcon icon={faPaperPlane} size="sm"/>
           </Link>

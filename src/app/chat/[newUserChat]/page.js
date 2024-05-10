@@ -1,20 +1,50 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../_components/AuthProvider";
 
 
 export default function Page(props) {
   const USER = useAuth();
   const socket = USER.socket;
-  const [user, setUser] = React.useState();
-  const [message, setMessage] = React.useState("");
+  // const[sender , setSender] = useState("hello");
+  const [message, setMessage] = useState("");
 
-  // const handleConnection = () => {
-  //   socket.emit("new-user", USER.user?.name);
-  // }
+  React.useEffect(() => {
+    fetch(`/api/mongo/form2/${props.params.newUserChat}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          // console.log("success",USER.setSender);
+          USER.setSender(data);
+          // setSender(data);
+        }
+      });
+  }, [props.params.newUserChat, USER.sender, USER]);
 
-  const handlePersonalMessage = (data) => {
-    console.log("receiving.." , data , user);
+  React.useEffect(() => {
+    socket?.on("connect", handleConnection);
+    socket?.on("receivePersonalMessage", handlePersonalMessage);
+    socket?.on("disconnect", handleDisconnection);
+
+    return () => {
+      socket?.off("connect", handleConnection);
+      socket?.off("receivePersonalMessage", handlePersonalMessage);
+      socket?.off("disconnect", handleDisconnection);
+    }
+  }, []);
+
+
+  const handleConnection = () => {
+    socket.emit("new-user", USER.user?.name);
+  }
+
+  const handlePersonalMessage = async(data) => {
+    // console.log(USER);
+    // setMessage("")
+    // let user = USER.sender;
+    // console.log("Receiving" , data , sender , user , USER?.sender);
+    let user = await fetch(`/api/mongo/form2/${props.params.newUserChat}`)
+                  .then((res) => res.json());
     if (data.senderId == user?._id && data.receiverId == USER.user?._id) {
       const box = document.querySelector(".chatting-message-box");
       let message = chatModel(data.Name  , data.message, "left");
@@ -23,39 +53,16 @@ export default function Page(props) {
   }
 
   const handleDisconnection = () => {
-    console.log("socket.io Disconnected...");
+    console.log("socket.io Disconnected..." , sender);
   }
 
-  React.useEffect(() => {
-    fetch(`/api/mongo/form2/${props.params.newUserChat}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setUser(data);
-        }
-      });
-  }, [props.params.newUserChat]);
-
-  React.useEffect(() => {
-    // socket?.on("connect", handleConnection);
-    socket?.on("receivePersonalMessage", handlePersonalMessage);
-    socket?.on("disconnect", handleDisconnection);
-
-    return () => {
-      // socket?.off("connect", handleConnection);
-      socket?.off("receivePersonalMessage", handlePersonalMessage);
-      socket?.off("disconnect", handleDisconnection);
-    }
-  },[]);
-
-  
   const handleSendNewMessage = (e) => {
     e.preventDefault();
     if (message.length > 0) {
       const box = document.querySelector('.chatting-message-box');
       let content = chatModel("you" , message, 'right');
       box.appendChild(content);
-      socket?.emit('sendPersonalMessage', { Name: USER.user?.name, message, senderId: USER?.user?._id, receiverId: user?._id });
+      socket?.emit('sendPersonalMessage', { Name: USER.user?.name, message, senderId: USER?.user?._id, receiverId: USER.sender?._id });
       setMessage("");
       console.log("Sending..");
     }
@@ -64,8 +71,8 @@ export default function Page(props) {
   return (
     <div className="rounded-md bg-gradient-to-r from-gray-400 via-gray-300 to-gray-400 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white w-[100%] max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative" style={{minHeight:"calc(100vh - 4.5rem)"}}>
       <div className="bg-slate-950/30 dark:bg-slate-900 shadow-[0_0_3px_red] rounded-md p-2 mx-4 md:mx-9">
-        <h1 className="text-2xl font-semibold">{user?.name}</h1>
-        <p>loading...</p>
+        <h1 className="text-2xl font-semibold">{USER?.sender?.name}</h1>
+        <p onClick={handlePersonalMessage}>loading...</p>
       </div>
 
       <div className="chatting-message-box flex flex-col justify-evenly gap-3 p-3 overflow-auto flex-1 md:mx-6">
