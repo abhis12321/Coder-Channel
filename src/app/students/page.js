@@ -5,7 +5,7 @@ import Card from '../_components/Student';
 
 
 function Page() {
-    const [students , setStd] = React.useState(null)
+    const [students , setStd] = React.useState(null);
     const getData = async () => {
         let datas = await fetch(`/api/mongo/form2`)
             .then(res => res.json())

@@ -46,7 +46,7 @@ export default function Page(props) {
       socket?.off("receivePersonalMessage", handlePersonalMessage);
       socket?.off("disconnect", handleDisconnection);
     }
-  });
+  },[]);
 
   const handleSendNewMessage = (e) => {
     e.preventDefault();

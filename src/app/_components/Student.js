@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,19 +13,44 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import A from ".//profile.jpg";
+import { useAuth } from "./AuthProvider";
 
 
 export default function Card({ student }) {
+  const USER = useAuth();
+  const socket = USER.socket;
+  const [status, setStatus] = useState(student.isOnline);
+
+
+  React.useEffect(() => {
+    const handleStatus = ({ _id, status }) => {
+      if (student._id == _id) {
+        setStatus(status);
+      }
+    }
+    socket?.on("online-status", handleStatus);
+    return () => {
+      socket?.off("online-status", handleStatus);
+    }
+  }, [socket, status, student._id]);
+
+
   return (
     <div className="bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_6px_black] dark:shadow-[0_0_10px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_15px_red] rounded-lg flex flex-col justify-evenly items-center gap-3">
-      <div className="">
+      <div className="relative rounded-full bg-red-400">
         <Image
           src={A}
           alt="profile-img"
-          className={`h-[140px] m-auto rounded-full overflow-hidden border-4 ${student.isOnline ? 'border-lime-900 dark:border-green-700' : 'border-red-900 dark:border-red-700'} opacity-80`}
+          className={`h-[140px] m-auto rounded-full overflow-hidden ring-4 ${status ? 'ring-lime-900 dark:ring-green-700' : 'ring-red-900 dark:ring-red-700'} opacity-80`}
           width={140}
           height={140}
         />
+        <span class="absolute bottom-3 right-4 flex h-3 w-3">
+          <span class={`animate-ping absolute inline-flex h-full w-full rounded-full ${status && "bg-green-600"} `}></span>
+          <span class={`relative inline-flex rounded-full h-3 w-3 ${status ? "bg-green-600 border-green-700" : "bg-rose-700 border-red-900"} border-2`}></span>
+        </span>
+        {/* <span class={`${!status && "hidden"} animate-ping absolute bottom-3 right-4 inline-flex h-3 w-3 rounded-full bg-green-800`}></span>
+        <span class={`${!status && "hidden"} absolute bottom-2 right-6 inline-flex h-4 w-4 rounded-full bg-green-600 border-2 border-green-800`}></span> */}
       </div>
       <div className="text-2xl font-bold text-red-950 dark:text-gray-50">
         {student.name}
