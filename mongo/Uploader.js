@@ -4,7 +4,6 @@ import fs from 'fs/promises';
 import {v4 as uuid} from 'uuid';
 import os from 'os';
 import cloudinary from 'cloudinary';
-import mongoose from 'mongoose';
 
 // const image = new mongoose.Schema({    //data model
 //     url:{

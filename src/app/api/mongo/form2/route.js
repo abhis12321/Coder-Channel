@@ -1,25 +1,22 @@
-import mongoose from "mongoose";
 import { NextResponse } from "next/server";
-import { login} from '/mongo/UserModel'
+import Users from '/mongo/UserModel'
 
-export async function GET(req) {
-    await mongoose.connect(process.env.MONGO_URL , { useNewUrlParser: true, useUnifiedTopology: true });
-    let found = await login.find();
+export async function GET() {
+    let found = await Users.find();
     return NextResponse.json({found , success:true});
 }
 
 export async function POST(req) {
     try {
         let data = await req.json();
-        await mongoose.connect(process.env.MONGO_URL);
-        let check = await login.find({email:data.email});
+        let check = await Users.find({email:data.email});
         // console.log(check);
         if(check.length == 0) {
             // {let login = new login(data);
             // let saved = await login.save();
             // console.log(saved);}
 
-            let saved = await login.insertMany([data]);      // works same as the above code
+            let saved = await Users.insertMany([data]);      // works same as the above code
             return NextResponse.json({saved , success:true});
         }
         else {

@@ -1,27 +1,25 @@
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
-import { login } from "/mongo/UserModel";
+import Users from "/mongo/UserModel";
 import cryptoJS from "crypto-js";
 
 export async function POST(req, { params }) {
   try {
     let res = await req.json();
-    let {email , pass} = res;
-    await mongoose.connect(process.env.MONGO_URL);
-    let data = await login.find({ _id:params.token });
+    let { email, pass } = res;
+    let data = await Users.find({ _id: params.token });
 
     let bytes = cryptoJS.AES.decrypt(data[0].password, email);
     let password = bytes.toString(cryptoJS.enc.Utf8);
-    
-    if (data.length == 0) {
-      return NextResponse.json({ message: "bad request...!", success: false });
+
+    if (!data) {
+      return NextResponse.json({ message: "bad request...! Wrong _id", success: false });
     } else if (data[0].verify) {
       return NextResponse.json({
-        message: "email is already verified...!",
+        message: "The email/account is already verified...!",
         success: true,
       });
     } else if (password == pass) {
-      let new_data = await login.findOneAndUpdate(
+      await Users.findOneAndUpdate(
         { _id: params.token },
         { $set: { verify: true } }
       );
@@ -30,12 +28,12 @@ export async function POST(req, { params }) {
         success: true,
       });
     } else {
-      return NextResponse.json({ message: "Invalid Password", success: false });
+      return NextResponse.json({ message: "Invalid Password! Try again.", success: false });
     }
-  } 
+  }
   catch (err) {
     return NextResponse.json({
-      message: "bad request...! Wrong _id",
+      message: "bad request...!",
       success: false,
     });
   }

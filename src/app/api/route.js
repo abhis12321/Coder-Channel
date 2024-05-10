@@ -2,6 +2,14 @@ import { NextResponse } from "next/server";
 import path from "path";
 import { writeFile } from "fs/promises";
 
+export async function GET() {
+  try {
+    return NextResponse.json({success:false, message:"Data Copied"});
+  } catch(error) {
+    return NextResponse.json({success:false, message:error.message});
+  }
+}
+
 export const POST = async (req, res) => {
   const formData = await req.formData();
   console.log(formData);
@@ -27,3 +35,4 @@ export const POST = async (req, res) => {
     return NextResponse.json({ Message: "Failed " + error.message, status: 500 });
   }
 };
+

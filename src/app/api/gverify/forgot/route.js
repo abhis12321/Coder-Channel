@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import mongoose from "mongoose";
-import {login } from "/mongo/UserModel";
+import Users from "/mongo/UserModel";
 import cryptoJS from "crypto-js";
 
 const transporter = nodemailer.createTransport({
@@ -33,9 +32,7 @@ export async function POST(req) {
     let email = data.email;
 
     if (!email) return NextResponse.json({ message: "Missing email or token" });
-
-    await mongoose.connect(process.env.MONGO_URL);
-    let check = await login.find({ email });
+    let check = await Users.find({ email });
 
     if (check.length == 0) {
       return NextResponse.json({ message: "Email is not resistered..!" });

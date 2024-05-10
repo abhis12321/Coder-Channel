@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
-import { login } from "/mongo/UserModel";
+import Users from "/mongo/UserModel";
 import cryptoJS from 'crypto-js'
 
 export async function POST(req) {   
@@ -11,9 +10,8 @@ export async function POST(req) {
     if (!email) {
       return NextResponse.json({ message: "bad request! No email found.", success:false });
     }
-    await mongoose.connect(process.env.MONGO_URL);
-    let check = await login.find({ email });
-    
+
+    let check = await Users.find({ email });    
     let bytes = cryptoJS.AES.decrypt(check[0].password , email);
     let pass = bytes.toString(cryptoJS.enc.Utf8);
   

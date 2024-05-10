@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import mongoose from "mongoose";
-import { login } from "/mongo/UserModel";
+import Users from "/mongo/UserModel";
 import cryptoJS from 'crypto-js'
 
 const transporter = nodemailer.createTransport({
@@ -30,32 +29,21 @@ async function sendVerificationEmail(email, token , origin) {
 }
 
 export async function POST(req, res) {
-  let origin = (req.url).slice(0 , -12);
-  let data = await req.json();
-  let email = data.email;
-  var secretKey = email;
-
-// Encrypt a message
-  let ciphertext = cryptoJS.AES.encrypt(data.password, secretKey).toString();
-
-  if (!email) {
-    return NextResponse.json({ message: "Missing email or token" });
-  }
-
   try {
-    await mongoose.connect(process.env.MONGO_URL);
-    let check = await login.find({ email });
-    if (check.length > 0) {
-      return NextResponse.json({ message: "Email already resistered..!" });
-    }
-
-    let token = await login.insertMany([{...data , verify:false , password:ciphertext}]);
-    // console.log(token);
+    let origin = (req.url).slice(0 , -12);
+    let data = await req.json();
+    let email = data.email;
+    let secretKey = email;
+  
+  // Encrypt a message
+    let ciphertext = cryptoJS.AES.encrypt(data.password, secretKey).toString();
+    let token = await Users.insertMany([{...data , verify:false , password:ciphertext}]);
+    
     token = token[0]._id;
     await sendVerificationEmail(email, token , origin);
-    return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" });
+    return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" , success:true });
   } 
   catch (error) {
-    return NextResponse.json({ message: error.message });
+    return NextResponse.json({ message: error.message , success:false });
   }
 }

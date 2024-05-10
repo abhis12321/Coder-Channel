@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import mongoose from "mongoose";
-import { login } from "/mongo/UserModel";
+import Users from "/mongo/UserModel";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -38,8 +37,7 @@ export async function POST(req, res) {
   }
 
   try {
-    await mongoose.connect(process.env.MONGO_URL);
-    let check = await login.find({ email });
+    let check = await Users.find({ email });
     
     if (check.length == 0) {
       return NextResponse.json({ message: "Email is not resistered..!" });

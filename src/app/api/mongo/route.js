@@ -1,21 +1,16 @@
-import mongoose from "mongoose";
 import { NextResponse } from "next/server";
-import {login} from '/mongo/UserModel';
+import Users from '/mongo/UserModel';
 
 
-export async function GET(req) {
-    await mongoose.connect(process.env.MONGO_URL);
-    let data = await login.find();
-    
+export async function GET() {
+    let data = await Users.find();
     return NextResponse.json({data , success:true});
 }
 
 
 export async function POST(req) {
     let res =  await req.json();
-    await mongoose.connect(process.env.MONGO_URL);
-    let data = await login.insertMany([res]);
-    
+    let data = await Users.insertMany([res]);    
     return NextResponse.json({data , success:true});
 }
 

@@ -9,13 +9,14 @@ export default function AuthProvider({ children }) {
   
 
   const login = (person) => {
-    Initializing(person , setSocket);
+    !socket && Initializing(person , setSocket);
     setUser(person);
     localStorage.setItem('user', JSON.stringify(person));
   };
 
   const logout = () => {
     localStorage.setItem('user', JSON.stringify(null));
+    socket?.emit('user-disconnected' , ({name:user.name , _id:user._id}));
     socket?.disconnect();
     setUser(null);
     setSocket(null);
@@ -58,8 +59,9 @@ function Initializing(sender , setSocket ) {
       });
       
       // console.log(sender.name);
-      socket.emit('new-user' , sender.name);
+      socket.emit('new-user' , ({name:sender.name , _id:sender._id}));
       setSocket(socket);
+
       return () => {
           socket.disconnect();
         };

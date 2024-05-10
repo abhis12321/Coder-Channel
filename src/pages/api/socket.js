@@ -10,15 +10,11 @@ export default async function SocketHandler(req, res) {
         });
         res.socket.server.io = io;
 
-
-
         io.on("connection", (socket) => {
-            // const sender = socket.handshake.auth.name;
-            // console.log(socket.handshake.auth);
-
             socket.broadcast.emit('welcome' ,{name: "captain jack sparrow"});
             
-            socket.on('new-user' , name => {
+            socket.on('new-user' , ({name , _id}) => {
+                // console.log(name , _id);
                 socket.broadcast.emit('newUser' , name);
             });
 
@@ -32,15 +28,15 @@ export default async function SocketHandler(req, res) {
                 socket.broadcast.emit('receivePersonalMessage' , data);
             });
 
+            socket.on('user-disconnected' , ({name , _id}) => {
+                // console.log("Pre disconnection emit" , name , _id );
+                socket.broadcast.emit('userLeftGroup' , name);
+            });
             socket.on('disconnect' , async (sender) => {
-                // console.log("A user disconnected");
-                socket.broadcast.emit('userLeftGroup' , sender);
+                // console.log("A user disconnected" );
             });
         });
     }
-    // else {
-    //     console.log("Socket is already running");    
-    // }
     res.end();
 }
 
