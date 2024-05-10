@@ -22,6 +22,7 @@ async function sendVerificationEmail(email, token , origin) {
     html: `<p>Hi,</p>
            <p>Please click on the link below to verify your email address.</p>
            <a href="${link}">Verify Email by clicking the bellow link <br/> ${link}</a>
+           <p>It will be valid only for 10 minutes, If you fails to verify within the time, your registration will be cancelled. And you have to register again for further process.</p>
            <p>If you did not request this, please ignore this email.</p>`,
   };
 
@@ -41,7 +42,10 @@ export async function POST(req, res) {
     
     token = token[0]._id;
     await sendVerificationEmail(email, token , origin);
-    return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" , success:true });
+    setTimeout(async() => {
+      await Users.findOneAndDelete({email , verify:false});
+    }, 600000);
+    return NextResponse.json({ message: "Verification Link sent successfully to your Email...! It will be valid only for 10 minutes, If you fails to verify within the time your registration will be cancelled. And you have to register again for further process" , success:true });
   } 
   catch (error) {
     return NextResponse.json({ message: error.message , success:false });

@@ -63,7 +63,7 @@ export default function NavBar() {
         <div className="w-full lg:w-fit flex items-center justify-center">
           <Link
             href="/chat"
-            className="w-full text-3xl overflow-hidden flex items-center justify-center py-3 lg:py-2 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]"
+            className="w-full text-2xl overflow-hidden flex items-center justify-center py-3 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]"
           >
             <FontAwesomeIcon icon={faPaperPlane} size="sm"/>
           </Link>
