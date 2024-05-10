@@ -26,7 +26,7 @@ export default function Page(props) {
     console.log("socket.io Disconnected...");
   }
 
-  React.useState(async () => {
+  React.useEffect(() => {
     fetch(`/api/mongo/form2/${props.params.newUserChat}`)
       .then((res) => res.json())
       .then((data) => {
@@ -34,7 +34,7 @@ export default function Page(props) {
           setUser(data);
         }
       });
-  }, []);
+  }, [props.params.newUserChat]);
 
   React.useEffect(() => {
     // socket?.on("connect", handleConnection);
@@ -48,6 +48,7 @@ export default function Page(props) {
     }
   },[]);
 
+  
   const handleSendNewMessage = (e) => {
     e.preventDefault();
     if (message.length > 0) {
