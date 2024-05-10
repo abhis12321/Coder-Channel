@@ -22,10 +22,9 @@ export default function StudentCard({ student }) {
   const socket = USER.socket;
   const [status, setStatus] = useState(student.isOnline);
 
-
   React.useEffect(() => {
     const handleStatus = ({ _id, status }) => {
-      // console.log("haha.." , _id , status);
+      console.log("haha.." , _id , status);
       if (student._id == _id) {
         setStatus(status);
       }

@@ -14,7 +14,7 @@ export default function Page(props) {
   // }
 
   const handlePersonalMessage = (data) => {
-    console.log("receiving..");
+    console.log("receiving.." , data , user);
     if (data.senderId == user?._id && data.receiverId == USER.user?._id) {
       const box = document.querySelector(".chatting-message-box");
       let message = chatModel(data.Name  , data.message, "left");
