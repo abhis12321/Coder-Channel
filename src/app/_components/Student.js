@@ -37,7 +37,7 @@ export default function Card({ student }) {
 
   return (
     <div className="bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_6px_black] dark:shadow-[0_0_10px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_15px_red] rounded-lg flex flex-col justify-evenly items-center gap-3">
-      <div className="relative rounded-full bg-red-400">
+      <div className="relative">
         <Image
           src={A}
           alt="profile-img"
@@ -46,11 +46,9 @@ export default function Card({ student }) {
           height={140}
         />
         <span class="absolute bottom-3 right-4 flex h-3 w-3">
-          <span class={`animate-ping absolute inline-flex h-full w-full rounded-full ${status && "bg-green-600"} `}></span>
-          <span class={`relative inline-flex rounded-full h-3 w-3 ${status ? "bg-green-600 border-green-700" : "bg-rose-700 border-red-900"} border-2`}></span>
+          <span class={`animate-ping absolute inline-flex h-full w-full rounded-full ${status && "dark:bg-green-800 bg-lime-900"} `}></span>
+          <span class={`relative inline-flex rounded-full h-3 w-3 ${status ? "dark:bg-green-600 bg-lime-700 border-lime-800 dark:border-green-700" : "bg-rose-700 border-red-950"} border-2`}></span>
         </span>
-        {/* <span class={`${!status && "hidden"} animate-ping absolute bottom-3 right-4 inline-flex h-3 w-3 rounded-full bg-green-800`}></span>
-        <span class={`${!status && "hidden"} absolute bottom-2 right-6 inline-flex h-4 w-4 rounded-full bg-green-600 border-2 border-green-800`}></span> */}
       </div>
       <div className="text-2xl font-bold text-red-950 dark:text-gray-50">
         {student.name}

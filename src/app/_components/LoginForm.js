@@ -36,7 +36,7 @@ export default function LoginForm() {
       
       <input type="password" value = {password} onChange={(e)=> setPass(e.target.value)} className='bg-slate-950/40 dark:bg-slate-950 block p-2 rounded text-center w-[98%] max-w-[550px] shadow-[0_0_4px_white]' placeholder='password' name='password' required/>
 
-      <div className="flex items-center justify-evenly" >
+      <div className="flex items-center justify-evenly w-[98%] max-w-[550px]" >
         <Link href={`/login/resend`} className="drop-shadow-[0_0_5px_red] hover:text-yellow-500">Resend Verification Link</Link>
         <Link href={`/login/forgot`} className="drop-shadow-[0_0_5px_red] hover:text-yellow-500">forgot password</Link>
       </div>
