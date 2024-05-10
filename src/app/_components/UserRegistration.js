@@ -45,7 +45,7 @@ export default function Page() {
             <input name='linkedIn' type="text" value={linkedIn} onChange={e => setLinkedIn(e.target.value)} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950/50 outline-none py-2 px-3 rounded-xl mx-auto text-center focus:text-cyan-700 font-mono placeholder:font-light placeholder:text-sm' placeholder='your linked profile' />
             <input name='instagram' type="text" value={instagram} onChange={e => setInstagram(e.target.value)} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950/50 outline-none py-2 px-3 rounded-xl mx-auto text-center focus:text-cyan-700 font-mono placeholder:font-light placeholder:text-sm' placeholder='your instagram profile' />
             <input name='github' type="text" value={github} onChange={e => setGithub(e.target.value)} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950/50 outline-none py-2 px-3 rounded-xl mx-auto text-center focus:text-cyan-700 font-mono placeholder:font-light placeholder:text-sm' placeholder='your github profile' />
-            <button type='submit' className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-red-900 hover:bg-red-700 active:bg-violet-900 py-2 focus:bg-cyan-950 px-3 rounded-xl mx-auto text-center' >Register</button>
+            <button type='submit' className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-red-900 hover:bg-red-700 active:bg-violet-900 py-2 px-3 rounded-xl mx-auto text-center' >Register</button>
         </form>
     )
 }

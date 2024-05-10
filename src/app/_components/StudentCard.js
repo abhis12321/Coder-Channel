@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,7 +17,7 @@ import A from ".//profile.jpg";
 import { useAuth } from "./AuthProvider";
 
 
-export default function Card({ student }) {
+export default function StudentCard({ student }) {
   const USER = useAuth();
   const socket = USER.socket;
   const [status, setStatus] = useState(student.isOnline);
@@ -24,15 +25,17 @@ export default function Card({ student }) {
 
   React.useEffect(() => {
     const handleStatus = ({ _id, status }) => {
+      // console.log("haha.." , _id , status);
       if (student._id == _id) {
         setStatus(status);
       }
     }
+    
     socket?.on("online-status", handleStatus);
     return () => {
       socket?.off("online-status", handleStatus);
     }
-  }, [socket, status, student._id]);
+  }, [socket, status, student._id, USER]);
 
 
   return (
@@ -45,7 +48,7 @@ export default function Card({ student }) {
           width={140}
           height={140}
         />
-        <span class="absolute bottom-3 right-4 flex h-3 w-3">
+        <span className="absolute bottom-3 right-4 flex h-3 w-3">
           <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${status && "dark:bg-green-800 bg-lime-900"} `}></span>
           <span className={`relative inline-flex rounded-full h-3 w-3 ${status ? "dark:bg-green-600 bg-lime-700 border-lime-800 dark:border-green-700" : "bg-rose-700 border-red-900"} border-2`}></span>
         </span>

@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import Card from '../_components/Student';
+import StudentCard from '../_components/StudentCard';
 
 
 
@@ -27,7 +27,7 @@ function Page() {
                 {students && (students.found).map((student , index) => {
                     if(student.verify)
                     return (                
-                            <Card  key={student._id+index} student={student}/>
+                            <StudentCard  key={student._id+index} student={student}/>
                     )})
                 }
             </div>

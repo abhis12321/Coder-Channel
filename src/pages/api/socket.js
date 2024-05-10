@@ -31,9 +31,10 @@ export default async function SocketHandler(req, res) {
             });
 
             socket.on('user-disconnected' , async({name , _id}) => {
-                await Users.findOneAndUpdate({_id}, {$set:{isOnline:false}});
-                socket.broadcast.emit("online-status" , {_id , status:false})
+                // console.log("backend request for disconnection");
+                socket.broadcast.emit("online-status" , {_id , status:false});
                 socket.broadcast.emit('userLeftGroup' , name);
+                await Users.findOneAndUpdate({_id}, {$set:{isOnline:false}});
             });
             socket.on('disconnect' , async (sender) => {
                 // console.log("A user disconnected" );
