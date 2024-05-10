@@ -6,7 +6,6 @@ const context = React.createContext();
 export default function AuthProvider({ children }) {
   const [user, setUser] = React.useState(null);
   let [socket , setSocket] = React.useState();
-  const [sender, setSender] = React.useState();
   
 
   const login = (person) => {
@@ -23,22 +22,20 @@ export default function AuthProvider({ children }) {
     setSocket(null);
   };
 
-  const value = {
-    sender,
-    setSender,
-    user,
-    login,
-    logout,
-    socket,
-  };
-
-
   React.useEffect(() => {
     const data = JSON.parse(localStorage.getItem("user"));
     if(data != null) {
       login(data);
     }
-  }, []);
+  }, [socket]);
+
+
+  const value = {
+    user,
+    login,
+    logout,
+    socket,
+  };
 
 
   return (
