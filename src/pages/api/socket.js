@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import Users from "/mongo/UserModel";
+// import Users from "/mongo/UserModel";
 
 export default async function SocketHandler(req, res) {
     if (!res.socket.server.io) {
@@ -15,9 +15,9 @@ export default async function SocketHandler(req, res) {
             socket.broadcast.emit('welcome' ,{name: "captain jack sparrow"});
             
             socket.on('new-user' , async({name , _id}) => {
-                await Users.findOneAndUpdate({_id}, {$set:{isOnline:true}});
                 socket.broadcast.emit("online-status" , {_id , status:true})
                 socket.broadcast.emit('newUser' , name);
+                // await Users.findOneAndUpdate({_id}, {$set:{isOnline:true}});
             });
 
             socket.on('sendGroupMessage' , data => {
@@ -31,10 +31,9 @@ export default async function SocketHandler(req, res) {
             });
 
             socket.on('user-disconnected' , async({name , _id}) => {
-                // console.log("backend request for disconnection");
                 socket.broadcast.emit("online-status" , {_id , status:false});
                 socket.broadcast.emit('userLeftGroup' , name);
-                await Users.findOneAndUpdate({_id}, {$set:{isOnline:false}});
+                // await Users.findOneAndUpdate({_id}, {$set:{isOnline:false}});
             });
             socket.on('disconnect' , async (sender) => {
                 // console.log("A user disconnected" );

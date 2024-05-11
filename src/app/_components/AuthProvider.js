@@ -1,33 +1,36 @@
 "use client";
-import React, { useCallback } from "react";
+import axios from "axios";
+import React , { createContext, useCallback, useEffect, useState } from "react";
 import io from "socket.io-client";
-const context = React.createContext();
+const context = createContext();
 
 export default function AuthProvider({ children }) {
-  const [user, setUser] = React.useState(null);
-  let [socket , setSocket] = React.useState();
+  const [user, setUser] = useState(null);
+  let [socket , setSocket] = useState();
   
 
   const login = useCallback((person) => {
     if(!socket) {
       Initializing(person , setSocket);
     }
+    // console.log("logging-in");
     setUser(person);
-    localStorage.setItem('user', JSON.stringify(person));
-    console.log("logging-in");
+    axios.put(`/api/mongo/form2/${person._id}` , { status:true });
+    localStorage.setItem('student-media', JSON.stringify(person));
   }, [socket]);
 
   const logout = () => {
     socket?.emit('user-disconnected' , ({name:user.name , _id:user._id}));
-    console.log("being ofline.." , user , socket);
+    axios.put(`/api/mongo/form2/${user._id}` , { status:false });
+    localStorage.setItem('student-media', JSON.stringify(null));
+    // console.log("being ofline.." , socket.connected);
     socket?.disconnect();
-    setUser(null);
     setSocket(null);
-    localStorage.setItem('user', JSON.stringify(null));
+    setUser(null);
   };
 
-  React.useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("student-media"));
     if(data != null) {
       login(data);
     }
