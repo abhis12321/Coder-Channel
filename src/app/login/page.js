@@ -8,9 +8,9 @@ import UserLogout from '../_components/UserLogout';
 export default function Page() {  
   let USER = useAuth();
   const [status , setStatus] = useState(true);
-  useEffect(() => {
-    console.log(USER);
-  } , [USER]);
+  // useEffect(() => {
+  //   console.log(USER);
+  // } , [USER]);
 
 
   return (

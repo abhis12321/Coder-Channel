@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useCallback } from "react";
 import io from "socket.io-client";
 const context = React.createContext();
 
@@ -8,19 +8,22 @@ export default function AuthProvider({ children }) {
   let [socket , setSocket] = React.useState();
   
 
-  const login = (person) => {
-    !socket && Initializing(person , setSocket);
+  const login = useCallback((person) => {
+    if(!socket) {
+      Initializing(person , setSocket);
+    }
     setUser(person);
     localStorage.setItem('user', JSON.stringify(person));
-  };
+    console.log("logging-in");
+  }, [socket]);
 
   const logout = () => {
-    console.log("being ofline..");
-    localStorage.setItem('user', JSON.stringify(null));
     socket?.emit('user-disconnected' , ({name:user.name , _id:user._id}));
+    console.log("being ofline.." , user);
     socket?.disconnect();
     setUser(null);
     setSocket(null);
+    localStorage.setItem('user', JSON.stringify(null));
   };
 
   React.useEffect(() => {
@@ -28,7 +31,7 @@ export default function AuthProvider({ children }) {
     if(data != null) {
       login(data);
     }
-  }, [socket]);
+  }, [login]);
 
 
   const value = {

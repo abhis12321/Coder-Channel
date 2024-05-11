@@ -27,7 +27,7 @@ function Page() {
     }
 
     const handleWelcome = (data) => {
-        console.log("welcome message" , data);
+        // console.log("welcome message" , data);
     }
     
     React.useEffect(() => {
