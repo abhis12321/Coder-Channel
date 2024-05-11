@@ -15,6 +15,7 @@ export default function AuthProvider({ children }) {
   };
 
   const logout = () => {
+    console.log("being ofline..");
     localStorage.setItem('user', JSON.stringify(null));
     socket?.emit('user-disconnected' , ({name:user.name , _id:user._id}));
     socket?.disconnect();

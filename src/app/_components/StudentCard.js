@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -22,19 +22,19 @@ export default function StudentCard({ student }) {
   const socket = USER.socket;
   const [status, setStatus] = useState(student.isOnline);
 
-  React.useEffect(() => {
-    const handleStatus = ({ _id, status }) => {
-      console.log("haha.." , _id , status);
-      if (student._id == _id) {
-        setStatus(status);
-      }
+  const handleStatus = useCallback(({ _id, status }) => {
+    console.log("haha..", _id, status);
+    if (student._id == _id) {
+      setStatus(status);
     }
-    
+  }, [student._id , USER , student]);
+
+  React.useEffect(() => {
     socket?.on("online-status", handleStatus);
     return () => {
       socket?.off("online-status", handleStatus);
     }
-  }, [socket, status, student._id, USER]);
+  }, [socket, status, student._id , student, USER, handleStatus]);
 
 
   return (

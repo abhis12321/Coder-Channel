@@ -65,7 +65,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-gray-500 text-center p-2 font-semibold max-h-5 overflow-hidden"><FontAwesomeIcon icon={faCopyright} size='x' className='text-sm'/><span className="font-mono">$</span>tudent&apos;media! A public social-media platform.</div>
+      <div className="text-gray-500 text-center pt-2 font-semibold overflow-hidden"><FontAwesomeIcon icon={faCopyright} size='x' className='text-sm'/><span className="font-mono">$</span>tudent&apos;media! A public social-media platform.</div>
     </div>
   )
 }
