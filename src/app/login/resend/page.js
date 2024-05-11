@@ -8,7 +8,7 @@ export default function Page() {
     const [email , setEmail] = React.useState("");
     const handleSubmit = async(e) => {
         e.preventDefault();
-        let info = await fetch(`/api/gverify/resend` , {
+        let info = await fetch(`/api/users/resend` , {
                         method:"post",
                         body:JSON.stringify({email})
                     })

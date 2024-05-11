@@ -15,13 +15,13 @@ export default function AuthProvider({ children }) {
     }
     // console.log("logging-in");
     setUser(person);
-    axios.put(`/api/mongo/form2/${person._id}` , { status:true });
+    axios.put(`/api/users/${person._id}` , { status:true });
     localStorage.setItem('student-media', JSON.stringify(person));
   }, [socket]);
 
   const logout = () => {
     socket?.emit('user-disconnected' , ({name:user.name , _id:user._id}));
-    axios.put(`/api/mongo/form2/${user._id}` , { status:false });
+    axios.put(`/api/users/${user._id}` , { status:false });
     localStorage.setItem('student-media', JSON.stringify(null));
     // console.log("being ofline.." , socket.connected);
     socket?.disconnect();

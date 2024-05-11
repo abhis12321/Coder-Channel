@@ -7,7 +7,7 @@ import StudentCard from '../_components/StudentCard';
 function Page() {
     const [students , setStd] = React.useState(null);
     const getData = async () => {
-        let datas = await fetch(`/api/mongo/form2`)
+        let datas = await fetch(`/api/users`)
             .then(res => res.json())
             .catch(err => {success:false});
         

@@ -9,8 +9,8 @@ export default function LoginForm() {
     
   const handleLogin = async(e) => {
     e.preventDefault();
-    await fetch(`/api/login` , {
-                method:"post",
+    await fetch(`/api/users` , {
+                method:"put",
                 body:JSON.stringify({email , password})
               })
               .then(res => res.json())

@@ -23,7 +23,7 @@ export default function StudentCard({ student }) {
   const [status, setStatus] = useState(student.isOnline);
 
   const handleStatus = useCallback(({ _id, status }) => {
-    console.log("haha..", status);
+    // console.log("haha..", status);
     if (student._id == _id) {
       setStatus(status);
     }

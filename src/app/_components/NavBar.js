@@ -73,20 +73,6 @@ export default function NavBar() {
             <FontAwesomeIcon icon={faUser} size="sm"/>
           </Link>
         </div>
-
-        {/* {!USER.user && (
-          <div className="w-full lg:w-fit flex items-center justify-center"><Link href="/login" className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]">
-            <FontAwesomeIcon icon={faUser} />
-          </Link></div>
-        )}
-        {USER.user && (
-          <>
-            <div className="w-full lg:w-fit flex items-center justify-center"><Link href={`/login`} className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-400/30 hover:lgshadow-[0_0_3px_gray]">
-              {USER.user.name}
-            </Link></div>
-          </>
-        )} */}
-
         <ToggleMode />
       </div>
 

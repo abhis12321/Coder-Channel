@@ -10,7 +10,7 @@ export default function Page(props) {
   const [message, setMessage] = useState("");
 
   React.useEffect(() => {
-    fetch(`/api/mongo/form2/${props.params.newUserChat}`)
+    fetch(`/api/users/${props.params.newUserChat}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

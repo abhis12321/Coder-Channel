@@ -15,7 +15,7 @@ export default function Page() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let info = await fetch(`/api/gverify`, {
+        let info = await fetch(`/api/users`, {
                 method: "post",
                 body: JSON.stringify({name , email , password , gender , university , course , linkedIn , instagram , github}),
             })

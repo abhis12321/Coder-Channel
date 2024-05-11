@@ -2,11 +2,35 @@ import { NextResponse } from "next/server";
 import Users from "/mongo/UserModel";
 import cryptoJS from "crypto-js";
 
+
+export async function GET(req , {params}) {
+    try {
+        let data = await Users.findOne({_id:params._id});
+        return NextResponse.json({...data._doc , success:true});
+    }
+    catch(err) {
+        return NextResponse.json({data:err.message , success:false});
+    }
+}
+
+export async function PUT(req , {params}) {
+    try {
+        let data = await req.json();
+        await Users.findOneAndUpdate(
+            { _id:params._id },
+            { $set: { isOnline: data.status } }
+          );
+          return NextResponse.json({success:true});
+    } catch(err) {
+        return NextResponse.json({data:err.message , success:false});
+    }
+}
+
 export async function POST(req, { params }) {
   try {
     let res = await req.json();
     let { email, pass } = res;
-    let data = await Users.find({ _id: params.token });
+    let data = await Users.find({ _id: params._id });
 
     let bytes = cryptoJS.AES.decrypt(data[0].password, email);
     let password = bytes.toString(cryptoJS.enc.Utf8);
@@ -20,7 +44,7 @@ export async function POST(req, { params }) {
       });
     } else if (password == pass) {
       await Users.findOneAndUpdate(
-        { _id: params.token },
+        { _id: params._id },
         { $set: { verify: true } }
       );
       return NextResponse.json({

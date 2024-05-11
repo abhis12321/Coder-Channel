@@ -28,7 +28,7 @@ async function sendVerificationEmail(email, token , origin) {
 }
 
 export async function POST(req, res) {
-  let origin = (req.url).slice(0 , -19);
+  let origin = (req.url).slice(0 , -17);
   let data = await req.json();
   let email = data.email;
 
