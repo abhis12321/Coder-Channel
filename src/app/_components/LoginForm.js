@@ -24,10 +24,10 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleLogin} className='bg-gradient-to-br from-gray-500 via-lime-950/40 to-gray-500 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-950 shadow-[0_0_10px_white] w-[98%] max-w-[700px] py-4 xs:py-7 rounded-xl min-h-[280px] text-white flex flex-col gap-3 items-center justify-around' autoComplete='on'>
+    <form onSubmit={handleLogin} className='bg-gradient-to-b from-gray-950/50 via-cyan-950/30 to-gray-950/70 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-950 shadow-[0_0_10px_white] w-[98%] max-w-[700px] py-4 rounded-xl min-h-[280px] text-white flex flex-col gap-3 items-center justify-around' autoComplete='on'>
       
       <div className="bg-slate-950/20 py-2 px-10 rounded-lg">
-        <h2 className="font-extrabold text-4xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-violet-600 w-fit pb-2 leading-12">Login Page</h2>
+        <h2 className="font-extrabold text-4xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-violet-600 w-fit pb-2 leading-12 drop-shadow-[0_0_1px_black]">Login Page</h2>
         <p className="hidden sm:flex text-center text-sm font-mono text-yellow-400 font-semibold drop-shadow-[0_0_7px_white]">Login with your email-id</p>
       </div>
 

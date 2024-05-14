@@ -16,30 +16,34 @@ import Link from "next/link";
 import A from ".//profile.jpg";
 import { useAuth } from "./AuthProvider";
 
-
-export default function StudentCard({ student }) {
+export default function StudentCard({ student } ) {
   const USER = useAuth();
   const socket = USER.socket;
   const [status, setStatus] = useState(student.isOnline);
 
   const handleStatus = useCallback(({ _id, status }) => {
-    // console.log("haha..", status);
+    // console.log("haha..", status , _id);
     if (student._id == _id) {
       setStatus(status);
     }
-  }, [student , student._id]);
+  }, [student]);
 
 
   useEffect(() => {
-    socket?.on("online-status", handleStatus);    
+    socket?.on("online-status", handleStatus);
     return () => {
       socket?.off("online-status", handleStatus);
     }
   }, [socket, USER, handleStatus]);
 
-  useEffect(() => {    
+  useEffect(() => {
     setStatus(student.isOnline);
-  } , [student._id , student]);
+  }, [student._id, student]);
+
+  const handleCopyURL = e => {
+    navigator.clipboard.writeText(`https://student-login-app-nextjs.onrender.com/students/${student?._id}`);
+    alert('profile url copied')
+  }
 
 
   return (
@@ -104,18 +108,22 @@ export default function StudentCard({ student }) {
           className=" text-rose-700 hover:drop-shadow-[0_0_2px_black] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  "
         />
         <div className="border-x-2 border-gray-600 flex items-center justify-center px-[50%]">
-          <FontAwesomeIcon
-            icon={faMicroscope}
-            size="1x"
-            className="text-blue-700 hover:drop-shadow-[0_0_1px_black] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] h-6 cursor-pointer  "
-          />
+          <Link href={`/students/${student._id}`}>
+            <FontAwesomeIcon
+              icon={faMicroscope}
+              size="1x"
+              className="text-blue-700 hover:drop-shadow-[0_0_1px_black] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] h-6 cursor-pointer  "
+            />
+          </Link>
         </div>
         <FontAwesomeIcon
           icon={faShareNodes}
           size="1x"
           className="text-gray-800 dark:text-gray-400 hover:drop-shadow-[0_0_1px_red] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  "
+          onClick={handleCopyURL}
         />
       </div>
+      
     </div>
   );
 }

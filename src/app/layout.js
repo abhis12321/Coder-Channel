@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="">
-      <body className="dark bg-gray-200 text-gray-950 dark:bg-slate-950 dark:text-white">
+      <body className="dark bg-slate-200 text-gray-950 dark:bg-slate-950 dark:text-white">
         <AuthProvider>
           <NavBar />
           <div className='min-h-[90.9vh]'>

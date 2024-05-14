@@ -61,9 +61,9 @@ export default function Page(props) {
   };
 
   return (
-    <div className="rounded-md bg-gradient-to-r from-gray-400 via-gray-300 to-gray-400 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white w-[100%] max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative" style={{minHeight:"calc(100vh - 4.5rem)"}}>
-      <div className="bg-slate-950/30 dark:bg-slate-900 shadow-[0_0_3px_red] rounded-md p-2 mx-4 md:mx-9">
-        <h1 className="text-2xl font-semibold">{sender?.name}</h1>
+    <div className="text-white rounded-md bg-gradient-to-r from-gray-950/10 via-gray-50 to-gray-950/10 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white w-[100%] max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative" style={{minHeight:"calc(100vh - 4.5rem)"}}>
+      <div className="bg-slate-950/10 dark:bg-slate-900 shadow-[0_0_3px_red] rounded-md p-2 mx-4 md:mx-9">
+        <h1 className="text-2xl font-semibold drop-shadow-[1px_1px_1px_red]">{sender?.name}</h1>
         <p onClick={handlePersonalMessage}>loading...</p>
       </div>
 
@@ -72,7 +72,7 @@ export default function Page(props) {
       </div>
       
       <form className='flex items-center justify-center px-4 md:px-9 w-[100%] absolute bottom-2 bg-ed-500 gap-2' onSubmit={handleSendNewMessage}>
-        <input className='bg-slate-950/30 shadow-[0_0_3px_white] focus:shadow-[0_0_3px_cyan] outline-none flex-1 px-4 py-2 rounded-lg placeholder:text-gray-100 text-red-900 dark:text-gray-50' type='text' placeholder="Enter your message" value={message} onChange={e => setMessage(e.target.value)} required />
+        <input className='bg-slate-950/30 shadow-[0_0_3px_white] focus:shadow-[0_0_3px_cyan] outline-none flex-1 px-4 py-2 rounded-lg placeholder:text-gray-100 drop-shadow-[0_0_1px_black] dark:text-gray-50' type='text' placeholder="Enter your message" value={message} onChange={e => setMessage(e.target.value)} required />
         <button className='hidden sm:block shadow-[0_0_3px_white] px-8 py-2 rounded-lg bg-sky-900 font-semibold opacity-80 hover:opacity-100 hover:text-yellow-500 active:bg-violet-950'>send</button>
       </form>
     </div>

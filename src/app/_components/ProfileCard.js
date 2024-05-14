@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ProfileCard({student , setStatus}) {
   return (
-    <div className="bg-gradient-to-tr from-gray-900/30 via-violet-950/30 to-gray-950/30 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-950 shadow-[0_0_3px_black] hover:shadow-[0_0_7px_black] dark:shadow-[0_0_4px_white] dark:hover:shadow-[0_0_10px_white] text-white rounded-3xl w-[95%] md:w-[80%] max-w-[800px] flex flex-col justify-center gap-3  min-h-[40vh] px-3 sm:px-14 py-9 *:drop-shadow-[0_0_3px_black]">
+    <div className="bg-gradient-to-b from-red-950/5 to-gray-950/10 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-950 shadow-[0_0_3px_black] hover:shadow-[0_0_7px_black] dark:shadow-[0_0_4px_white] dark:hover:shadow-[0_0_10px_white] text-white rounded-3xl w-[95%] md:w-[80%] max-w-[800px] flex flex-col justify-center gap-3  min-h-[40vh] px-3 sm:px-14 py-9 *:drop-shadow-[0_0_3px_black]">
       
           <p className= "font-bold text-justify">
             <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Email : </span>

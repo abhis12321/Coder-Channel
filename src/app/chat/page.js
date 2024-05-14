@@ -56,10 +56,10 @@ function Page() {
     }
 
     return (
-        <div className='h-[100%] relative max-w-[900px] mx-auto bg-gradient-to-r from-gray-500 via-gray-300 to-gray-500 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white rounded-lg pb-1 overflow-auto'  style={{minHeight:'calc(100vh - 4.5rem)'}}>
+        <div className='h-[100%] relative max-w-[900px] mx-auto bg-gradient-to-r from-gray-950/10 via-gray-50 to-gray-950/10 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white rounded-lg pb-1 overflow-auto'  style={{minHeight:'calc(100vh - 4.5rem)'}}>
             <div className='chatting-box px-4 flex flex-col gap-3 p-3max-h-[90.9vh] pt-3 pb-14 text-gray-100'>
-                <h1 className='drop-shadow-[0_0_4px_yellow]' >It&apos;s a Public Chat Group...</h1>
-                <p className='text-center text-3xl drop-shadow-[0_0_5px_red] font-semibold '>Welcome in this chat group</p>
+                <h1 className='text-yellow-600' >It&apos;s a Public Chat Group...</h1>
+                <p className='text-center text-3xl drop-shadow-[2px_3px_1px_red] text-green-100 font-semibold bg-slate-950/5 w-fit mx-auto rounded-lg py-2 px-4'>Welcome in this chat group</p>
             </div>
 
             <form className='flex items-center justify-center px-4 w-[100%] absolute bottom-2 bg-ed-500 gap-2 text-gray-100'  onSubmit={handleMessage}>
@@ -75,7 +75,7 @@ function Page() {
 
 function chatModel(name , message , direction) {
     const node = document.createElement('p');
-    node.innerHTML = `<span class="text-gray-500">${name} : </span>${message}`;
+    node.innerHTML = `<span class="text-gray-400">${name} : </span>${message}`;
     node.classList.add(`text-${direction}` , `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}` , "py-2" , "px-4" , "rounded-lg" , "max-w-[80%]" , "w-fit" , "dark:bg-slate-950" , "bg-gray-600");
     
     return (
