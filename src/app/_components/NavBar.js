@@ -50,7 +50,7 @@ export default function NavBar() {
         <div className="w-full lg:w-fit flex items-center justify-center">
           <Link
             href="/students"
-            className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-950/15 hover:ring-2 ring-gray-100"
+            className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-[15px] lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-950/15 hover:ring-2 ring-gray-100"
           >
             <FontAwesomeIcon icon={faUserGroup} size="sm"/>
           </Link>
@@ -59,7 +59,7 @@ export default function NavBar() {
         <div className="w-full lg:w-fit flex items-center justify-center">
           <Link
             href="/chat"
-            className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-950/15 hover:ring-2 ring-gray-100"
+            className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-[17px] lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-950/15 hover:ring-2 ring-gray-100"
           >
             <FontAwesomeIcon icon={faPaperPlane} size="sm"/>
           </Link>
@@ -68,7 +68,7 @@ export default function NavBar() {
         <div className="w-full lg:w-fit flex items-center justify-center">
           <Link
             href="/login"
-            className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-4 lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-950/15 hover:ring-2 ring-gray-100"
+            className="w-full text-2xl overflow-hidden flex items-center justify-center py-4 lg:py-3 lg:px-[19px] lg:rounded-lg hover:bg-slate-950/30 hover:text-white dark:hover:bg-gray-950/15 hover:ring-2 ring-gray-100"
           >
             <FontAwesomeIcon icon={faUser} size="sm"/>
           </Link>
