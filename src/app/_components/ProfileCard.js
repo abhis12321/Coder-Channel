@@ -1,42 +1,48 @@
+import Image from 'next/image'
 import React from 'react'
 
 export default function ProfileCard({student , setStatus}) {
   return (
-    <div className="bg-gradient-to-b from-red-950/5 to-gray-950/10 dark:from-slate-900 dark:via-cyan-950 dark:to-slate-950 shadow-[0_0_3px_black] hover:shadow-[0_0_7px_black] dark:shadow-[0_0_4px_white] dark:hover:shadow-[0_0_10px_white] text-white rounded-3xl w-[95%] md:w-[80%] max-w-[800px] flex flex-col justify-center gap-3  min-h-[40vh] px-3 sm:px-14 py-9 *:drop-shadow-[0_0_3px_black]">
-      
-          <p className= "font-bold text-justify">
-            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Email : </span>
-            {student.email}
-          </p>
-          <h2 className="font-bold text-justify">
-            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Name : </span>
-            {student.name}
-          </h2>
-          <h2 className="font-bold text-justify">
-            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Gender : </span>
-            {student.gender}
-          </h2>
-          <h2 className="font-bold text-justify">
-            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">University : </span>
-            {student.university}
-          </h2>
-          <h2 className="font-bold text-justify">
-            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Course : </span>
-            {student.course}
-          </h2>
-          <h2 className="font-bold text-justify">
-            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">followers : </span>
-            {student.followers}
-          </h2>
-          <h2 className="font-bold text-justify">
-            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Following : </span>
-            {student.followings}
-          </h2>
-          <h2 className="font-bold text-justify">
-            <span className="text-lime-100 dark:text-gray-500 font-bold dark:font-semibold">Likes : </span>
-            {student.likes}
-          </h2>
-          <button className="m-1 opacity-80 dark:opacity-100 bg-red-700 hover:bg-violet-950 inline-block w-[74px] font-semibold py-1 rounded text-center shadow-[0_0_8px_black]" onClick={setStatus}> Logout</button>
+    <div className='flex items-center justify-center py-4 w-full'>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-blue-700/15 p-2 md:p-4 rounded-lg w-[98%] max-w-[850px] text-white">
+          <div className="w-fit flex items-center justify-center">
+            <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40' />
+          </div>
+
+          <div className="flex flex-col gap-[10px] p-3 md:p-4 items-center sm:items-start justify-center dark:bg-slate-700/40 bg-blue-950/30 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
+            <div className="flex gap-2 md:gap-4 flex-wrap items-center">
+              <h1 className="text-2xl sm:text-3xl font-bold font-serif">{student?.name}</h1>
+              <button className="py-1 px-3 md:px-4 text-sm rounded bg-red-600/50 hover:bg-red-600 active:bg-violet-900 w-fit font-serif font-semibold text-gray-200" onClick={setStatus}>logout</button>
+            </div>
+
+            <div className="flex flex-wrap gap-2 sm:gap-4 items-center justify-start font-bold sm:font-semibold text-xs sm:text-sm">
+              <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[4px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30">
+                <button className="text-gray-50 dark:text-gray-200">{student?.likes}</button>
+                <button className="">Likes</button>
+              </div>
+              <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[4px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30" >
+                <button className="text-gray-50 dark:text-gray-200">{student?.followers}</button>
+                <button className="">Followers</button>
+              </div>
+              <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[4px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30" >
+                <button className="text-gray-50 dark:text-gray-200">{student?.followings}</button>
+                <button className="">Following</button>
+              </div>
+            </div>
+
+            <div className="flex flex-col font-mono items-center sm:items-start">
+              <div className="flex gap-[5px] items-start">
+                <h1 className="opacity-60 w-fit">course : </h1>
+                <h1 className="flex-1">{student?.course}</h1>
+              </div>
+              <div className="flex gap-[5px] items-start">
+                <h1 className="opacity-60 w-fit">university : </h1>
+                <h1 className="flex-1">{student?.university}</h1>
+              </div>
+            </div>
+          </div>
         </div>
+    </div>
+
   )
 }

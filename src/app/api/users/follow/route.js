@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import Followers from "../../../../../mongo/Followers";
+import Users from "/mongo/UserModel";
+import Followers from "/mongo/Followers";
 
 
 export async function POST(req , res) {
@@ -13,6 +14,9 @@ export async function POST(req , res) {
         if(isAny.length > 0) {
             return NextResponse.json({success:false , message:"you have already followed this user."});
         } else {
+            let User = await Users.findOne({_id:data.followedToId});
+            User.followers = User.followers + 1;
+            await User.save();
             const follow = new Followers(data);
             await follow.save();
         }
