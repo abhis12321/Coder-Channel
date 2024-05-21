@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="md:w-[40%] w-full flex flex-col items-center">
           <div className="">
             <h2 className="max-h-12 font-bold text-4xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-violet-600 w-fit leading-[4rem] overflow-hidden"><FontAwesomeIcon icon={faStaffSnake} size='x' className="text-4xl text-pink-700" />tudent&apos;media</h2>
-            <p className="text-center text-yellow-400 font-semibold drop-shadow-[0_0_7px_white]">creator&apos;s info</p>
+            <p className="text-center text-yellow-400 font-semibold drop-shadow-[0_0_7px_white] pt-[6px]">creator&apos;s info</p>
           </div>
           <div className="py-4 flex justify-around items-center bg-slate50 rounded-lg self-center sm:self-auto w-[267px]">
              
