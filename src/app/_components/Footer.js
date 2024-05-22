@@ -11,7 +11,7 @@ export default function Footer() {
       <div className='px-3 xs:px-8 flex flex-col md:flex-row items-center justify-around flex-1'>
         <div className="md:w-[40%] w-full flex flex-col items-center">
           <div className="">
-            <h2 className="max-h-12 font-extrabold text-[1.8rem] text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-violet-600 w-fit leading-[4rem] overflow-hidden"><FontAwesomeIcon icon={faCode} size="sm" className="text-pink-600 pr-1" />Coder&apos;media</h2>
+            <h2 className="max-h-12 font-serif font-extrabold text-[1.8rem] text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-violet-600 w-fit leading-[4rem] overflow-hidden"><FontAwesomeIcon icon={faCode} size="sm" className="text-pink-600 pr-1" />Coder&apos;media</h2>
             <p className="text-center text-yellow-400 font-semibold drop-shadow-[0_0_7px_white] pt-[6px]">creator&apos;s info</p>
           </div>
           <div className="py-4 flex justify-around items-center bg-slate50 rounded-lg self-center sm:self-auto w-[267px]">
@@ -77,7 +77,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-gray-500 text-center pt-2 font-semibold overflow-hidden"><FontAwesomeIcon icon={faCopyright} size='x' className='text-xs'/><span className="font-mono">S</span>tudent&apos;media! A public social-media platform.</div>
+      <div className="text-gray-500 text-center pt-2 font-semibold overflow-hidden"><FontAwesomeIcon icon={faCopyright} size='x' className='text-xs'/><span className="font-mono">C</span>oder&apos;media! A public social-media platform.</div>
     </div>
   )
 }
