@@ -3,10 +3,12 @@ import axios from 'axios';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../_components/AuthProvider';
+import Followers from '../../_components/Followers';
 
 export default function Page({ params }) {
   const USER = useAuth();
   const [student, setStudent] = useState();
+  const [connections , setConnections] = useState(0);
 
   useEffect(() => {
     axios.get(`/api/users/${params._id}`)
@@ -31,14 +33,14 @@ export default function Page({ params }) {
   }
 
   return (
-    <div className='flex items-center justify-center py-4 w-full'>
+    <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full`}>
       {!student ?
-        <div className='flex items-center justify-center' style={{ minHeight: 'calc(100vh - 4rem)' }}>
+        <div className={`flex items-center justify-center ${connections == 0 ? "opacity-100" : "opacity-15"}`} style={{ minHeight: 'calc(100vh - 4rem)' }}>
           <div className="mx-auto h-40 w-40 rounded-full animate-spin border-t-4 border-slate-900 dark:border-white flex items-center justify-center"><div className="h-24 w-24 rounded-full border-r-4 border-slate-700 dark:border-white"></div></div>
         </div>
         :
 
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-blue-700/15 sm:bg-blue-900/30 p-2 md:p-4 rounded-lg w-[98%] max-w-[900px] text-white">
+        <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-blue-700/15 sm:bg-blue-900/30 p-2 md:p-4 rounded-lg w-[98%] max-w-[900px] text-white ${connections == 0 ? "opacity-100" : "opacity-15"}`}>
           <div className="w-fit flex items-center justify-center">
             <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40' />
           </div>
@@ -57,11 +59,11 @@ export default function Page({ params }) {
               </div>
               <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30" >
                 <button className="text-gray-50 dark:text-gray-200">{student?.followers}</button>
-                <button className="">Followers</button>
+                <button className="" onClick={e => setConnections(1)}>Followers</button>
               </div>
               <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30" >
                 <button className="text-gray-50 dark:text-gray-200">{student?.followings}</button>
-                <button className="">Following</button>
+                <button className="" onClick={e => setConnections(1)}>Following</button>
               </div>
             </div>
 
@@ -78,6 +80,10 @@ export default function Page({ params }) {
           </div>
 
         </div>
+      }
+
+      {
+        connections === 1 && <Followers _id={params?._id} setConnections={setConnections} />
       }
     </div>
   )
