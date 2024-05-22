@@ -4,31 +4,44 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../_components/AuthProvider';
 import Followers from '../../_components/Followers';
+import Followings from '../../_components/Followings';
 
 export default function Page({ params }) {
   const USER = useAuth();
   const [student, setStudent] = useState();
   const [connections , setConnections] = useState(0);
+  const [followers, setFollowers] = useState([]);
+  const [followings, setFollowings] = useState([]);
 
+  
   useEffect(() => {
     axios.get(`/api/users/${params._id}`)
-      .then(res => res.data)
-      .then(result => setStudent(result))
-      .catch(error => alert(error.message));
-  }, []);
+        .then(res => res.data)
+        .then(result => setStudent(result))
+        .catch(error => alert(error.message));
+      
+    axios.get(`/api/users/follow/${params._id}`)
+        .then(result =>  result.data)
+        .then(data => data.success && setFollowers(data.followers));
+
+      
+    axios.post(`/api/users/follow/${params._id}`)
+        .then(result =>  result.data)
+        .then(data => data.success && setFollowings(data.followings));
+  }, [params._id]);
 
   const handleFollowers = () => {
     if (!USER?.user) {
       alert("login first to follow a user!")
     } else {
-      alert(`you have successfully followed to ${student.name}!!`)
       axios.post('/api/users/follow', {
-        followedById: USER?.user?._id,
-        followedByName: USER?.user?.name,
-        followedToId: student?._id,
-        followedToName: student?.name,
-      })
-        .then(result => console.log(result));
+            followedById: USER?.user?._id,
+            followedByName: USER?.user?.name,
+            followedToId: student?._id,
+            followedToName: student?.name,
+          })
+          .then(result => result.data)
+          .then(data => alert(data.message));
     }
   }
 
@@ -57,13 +70,13 @@ export default function Page({ params }) {
                 <button className="text-gray-50 dark:text-gray-200">{student?.likes}</button>
                 <button className="">Likes</button>
               </div>
-              <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30" >
-                <button className="text-gray-50 dark:text-gray-200">{student?.followers}</button>
-                <button className="" onClick={e => setConnections(1)}>Followers</button>
+              <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30" onClick={e => setConnections(1)}>
+                <button className="text-gray-50 dark:text-gray-200">{followers.length}</button>
+                <button className="">Followers</button>
               </div>
-              <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30" >
-                <button className="text-gray-50 dark:text-gray-200">{student?.followings}</button>
-                <button className="" onClick={e => setConnections(1)}>Following</button>
+              <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30" onClick={e => setConnections(2)}>
+                <button className="text-gray-50 dark:text-gray-200">{followings.length}</button>
+                <button className="" >Following</button>
               </div>
             </div>
 
@@ -83,7 +96,10 @@ export default function Page({ params }) {
       }
 
       {
-        connections === 1 && <Followers _id={params?._id} setConnections={setConnections} />
+        connections === 1 && <Followers _id={params?._id} setConnections={setConnections} followers={followers} />
+      }
+      {
+        connections === 2 && <Followings _id={params?._id} setConnections={setConnections} followings={followings}/>
       }
     </div>
   )

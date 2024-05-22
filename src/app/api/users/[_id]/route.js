@@ -13,18 +13,6 @@ export async function GET(req , {params}) {
     }
 }
 
-export async function PUT(req , {params}) {
-    try {
-        let data = await req.json();
-        await Users.findOneAndUpdate(
-            { _id:params._id },
-            { $set: { isOnline: data.status } }
-          );
-          return NextResponse.json({success:true});
-    } catch(err) {
-        return NextResponse.json({data:err.message , success:false});
-    }
-}
 
 export async function POST(req, { params }) {
   try {
@@ -60,5 +48,19 @@ export async function POST(req, { params }) {
       message: "bad request...!",
       success: false,
     });
+  }
+}
+
+
+export async function PUT(req , {params}) {
+  try {
+      let data = await req.json();
+      await Users.findOneAndUpdate(
+          { _id:params._id },
+          { $set: { isOnline: data.status } }
+        );
+        return NextResponse.json({success:true});
+  } catch(err) {
+      return NextResponse.json({data:err.message , success:false});
   }
 }
