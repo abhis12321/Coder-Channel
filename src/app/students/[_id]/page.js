@@ -46,7 +46,7 @@ export default function Page({ params }) {
   }
 
   return (
-    <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full`}>
+    <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full`} style={{minHeight:'calc(100vh - 4rem)'}}>
       {!student ?
         <div className={`flex items-center justify-center ${connections == 0 ? "opacity-100" : "opacity-15"}`} style={{ minHeight: 'calc(100vh - 4rem)' }}>
           <div className="mx-auto h-40 w-40 rounded-full animate-spin border-t-4 border-slate-900 dark:border-white flex items-center justify-center"><div className="h-24 w-24 rounded-full border-r-4 border-slate-700 dark:border-white"></div></div>

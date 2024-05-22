@@ -91,12 +91,12 @@ export default function StudentCard({ student } ) {
         </Link>
       </div>
       <div className="flex items-center justify-center gap-6 font-serif">
-        <button className="w-[100px] text-center py-[8px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-700 dark:hover:bg-green-600 font-mn text-gray-200">
+        <button className="w-[100px] text-center py-[6px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200">
           follow
         </button>
         <Link
           href={`chat/${student._id}`}
-          className="w-[100px] text-center py-[8px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-700 dark:hover:bg-green-600 font-mn text-gray-200"
+          className="w-[100px] text-center py-[6px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200"
         >
           Message
         </Link>
@@ -105,21 +105,21 @@ export default function StudentCard({ student } ) {
         <FontAwesomeIcon
           icon={faHeart}
           size="1x"
-          className=" text-rose-700 hover:drop-shadow-[0_0_2px_black] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  "
+          className=" text-rose-700 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  "
         />
         <div className="border-x-2 border-gray-600 flex items-center justify-center px-[50%]">
           <Link href={`/students/${student._id}`}>
             <FontAwesomeIcon
               icon={faMicroscope}
               size="1x"
-              className="text-blue-700 hover:drop-shadow-[0_0_1px_black] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] h-6 cursor-pointer  "
+              className="text-blue-700 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] h-6 cursor-pointer  "
             />
           </Link>
         </div>
         <FontAwesomeIcon
           icon={faShareNodes}
           size="1x"
-          className="text-gray-800 dark:text-gray-400 hover:drop-shadow-[0_0_1px_red] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  "
+          className="text-gray-800 dark:text-gray-400 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  "
           onClick={handleCopyURL}
         />
       </div>
