@@ -1,23 +1,22 @@
 "use client"
-import React from 'react';
+import React, { useCallback } from 'react';
 import StudentCard from '../_components/StudentCard';
 
 
 
 function Page() {
     const [students , setStd] = React.useState(null);
-    const getData = async () => {
-        let datas = await fetch(`/api/users`)
+    const getData = useCallback( async () => {
+        await fetch(`/api/users`)
             .then(res => res.json())
-            .catch(err => {success:false});
+            .then(data => data.success && setStd(data))
+            .catch(err => alert("some error occurred"));
         
-        if(datas.success) {
-            setStd(datas);
-        }
-    }
+    } , [])
+
     React.useEffect(() => {
         getData();
-    } , [])
+    } , [getData, students])
 
     
     return (

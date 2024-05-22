@@ -4,8 +4,12 @@ import Users from "/mongo/UserModel";
 import cryptoJS from 'crypto-js'
 
 export async function GET() {
+  try {
     let found = await Users.find();
     return NextResponse.json({found , success:true});
+  } catch(err) {
+    return NextResponse.json({success:false});
+  }
 }
 
   
@@ -16,7 +20,7 @@ export async function POST(req, res) {
       let email = data.email;
       let secretKey = email;
 
-      console.log(origin);
+      // console.log(origin);
     
     // Encrypt a message
       let ciphertext = cryptoJS.AES.encrypt(data.password, secretKey).toString();
@@ -63,7 +67,7 @@ export async function POST(req, res) {
         return NextResponse.json({success:false , message:"Wrong credentials!"})
       }
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       return NextResponse.json({message:"bad request, Try again...!" , success:false});
     }
   }
