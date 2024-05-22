@@ -22,7 +22,7 @@ export default function NavBar() {
   };
 
   return (
-    <div className="w-full bg-gradient-to-b from-gray-400 to-slate-500 dark:from-slate-950 dark:to-slate-800 text-gray-50 font-semibold flex items-center justify-between h-16 px-4 xm:px-8 overflow-hidden">
+    <div className="sticky top-0 left-0 z-50 w-full bg-gradient-to-b from-gray-400 to-slate-500 dark:from-slate-950 dark:to-black dark:ring-1 ring-gray-700 text-gray-50 font-semibold flex items-center justify-between h-16 px-4 xm:px-8 overflow-hidden">
       <div className="">
         <h2 className="font-extrabold text-[1.8rem] text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-pink-700 to-violet-600 w-fit leading-[4rem] overflow-hidden">
           <FontAwesomeIcon icon={faCode} size="sm" className="text-pink-600 pr-1" />
