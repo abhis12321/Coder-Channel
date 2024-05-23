@@ -15,7 +15,7 @@ export default function Layout({children}) {
   } , []);
 
   return (
-    <div className=''  style={{minHeight:'calc(100vh-4rem)'}}>
+    <div className=''>
       {children}
     </div>
   )

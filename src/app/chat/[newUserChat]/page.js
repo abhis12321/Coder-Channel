@@ -61,7 +61,7 @@ export default function Page(props) {
   };
 
   return (
-    <div className="text-white rounded-md bg-gradient-to-r from-white to-white dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white w-[100%] max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative" style={{minHeight:"calc(100vh - 4.5rem)"}}>
+    <div className="text-white rounded-md bg-gradient-to-r from-white to-white dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white w-[100%] max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative" style={{minHeight:"calc(100vh - 4rem)"}}>
       <div className="bg-slate-950/10 dark:bg-slate-900 shadow-[0_0_3px_red] rounded-md p-2 mx-4 md:mx-9">
         <h1 className="text-2xl font-semibold drop-shadow-[1px_1px_1px_red]">{sender?.name}</h1>
         <p onClick={handlePersonalMessage}>loading...</p>
