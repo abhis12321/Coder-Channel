@@ -10,7 +10,7 @@ function Page() {
         await fetch(`/api/users`)
             .then(res => res.json())
             .then(data => data.success && setStd(data))
-            .catch(err => alert("some error occurred"));
+            .catch(error => console.log(error.message));
         
     } , [])
 
