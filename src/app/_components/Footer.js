@@ -2,7 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from 'next/link';
 import { faGithub, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { faCode, faSquareEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 export default function Footer() {
@@ -77,7 +76,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-gray-500 text-center pt-3 font-semibold overflow-hidden"><FontAwesomeIcon icon={faCopyright} size='x' className='text-xs'/><span className="font-mono">C</span>oder&apos;media! A public social-media platform.</div>
+      <div className="text-gray-500 text-center pt-3 font-semibold overflow-hidden"><span className="font-extrabold">&copy;</span>Coder&apos;media! A public social-media platform.</div>
     </div>
   )
 }

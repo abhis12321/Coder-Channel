@@ -15,6 +15,7 @@ import {
 import Link from "next/link";
 import A from ".//profile.jpg";
 import { useAuth } from "./AuthProvider";
+import axios from "axios";
 
 export default function StudentCard({ student } ) {
   const USER = useAuth();
@@ -45,6 +46,20 @@ export default function StudentCard({ student } ) {
     alert('profile url copied')
   }
 
+  const handleFollowers = () => {
+    if (!USER?.user) {
+      alert("login first to follow a user!")
+    } else {
+      axios.post('/api/users/follow', {
+            followedById: USER?.user?._id,
+            followedByName: USER?.user?.name,
+            followedToId: student?._id,
+            followedToName: student?.name,
+          })
+          .then(result => result.data)
+          .then(data => alert(data.message));
+    }
+  }
 
   return (
     <div className="bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_6px_black] dark:shadow-[0_0_6px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_10px_violet] rounded-lg flex flex-col justify-evenly items-center gap-3">
@@ -91,7 +106,7 @@ export default function StudentCard({ student } ) {
         </Link>
       </div>
       <div className="flex items-center justify-center gap-6 font-serif">
-        <button className="w-[100px] text-center py-[6px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200">
+        <button className="w-[100px] text-center py-[6px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200" onClick={handleFollowers}>
           follow
         </button>
         <Link
