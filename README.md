@@ -1,2 +1,2 @@
-This is a [Next.js](https://nextjs.org/) project deployed with render [`coder'media`](https://student-login-app-nextjs.onrender.com/).
-It may take a minutes for the first time loading as the render project deployements go into sleep mode if they are not being rendered for a long time. So, Please wait for the loadings and go through its features and suggest me if there is any modification required in your view. You and your suggestions are welcome.
+This is a [Next.js](https://nextjs.org/) project deployed with render [`coder'media`](https://coder-media.onrender.com). 
+It may take a minutes for the first the loading as the render project deployements go into sleep mode if they are not being used for a long time. So, Please wait for the loadings and go through its features and suggest me if there is any modification required in your view. You and your suggestions are welcomed.
