@@ -41,7 +41,7 @@ export default function Page({ params }) {
             followedToName: student?.name,
           })
           .then(result => result.data)
-          .then(data => alert(data.message));
+          .then(data => console.log(data.message));
     }
   }
 
