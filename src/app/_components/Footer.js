@@ -77,7 +77,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-gray-100 text-center pt-3 font-semibold overflow-hidden"><span className="font-extrabold">&copy;</span>Coder&apos;media! A public social-media platform.</div>
+      <div className="text-gray-100 text-center pt-3 pb-2 font-semibold overflow-hidden"><span className="font-extrabold">&copy;</span>Coder&apos;media! A public social-media platform.</div>
     </div>
   )
 }
