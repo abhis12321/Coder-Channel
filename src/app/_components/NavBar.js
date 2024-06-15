@@ -20,9 +20,9 @@ export default function NavBar() {
   };
 
   return (
-    <div className="sticky top-0 left-0 z-50 w-full bg-gradient-to-b from-gray-400 to-slate-500 dark:from-slate-950 dark:to-black ring-1 ring-gray-700 text-gray-50 font-semibold flex items-center justify-between h-16 px-4 xm:px-8 md:px-12 overflow-hidden">
-      <div className="">
-        <h1 className="font-extrabold italic text-3xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-orange-700 to-violet-100 w-fit leading-[4rem] overflow-hidden">
+    <div className="sticky top-0 left-0 z-50 w-full bg-gradient-to-b from-gray-800 to-gray-600 dark:from-blue-800 dark:to-blue-900 text-gray-50 font-semibold flex items-center justify-between h-16 py-2 px-4 xm:px-8 md:px-12 overflow-hidden">
+      <div className="drop-shadow-[0_0_1px_red]">
+        <h1 className="font-extrabold italic text-3xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-violet-100 w-fit leading-[4rem] overflow-hidden">
           Coder&apos;media
         </h1>
       </div>

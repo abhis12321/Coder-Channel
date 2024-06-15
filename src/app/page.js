@@ -11,7 +11,7 @@ export default function Page() {
         postForm ? 
         <PostForm setPostForm={setPostForm}/>
         :
-        <h1 className="py-2 px-4 bg-blue-600/50 rounded-lg cursor-pointer hover:bg-blue-600/20 ring-1 hover:ring-white text-white" onClick={e => setPostForm(true)}>write a new post/blog</h1>      
+        <h1 className="py-2 px-6 text-red-950 hover:text-white dark:text-blue-600 dark:hover:text-white bg-red-950/20 hover:bg-red-950 dark:bg-blue-600/20 dark:hover:bg-blue-600/50 ring-1 ring-red-950 dark:ring-blue-600 dark:hover:ring-white rounded-xl cursor-pointer outline-none" onClick={e => setPostForm(true)}>write a new post/blog</h1>      
       }
     </div>
   )
