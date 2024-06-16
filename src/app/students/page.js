@@ -26,11 +26,27 @@ function Page() {
                 .catch(error => console.log(error.message));
         }
         
-    } , [])
+    } , []);
+    
+  const handleFollowings = (student , index , data) => {
+    if (!USER?.user) {
+      alert("login first to follow a user!");
+    } else if(USER.user._id === student._id) {
+        alert("you can not follow yourself.");        
+    } else {
+      axios.post('/api/users/follow', data)
+          .then(result => result.data)
+          .then(data => {
+            students[index].isFollowing = true;
+            setStudents([...students]);
+            alert(data.message)
+          });
+    }
+  }
 
     React.useEffect(() => {
         getData(USER);
-    } , [getData , USER])
+    } , [getData , USER , USER.user])
 
     
     return (
@@ -40,7 +56,7 @@ function Page() {
                 {students && students.map((student , index) => {
                     if(student.verify)
                     return (                
-                            <StudentCard  key={student._id+index} student={student}/>
+                            <StudentCard  key={student._id+index} student={student} index={index} handleFollowings={handleFollowings}/>
                     )})
                 }
             </div>

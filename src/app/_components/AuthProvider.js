@@ -14,7 +14,7 @@ export default function AuthProvider({ children }) {
       Initializing(person , setSocket);
     }
     // console.log("logging-in");
-    setUser(person);
+    setUser({...person});
     axios.put(`/api/users/${person._id}` , { status:true });
     localStorage.setItem('student-media', JSON.stringify(person));
   }, [socket]);

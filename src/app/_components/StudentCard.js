@@ -17,7 +17,7 @@ import A from ".//profile.jpg";
 import { useAuth } from "./AuthProvider";
 import axios from "axios";
 
-export default function StudentCard({ student } ) {
+export default function StudentCard({ student, index , handleFollowings } ) {
   const USER = useAuth();
   const socket = USER.socket;
   const [status, setStatus] = useState(student.isOnline);
@@ -47,18 +47,13 @@ export default function StudentCard({ student } ) {
   }
 
   const handleFollowers = () => {
-    if (!USER?.user) {
-      alert("login first to follow a user!")
-    } else {
-      axios.post('/api/users/follow', {
-            followedById: USER?.user?._id,
-            followedByName: USER?.user?.name,
-            followedToId: student?._id,
-            followedToName: student?.name,
-          })
-          .then(result => result.data)
-          .then(data => alert(data.message));
-    }
+    let data = {
+      followedById: USER?.user?._id,
+      followedByName: USER?.user?.name,
+      followedToId: student?._id,
+      followedToName: student?.name
+    };
+    handleFollowings(student , index , data);
   }
 
   return (
