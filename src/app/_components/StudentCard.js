@@ -107,7 +107,7 @@ export default function StudentCard({ student } ) {
       </div>
       <div className="flex items-center justify-center gap-6 font-serif">
         <button className="w-[100px] text-center py-[6px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200" onClick={handleFollowers}>
-          follow
+          {student.isFollowing ? "following" : "follow"}
         </button>
         <Link
           href={`chat/${student._id}`}

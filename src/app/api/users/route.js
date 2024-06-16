@@ -5,8 +5,8 @@ import cryptoJS from 'crypto-js'
 
 export async function GET() {
   try {
-    let found = await Users.find();
-    return NextResponse.json({found , success:true});
+    let users = await Users.find();
+    return NextResponse.json({users , success:true});
   } catch(err) {
     return NextResponse.json({success:false});
   }
