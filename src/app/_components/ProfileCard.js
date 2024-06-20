@@ -5,22 +5,29 @@ import React, { useEffect, useState } from 'react'
 import Followers from './Followers';
 import Followings from './Followings';
 import { useAuth } from './AuthProvider';
+import Blogs from './BlogCard';
 
-export default function ProfileCard({student , setStatus}) {
-  const [connections , setConnections] = useState(0);
+export default function ProfileCard({ student, setStatus }) {
+  const [connections, setConnections] = useState(0);
   const [followers, setFollowers] = useState([]);
   const [followings, setFollowings] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
-  
+
   useEffect(() => {
     axios.get(`/api/users/follow/${student?._id}`)
-        .then(result =>  result.data)
-        .then(data => data.success && setFollowers(data.followers));
+      .then(result => result.data)
+      .then(data => data.success && setFollowers(data.followers));
 
-      
+
     axios.post(`/api/users/follow/${student?._id}`)
-        .then(result =>  result.data)
-        .then(data => data.success && setFollowings(data.followings));
+      .then(result => result.data)
+      .then(data => data.success && setFollowings(data.followings));
+
+
+    axios.get(`/api/blogs/${student?._id}`)
+      .then(result => result.data)
+      .then(data => data.success && setBlogs(data.blogs));
   }, [student?._id]);
 
   const handleFollowers = () => {
@@ -28,18 +35,18 @@ export default function ProfileCard({student , setStatus}) {
       alert("login first to follow a user!")
     } else {
       axios.post('/api/users/follow', {
-            followedById: student?._id,
-            followedByName: student?.name,
-            followedToId: student?._id,
-            followedToName: student?.name,
-          })
-          .then(result => result.data)
-          .then(data => alert(data.message));
+        followedById: student?._id,
+        followedByName: student?.name,
+        followedToId: student?._id,
+        followedToName: student?.name,
+      })
+        .then(result => result.data)
+        .then(data => alert(data.message));
     }
   }
 
   return (
-    <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full`}>
+    <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
       {!student ?
         <div className={`flex items-center justify-center ${connections == 0 ? "opacity-100" : "opacity-15"} h-nav`}>
           <div className="mx-auto h-40 w-40 rounded-full animate-spin border-t-4 border-slate-900 dark:border-white flex items-center justify-center"><div className="h-24 w-24 rounded-full border-r-4 border-slate-700 dark:border-white"></div></div>
@@ -92,8 +99,22 @@ export default function ProfileCard({student , setStatus}) {
         connections === 1 && <Followers _id={student?._id} setConnections={setConnections} followers={followers} />
       }
       {
-        connections === 2 && <Followings _id={student?._id} setConnections={setConnections} followings={followings}/>
+        connections === 2 && <Followings _id={student?._id} setConnections={setConnections} followings={followings} />
       }
+
+
+      <>
+        <h2 className="font-semibold text-4xl font-mono opacity-70">Blogs</h2>
+        {blogs?.length > 0 ?
+          <div className="w-full flex flex-col gap-3 items-center justify-evenly">
+            {
+              blogs.map((blog, index) => <Blogs key={index} blog={blog} />)
+            }
+          </div>
+          :
+          <div className="opacity-50">No Blogs till Now</div>
+        }
+      </>
     </div>
   )
 }

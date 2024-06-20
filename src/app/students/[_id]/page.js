@@ -5,29 +5,39 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../_components/AuthProvider';
 import Followers from '../../_components/Followers';
 import Followings from '../../_components/Followings';
+import Blogs from '../../_components/BlogCard';
 
 export default function Page({ params }) {
   const USER = useAuth();
   const [student, setStudent] = useState();
-  const [connections , setConnections] = useState(0);
+  const [connections, setConnections] = useState(0);
   const [followers, setFollowers] = useState([]);
   const [followings, setFollowings] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
-  
+
   useEffect(() => {
     axios.get(`/api/users/${params._id}`)
-        .then(res => res.data)
-        .then(result => setStudent(result))
-        .catch(error => alert(error.message));
-      
-    axios.get(`/api/users/follow/${params._id}`)
-        .then(result =>  result.data)
-        .then(data => data.success && setFollowers(data.followers));
+      .then(res => res.data)
+      .then(result => setStudent(result))
+      .catch(error => alert(error.message));
 
-      
+    axios.get(`/api/users/follow/${params._id}`)
+      .then(result => result.data)
+      .then(data => data.success && setFollowers(data.followers));
+
+
     axios.post(`/api/users/follow/${params._id}`)
-        .then(result =>  result.data)
-        .then(data => data.success && setFollowings(data.followings));
+      .then(result => result.data)
+      .then(data => data.success && setFollowings(data.followings));
+
+
+    axios.get(`/api/blogs/${params?._id}`)
+      .then(result => result.data)
+      .then(data => {
+        console.log(data);
+        data.success && setBlogs(data.blogs)
+      });
   }, [params._id]);
 
   const handleFollowers = () => {
@@ -35,18 +45,19 @@ export default function Page({ params }) {
       alert("login first to follow a user!")
     } else {
       axios.post('/api/users/follow', {
-            followedById: USER?.user?._id,
-            followedByName: USER?.user?.name,
-            followedToId: student?._id,
-            followedToName: student?.name,
-          })
-          .then(result => result.data)
-          .then(data => console.log(data.message));
+        followedById: USER?.user?._id,
+        followedByName: USER?.user?.name,
+        followedToId: student?._id,
+        followedToName: student?.name,
+      })
+        .then(result => result.data)
+        .then(data => data.success && setBlogs(data.blogs))
+        .catch(error => console.log(error.message))
     }
   }
 
   return (
-    <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full`}>
+    <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
       {!student ?
         <div className={`flex items-center justify-center ${connections == 0 ? "opacity-100" : "opacity-15"} h-nav`}>
           <div className="mx-auto h-40 w-40 rounded-full animate-spin border-t-4 border-slate-900 dark:border-white flex items-center justify-center"><div className="h-24 w-24 rounded-full border-r-4 border-slate-700 dark:border-white"></div></div>
@@ -99,8 +110,22 @@ export default function Page({ params }) {
         connections === 1 && <Followers _id={params?._id} setConnections={setConnections} followers={followers} />
       }
       {
-        connections === 2 && <Followings _id={params?._id} setConnections={setConnections} followings={followings}/>
+        connections === 2 && <Followings _id={params?._id} setConnections={setConnections} followings={followings} />
       }
+
+
+      <>
+        <h2 className="font-semibold text-4xl font-mono opacity-70">Blogs</h2>
+        {blogs?.length > 0 ?
+          <div className="w-full flex flex-col gap-3 items-center justify-evenly">
+            {
+              blogs.map((blog, index) => <Blogs key={index} blog={blog} />)
+            }
+          </div>
+          :
+          <div className="opacity-50">No Blogs till Now</div>
+        }
+      </>
     </div>
   )
 }
