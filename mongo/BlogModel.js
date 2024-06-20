@@ -1,0 +1,20 @@
+import mongoose from "mongoose";
+import dbConnect from "./dbConnect";
+
+dbConnect();
+const blogSchema = new mongoose.Schema({
+    writer:{
+        type:String,
+        required:[true , "Blog writer name is missing!"],
+    },
+    blog:{
+        type:String,
+        required:[true , "There is no blog found!"],
+    },
+    time:{
+        type:Date,
+        default:Date.now,
+    }
+})
+
+export default mongoose.models.Blogs || mongoose.model("Blog" , blogSchema);
