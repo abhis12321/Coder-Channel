@@ -10,7 +10,7 @@ export default function Page({setPostForm}) {
         e.preventDefault();
         console.log(blog , USER?.user?.name);
 
-        
+
 
         setBlog('');
         setPostForm(false)

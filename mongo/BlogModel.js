@@ -7,6 +7,10 @@ const blogSchema = new mongoose.Schema({
         type:String,
         required:[true , "Blog writer name is missing!"],
     },
+    writerId:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:[true , "Writer id is missing"],
+    },
     blog:{
         type:String,
         required:[true , "There is no blog found!"],
