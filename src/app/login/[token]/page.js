@@ -24,7 +24,7 @@ export default function Page({params , searchParams}) {
     }
 
   return (
-    <div className="flex items-center justify-center min-h-[90.8vh]">
+    <div className="flex items-center justify-center h-nav">
       {!USER.user ?
             <form className="bg-gradient-to-tr from-gray-900 via-cyan-950 to-slate-950 py-12 flex flex-col gap-4 items-center justify-center w-[95%] max-w-[800px] rounded-xl text-white shadow-[0_0_12px_gray]" onSubmit={handleSubmit} autoComplete="on">
                 <h1 className=" mx-auto py-4 px-8 rounded-xl text-xl font-bold bg-slate-950/10 text-center w-fit shadow-[0_0_5px_white] text-yellow-600">Verify Your Email</h1>

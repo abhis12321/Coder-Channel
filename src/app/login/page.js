@@ -14,7 +14,7 @@ export default function Page() {
 
 
   return (
-    <div className="flex flex-col gap-5 py-5 items-center justify-center bg-no-repeat bg-center bg-contain " style={{ minHeight:'calc(100vh - 4rem)', }}>
+    <div className="flex flex-col gap-5 py-5 items-center justify-center bg-no-repeat bg-center bg-contain h-nav">
       {status ?
         (!USER.user ?
           <LoginForm />

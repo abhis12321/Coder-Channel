@@ -1,27 +1,41 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import BlogPost from './_components/BlogPost'
-import axios from 'axios';
+import BlogCard from './_components/BlogCard'
+import axios from 'axios'
 
 export default function Page() {
-  const [postForm , setPostForm] = useState(false);
-  const [blogs , setBlogs] = useState();
+  const [postForm, setPostForm] = useState(false);
+  const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
     axios.get('/api/blogs')
-        .then(response => response.data)
-        .then(data => data.success && setBlogs(data.blogs))
-        .catch(error => console.log(error.message));
-  } , []);
+      .then(response => response.data)
+      .then(data => data.success && setBlogs(data.blogs))
+      .catch(error => console.log(error.message));
+  }, []);
+
+  useEffect(() => {
+    console.log(blogs);
+  }, [blogs])
 
   return (
-    <div className='flex flex-col gap-3 items-center justify-center font-semibold' style={{minHeight:"calc(100vh - 4rem"}}>
+    <div className='flex flex-col gap-3 items-center justify-center h-nav'>
       {
-        postForm ? 
-        <BlogPost setPostForm={setPostForm}/>
-        :
-        <h1 className="py-2 px-6 text-red-950 hover:text-white dark:text-blue-600 dark:hover:text-white bg-red-950/20 hover:bg-red-950 dark:bg-blue-600/20 dark:hover:bg-blue-600/50 ring-1 ring-red-950 dark:ring-blue-600 dark:hover:ring-white rounded-xl cursor-pointer outline-none" onClick={e => setPostForm(true)}>write a new post/blog</h1>      
+        postForm ?
+          <BlogPost setPostForm={setPostForm} />
+          :
+          <h1 className="py-2 px-6 text-red-950 hover:text-white dark:text-blue-600 dark:hover:text-white bg-red-950/20 hover:bg-red-950 dark:bg-blue-600/20 dark:hover:bg-blue-600/50 ring-1 ring-red-950 dark:ring-blue-600 dark:hover:ring-blue-600/50 rounded-xl cursor-pointer outline-none font-semibold duration-300" onClick={e => setPostForm(true)}>write a new post/blog</h1>
       }
+
+
+      <div className="w-full flex flex-col gap-3 items-center justify-evenly">
+        {
+          blogs.map((blog, index) => <BlogCard key={index} blog={blog} />)
+        }
+      </div>
+
+      {/* <div onClick={e => console.log(blogs)} className='p-2 ring-2'>log</div> */}
     </div>
   )
 }

@@ -18,7 +18,7 @@ export default function Page() {
         alert(`${info.message}`)
     }
     return (
-        <div className="flex items-center justify-center min-h-[90.8vh]">
+        <div className="flex items-center justify-center  h-nav">
         {!USER.user ? 
             <form className="bg-gradient-to-br from-gray-900 via-cyan-950 to-slate-950 py-8 flex flex-col gap-4 items-center justify-center w-[95%] max-w-[800px] rounded-xl text-white" onSubmit={handleSubmit} autoComplete="on">
                 <h1 className=" mx-auto py-4 px-8 rounded-xl text-xl font-bold bg-teal-950 text-center w-fit shadow-[0_0_5px_white] text-yellow-600 my-5">Resend Verification Link</h1>
