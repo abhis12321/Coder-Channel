@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { useAuth } from './AuthProvider';
+import axios from 'axios';
 
 export default function Page({setPostForm}) {
     const [blog, setBlog] = useState('');
@@ -10,7 +11,7 @@ export default function Page({setPostForm}) {
         e.preventDefault();
         console.log(blog , USER?.user?.name);
 
-
+        axios.post('/api/blogs' , {writer:USER?.user?.name , writerId:USER?.user?._id , blog});
 
         setBlog('');
         setPostForm(false)
