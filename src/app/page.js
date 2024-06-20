@@ -5,7 +5,7 @@ import BlogCard from './_components/BlogCard'
 import axios from 'axios'
 
 export default function Page() {
-  const [postForm, setPostForm] = useState(false);
+  const [blogFost, setBlogFost] = useState(false);
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
@@ -15,17 +15,17 @@ export default function Page() {
       .catch(error => console.log(error.message));
   }, []);
 
-  useEffect(() => {
-    console.log(blogs);
-  }, [blogs])
+  const handleBlogPost = newblog => {
+    setBlogs([...blogs , newblog]);
+  }
 
   return (
-    <div className='flex flex-col gap-3 items-center justify-center h-nav'>
+    <div className='flex flex-col gap-3 items-center justify-center h-nav py-4'>
       {
-        postForm ?
-          <BlogPost setPostForm={setPostForm} />
+        blogFost ?
+          <BlogPost setBlogFost={setBlogFost} handleBlogPost={handleBlogPost} />
           :
-          <h1 className="py-2 px-6 text-red-950 hover:text-white dark:text-blue-600 dark:hover:text-white bg-red-950/20 hover:bg-red-950 dark:bg-blue-600/20 dark:hover:bg-blue-600/50 ring-1 ring-red-950 dark:ring-blue-600 dark:hover:ring-blue-600/50 rounded-xl cursor-pointer outline-none font-semibold duration-300" onClick={e => setPostForm(true)}>write a new post/blog</h1>
+          <h1 className="py-2 px-6 text-red-950 hover:text-white dark:text-blue-600 dark:hover:text-white bg-red-950/20 hover:bg-red-950 dark:bg-blue-600/20 dark:hover:bg-blue-600/50 ring-1 ring-red-950 dark:ring-blue-600 dark:hover:ring-blue-600/50 rounded-xl cursor-pointer outline-none font-semibold duration-300" onClick={e => setBlogFost(true)}>write a new post/blog</h1>
       }
 
 

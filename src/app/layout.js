@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <body className="dark bg-slate-100 text-gray-950 dark:bg-gray-950 dark:text-white">
         <AuthProvider>
           <NavBar />
-          <div className=' h-nav'>
+          <div className='h-nav'>
             {children}
           </div>
           <Footer />
