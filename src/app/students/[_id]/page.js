@@ -34,11 +34,15 @@ export default function Page({ params }) {
 
     axios.get(`/api/blogs/${params?._id}`)
       .then(result => result.data)
-      .then(data => {
-        console.log(data);
-        data.success && setBlogs(data.blogs)
-      });
+      .then(data => data.success && setBlogs(data.blogs));
   }, [params._id]);
+
+  useEffect(() => {
+    axios.put(`/api/users/follow` , {followedById:USER?.user?._id , followedToId:student?._id})
+        .then(response => response.data)
+        .then(data => data.success && setStudent({...student , isFollowed:data.isFollowed}))
+        .catch(error => console.log(error.message));
+  } , [USER?.user?._id, student])
 
   const handleFollowers = () => {
     if (!USER?.user) {
@@ -51,9 +55,10 @@ export default function Page({ params }) {
         followedToName: student?.name,
       })
         .then(result => result.data)
-        .then(data => data.success && setBlogs(data.blogs))
+        .then(data => data.success && setFollowers([...followers , data.follow]))
         .catch(error => console.log(error.message))
     }
+    // console.log(student);
   }
 
   return (
@@ -66,13 +71,13 @@ export default function Page({ params }) {
 
         <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-blue-700/15 sm:bg-blue-900/30 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-white ${connections == 0 ? "opacity-100" : "opacity-15"}`}>
           <div className="w-fit flex items-center justify-center">
-            <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40' />
+            <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40 drop-shadow-[0_0_3px_gray]' />
           </div>
 
           <div className="flex flex-col gap-3 p-1 xs:p-3 md:p-4 items-center sm:items-start justify-center dark:bg-slate-700/40 bg-blue-950/30 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
             <div className="flex gap-2 md:gap-4 flex-wrap items-center">
               <h1 className="text-2xl sm:text-3xl font-bold font-serif">{student?.name}</h1>
-              <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-blue-600/50 hover:bg-blue-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={handleFollowers}>follow</button>
+              <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-blue-600/70 hover:bg-blue-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={handleFollowers}> {student.isFollowed ? "following" : "follow"} </button>
               {/* <h1 className="font-mono opacity-80">({student?.email})</h1> */}
             </div>
 
