@@ -41,8 +41,9 @@ export default async function SocketHandler(req, res) {
             });
             socket.on('disconnect' , async (sender) => {
                 // console.log(sender);
-                socket.broadcast.emit("online-status" , {_id:map[userId], status:false});
-                updateStatus(userId);
+                let _id = map[userId];
+                socket.broadcast.emit("online-status" , {_id , status:false});
+                updateStatus(_id);
                 delete map[userId];
                 // console.log("A user disconnected" );
             });
@@ -56,4 +57,5 @@ const updateStatus = async(_id) => {
     let user = await Users.findOne({_id});
     user.isOnline = false;
     await user.save();
+    // console.log(_id);
 }
