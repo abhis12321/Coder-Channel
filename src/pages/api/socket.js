@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-// import Users from "/mongo/UserModel";
+import Users from "/mongo/UserModel";
 let map = {};
 
 export default async function SocketHandler(req, res) {
@@ -14,11 +14,11 @@ export default async function SocketHandler(req, res) {
 
         io.on("connection", (socket) => {
             // console.log(socket);
-            let sktid = socket.id;
+            let userId = socket.id;
             socket.broadcast.emit('welcome' ,{name: "captain jack sparrow"});
             
             socket.on('new-user' , async({name , _id}) => {
-                map[sktid] = _id;
+                map[userId] = _id;
                 socket.broadcast.emit("online-status" , {_id , status:true})
                 socket.broadcast.emit('newUser' , name);
                 // await Users.findOneAndUpdate({_id}, {$set:{isOnline:true}});
@@ -41,8 +41,9 @@ export default async function SocketHandler(req, res) {
             });
             socket.on('disconnect' , async (sender) => {
                 // console.log(sender);
-                socket.broadcast.emit("online-status" , {_id:map[sktid], status:false});
-                delete map[sktid];
+                socket.broadcast.emit("online-status" , {_id:map[userId], status:false});
+                updateStatus(userId);
+                delete map[userId];
                 // console.log("A user disconnected" );
             });
         });
@@ -50,3 +51,9 @@ export default async function SocketHandler(req, res) {
     res.end();
 }
 
+
+const updateStatus = async(_id) => {
+    let user = await Users.findOne({_id});
+    user.isOnline = false;
+    await user.save();
+}

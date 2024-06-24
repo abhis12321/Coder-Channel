@@ -1,27 +1,27 @@
 "use client";
 import axios from "axios";
-import React , { createContext, useCallback, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 import io from "socket.io-client";
 const context = createContext();
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  let [socket , setSocket] = useState();
-  
+  let [socket, setSocket] = useState();
+
 
   const login = useCallback((person) => {
-    if(!socket) {
-      Initializing(person , setSocket);
+    if (!socket) {
+      Initializing(person, setSocket);
     }
     // console.log("logging-in");
-    setUser({...person});
-    axios.put(`/api/users/${person._id}` , { status:true });
+    setUser({ ...person });
+    axios.put(`/api/users/${person._id}`, { status: true });
     localStorage.setItem('student-media', JSON.stringify(person));
   }, [socket]);
 
   const logout = () => {
-    socket?.emit('user-disconnected' , ({name:user.name , _id:user._id}));
-    axios.put(`/api/users/${user._id}` , { status:false });
+    socket?.emit('user-disconnected', ({ name: user.name, _id: user._id }));
+    axios.put(`/api/users/${user._id}`, { status: false });
     localStorage.setItem('student-media', JSON.stringify(null));
     // console.log("being ofline.." , socket.connected);
     socket?.disconnect();
@@ -31,7 +31,7 @@ export default function AuthProvider({ children }) {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("student-media"));
-    if(data != null) {
+    if (data != null) {
       login(data);
     }
   }, [login]);
@@ -53,26 +53,26 @@ export default function AuthProvider({ children }) {
 }
 
 
-function Initializing(sender , setSocket ) { 
-  fetch('/api/socket' , {
-        auth:{
-            senderName : sender.name,
-        }
-    })
-  .then(r => {
-      let socket = io(undefined , {
-          path:"/api/socket_io",
-          addTrailingSlash: false,
+function Initializing(sender, setSocket) {
+  fetch('/api/socket', {
+    auth: {
+      senderName: sender.name,
+    }
+  })
+    .then(r => {
+      let socket = io(undefined, {
+        path: "/api/socket_io",
+        addTrailingSlash: false,
       });
-      
+
       // console.log(sender.name);
-      socket.emit('new-user' , ({name:sender.name , _id:sender._id}));
+      socket.emit('new-user', ({ name: sender.name, _id: sender._id }));
       setSocket(socket);
 
       return () => {
-          socket.disconnect();
-        };
-  })
+        socket.disconnect();
+      };
+    })
 }
 
 export const useAuth = () => {
