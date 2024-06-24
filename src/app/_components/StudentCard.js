@@ -42,7 +42,7 @@ export default function StudentCard({ student, index , handleFollowings } ) {
   }, [student._id, student]);
 
   const handleCopyURL = e => {
-    navigator.clipboard.writeText(`https://student-login-app-nextjs.onrender.com/students/${student?._id}`);
+    navigator.clipboard.writeText(`https://coder-media.onrender.com//students/${student?._id}`);
     alert('profile url copied')
   }
 
