@@ -9,14 +9,14 @@ export default function AuthProvider({ children }) {
   let [socket, setSocket] = useState();
 
 
-  const login = useCallback((person) => {
-    if (!socket) {
+  const login = useCallback(async (person) => {
+    if (!socket && !person.isOnline) {
       Initializing(person, setSocket);
+      axios.put(`/api/users/${person._id}`, { isOnline: true });
+      localStorage.setItem('student-media', JSON.stringify(person));
+      setUser({ ...person });
+      // console.log("Hello");
     }
-    // console.log("logging-in");
-    setUser({ ...person });
-    axios.put(`/api/users/${person._id}`, { status: true });
-    localStorage.setItem('student-media', JSON.stringify(person));
   }, [socket]);
 
   const logout = () => {
@@ -32,7 +32,10 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("student-media"));
     if (data != null) {
-      login(data);
+      axios.get(`/api/users/${data._id}`)
+        .then(response => response.data)
+        .then(data => login(data))
+        .catch(error => console.log(error.message));
     }
   }, [login]);
 

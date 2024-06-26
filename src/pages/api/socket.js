@@ -55,7 +55,9 @@ export default async function SocketHandler(req, res) {
 
 const updateStatus = async(_id) => {
     let user = await Users.findOne({_id});
-    user.isOnline = false;
-    await user.save();
+    if(user) {
+        user.isOnline = false;
+        await user.save();
+    }
     // console.log(_id);
 }

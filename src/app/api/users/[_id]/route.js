@@ -8,8 +8,8 @@ export async function GET(req , {params}) {
         let data = await Users.findOne({_id:params._id});
         return NextResponse.json({...data._doc , success:true});
     }
-    catch(err) {
-        return NextResponse.json({data:err.message , success:false});
+    catch(error) {
+        return NextResponse.json({data:error.message , success:false});
     }
 }
 
@@ -55,9 +55,10 @@ export async function POST(req, { params }) {
 export async function PUT(req , {params}) {
   try {
       let data = await req.json();
+      // console.log(data);
       await Users.findOneAndUpdate(
           { _id:params._id },
-          { $set: { isOnline: data.status } }
+          { $set: data }
         );
         return NextResponse.json({success:true});
   } catch(err) {
