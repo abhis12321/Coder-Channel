@@ -41,8 +41,8 @@ const userSchema = new mongoose.Schema({    //data model
         default:false,
     },
     isOnline:{
-        type:Boolean,
-        default:false,
+        type:Number,
+        default:0,
     },
     imgUrl:{
         type:String,

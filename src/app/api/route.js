@@ -4,6 +4,19 @@ import { NextResponse } from "next/server";
 import User from "/mongo/UserModel";
 import mongoose from "mongoose";
 
+export async function GET() {
+  try {
+    // await User.updateMany(
+    //   { verify: true },
+    //   { $set: { isOnline: 0 } }
+    // );
+
+    return NextResponse.json({success:true})
+  } catch(error) {
+    return NextResponse.json(error);
+  }
+}
+
 export async function POST(req) {
   try {
     let userId = await req.json();

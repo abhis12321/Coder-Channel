@@ -9,34 +9,36 @@ export default function AuthProvider({ children }) {
   let [socket, setSocket] = useState();
 
 
-  const login = useCallback(async (person) => {
-    if (!socket && !person.isOnline) {
-      Initializing(person, setSocket);
-      axios.put(`/api/users/${person._id}`, { isOnline: true });
-      localStorage.setItem('student-media', JSON.stringify(person));
-      setUser({ ...person });
-      // console.log("Hello");
+  const login = useCallback(async ({ email, password }) => {
+    console.log("login" , email , password);
+    if (!socket) {
+      axios.put(`/api/users`, { email, password })
+        .then(response => response.data)
+        .then(data => {
+          if (data.success) {
+            Initializing(data.User, setSocket);
+            setUser(data.User);
+            axios.put(`/api/users/${data.User._id}`, { isOnline: 1 });
+            localStorage.setItem('coder-media', JSON.stringify({ email , password}));
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch(error => alert('some error occured, Try again.\n', error.message));
     }
   }, [socket]);
 
   const logout = () => {
-    socket?.emit('user-disconnected', ({ name: user.name, _id: user._id }));
     axios.put(`/api/users/${user._id}`, { status: false });
-    localStorage.setItem('student-media', JSON.stringify(null));
-    // console.log("being ofline.." , socket.connected);
+    localStorage.setItem('coder-media', JSON.stringify(null));
     socket?.disconnect();
     setSocket(null);
     setUser(null);
   };
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("student-media"));
-    if (data != null) {
-      axios.get(`/api/users/${data._id}`)
-        .then(response => response.data)
-        .then(data => login(data))
-        .catch(error => console.log(error.message));
-    }
+    const data = JSON.parse(localStorage.getItem("coder-media"));
+    data && login({ email: data.email, password: data.password });
   }, [login]);
 
 

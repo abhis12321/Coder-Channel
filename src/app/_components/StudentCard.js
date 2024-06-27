@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 import A from ".//profile.jpg";
 import { useAuth } from "./AuthProvider";
-import axios from "axios";
+
 
 export default function StudentCard({ student, index , handleFollowings } ) {
   const USER = useAuth();

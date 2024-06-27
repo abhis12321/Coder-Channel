@@ -43,7 +43,7 @@ export async function POST(req, { params }) {
       return NextResponse.json({ message: "Invalid Password! Try again.", success: false });
     }
   }
-  catch (err) {
+  catch (error) {
     return NextResponse.json({
       message: "bad request...!",
       success: false,
@@ -55,13 +55,11 @@ export async function POST(req, { params }) {
 export async function PUT(req , {params}) {
   try {
       let data = await req.json();
-      // console.log(data);
-      await Users.findOneAndUpdate(
-          { _id:params._id },
-          { $set: data }
-        );
-        return NextResponse.json({success:true});
-  } catch(err) {
-      return NextResponse.json({data:err.message , success:false});
+      let user = await Users.findOne({ _id:params._id });
+      user.isOnline += data.isOnline;
+      await user.save();
+      return NextResponse.json({success:true});
+  } catch(error) {
+      return NextResponse.json({data:error.message , success:false});
   }
 }

@@ -20,7 +20,7 @@ function Page() {
         box.appendChild(message);
     }
 
-    const handleUserLeft = (Name) => {
+    const handleUserLeft = ({Name}) => {
         const box = document.querySelector(".chatting-box");
         let message = chatModel(Name, "left the chat", "center");
         box?.appendChild(message);

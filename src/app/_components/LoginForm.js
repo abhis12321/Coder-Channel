@@ -9,18 +9,7 @@ export default function LoginForm() {
     
   const handleLogin = async(e) => {
     e.preventDefault();
-    await fetch(`/api/users` , {
-                method:"put",
-                body:JSON.stringify({email , password})
-              })
-              .then(res => res.json())
-              .then(info => {
-                if(info.success) {
-                  USER.login(info.User);
-                }
-                  alert(info.message)                
-              })
-              .catch(err =>  {success:false});
+    USER.login({email , password});
   }
 
   return (
