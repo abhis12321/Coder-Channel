@@ -42,6 +42,7 @@ export default async function SocketHandler(req, res) {
 }
 
 
+
 const updateStatus = async (_id) => {
     let user = await Users.findOne({ _id });
     if (user) {
