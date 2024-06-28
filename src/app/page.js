@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import BlogPost from './_components/BlogPost'
+import BlogPost from './_components/BlogForm'
 import BlogCard from './_components/BlogCard'
 import axios from 'axios'
 

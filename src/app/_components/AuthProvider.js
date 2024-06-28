@@ -10,7 +10,6 @@ export default function AuthProvider({ children }) {
 
 
   const login = useCallback(async ({ email, password }) => {
-    console.log("login" , email , password);
     if (!socket) {
       axios.put(`/api/users`, { email, password })
         .then(response => response.data)

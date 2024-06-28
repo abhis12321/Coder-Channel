@@ -30,30 +30,45 @@ export default function ProfileCard({ student, setStatus }) {
       .then(data => data.success && setBlogs(data.blogs));
   }, [student?._id]);
 
-  const handleFollowers = () => {
-    if (!student) {
-      alert("login first to follow a user!")
-    } else {
-      axios.post('/api/users/follow', {
-        followedById: student?._id,
-        followedByName: student?.name,
-        followedToId: student?._id,
-        followedToName: student?.name,
-      })
-        .then(result => result.data)
-        .then(data => alert(data.message));
-    }
+  const handleUnFollow = () => {
+    // if (!student) {
+    //   alert("login first to follow a user!")
+    // } else {
+    //   axios.post('/api/users/follow', {
+    //     followedById: student?._id,
+    //     followedByName: student?.name,
+    //     followedToId: student?._id,
+    //     followedToName: student?.name,
+    //   })
+    //     .then(result => result.data)
+    //     .then(data => alert(data.message));
+    // }
+  }
+
+  const handleRemoveFollower = () => {
+    // if (!student) {
+    //   alert("login first to follow a user!")
+    // } else {
+    //   axios.post('/api/users/follow', {
+    //     followedById: student?._id,
+    //     followedByName: student?.name,
+    //     followedToId: student?._id,
+    //     followedToName: student?.name,
+    //   })
+    //     .then(result => result.data)
+    //     .then(data => alert(data.message));
+    // }
   }
 
   return (
     <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
       {!student ?
-        <div className={`flex items-center justify-center ${connections == 0 ? "opacity-100" : "opacity-15"} h-nav`}>
+        <div className={`flex items-center justify-center h-nav`}>
           <div className="mx-auto h-40 w-40 rounded-full animate-spin border-t-4 border-slate-900 dark:border-white flex items-center justify-center"><div className="h-24 w-24 rounded-full border-r-4 border-slate-700 dark:border-white"></div></div>
         </div>
         :
 
-        <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-blue-700/15 sm:bg-blue-900/30 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-white ${connections == 0 ? "opacity-100" : "opacity-15"}`}>
+        <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-blue-700/15 sm:bg-blue-900/30 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-white`}>
           <div className="w-fit flex items-center justify-center">
             <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40 shadow-[0_0_3px_gray]' />
           </div>
@@ -96,10 +111,10 @@ export default function ProfileCard({ student, setStatus }) {
       }
 
       {
-        connections === 1 && <Followers _id={student?._id} setConnections={setConnections} followers={followers} />
+        connections === 1 && <Followers _id={student?._id} setConnections={setConnections} followers={followers} handleRemoveFollower={handleRemoveFollower}/>
       }
       {
-        connections === 2 && <Followings _id={student?._id} setConnections={setConnections} followings={followings} />
+        connections === 2 && <Followings _id={student?._id} setConnections={setConnections} followings={followings} handleUnFollow={handleUnFollow}/>
       }
 
 

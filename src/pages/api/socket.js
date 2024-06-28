@@ -45,9 +45,12 @@ export default async function SocketHandler(req, res) {
 
 const updateStatus = async (_id) => {
     let user = await Users.findOne({ _id });
+    // console.log("Diconnected..." , user);
     if (user) {
-        user.isOnline -= 1;
+        // user.isOnline -= 1;
+        user.isOnline -= (Number)(user?.isOnline) > 0 ? 1 : 0;
         await user.save();
     }
+    // console.log("user " , user);
     return user;
 }
