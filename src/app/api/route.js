@@ -6,10 +6,10 @@ import mongoose from "mongoose";
 
 export async function GET() {
   try {
-    await User.updateMany(
-      { verify: true },
-      { $set: { isOnline: 0 } }
-    );
+    // await User.updateMany(
+    //   { verify: true },
+    //   { $set: { isOnline: 0 } }
+    // );
 
     return NextResponse.json({success:true})
   } catch(error) {

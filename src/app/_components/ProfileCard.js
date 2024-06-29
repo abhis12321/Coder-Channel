@@ -4,8 +4,10 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import Followers from './Followers';
 import Followings from './Followings';
-import { useAuth } from './AuthProvider';
+// import { useAuth } from './AuthProvider';
 import Blogs from './BlogCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 
 export default function ProfileCard({ student, setStatus }) {
   const [connections, setConnections] = useState(0);
@@ -77,7 +79,7 @@ export default function ProfileCard({ student, setStatus }) {
             <div className="flex gap-2 md:gap-4 flex-wrap items-center">
               <h1 className="text-2xl sm:text-3xl font-bold font-serif">{student?.name}</h1>
               <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-red-600/50 hover:bg-red-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={e => setStatus(true)}>logout</button>
-              {/* <h1 className="font-mono opacity-80">({student?.email})</h1> */}
+              <FontAwesomeIcon size='sm' icon={faGear} className='text-2xl cursor-pointer text-gray-400 hover:text-blue-200' />
             </div>
 
             <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm">
