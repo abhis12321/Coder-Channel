@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import ImageForm from './ImageForm';
 
 export default function Page() {
     const [name, setName] = useState('');
@@ -12,22 +13,27 @@ export default function Page() {
     const [linkedIn, setLinkedIn] = useState('');
     const [instagram, setInstagram] = useState('');
     const [github, setGithub] = useState('');
+    const [image, setImage] = useState();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         let info = await fetch(`/api/users`, {
-                method: "post",
-                body: JSON.stringify({name , email , password , gender , university , course , linkedIn , instagram , github}),
-            })
+            method: "post",
+            body: JSON.stringify({ name, email, password, gender, university, course, linkedIn, instagram, github }),
+        })
             .then(res => res.json());
 
-        console.log(name , email , password , gender , university , course , linkedIn , instagram , github);
+        console.log(name, email, password, gender, university, course, linkedIn, instagram, github);
         alert(info.message)
     }
 
     return (
-        <form onSubmit={handleSubmit} className='text-violet-950 dark:text-white from-blue-50 to-blue-50 bg-gradient-to-b  dark:from-blue-900/50 dark:via-cyan-950/90 dark:to-blue-950/60 shadow-[0_0_4px_black] dark:shadow-[0_0_4px_white] w-[98%] max-w-[600px] rounded-2xl p-2 xs:p-5 sm:p-12 gap-1 flex flex-col items-center justify-center' autoComplete='on'>
-            <h1 className="block mx-auto mt-2 xs:mt-0 mb-3 py-1 rounded-lg text-3xl font-extrabold text-center w-fit dark:text-white text-red-950">New Resistration</h1>
+        <form onSubmit={handleSubmit} className='text-violet-950 dark:text-white from-blue-50 to-blue-50 bg-gradient-to-b  dark:from-blue-900/50 dark:via-cyan-950/90 dark:to-blue-950/60 shadow-[0_0_4px_black] dark:shadow-[0_0_4px_white] w-[98%] max-w-[600px] rounded-2xl p-2 sm:p-6 pt-[10px] sm:pt-2 gap-1 flex flex-col items-center justify-center' autoComplete='on'>
+
+            <div className={`w-full flex items-center justify-around pb-1`}>
+                <h1 className="hidden sm:flex rounded-lg text-4xl font-extrabold text-center w-fit dark:text-white text-red-950">New Resistration</h1>
+                <ImageForm image={image} setImage={setImage} />
+            </div>
             <div className="flex flex-col xs:flex-row gap-1 xs:gap-3 w-full font-mono">
                 <input name='name' type="text" value={name} onChange={e => setName(e.target.value)} className='w-full xs:flex-1 font-semibold bg-blue-800/10 dark:bg-gray-200/5 outline-none py-2 px-3 rounded-lg mx-auto text-center focus:text-cyan-700 focus:bg-blue-800/30 focus:ring-2 ring-1 ring-cyan-500 placeholder:font-light placeholder:text-sm' placeholder='Enter your name' required />
 
