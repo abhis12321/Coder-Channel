@@ -13,7 +13,6 @@ import {
   faMicroscope,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import A from ".//profile.jpg";
 import { useAuth } from "./AuthProvider";
 
 
@@ -60,7 +59,7 @@ export default function StudentCard({ student, index , handleFollowings } ) {
     <div className="bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_6px_black] dark:shadow-[0_0_6px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_10px_violet] rounded-lg flex flex-col justify-evenly items-center gap-3">
       <div className="relative">
         <Image
-          src={A}
+          src={student.imgUrl}
           alt="profile-img"
           className={`h-[140px] m-auto rounded-full overflow-hidden ring-4 ${status ? 'ring-lime-900 dark:ring-green-700' : 'ring-red-900 dark:ring-red-700'} opacity-80`}
           width={140}

@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import ImageForm from './ImageForm';
+import axios from 'axios';
 
 export default function Page() {
     const [name, setName] = useState('');
@@ -9,22 +10,24 @@ export default function Page() {
     const [gender, setGender] = useState('male');
     const [university, setUniversity] = useState('');
     const [course, setCourse] = useState('');
-    const [imgUrl, setImgUrl] = useState('');
     const [linkedIn, setLinkedIn] = useState('');
     const [instagram, setInstagram] = useState('');
     const [github, setGithub] = useState('');
     const [image, setImage] = useState();
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        let info = await fetch(`/api/users`, {
-            method: "post",
-            body: JSON.stringify({ name, email, password, gender, university, course, linkedIn, instagram, github }),
-        })
-            .then(res => res.json());
+        e.preventDefault();
+        const formdata = new FormData();
+        formdata.append('files', image);
 
-        console.log(name, email, password, gender, university, course, linkedIn, instagram, github);
-        alert(info.message)
+        let imgUrl = await axios.post('/api/img', formdata)
+            .then(response => response.data)
+            .then(data => data.imgUrl)
+            .catch(error => null) || "/img/profileImg.jpg";
+
+        axios.post(`/api/users`, { name, email, password, gender, university, course, linkedIn, instagram, github, imgUrl })
+            .then(response => response.data)
+            .then(data => alert(data.message));
     }
 
     return (
@@ -47,7 +50,6 @@ export default function Page() {
             <input name='password' type="password" value={password} onChange={e => setPassword(e.target.value)} className='w-full font-semibold bg-blue-800/10 dark:bg-gray-200/5 outline-none py-2 px-3 rounded-lg mx-auto text-center focus:text-cyan-700 focus:bg-blue-800/30 focus:ring-2 ring-1 ring-cyan-500 font-mono placeholder:font-light placeholder:text-sm' placeholder='Enter password' required />
             <input name='university' type="text" value={university} onChange={e => setUniversity(e.target.value)} className='w-full font-semibold bg-blue-800/10 dark:bg-gray-200/5 outline-none py-2 px-3 rounded-lg mx-auto text-center focus:text-cyan-700 focus:bg-blue-800/30 focus:ring-2 ring-1 ring-cyan-500 font-mono placeholder:font-light placeholder:text-sm' placeholder='your university name' required />
             <input name='course' type="text" value={course} onChange={e => setCourse(e.target.value)} className='w-full font-semibold bg-blue-800/10 dark:bg-gray-200/5 outline-none py-2 px-3 rounded-lg mx-auto text-center focus:text-cyan-700 focus:bg-blue-800/30 focus:ring-2 ring-1 ring-cyan-500 font-mono placeholder:font-light placeholder:text-sm' placeholder='your course' required />
-            {/* <input name='image' type="text" value={imgUrl} onChange={e => setImgUrl(e.target.value)} className='w-[95%] max-w-[600px] font-semibold shadow-[0_0_3px_white] bg-slate-950/35 outline-none py-2 px-3 rounded-xl mx-auto text-center focus:text-cyan-700 font-mono placehold6r:font-light p ring-cyan-500laceholder:text-sm' placeholder='Enter your image url' /> */}
             <input name='linkedIn' type="text" value={linkedIn} onChange={e => setLinkedIn(e.target.value)} className='w-full font-semibold bg-blue-800/10 dark:bg-gray-200/5 outline-none py-2 px-3 rounded-lg mx-auto text-center focus:text-cyan-700 focus:bg-blue-800/30 focus:ring-2 ring-1 ring-cyan-500 font-mono placeholder:font-light placeholder:text-sm' placeholder='your linked profile' />
             <input name='instagram' type="text" value={instagram} onChange={e => setInstagram(e.target.value)} className='w-full font-semibold bg-blue-800/10 dark:bg-gray-200/5 outline-none py-2 px-3 rounded-lg mx-auto text-center focus:text-cyan-700 focus:bg-blue-800/30 focus:ring-2 ring-1 ring-cyan-500 font-mono placeholder:font-light placeholder:text-sm' placeholder='your instagram profile' />
             <input name='github' type="text" value={github} onChange={e => setGithub(e.target.value)} className='w-full font-semibold bg-blue-800/10 dark:bg-gray-200/5 outline-none py-2 px-3 rounded-lg mx-auto text-center focus:text-cyan-700 focus:bg-blue-800/30 focus:ring-2 ring-1 ring-cyan-500 font-mono placeholder:font-light placeholder:text-sm' placeholder='your github profile' />

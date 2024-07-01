@@ -18,12 +18,9 @@ export async function POST(req, res) {
       let origin = (req.url).slice(0 , -10);
       let data = await req.json();
       let email = data.email;
-      let secretKey = email;
-
-      // console.log(origin);
     
     // Encrypt a message
-      let ciphertext = cryptoJS.AES.encrypt(data.password, secretKey).toString();
+      let ciphertext = cryptoJS.AES.encrypt(data.password, email).toString();
       let token = await Users.insertMany([{...data , verify:false , password:ciphertext}]);
       
       token = token[0]._id;

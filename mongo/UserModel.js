@@ -46,7 +46,7 @@ const userSchema = new mongoose.Schema({    //data model
     },
     imgUrl:{
         type:String,
-        default:"/img/profileImg.jpg" 
+        default:"/img/profileImg.jpg", 
     },
     linkedIn: {
         type:String,
