@@ -2,7 +2,7 @@
 const nextConfig = {
     // output:"export",
     images:{
-        domains:['insidethemagic.net' , 'dfstudio-d420.kxcdn.com' , "encrypted-tbn0.gstatic.com" , "avatars.githubusercontent.com"],
+        domains:['insidethemagic.net' , 'dfstudio-d420.kxcdn.com' , "encrypted-tbn0.gstatic.com" , "avatars.githubusercontent.com" , "res.cloudinary.com"],
     },
     async headers() {
         return [

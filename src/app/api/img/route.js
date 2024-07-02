@@ -1,7 +1,4 @@
-import path from 'path';
-import fs from 'fs/promises';
-import { v4 as uuid } from 'uuid';
-import cloudinary from 'cloudinary';
+import {v2 as cloudinary} from 'cloudinary';
 import { NextResponse } from 'next/server';
 
 cloudinary.config({
@@ -14,67 +11,44 @@ cloudinary.config({
 export async function POST(request) {
   try {
     const formData = await request.formData();
-    const urls = await uploadPhotosToLocal(formData);
-    // const url = await uploadToCloudinary(newFiles);
-    return NextResponse.json({ success:true , imgUrl:urls[0].filepath.toString().substring(6).replace(/\\/g, "/") });
+    const image = formData.get("files");
+    const data = await cloudinaryUpload(image, "coder-media");
+    return NextResponse.json({ success: true, imgUrl:data.url });
   } catch (error) {
-    return NextResponse.json({ success:false , message: error.message });
+    return NextResponse.json({ success: false, message: error.message , imgUrl:null });
   }
 }
 
-async function uploadPhotosToLocal(formData) {
-  const files = formData.getAll('files');
-  const bufferData = files.map(async (file) => {
-    const data = await file.arrayBuffer();
-    const buffer = Buffer.from(data);
-    const name = uuid();
-    const ext = file.type.split('/')[1];
-    const tempDir = './public/img';
-    const uploadPath = path.join(tempDir, `/${name}.${ext}`);
-    await fs.writeFile(uploadPath, buffer);
-    return { filepath: uploadPath, filename: file.name };
-  });
-  return Promise.all(bufferData);
+
+const cloudinaryUpload = async (file, folder) => {
+  try {
+    const buffer = await file.arrayBuffer();
+    const bytes = Buffer.from(buffer);
+
+    return new Promise(async (resolve, reject) => {
+      let uploadStream = await cloudinary.uploader.upload_stream({
+        resource_type: "auto",
+        folder: folder,
+      },
+        async (error, result) => {
+          if (error) {
+            return reject(error.message);
+          }
+          return resolve(result);
+        }
+      )
+      uploadStream.on('error', (err) => {
+        reject(err.message);
+      });
+
+      uploadStream.on('finish', () => {
+        // console.log('Stream finished');
+      });
+
+      uploadStream.end(bytes);
+    })
+
+  } catch (error) {
+    return error.message;
+  }
 }
-
-// async function uploadToCloudinary(newFiles) {
-//   const urls = await Promise.all(
-//     newFiles.map(async (file) => {
-//       try {
-//         const result = await cloudinary.uploader.upload(file.filepath , {folder:'next_upload'});
-//         fs.unlink(file.filepath);
-//         return result.url;
-//       } catch (err) {
-//         return err.message;
-//       }
-//     })
-//   );
-
-//   return urls;
-// //   return urls.filter((url) => url !== null);
-// }
-
-// async function uploadToCloudinary(newFiles) {
-//     try {
-//       const urls = await Promise.all(
-//         newFiles.map(async (file) => {
-//           try {
-//             const result = await cloudinary.uploader.upload(file.filepath, {
-//               folder: 'next_upload',
-//             });
-//             await fs.unlink(file.filepath); // Use await here
-//             return result.url;
-//           } catch (err) {
-//             return err.message;
-//           }
-//         })
-//       );
-  
-//       const filteredUrls = urls.filter((url) => url !== null);
-//       console.log('Filtered URLs:', filteredUrls);
-//       return filteredUrls;
-//     } catch (error) {
-//         return err.message;
-//     }
-//   }
-  

@@ -22,7 +22,6 @@ export default function Page() {
 
   return (
     <div className='flex flex-col gap-3 items-center justify-center h-nav py-4'>
-      <Image src={`/img/7eeda7e6-b655-4e8b-8c66-96b1e7c49881.jpeg`} alt='ll' height={200} width={200} />
       {
         blogForm ?
           <BlogPost setBlogFost={setBlogFost} handleBlogPost={handleBlogPost} />

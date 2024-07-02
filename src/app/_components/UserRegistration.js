@@ -25,9 +25,11 @@ export default function Page() {
             .then(data => data.imgUrl)
             .catch(error => null) || "/img/profileImg.jpg";
 
+        // console.log(imgUrl);
         axios.post(`/api/users`, { name, email, password, gender, university, course, linkedIn, instagram, github, imgUrl })
             .then(response => response.data)
-            .then(data => alert(data.message));
+            .then(data => alert(data.message))
+            .catch(error => alert(error.message));
     }
 
     return (
