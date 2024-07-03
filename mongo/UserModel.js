@@ -50,15 +50,12 @@ const userSchema = new mongoose.Schema({    //data model
     },
     linkedIn: {
         type:String,
-        default:'/students'
     },
     instagram: {
         type:String,
-        default:'/students'
     },
     github: {
         type:String,
-        default:'/students'
     },
     likes:{
         type:Number,

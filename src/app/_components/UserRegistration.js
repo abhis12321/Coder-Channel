@@ -20,12 +20,11 @@ export default function Page() {
         const formdata = new FormData();
         formdata.append('files', image);
 
-        let imgUrl = await axios.post('/api/img', formdata)
+        let imgUrl = (await axios.post('/api/img', formdata)
             .then(response => response.data)
-            .then(data => data.imgUrl)
-            .catch(error => null) || "/img/profileImg.jpg";
+            .then(data => {console.log(data); return data.imgUrl})
+            .catch(error => null)) || "/img/profileImg.jpg";
 
-        // console.log(imgUrl);
         axios.post(`/api/users`, { name, email, password, gender, university, course, linkedIn, instagram, github, imgUrl })
             .then(response => response.data)
             .then(data => alert(data.message))
@@ -33,7 +32,7 @@ export default function Page() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className='text-violet-950 dark:text-white from-blue-50 to-blue-50 bg-gradient-to-b  dark:from-blue-900/50 dark:via-cyan-950/90 dark:to-blue-950/60 shadow-[0_0_4px_black] dark:shadow-[0_0_4px_white] w-[98%] max-w-[600px] rounded-2xl p-2 sm:p-6 pt-[10px] sm:pt-2 gap-1 flex flex-col items-center justify-center' autoComplete='on'>
+        <form onSubmit={handleSubmit} className='text-violet-950 dark:text-white from-blue-50 to-blue-50 bg-gradient-to-b  dark:from-blue-900/50 dark:via-cyan-950/90 dark:to-blue-950/60 shadow-[0_0_4px_black] dark:shadow-[0_0_4px_white] w-[98%] max-w-[600px] rounded-2xl px-2 sm:px-4 py-[10px] gap-1 flex flex-col items-center justify-center' autoComplete='on'>
 
             <div className={`w-full flex items-center justify-around pb-1`}>
                 <h1 className="hidden sm:flex rounded-lg text-4xl font-extrabold text-center w-fit dark:text-white text-red-950">New Resistration</h1>
