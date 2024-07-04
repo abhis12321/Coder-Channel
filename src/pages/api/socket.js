@@ -32,8 +32,8 @@ export default async function SocketHandler(req, res) {
             socket.on('disconnect', async () => {
                 let _id = map[userId];
                 let user = await updateStatus(_id);
-                socket.broadcast.emit("online-status", { _id, status: user.isOnline > 0 });
-                socket.broadcast.emit('userLeftGroup', { Name: user.name });
+                socket.broadcast.emit("online-status", { _id, status: user?.isOnline > 0 });
+                socket.broadcast.emit('userLeftGroup', { Name: user?.name });
                 delete map[userId];
             });
         });
