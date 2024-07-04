@@ -18,17 +18,18 @@ export default function Page() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append('files', image);
+        formdata.append('images', image);
 
-        let imgUrl = (await axios.post('/api/img', formdata)
+        let imgUrl = await axios.post('/api/uploadToCloudinary' , formdata)
             .then(response => response.data)
-            .then(data => {console.log(data); return data.imgUrl})
-            .catch(error => null)) || "/img/profileImg.jpg";
+            .then(data => {console.log(data); return data.success ? data.urls[0] : null})
+            .catch(error => console.log(error.message)) || "/img/profileImg.jpg";
 
         axios.post(`/api/users`, { name, email, password, gender, university, course, linkedIn, instagram, github, imgUrl })
             .then(response => response.data)
             .then(data => alert(data.message))
             .catch(error => alert(error.message));
+        console.log(imgUrl);
     }
 
     return (

@@ -15,7 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.5.1",
-    "cloudinary": "^1.41.1",
+    "cloudinary": "^1.41.3",
     "crypto-js": "^4.1.1",
     "mongoose": "^7.6.0",
     "next": "^14.0.3",
