@@ -17,25 +17,20 @@ export default function ProfileEdit({ student, setEditable }) {
     const [image, setImage] = useState(student.imgUrl);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        // const formdata = new FormData();
-        // formdata.append('images', image);
-
-        // let reader = new FileReader();
-        // reader.readAsDataURL(image);
-
-        // reader.onload = () => {
-        //     const imgUrl = reader.result;
-        //     axios.post(`/api/users`, { name, email, password, gender, university, course, linkedIn, instagram, github, imgUrl })
-        //         .then(response => response.data)
-        //         .then(data => alert(data.message))
-        //         .catch(error => alert(error.message));
-        // }
-
+        e.preventDefault();    
+        
+        const imgUrl = image ? image : "/img/profileImg.jpg";
+        const body = { name, email, password, gender, university, course, linkedIn, instagram, github, imgUrl };
+        axios.patch(`/api/users/${student._id}`, body)
+            .then(response => response.data)
+            .then(data => alert(data.message))
+            .catch(error => alert(error.message));
+        
+            setEditable(false);
     }
 
     return (
-        <div className="fixed top-0 left-0 z-50 h-[100vh] w-[100vw] bg-slate-950/80 flex items-center justify-center">
+        <div className="fixed top-0 left-0 z-50 h-[100vh] w-[100vw] bg-slate-950/70 flex items-center justify-center">
             <form onSubmit={handleSubmit} className='text-violet-950 dark:text-white from-blue-50 to-blue-50 bg-gradient-to-b  dark:from-green-900/50 dark:via-cyan-950/90 dark:to-blue-950/60 shadow-[0_0_4px_black] dark:shadow-[0_0_4px_white] w-[98%] max-w-[600px] rounded-2xl px-2 sm:px-4 py-[10px] gap-2 flex flex-col items-center justify-center' autoComplete='on'>
                 <ImageForm image={image} setImage={setImage} />
                 <div className="flex flex-col xs:flex-row gap-1 xs:gap-3 w-full font-mono">
@@ -55,8 +50,8 @@ export default function ProfileEdit({ student, setEditable }) {
                 <input name='instagram' type="text" value={instagram} onChange={e => setInstagram(e.target.value)} className='w-full font-semibold bg-blue-800/10 dark:bg-gray-200/5 outline-none py-2 px-3 rounded-lg mx-auto text-center focus:text-cyan-700 focus:bg-blue-800/30 focus:ring-2 ring-1 ring-cyan-500 font-mono placeholder:font-light placeholder:text-sm' placeholder='your instagram profile' />
                 <input name='github' type="text" value={github} onChange={e => setGithub(e.target.value)} className='w-full font-semibold bg-blue-800/10 dark:bg-gray-200/5 outline-none py-2 px-3 rounded-lg mx-auto text-center focus:text-cyan-700 focus:bg-blue-800/30 focus:ring-2 ring-1 ring-cyan-500 font-mono placeholder:font-light placeholder:text-sm' placeholder='your github profile' />
                 {/* <button type='submit' className='text-white w-full font-semibold ring-1 ring-cyan-950 bg-red-900 hover:bg-red-700 active:bg-violet-900 py-2 px-3 rounded-lg mx-auto text-center' >Update</button> */}
-                <div className="flex w-full items-center justify-between gap[2px] border-[2px] border-cyan-950 dark:border-sky-600 rounded-md overflow-hidden">
-                    <div className="w-[50%] text-white/80 bg-orange-900 hover:bg-orange-700 active:bg-violet-900 p-2 text-center outline-none font-semibold cursor-pointer border-r-[2px] border-cyan-950 dark:border-sky-600" onClick={e => setEditable(false)}>cancel</div>
+                <div className="flex w-full items-center justify-between gap[2px] border-[2px] border-cyan-950 dark:border-cyan-600 rounded-md overflow-hidden">
+                    <div className="w-[50%] text-white/80 bg-orange-900 hover:bg-orange-700 active:bg-violet-900 p-2 text-center outline-none font-semibold cursor-pointer border-r-[2px] border-cyan-950 dark:border-cyan-600" onClick={e => setEditable(false)}>cancel</div>
                     <input type="submit" value={'update'} className='w-[50%] text-white/80 bg-red-800 hover:bg-red-600 active:bg-violet-900 p-2 text-center outline-none font-semibold cursor-pointer' required />
                 </div>
             </form>

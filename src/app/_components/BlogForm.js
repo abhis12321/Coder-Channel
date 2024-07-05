@@ -9,6 +9,10 @@ export default function Page({ setBlogFost, handleBlogPost }) {
 
     const handleSubmit = e => {
         e.preventDefault();
+        if(!USER.user) {
+            alert("You are not logged-in, Login first!")
+            return;
+        }
         if(blog.length > 100) {        
             axios.post('/api/blogs', { writer: USER?.user?.name, writerId: USER?.user?._id, blog })
                 .then(response => response.data)

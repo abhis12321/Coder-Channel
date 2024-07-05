@@ -63,3 +63,16 @@ export async function PUT(req , {params}) {
       return NextResponse.json({data:error.message , success:false});
   }
 }
+
+
+export async function PATCH(request , {params}) {
+  try {
+    let body = await request.json();
+    let ciphertext = cryptoJS.AES.encrypt(body.password, body.email).toString();
+    await Users.findOneAndUpdate({_id:params._id } , {...body , password:ciphertext});
+    return NextResponse.json({success:true , message:"profile updated successfully"});
+  } catch(error) {
+    console.log(error.message);
+    return NextResponse.json({success:false , message:error.message});
+  }
+}

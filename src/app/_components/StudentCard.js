@@ -56,7 +56,7 @@ export default function StudentCard({ student, index , handleFollowings } ) {
   }
 
   return (
-    <div className="bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_6px_black] dark:shadow-[0_0_6px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_10px_violet] rounded-lg flex flex-col justify-evenly items-center gap-3">
+    <div className="bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-700/85 dark:to-slate-900 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_6px_black] dark:shadow-[0_0_6px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_10px_violet] rounded-lg flex flex-col justify-evenly items-center gap-3">
       <div className="relative">
         <Image
           src={student.imgUrl ? student.imgUrl : "/img/profileImg.jpg"}
@@ -77,21 +77,21 @@ export default function StudentCard({ student, index , handleFollowings } ) {
         {student.university}
       </div>
       <div className="flex justify-center items-center gap-8">
-        <Link href={student.linkedIn} className={`${!student.linkedIn && "pointer-events-none opacity-70"}`}>
+        <Link href={student.linkedIn} className={`${!student.linkedIn && "pointer-events-none opacity-55"}`}>
           <FontAwesomeIcon
             icon={faLinkedin}
             size="2x"
             className="hover:scale-110 text-blue-700 "
           />
         </Link>
-        <Link href={student.github} className={`${!student.github && "pointer-events-none opacity-70"}`}>
+        <Link href={student.github} className={`${!student.github && "pointer-events-none opacity-30"}`}>
           <FontAwesomeIcon
             icon={faGithub}
             size="2x"
-            className="hover:scale-110 text-gray-900 dark:text-gray-400"
+            className="hover:scale-110 text-gray-900 dark:text-gray-100"
           />
         </Link>
-        <Link href={student.instagram} className={`${!student.instagram && "pointer-events-none opacity-70"}`}>
+        <Link href={student.instagram} className={`${!student.instagram && "pointer-events-none opacity-55"}`}>
           <FontAwesomeIcon
             icon={faInstagram}
             size="2x"

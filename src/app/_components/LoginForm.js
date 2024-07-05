@@ -21,9 +21,9 @@ export default function LoginForm() {
         {/* <p className="hidden sm:flex text-center text-sm font-mono text-yellow-400 font-semibold drop-shadow-[0_0_7px_white]">Login with your email-id</p> */}
       </div>
 
-      <input type="email" value = {email} onChange={(e)=> setEmail(e.target.value)} className='bg-blue-950/10 dark:bg-red-600/5 px-2 py-[10px] rounded text-center w-[96%] max-w-[550px] outline-none focus:bg-blue-600/20 ring-1 focus:ring-2 ring-violet-700 dark:ring-gray-400' placeholder='email' name='email' required/>
+      <input type="email" value = {email} onChange={(e)=> setEmail(e.target.value)} className='bg-blue-950/10 dark:bg-red-600/15 px-2 py-[10px] rounded text-center w-[96%] max-w-[550px] outline-none focus:bg-blue-600/20 ring-1 focus:ring-2 ring-violet-700 dark:ring-gray-400' placeholder='email' name='email' required/>
       
-      <input type="password" value = {password} onChange={(e)=> setPass(e.target.value)} className='bg-blue-950/10 dark:bg-red-600/5 px-2 py-[10px] rounded text-center w-[96%] max-w-[550px] outline-none focus:bg-blue-600/20 ring-1 focus:ring-2 ring-violet-700 dark:ring-gray-400' placeholder='password' name='password' required/>
+      <input type="password" value = {password} onChange={(e)=> setPass(e.target.value)} className='bg-blue-950/10 dark:bg-red-600/15 px-2 py-[10px] rounded text-center w-[96%] max-w-[550px] outline-none focus:bg-blue-600/20 ring-1 focus:ring-2 ring-violet-700 dark:ring-gray-400' placeholder='password' name='password' required/>
 
       <div className="flex items-center justify-evenly w-[98%] max-w-[550px] text-xs xs:text-sm" >
         <Link href={`/login/resend`} className="text-blue-600 font-semibold underline hover:text-blue-700 hover:scale-110">Resend Verification Link</Link>
