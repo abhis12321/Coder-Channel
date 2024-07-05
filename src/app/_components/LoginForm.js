@@ -31,7 +31,7 @@ export default function LoginForm() {
       </div>
 
       <div className="w-[96%] max-w-[550px] flex justify-between">
-        <Link href={`/login/resistration`} className='w-[120px] xs:w-[150px] text-center rounded-md bg-red-900/95 py-2 hover:bg-red-700 font-mono' >Resister New</Link>
+        <Link href={`/login/registration`} className='w-[120px] xs:w-[150px] text-center rounded-md bg-red-900/95 py-2 hover:bg-red-700 font-mono' >Resister New</Link>
         <button type='submit' className='w-[120px] xs:w-[150px] text-center rounded-md bg-red-900/95 py-2 hover:bg-red-700 font-mono' >Login</button>
       </div>
     </form></div>

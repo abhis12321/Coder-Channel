@@ -77,21 +77,21 @@ export default function StudentCard({ student, index , handleFollowings } ) {
         {student.university}
       </div>
       <div className="flex justify-center items-center gap-8">
-        <Link href={student.linkedIn} className={`${!student.linkedIn && "pointer-events-none opacity-50"}`}>
+        <Link href={student.linkedIn} className={`${!student.linkedIn && "pointer-events-none opacity-70"}`}>
           <FontAwesomeIcon
             icon={faLinkedin}
             size="2x"
             className="hover:scale-110 text-blue-700 "
           />
         </Link>
-        <Link href={student.github} className={`${!student.github && "pointer-events-none opacity-50"}`}>
+        <Link href={student.github} className={`${!student.github && "pointer-events-none opacity-70"}`}>
           <FontAwesomeIcon
             icon={faGithub}
             size="2x"
             className="hover:scale-110 text-gray-900 dark:text-gray-400"
           />
         </Link>
-        <Link href={student.instagram} className={`${!student.instagram && "pointer-events-none opacity-50"}`}>
+        <Link href={student.instagram} className={`${!student.instagram && "pointer-events-none opacity-70"}`}>
           <FontAwesomeIcon
             icon={faInstagram}
             size="2x"

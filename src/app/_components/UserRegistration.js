@@ -20,16 +20,11 @@ export default function Page() {
         const formdata = new FormData();
         formdata.append('images', image);
 
-        let reader = new FileReader();
-        reader.readAsDataURL(image);
-
-        reader.onload = () => {
-            const imgUrl = reader.result;
-            axios.post(`/api/users`, { name, email, password, gender, university, course, linkedIn, instagram, github, imgUrl })
-                .then(response => response.data)
-                .then(data => alert(data.message))
-                .catch(error => alert(error.message));
-        }
+        const imgUrl = image ? image : "/img/profileImg.jpg";
+        axios.post(`/api/users`, { name, email, password, gender, university, course, linkedIn, instagram, github, imgUrl })
+            .then(response => response.data)
+            .then(data => alert(data.message))
+            .catch(error => alert(error.message));
 
         // let imgUrl = await axios.post('/api/uploadToCloudinary' , formdata)
         //     .then(response => response.data)
