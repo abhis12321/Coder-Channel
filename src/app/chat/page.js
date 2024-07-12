@@ -63,7 +63,7 @@ function Page() {
             </div>
 
             <form className='flex items-center justify-center px-4 w-[100%] absolute bottom-2 bg-ed-500 gap-2 text-gray-100'  onSubmit={handleMessage}>
-                <input className='flex-1 px-4 py-2 rounded-lg outline-none ring-1 focus:ring-2 ring-cyan-600 bg-blue-900/10 focus:bg-blue-700/20' placeholder="Enter your message" type='text' value = {content} onChange={e => setContent(e.target.value)}  required/>
+                <input className='flex-1 px-4 py-2 rounded-lg outline-none ring-1 focus:ring-violet-800 ring-cyan-600 bg-blue-900/10 focus:bg-blue-700/20' placeholder="Enter your message" type='text' value = {content} onChange={e => setContent(e.target.value)}  required/>
                 <button className='hidden sm:block px-8 py-2 rounded-lg bg-blue-900 font-semibold opacity-80 hover:opacity-100 hover:text-yellow-500 active:bg-violet-950 ring-1 active:ring-2 ring-red-500'>send</button>
             </form>
 
@@ -75,8 +75,8 @@ function Page() {
 
 function chatModel(name , message , direction) {
     const node = document.createElement('p');
-    node.innerHTML = `<span class="text-gray-400">${name} : </span>${message}`;
-    node.classList.add(`text-${direction}` , `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}` , "py-2" , "px-4" , "rounded-lg" , "max-w-[80%]" , "w-fit" , "dark:bg-slate-950" , "bg-gray-600");
+    node.innerHTML = `<span class="text-gray-500">${name} : </span>${message}`;
+    node.classList.add(`text-${direction}` , `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}` , "py-2" , "px-4" , "rounded-lg" , "max-w-[80%]" , "w-fit" , "dark:bg-slate-950" , "bg-gray-400");
     
     return (
       node

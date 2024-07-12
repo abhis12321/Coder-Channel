@@ -61,7 +61,7 @@ export default function StudentCard({ student, index , handleFollowings } ) {
         <Image
           src={student.imgUrl ? student.imgUrl : "/img/profileImg.jpg"}
           alt="profile-img"
-          className={`h-[140px] m-auto rounded-full overflow-hidden ring-4 ${status ? 'ring-lime-900 dark:ring-green-700' : 'ring-red-900 dark:ring-red-700'} opacity-80 bg-white`}
+          className={`h-[140px] m-auto rounded-full overflow-hidden ring-4 ${status ? 'ring-lime-900 dark:ring-green-700' : 'ring-red-900 dark:ring-red-700'} opacity-90 bg-white`}
           width={140}
           height={140}
         />

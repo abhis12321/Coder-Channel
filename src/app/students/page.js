@@ -60,7 +60,7 @@ function Page() {
         }
         
         {students && students.map((student, index) => {
-            return student.verify ?
+            return student.verify && student._id != USER?.user?._id ?
               <StudentCard key={student._id + index} student={student} index={index} handleFollowings={handleFollowings} />
               :
               null
