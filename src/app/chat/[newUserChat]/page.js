@@ -32,6 +32,30 @@ export default function Page(props) {
     }
   }, [sender]);
 
+  React.useEffect(() => {
+    let body = {
+      user1: props?.params?.newUserChat,
+      user2: USER?.user?._id,
+    }
+
+    body.user1 && body.user2 &&
+      axios.put('/api/chatLog', body)
+        .then(response => response.data)
+        .then(data => {
+          if (data.success) {
+            const box = document.querySelector('.chatting-message-box');
+            for(let index in data.chats) {
+              let chat = data.chats[index];
+              console.log(chat);
+              let content = chatModel(chat.receiverId === USER.user._id ? chat.senderName : "you", chat.message, chat.receiverId === USER.user._id ? 'left' : 'right');
+              box.appendChild(content);
+            }
+          }
+          console.log(data)
+        })
+        .catch(error => console.log(error.message))
+  }, [USER?.user?._id, props?.params?.newUserChat]);
+
   const handleConnection = () => {
     socket.emit("new-user", USER.user?.name);
   }
