@@ -18,7 +18,12 @@ const chatSchema = new mongoose.Schema({
     receiverName:{
         type:String,
         required:[true , "sender-name is missing."],
+    },    
+    message:{
+        type:String,
+        required:[true , "chat-message is missing."],
     },
+    
 });
 
 

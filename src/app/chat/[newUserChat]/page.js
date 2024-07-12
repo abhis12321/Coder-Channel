@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useAuth } from "../../_components/AuthProvider";
+import axios from "axios";
 
 
 export default function Page(props) {
@@ -21,12 +22,12 @@ export default function Page(props) {
 
   React.useEffect(() => {
     socket?.on("connect", handleConnection);
-    socket?.on("receivePersonalMessage", handlePersonalMessage);
+    socket?.on("receivePersonalMessage", handleReceiveMessage);
     socket?.on("disconnect", handleDisconnection);
 
     return () => {
       socket?.off("connect", handleConnection);
-      socket?.off("receivePersonalMessage", handlePersonalMessage);
+      socket?.off("receivePersonalMessage", handleReceiveMessage);
       socket?.off("disconnect", handleDisconnection);
     }
   }, [sender]);
@@ -36,7 +37,7 @@ export default function Page(props) {
     socket.emit("new-user", USER.user?.name);
   }
 
-  const handlePersonalMessage = async(data) => {
+  const handleReceiveMessage = async(data) => {
     if (data.senderId == sender?._id && data.receiverId == USER?.user?._id) {
       const box = document.querySelector(".chatting-message-box");
       let message = chatModel(data.Name  , data.message, "left");
@@ -51,12 +52,22 @@ export default function Page(props) {
   const handleSendNewMessage = (e) => {
     e.preventDefault();
     if (message.length > 0) {
+      let data = {
+        senderId:USER?.user?._id,
+        senderName:USER?.user?.name,
+        receiverId:sender?._id,
+        receiverName:sender?.name,
+        message,
+      }
       const box = document.querySelector('.chatting-message-box');
       let content = chatModel("you" , message, 'right');
       box.appendChild(content);
       socket?.emit('sendPersonalMessage', { Name:USER.user?.name, message, senderId:USER?.user?._id, receiverId:sender?._id });
       setMessage("");
-      // console.log("Sending..");
+
+      axios.post('/api/chatLog' , data)
+        .then(response => console.log(response))
+        .catch(error => console.log(error.message));
     }
   };
 
@@ -64,7 +75,7 @@ export default function Page(props) {
     <div className="text-white rounded-md bg-gradient-to-r from-white to-white dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white w-[100%] max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative h-nav" >
       <div className="bg-slate-950/10 dark:bg-slate-900 shadow-[0_0_3px_red] rounded-md p-2 mx-4 md:mx-9">
         <h1 className="text-2xl font-semibold drop-shadow-[1px_1px_1px_red]">{sender?.name}</h1>
-        <p onClick={handlePersonalMessage}>loading...</p>
+        <p onClick={handleReceiveMessage}>loading...</p>
       </div>
 
       <div className="chatting-message-box flex flex-col justify-evenly gap-3 p-3 overflow-auto flex-1 md:mx-6">
