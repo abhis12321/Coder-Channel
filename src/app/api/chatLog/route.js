@@ -16,3 +16,19 @@ export async function POST(request) {
         return NextResponse.json({success:false , message:error.message});
     }
 }
+
+export async function PUT(request) {
+    try {
+        let {user1 , user2} = await request.json();
+        let chats = await Chat.find({
+            $or:[
+                {senderId:user1 , receiverId:user2},
+                {senderId:user2 , receiverId:user1}
+            ]
+        })
+        console.log(user1, user2);
+        return NextResponse.json({success:true , chats});
+    } catch(error) {
+        return NextResponse.json({success:false , message:error.message});
+    }
+}
