@@ -9,6 +9,7 @@ export default function Page(props) {
   const socket = USER.socket;
   const [sender, setSender] = useState("hello");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState(sender?.isOnline);
 
   React.useEffect(() => {
     fetch(`/api/users/${props.params.newUserChat}`)
@@ -16,6 +17,7 @@ export default function Page(props) {
       .then((data) => {
         if (data.success) {
           setSender(data);
+          setStatus(data.isOnline > 0);
         }
       });
   }, [props.params.newUserChat, USER.sender, USER]);
@@ -46,7 +48,7 @@ export default function Page(props) {
             const box = document.querySelector('.chatting-message-box');
             for (let index in data.chats) {
               let chat = data.chats[index];
-              console.log(chat);
+              // console.log(chat);
               let content = chatModel(chat.receiverId === USER.user._id ? chat.senderName : "you", chat.message, chat.receiverId === USER.user._id ? 'left' : 'right');
               box.appendChild(content);
             }
@@ -54,6 +56,22 @@ export default function Page(props) {
         })
         .catch(error => console.log(error.message));
   }, [USER?.user?._id, props?.params?.newUserChat]);
+
+
+  const handleStatus = React.useCallback(({ _id, status }) => {
+    console.log("haha..", sender.isOnline, _id, status);
+    if (sender._id == _id) {
+      setStatus(status);
+    }
+  }, [sender]);
+
+  React.useEffect(() => {
+    socket?.on("online-status", handleStatus);
+    return () => {
+      socket?.off("online-status", handleStatus);
+    }
+  }, [socket, USER, handleStatus]);
+
 
   const handleConnection = () => {
     socket.emit("new-user", USER.user?.name);
@@ -96,11 +114,11 @@ export default function Page(props) {
 
   return (
     <div className="text-white rounded-md bg-gradient-to-r from-white to-white dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white w-[100%] max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative h-nav" >
-      <div className={`bg-slate-950/10 dark:bg-slate-900 ${sender.isOnline > 0 ? 'shadow-[0_0_3px_green]' : 'shadow-[0_0_3px_red]'} rounded-md p-2 mx-4 md:mx-9`}>
-        <div className={`relative text-2xl font-semibold  ${sender.isOnline > 0 ? 'drop-shadow-[1px_1px_1px_green]' : 'drop-shadow-[1px_1px_1px_red]'}`}>
+      <div className={`bg-slate-950/10 dark:bg-slate-900 ${status ? 'shadow-[0_0_3px_green]' : 'shadow-[0_0_3px_red]'} rounded-md p-2 mx-4 md:mx-9`}>
+        <div className={`relative text-2xl font-semibold  ${status ? 'drop-shadow-[1px_1px_1px_green]' : 'drop-shadow-[1px_1px_1px_red]'}`}>
           {sender?.name}
-          <p onClick={handleReceiveMessage} className={`absolute top-0 text-[8px] font-semibold px-1 py-0 leading-4 inline-flex rounded-full ${sender.isOnline > 0 ? "dark:bg-green-800 bg-lime-900" : "dark:bg-red-800 bg-red-900"} `}>{sender.isOnline > 0 ? "online" : "offline"}</p>
-          </div>
+          <p onClick={handleReceiveMessage} className={`absolute top-0 text-[8px] font-semibold px-1 py-0 leading-4 inline-flex rounded-full ${status ? "dark:bg-green-800 bg-lime-900" : "dark:bg-red-800 bg-red-900"} `}>{status ? "online" : "offline"}</p>
+        </div>
       </div>
 
       <div className="chatting-message-box flex flex-col justify-evenly gap-3 p-3 overflow-auto flex-1 md:mx-6">
