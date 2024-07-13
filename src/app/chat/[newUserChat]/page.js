@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../_components/AuthProvider";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 
 
 export default function Page(props) {
@@ -18,10 +19,10 @@ export default function Page(props) {
     }
   }, [sender]);
 
-  
+
   const handleConnection = React.useCallback(() => {
     socket.emit("new-user", USER.user?.name);
-  } , [USER.user?.name, socket])
+  }, [USER.user?.name, socket])
 
   const handleReceiveMessage = React.useCallback(async (data) => {
     if (data.senderId == sender?._id && data.receiverId == USER?.user?._id) {
@@ -58,7 +59,7 @@ export default function Page(props) {
     }
   };
 
-  
+
   React.useEffect(() => {
     fetch(`/api/users/${props.params.newUserChat}`)
       .then((res) => res.json())
@@ -111,13 +112,13 @@ export default function Page(props) {
 
   return (
     <div className="text-white rounded-md bg-gradient-to-r from-white to-white dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white w-[100%] max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative h-nav" >
-      <div className={`bg-slate-950/10 dark:bg-slate-900 ${status ? 'shadow-[0_0_3px_green]' : 'shadow-[0_0_3px_red]'} rounded-md pl-4 p-2 mx-4 md:mx-9 flex items-center gap-6`}>
-      <Image src={sender?.imgUrl ? sender?.imgUrl : "/img/profileImg.jpg"} alt="image" height={70} width={70} className={`rounded-full w-16 h-16 ring-2 ${status ? "ring-green-600" : "ring-red-600"}`}/>
+      <Link href={`/students/${sender?._id}`} className={`bg-slate-950/10 dark:bg-slate-900 ${status ? 'shadow-[0_0_3px_green]' : 'shadow-[0_0_3px_red]'} rounded-md pl-4 p-2 mx-4 md:mx-9 flex items-center gap-6 hover:bg-red-800/20 hover:animate-pulse`}>
+        <Image src={sender?.imgUrl ? sender?.imgUrl : "/img/profileImg.jpg"} alt="image" height={70} width={70} className={`rounded-full w-16 h-16 ring-2 ${status ? "ring-green-600" : "ring-red-600"}`} />
         <div className={`relative text-2xl font-semibold  ${status ? 'drop-shadow-[1px_1px_1px_green]' : 'drop-shadow-[1px_1px_1px_red]'}`}>
           {sender?.name}
           <p onClick={handleReceiveMessage} className={`absolute top-0 text-[8px] font-semibold px-1 py-0 leading-4 inline-flex rounded-full ${status ? "dark:bg-green-800 bg-lime-900" : "dark:bg-red-800 bg-red-900"} `}>{status ? "online" : "offline"}</p>
         </div>
-      </div>
+      </Link>
 
       <div className="chatting-message-box flex flex-col justify-evenly gap-3 p-3 overflow-auto flex-1 md:mx-6">
 

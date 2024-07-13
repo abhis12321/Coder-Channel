@@ -73,7 +73,7 @@ export default function StudentCard({ student, index , handleFollowings } ) {
       <div className="text-2xl font-bold text-red-950 dark:text-gray-50">
         {student.name}
       </div>
-      <div className="text-center text-gray-50 dark:text-slate-400 drop-shadow-[0_0_3px_black]">
+      <div className="text-center text-white dark:text-slate-400 drop-shadow-[0_0_3px_black]">
         {student.university}
       </div>
       <div className="flex justify-center items-center gap-8">
