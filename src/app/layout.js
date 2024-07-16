@@ -5,7 +5,7 @@ import Footer from './_components/Footer'
 
 
 export const metadata = {
-  title: "Student'media",
+  title: "Coder'media",
   description: 'A Coding and Development discussion app',
 }
 

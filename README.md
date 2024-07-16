@@ -1,2 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project deployed with render [`coder'media`](https://coder-media.onrender.com). 
-It may take a minutes for the first the loading as the render project deployements go into sleep mode if they are not being used for a long time. So, Please wait for the loadings and go through its features and suggest me if there is any modification required in your view. You and your suggestions are welcomed.
+This is a [Next.js](https://nextjs.org/) project deployed on AWS EC2 [`coder'media` http://13.126.26.12/](http://13.126.26.12/students). 
+
+Please take a look of live deployment and go through its features and create a account if possible and suggest me if there is any modification required in your view. You and your suggestions are welcomed.
+
+
+## [http://13.126.26.12/students](http://13.126.26.12/students)
+
+## Note
+If you have registered but your account is not been verified by the next 10 minutes your account will be deleted from our database assuming it a fake registration.
+
+Hence after registration your account verifiction is recommanded within the next 10 minutes.
+
+[![Alt text](/public/img/preview.png)](http://13.126.26.12/students)

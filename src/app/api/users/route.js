@@ -79,7 +79,7 @@ const transporter = nodemailer.createTransport({
   });
   
   async function sendVerificationEmail(email, token , origin) {
-    origin  = "https://coder-media.onrender.com/";
+    origin  = "http://13.126.26.12/";
     const link = `${origin}/login/${token}?e=${email}`;
   
     const mailOptions = {
