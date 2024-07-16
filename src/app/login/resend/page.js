@@ -15,7 +15,7 @@ export default function Page() {
                     .then(res => res.json())
                     .catch(err => {message:"bad request"})
 
-        alert(`${info.message}`)
+        alert(`${info}`)
     }
     return (
         <div className="flex items-center justify-center  h-nav">
