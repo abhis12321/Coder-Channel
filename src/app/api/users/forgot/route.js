@@ -46,6 +46,6 @@ export async function POST(req) {
       });
     }
   } catch (error) {
-    return NextResponse.json({ message: error.message , user:process.env.USER , pass:process.env.E_PASS });
+    return NextResponse.json({ message: error.message });
   }
 }

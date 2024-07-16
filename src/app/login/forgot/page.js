@@ -14,7 +14,7 @@ export default function Page() {
                     .then(res => res.json())
                     .catch(err => {message:"bad request"})
 
-        alert(`${info}`)
+        alert(`${info.message}`)
         
     }
     return (
