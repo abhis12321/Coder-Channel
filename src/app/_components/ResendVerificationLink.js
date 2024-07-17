@@ -14,8 +14,7 @@ export default function ResendVerificationLink({ setOption }) {
             .then(res => res.json())
             .catch(error => { message: error.message })
 
-        alert(`${info.message}`)
-        console.log(info);
+        alert(`${info.message}`);
     }
     return (
         <div className="fixed top-0 left-0 z-20 h-[100vh] w-full flex items-center justify-center bg-gray-700/90">

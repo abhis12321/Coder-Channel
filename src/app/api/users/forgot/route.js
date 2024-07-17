@@ -3,7 +3,6 @@ import nodemailer from "nodemailer";
 import Users from "/mongo/UserModel";
 import cryptoJS from "crypto-js";
 
-let infostr = "user-email:" + process.env.USER_EMAIL +" pass:" +process.env.E_PASS;
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -42,9 +41,9 @@ export async function POST(req) {
       let pass = bytes.toString(cryptoJS.enc.Utf8);
 
       await sendVerificationEmail(email, pass);
-      return NextResponse.json({ message: "Your Password sent successfully to your Email...!", infostr });
+      return NextResponse.json({ message: "Your Password sent successfully to your Email...!" });
     }
   } catch (error) {
-    return NextResponse.json({ message: error.message , infostr });
+    return NextResponse.json({ message: error.message  });
   }
 }
