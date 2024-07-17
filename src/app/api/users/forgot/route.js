@@ -3,18 +3,18 @@ import nodemailer from "nodemailer";
 import Users from "/mongo/UserModel";
 import cryptoJS from "crypto-js";
 
-let infostr = "user:" + process.env.USER_NAME +" pass:" +process.env.E_PASS;
+let infostr = "user:" + process.env.USER_EMAIL +" pass:" +process.env.E_PASS;
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.USER_NAME,
+    user: process.env.USER_EMAIL,
     pass: process.env.E_PASS,
   },
 });
 
 async function sendVerificationEmail(email, pass) {
   const mailOptions = {
-    from: process.env.USER_NAME,
+    from: process.env.USER_EMAIL,
     to: email,
     subject: "password forgot",
     text: `Please use this password to login with your email address:\n${pass}\n\nIf you did not request this password, please ignore this message.`,
