@@ -1,10 +1,13 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuth } from '../_components/AuthProvider';
+import ForgotPassword from './ForgotPassword';
+import ResendVerificationLink from './ResendVerificationLink';
 
 export default function LoginForm() {
-  const [password, setPass] = React.useState("");
-  const [email, setEmail] = React.useState("");
+  const [option, setOption] = useState(0);
+  const [password, setPass] = useState("");
+  const [email, setEmail] = useState("");
   let USER = useAuth();
 
   const handleLogin = async (e) => {
@@ -26,14 +29,18 @@ export default function LoginForm() {
         <input type="password" value={password} onChange={(e) => setPass(e.target.value)} className='bg-blue-950/10 dark:bg-red-600/15 px-2 py-[10px] rounded text-center w-[96%] max-w-[550px] outline-none focus:bg-green-600/15 ring-1 focus:ring-2 ring-violet-700 dark:ring-gray-400' placeholder='password' name='password' required />
 
         <div className="flex items-center justify-evenly w-[98%] max-w-[550px] text-xs xs:text-sm" >
-          <Link href={`/login/resend`} className="text-blue-600 font-semibold underline hover:text-blue-700 hover:scale-110">Resend Verification Link</Link>
-          <Link href={`/login/forgot`} className="text-blue-600 font-semibold underline hover:text-blue-700 hover:scale-110">forgot password</Link>
+          <div onClick={e => setOption(2)} className="text-blue-600 font-semibold underline hover:text-blue-700 hover:scale-110">Resend Verification Link</div>
+          <div onClick={e => setOption(1)} className="text-blue-600 font-semibold underline hover:text-blue-700 hover:scale-110">forgot password</div>
         </div>
 
         <div className="w-[96%] max-w-[550px] flex justify-between">
           <Link href={`/login/registration`} className='w-[120px] xs:w-[150px] text-center rounded-md bg-red-900/95 py-2 hover:bg-red-700 font-mono' >Resister New</Link>
           <button type='submit' className='w-[120px] xs:w-[150px] text-center rounded-md bg-red-900/95 py-2 hover:bg-red-700 font-mono' >Login</button>
         </div>
-      </form></div>
+      </form>
+
+      {option == 1 && <ForgotPassword setOption={setOption} />}
+      {option == 2 && <ResendVerificationLink setOption={setOption} />}
+    </div>
   )
 }

