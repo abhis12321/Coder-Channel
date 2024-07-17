@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 import Users from "/mongo/UserModel";
 import cryptoJS from "crypto-js";
 
-let infostr = "user:" + process.env.USER_EMAIL +" pass:" +process.env.E_PASS;
+let infostr = "user-email:" + process.env.USER_EMAIL +" pass:" +process.env.E_PASS;
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
