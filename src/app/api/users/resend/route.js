@@ -2,12 +2,12 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import Users from "/mongo/UserModel";
 
-let infostr = "user:" + process.env.USER +" pass:" +process.env.E_PASS;
+let infostr = "user:" + process.env.USER_NAME +" pass:" +process.env.E_PASS;
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.USER,
+    user: process.env.USER_NAME,
     pass: process.env.E_PASS,
   },
 });
@@ -17,7 +17,7 @@ async function sendVerificationEmail(email, token , origin) {
   const link = `${origin}/login/${token}?e=${email}`;
 
   const mailOptions = {
-    from: process.env.USER,
+    from: process.env.USER_NAME,
     to: email,
     subject: "Email Verification Link",
     text: `Please click on this link to verify your email address:\n${link}\n\nIf you did not request this verification, please ignore this message.`,

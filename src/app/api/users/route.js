@@ -73,7 +73,7 @@ export async function POST(req, res) {
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.USER,
+      user: process.env.USER_NAME,
       pass: process.env.E_PASS,
     },
   });
@@ -83,7 +83,7 @@ const transporter = nodemailer.createTransport({
     const link = `${origin}/login/${token}?e=${email}`;
   
     const mailOptions = {
-      from: process.env.USER,
+      from: process.env.USER_NAME,
       to: email,
       subject: "Email Verification",
       text: `Please click on this link to verify your email address:\n${link}\n\nIf you did not request this verification, please ignore this message.`,
