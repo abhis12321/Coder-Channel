@@ -14,6 +14,7 @@ export default function ForgotPassword({ setOption }) {
             .catch(error => { message: error.message })
 
         alert(`${info.message}`)
+        setOption(0);
     }
 
 

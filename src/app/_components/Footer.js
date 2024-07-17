@@ -69,8 +69,8 @@ export default function Footer() {
             <Link href={'/students'} className='py-1 px-3 rounded-md text-gray-100 hover:text-gray-400 text-center'>students</Link>
           </div>
           <div className="flex flex-row md:flex-col md:gap-2 justify-between items-center md:items-start">
-            <Link href={'/about'} className='py-1 px-3 rounded-md text-gray-100 hover:text-gray-400 text-center'>about</Link>
-            <Link href={'/contact'} className='py-1 px-3 rounded-md text-gray-100 hover:text-gray-400 text-center'>contact</Link>
+            <Link href={'/'} className='py-1 px-3 rounded-md text-gray-100 hover:text-gray-400 text-center'>about</Link>
+            <Link href={'/'} className='py-1 px-3 rounded-md text-gray-100 hover:text-gray-400 text-center'>contact</Link>
             <Link href={'/chat'} className='py-1 px-3 rounded-md text-gray-100 hover:text-gray-400 text-center'>public chat</Link>
           </div>
         </div>

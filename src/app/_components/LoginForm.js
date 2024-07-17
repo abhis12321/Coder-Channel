@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useAuth } from '../_components/AuthProvider';
 import ForgotPassword from './ForgotPassword';
 import ResendVerificationLink from './ResendVerificationLink';
+import UserRegistration from './UserRegistration'
 
 export default function LoginForm() {
   const [option, setOption] = useState(0);
@@ -30,13 +31,14 @@ export default function LoginForm() {
         </div>
 
         <div className="w-[96%] max-w-[550px] flex justify-between">
-          <Link href={`/login/registration`} className='w-[120px] xs:w-[150px] text-center rounded-md bg-red-900/95 py-2 hover:bg-red-700 font-mono' >Register New</Link>
+          <div onClick={e => setOption(3)} className='w-[120px] xs:w-[150px] text-center rounded-md bg-red-900/95 py-2 hover:bg-red-700 font-mono' >Register New</div>
           <button type='submit' className='w-[120px] xs:w-[150px] text-center rounded-md bg-red-900/95 py-2 hover:bg-red-700 font-mono' >Login</button>
         </div>
       </form>
 
       {option == 1 && <ForgotPassword setOption={setOption} />}
       {option == 2 && <ResendVerificationLink setOption={setOption} />}
+      {option == 3 && <UserRegistration setOption={setOption} /> }
 
     </div>
   )

@@ -125,10 +125,10 @@ export default function StudentCard({ student, index , handleFollowings } ) {
             />
           </Link>
         </div>
-        <FontAwesomeIcon
+        .<FontAwesomeIcon
           icon={faShareNodes}
           size="1x"
-          className="text-gray-800 dark:text-gray-400 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  "
+          className="text-gray-800 dark:text-gray-400 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer"
           onClick={handleCopyURL}
         />
       </div>
