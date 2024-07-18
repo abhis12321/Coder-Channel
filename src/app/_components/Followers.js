@@ -14,7 +14,7 @@ export default function Followers({ followers, setConnections, handleRemoveFollo
             followers.map((user, index) =>
               <div className="flex justify-between items-center p-2 font-mono bg-blue-900/20 dark:bg-blue-400/20 rounded w-full hover:bg-green-900/40 text-red-950 dark:text-white" key={index}>
                 <Link href={`/students/${user.followedById}`} className="flex-1 font-bold" key={index}>{user.followedByName}</Link>
-                { handleRemoveFollower && <button className="text-sm px-2 py-[2px] bg-gray-500 hover:bg-gray-900 rounded-lg cursor-auto" onClick={handleRemoveFollower}>remove</button> }
+                { handleRemoveFollower && <button className="text-sm hover:text-white px-2 py-[2px] bg-gray-500 hover:bg-gray-900 rounded-lg cursor-auto" onClick={e => handleRemoveFollower(user._id)}>remove</button> }
               </div>
             )
             :

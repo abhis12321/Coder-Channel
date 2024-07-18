@@ -20,3 +20,14 @@ export async function POST(req , {params}) {
         return NextResponse.json({message:error.message , success:false})
     }
 }
+
+
+export async function DELETE(req , {params}) {
+    try {
+        await Followers.findByIdAndDelete(params._id);
+        return NextResponse.json({ success:true , message:"Task completed." });
+    } catch(error) {
+        console.log("error...");
+        return NextResponse.json({ success:false , message:error.message });
+    }
+}

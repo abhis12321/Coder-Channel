@@ -1,7 +1,7 @@
 "use client"
 import axios from 'axios';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Followers from './Followers';
 import Followings from './Followings';
 // import { useAuth } from './AuthProvider';
@@ -17,51 +17,46 @@ export default function ProfileCard({ student, setStatus }) {
   const [blogs, setBlogs] = useState([]);
   const [editable, setEditable] = useState(false);
 
-
-  useEffect(() => {
+  const updateFollowers = useCallback(() => {
     axios.get(`/api/users/follow/${student?._id}`)
       .then(result => result.data)
       .then(data => data.success && setFollowers(data.followers));
+  } , [student?._id]);
 
-
+  const updateFollowings = useCallback(() => {
+    console.log("followings");
     axios.post(`/api/users/follow/${student?._id}`)
       .then(result => result.data)
       .then(data => data.success && setFollowings(data.followings));
+  } , [student?._id]);
 
-
+  const updateBlogs = useCallback(() => {
     axios.get(`/api/blogs/${student?._id}`)
       .then(result => result.data)
       .then(data => data.success && setBlogs(data.blogs));
-  }, [student?._id]);
+  } , [student?._id]);
 
-  const handleUnFollow = () => {
-    // if (!student) {
-    //   alert("login first to follow a user!")
-    // } else {
-    //   axios.post('/api/users/follow', {
-    //     followedById: student?._id,
-    //     followedByName: student?.name,
-    //     followedToId: student?._id,
-    //     followedToName: student?.name,
-    //   })
-    //     .then(result => result.data)
-    //     .then(data => alert(data.message));
-    // }
+
+  useEffect(() => {
+    updateFollowers();
+    updateFollowings();
+    updateBlogs();
+  }, [student._id, updateBlogs, updateFollowers, updateFollowings]);
+
+  const handleUnFollow = (_id) => {
+    axios.delete(`/api/users/follow/${_id}`)
+        .then(result => result.data)
+        .then(data => data.success)
+        .then(success => success && updateFollowings())
+        .catch(error => alert(error.message));
   }
 
-  const handleRemoveFollower = () => {
-    // if (!student) {
-    //   alert("login first to follow a user!")
-    // } else {
-    //   axios.post('/api/users/follow', {
-    //     followedById: student?._id,
-    //     followedByName: student?.name,
-    //     followedToId: student?._id,
-    //     followedToName: student?.name,
-    //   })
-    //     .then(result => result.data)
-    //     .then(data => alert(data.message));
-    // }
+  const handleRemoveFollower = (_id) => {
+    axios.delete(`/api/users/follow/${_id}`)
+        .then(result => result.data)
+        .then(data => data.success)
+        .then(success => success && updateFollowers())
+        .catch(error => alert(error.message));
   }
 
   return (
