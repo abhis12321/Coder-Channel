@@ -41,7 +41,7 @@ export default function StudentCard({ student, index , handleFollowings } ) {
   }, [student._id, student]);
 
   const handleCopyURL = e => {
-    navigator.clipboard.writeText(`https://coder-media.onrender.com//students/${student?._id}`);
+    navigator.clipboard.writeText(`http://13.201.72.123/students/${student?._id}`);
     alert('profile url copied')
   }
 

@@ -17,6 +17,7 @@ export default async function SocketHandler(req, res) {
 
             socket.on('new-user', async ({ name, _id }) => {
                 map[userId] = _id;
+                socket.join(_id);
                 socket.broadcast.emit("online-status", { _id, status: true })
                 socket.broadcast.emit('newUser', name);
             });
@@ -26,7 +27,8 @@ export default async function SocketHandler(req, res) {
             });
 
             socket.on('sendPersonalMessage', data => {
-                socket.broadcast.emit('receivePersonalMessage', data);
+                socket.to(data.receiverId).emit('receivePersonalMessage', data);
+                // socket.broadcast.emit('receivePersonalMessage', data);
             });
 
             socket.on('disconnect', async () => {
