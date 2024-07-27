@@ -41,8 +41,12 @@ export default function StudentCard({ student, index , handleFollowings } ) {
   }, [student._id, student]);
 
   const handleCopyURL = e => {
-    navigator.clipboard.writeText(`http://13.201.72.123/students/${student?._id}`);
-    alert('profile url copied')
+    navigator.clipboard.writeText(`http://13.201.72.123/students/${student?._id}`)
+    .then(() => {
+      alert('profile url copied')
+    }, () => {
+      alert('error! copy failed.')
+    });
   }
 
   const handleFollowers = () => {
