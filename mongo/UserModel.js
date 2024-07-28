@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import dbConnect from "./dbConnect";
+import { type } from "os";
 
 dbConnect();
 const userSchema = new mongoose.Schema({    //data model
@@ -69,6 +70,10 @@ const userSchema = new mongoose.Schema({    //data model
         type:Number,
         default:0,
     },
+    createdAt: {
+        type:Date,
+        default:Date.now,
+    }
 });
 
 
