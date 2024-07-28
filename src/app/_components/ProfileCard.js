@@ -4,7 +4,6 @@ import Image from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react'
 import Followers from './Followers';
 import Followings from './Followings';
-// import { useAuth } from './AuthProvider';
 import Blogs from './BlogCard';
 import ProfileEdit from './ProfileEdit'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,7 +23,6 @@ export default function ProfileCard({ student, setStatus }) {
   } , [student?._id]);
 
   const updateFollowings = useCallback(() => {
-    console.log("followings");
     axios.post(`/api/users/follow/${student?._id}`)
       .then(result => result.data)
       .then(data => data.success && setFollowings(data.followings));

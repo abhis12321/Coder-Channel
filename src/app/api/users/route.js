@@ -15,19 +15,19 @@ export async function GET() {
   
 export async function POST(req, res) {
     try {
-      let origin = (req.url).slice(0 , -10);
       let data = await req.json();
-      let email = data.email;
-    
-    // Encrypt a message
+      let email = data.email;    
+    // Encrypting the password
       let ciphertext = cryptoJS.AES.encrypt(data.password, email).toString();
-      let token = await Users.insertMany([{...data , verify:false , password:ciphertext}]);
-      
-      token = token[0]._id;
-      await sendVerificationEmail(email, token , origin);
+
+      let user = new Users({...data , verify:false , password:ciphertext});
+      await user.save();      
+      await sendVerificationEmail(email, user._id);
+
       setTimeout(async() => {
         await Users.findOneAndDelete({email , verify:false});
       }, 600000);
+
       return NextResponse.json({ message: "Verification Link sent successfully to your Email...! It will be valid only for 10 minutes, If you fails to verify within the time your registration will be cancelled. And you have to register again for further process" , success:true });
     } 
     catch (error) {
@@ -78,9 +78,9 @@ const transporter = nodemailer.createTransport({
     },
   });
   
-  async function sendVerificationEmail(email, token , origin) {
-    origin = process.env.DOMAIN_LINK;
-    const link = `${origin}/login/${token}?e=${email}`;
+  async function sendVerificationEmail(email, token) {
+    let hostname = process.env.DOMAIN_LINK;
+    const link = `${hostname}/login/${token}?e=${email}`;
   
     const mailOptions = {
       from: process.env.USER_EMAIL,
