@@ -68,7 +68,7 @@ export default function ProfileCard({ student, setStatus }) {
         </div>
         :
 
-        <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-blue-700/15 sm:bg-blue-900/30 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-white`}>
+        <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-blue-900/85 dark:bg-blue-900/55 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-white shadow-[0_0_10px_gray]`}>
           <div className="w-fit flex items-center justify-center">
             <Image src={student.imgUrl} alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40 shadow-[0_0_3px_gray] bg-white ring-2 ring-green-700' />
             {
@@ -76,11 +76,11 @@ export default function ProfileCard({ student, setStatus }) {
             }
           </div>
 
-          <div className="flex flex-col gap-3 px-1 py-2 xs:p-3 md:p-4 items-center sm:items-start justify-center dark:bg-slate-700/40 bg-blue-950/30 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
+          <div className="flex flex-col gap-3 px-1 py-2 xs:p-3 md:p-4 items-center sm:items-start justify-center dark:bg-blue-100/5 bg-blue-100/10 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
             <div className="flex gap-2 md:gap-4 flex-wrap items-center">
               <h1 className="text-2xl sm:text-3xl font-bold font-serif">{student?.name}</h1>
               <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-red-600/50 hover:bg-red-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={e => setStatus(true)}>logout</button>
-              <FontAwesomeIcon size='sm' icon={faPenToSquare} className='text-[1.5rem] cursor-pointer text-blue-700 hover:drop-shadow-[0_0_2px_yellow]' onClick={e => setEditable(true)} />
+              <FontAwesomeIcon size='sm' icon={faPenToSquare} className='text-[1.5rem] cursor-pointer text-blue-600 drop-shadow-[0_0_2px_white] hover:scale-110 hover:text-blue-800' onClick={e => setEditable(true)} />
             </div>
 
             <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm">

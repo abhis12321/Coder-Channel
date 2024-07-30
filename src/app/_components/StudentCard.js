@@ -81,21 +81,21 @@ export default function StudentCard({ student, index , handleFollowings } ) {
         {student.university}
       </div>
       <div className="flex justify-center items-center gap-8">
-        <Link href={student.linkedIn} className={`${!student.linkedIn && "pointer-events-none opacity-55"}`}>
+        <Link href={student.linkedIn} className={`${!student.linkedIn && "pointer-events-none opacity-25"}`}>
           <FontAwesomeIcon
             icon={faLinkedin}
             size="2x"
             className="hover:scale-110 text-blue-700 "
           />
         </Link>
-        <Link href={student.github} className={`${!student.github && "pointer-events-none opacity-30"}`}>
+        <Link href={student.github} className={`${!student.github && "pointer-events-none opacity-20"}`}>
           <FontAwesomeIcon
             icon={faGithub}
             size="2x"
             className="hover:scale-110 text-gray-900 dark:text-gray-100"
           />
         </Link>
-        <Link href={student.instagram} className={`${!student.instagram && "pointer-events-none opacity-55"}`}>
+        <Link href={student.instagram} className={`${!student.instagram && "pointer-events-none opacity-25"}`}>
           <FontAwesomeIcon
             icon={faInstagram}
             size="2x"
@@ -104,12 +104,12 @@ export default function StudentCard({ student, index , handleFollowings } ) {
         </Link>
       </div>
       <div className="flex items-center justify-center gap-6 font-serif">
-        <button className="w-[100px] text-center py-[6px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200" onClick={handleFollowers}>
+        <button className="w-[100px] text-center py-[5px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200" onClick={handleFollowers}>
           {student.isFollowing ? "following" : "follow"}
         </button>
         <Link
           href={`chat/${student._id}`}
-          className="w-[100px] text-center py-[6px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200"
+          className="w-[100px] text-center py-[5px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200"
         >
           Message
         </Link>

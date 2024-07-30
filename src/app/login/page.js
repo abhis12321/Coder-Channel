@@ -15,14 +15,14 @@ export default function Page() {
 
   return (
     <div className="flex flex-col gap-5 py-5 items-center justify-center bg-no-repeat bg-center bg-contain h-nav">
-      {status ?
-        (!USER.user ?
+      { !USER?.user ?
           <LoginForm />
           :
           <ProfileCard student={USER?.user} setStatus = {e => setStatus(false)}/>
-        )
-        :
-        <UserLogout USER={USER} setStatus={setStatus}/>
+      }
+
+      {
+        !status &&  <UserLogout USER={USER} setStatus={setStatus}/>
       }
     </div>
   )
