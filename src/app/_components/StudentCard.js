@@ -16,7 +16,7 @@ import Link from "next/link";
 import { useAuth } from "./AuthProvider";
 
 
-export default function StudentCard({ student, index , handleFollowings } ) {
+export default function StudentCard({ student, index , handleFollowings , search } ) {
   const USER = useAuth();
   const socket = USER.socket;
   const [status, setStatus] = useState(student.isOnline);
@@ -60,7 +60,7 @@ export default function StudentCard({ student, index , handleFollowings } ) {
   }
 
   return (
-    <div className="bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-700/85 dark:to-slate-900 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_6px_black] dark:shadow-[0_0_6px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_10px_violet] rounded-lg flex flex-col justify-evenly items-center gap-3">
+    <div className={`bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-700/85 dark:to-slate-900 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_6px_black] dark:shadow-[0_0_6px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_10px_violet] rounded-lg flex flex-col justify-evenly items-center gap-3 ${!student.name.toLowerCase().includes(search) && "hidden"}`}>
       <div className="relative">
         <Image
           src={student.imgUrl ? student.imgUrl : "/img/profileImg.jpg"}
