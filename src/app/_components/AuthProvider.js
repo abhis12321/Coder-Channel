@@ -2,11 +2,14 @@
 import axios from "axios";
 import React, { createContext, useCallback, useEffect, useState } from "react";
 import io from "socket.io-client";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 const context = createContext();
 
-export default function AuthProvider({ children }) {
+export default function AuthProvider({ children , initial_theme }) {
   const [user, setUser] = useState(null);
   let [socket, setSocket] = useState();
+  const [theme , setTheme] = useState(initial_theme);
 
 
   const login = useCallback(async ({ email, password }) => {
@@ -18,7 +21,7 @@ export default function AuthProvider({ children }) {
             Initializing(data.User, setSocket);
             setUser(data.User);
             axios.put(`/api/users/${data.User._id}`, { isOnline: 1 });
-            localStorage.setItem('coder-media', JSON.stringify({ email , password}));
+            localStorage.setItem('coder-media', JSON.stringify({ email, password }));
           } else {
             alert(data.message);
           }
@@ -41,17 +44,18 @@ export default function AuthProvider({ children }) {
   }, [login]);
 
 
-  const value = {
-    user,
-    login,
-    logout,
-    socket,
-  };
+  const value = { user, login, logout, socket, theme , setTheme };
 
 
   return (
     <context.Provider value={value}>
-      {children}
+      <body className={`${theme} bg-slate-100 text-gray-950 dark:bg-gray-950 dark:text-white`}>
+        <NavBar />
+        <div className='h-nav'>
+          {children}
+        </div>
+        <Footer />
+      </body>
     </context.Provider>
   );
 }

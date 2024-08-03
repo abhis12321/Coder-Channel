@@ -1,8 +1,6 @@
 import './globals.css'
-import NavBar from './_components/NavBar'
 import AuthProvider from './_components/AuthProvider'
-import Footer from './_components/Footer'
-
+import { cookies } from 'next/headers'
 
 export const metadata = {
   title: "Coder'channel",
@@ -10,17 +8,14 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  const cookieStore = cookies();
+  const { value : initial_theme } = cookieStore.get('theme') || "dark";
+
   return (
     <html lang="en" className="">
-      <body className="dark bg-slate-100 text-gray-950 dark:bg-gray-950 dark:text-white">
-        <AuthProvider>
-          <NavBar />
-          <div className='h-nav'>
-            {children}
-          </div>
-          <Footer />
-        </AuthProvider>
-      </body>
+      <AuthProvider initial_theme={initial_theme}>
+        {children}
+      </AuthProvider>
     </html>
   )
 }
