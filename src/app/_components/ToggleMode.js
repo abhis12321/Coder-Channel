@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export default function ToggleMode() {
   const { theme , setTheme } = useAuth();
-    const toggleMode = e => {
+    const toggleMode = () => {
       axios.put("/api" , { theme:theme === "dark" ? "" : "dark" })
           .catch(error => console.log(error.message));
       setTheme(prev => prev === "dark" ? "" : "dark");

@@ -56,7 +56,7 @@ function Page() {
     }
 
     return (
-        <div className='h-full relative max-w-[900px] mx-auto bg-gradient-to-r from-white to-white dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white rounded-lg pb-1 overflow-auto h-nav shadow-[0_0_10px_gray]'>
+        <div className='h-full w-full relative max-w-[900px] mx-auto bg-gradient-to-r from-white to-white dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white rounded-lg pb-1 overflow-auto h-nav shadow-[0_0_10px_gray]'>
             <div className='chatting-box px-4 flex flex-col gap-3 p-3max-h-[90.9vh] pt-3 pb-14 text-gray-100'>
                 <h1 className='text-yellow-600' >It&apos;s a Public Chat Group...</h1>
                 <p className='text-center text-3xl drop-shadow-[2px_3px_1px_red] font-semibold bg-slate-950/5 w-fit mx-auto rounded-lg py-2 px-4'>Welcome in this chat group</p>

@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { cookies } from 'next/headers';
 
 export async function GET() {
+  console.log("/api" , "GET")
   try {
     // await User.updateMany(
     //   { verify: true },

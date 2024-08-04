@@ -1,6 +1,6 @@
 import { Server } from "socket.io";
 import Users from "/mongo/UserModel";
-let map = {};
+let map = new Map();
 
 export default async function SocketHandler(req, res) {
     if (!res.socket.server.io) {
@@ -16,7 +16,7 @@ export default async function SocketHandler(req, res) {
             socket.broadcast.emit('welcome', { name: "captain jack sparrow" });
 
             socket.on('new-user', async ({ name, _id }) => {
-                map[userId] = _id;
+                map.set(userId , _id);
                 socket.join(_id);
                 socket.broadcast.emit("online-status", { _id, status: true })
                 socket.broadcast.emit('newUser', name);
@@ -32,11 +32,12 @@ export default async function SocketHandler(req, res) {
             });
 
             socket.on('disconnect', async () => {
-                let _id = map[userId];
+                const key = socket.id;
+                const _id = map.get(key);
                 let user = await updateStatus(_id);
                 socket.broadcast.emit("online-status", { _id, status: user?.isOnline > 0 });
                 socket.broadcast.emit('userLeftGroup', { Name: user?.name });
-                delete map[userId];
+                map.delete(key);
             });
         });
     }

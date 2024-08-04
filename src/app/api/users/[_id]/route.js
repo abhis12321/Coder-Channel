@@ -1,15 +1,52 @@
 import { NextResponse } from "next/server";
 import Users from "/mongo/UserModel";
 import cryptoJS from "crypto-js";
+import mongoose from "mongoose";
 
 
 export async function GET(req , {params}) {
     try {
-        let data = await Users.findOne({_id:params._id});
-        return NextResponse.json({...data._doc , success:true});
-    }
-    catch(error) {
-        return NextResponse.json({data:error.message , success:false});
+      let userId = params._id;
+      userId = userId?._id || undefined;
+      
+      const users = await Users.aggregate([
+        {
+          $lookup: {
+            from: 'followers',
+            let: { userId: '$_id' },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $and: [
+                      { $eq: ['$followedToId', '$$userId'] },
+                      { $eq: ['$followedById', new mongoose.Types.ObjectId(userId)] }
+                    ]
+                  }
+                }
+              },
+              { $limit: 1 }
+            ],
+            as: 'followStatus'
+          }
+        },
+        {
+          $addFields: {
+            isFollowing: { $gt: [{ $size: '$followStatus' }, 0] }
+          }
+        },
+        {
+          $project: {
+            followStatus: 0,
+            password: 0 // exclude password field
+          }
+        }
+      ]);
+  
+      return NextResponse.json({ success: true, users });
+    } catch (error) {
+      console.log(error.message);      
+      return NextResponse.json({ success: false, message: error.message });
     }
 }
 

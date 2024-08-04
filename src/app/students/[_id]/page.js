@@ -17,7 +17,7 @@ export default function Page({ params }) {
 
 
   useEffect(() => {   //user's personal data
-    axios.get(`/api/users/${params._id}`)
+    axios.get(`/api/single-user/${params._id}`)
       .then(res => res.data)
       .then(result => setStudent(result))
       .catch(error => alert(error.message));

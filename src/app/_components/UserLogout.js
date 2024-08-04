@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Page({ USER, setStatus }) {
-    const handleLogout = e => {
+    const handleLogout = () => {
         USER?.logout();
         setStatus(true);
     }

@@ -30,6 +30,7 @@ export default function AuthProvider({ children , initial_theme  }) {
   }, [socket]);
 
   const logout = () => {
+    axios.post(`/api/single-user`);
     axios.put(`/api/users/${user._id}`, { status: false });
     localStorage.setItem('coder-media', JSON.stringify(null));
     socket?.disconnect();
