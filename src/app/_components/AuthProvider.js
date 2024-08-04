@@ -6,12 +6,11 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 const context = createContext();
 
-export default function AuthProvider({ children , initial_theme }) {
+export default function AuthProvider({ children , initial_theme  }) {
   const [user, setUser] = useState(null);
   let [socket, setSocket] = useState();
   const [theme , setTheme] = useState(initial_theme);
-
-
+  
   const login = useCallback(async ({ email, password }) => {
     if (!socket) {
       axios.put(`/api/users`, { email, password })
@@ -41,6 +40,7 @@ export default function AuthProvider({ children , initial_theme }) {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("coder-media"));
     data && login({ email: data.email, password: data.password });
+    // loginInfo && login(loginInfo);
   }, [login]);
 
 
@@ -54,6 +54,7 @@ export default function AuthProvider({ children , initial_theme }) {
         <div className='h-nav'>
           {children}
         </div>
+        {/* <p className="h-10 w-10 mx-auto bg-red-500" onClick={greet}>click</p> */}
         <Footer />
       </body>
     </context.Provider>

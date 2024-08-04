@@ -14,12 +14,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useAuth } from "./AuthProvider";
+import CopyLink from "./CopyLink";
 
 
 export default function StudentCard({ student, index , handleFollowings , search } ) {
   const USER = useAuth();
   const socket = USER.socket;
   const [status, setStatus] = useState(student.isOnline);
+  const [copyLink , setCopyLink] = useState(0)
 
   const handleStatus = useCallback(({ _id, status }) => {
     // console.log("haha..", status , _id);
@@ -39,15 +41,6 @@ export default function StudentCard({ student, index , handleFollowings , search
   useEffect(() => {
     setStatus(student.isOnline);
   }, [student._id, student]);
-
-  const handleCopyURL = e => {
-    navigator.clipboard.writeText(`http://13.201.72.123/students/${student?._id}`)
-    .then(() => {
-      alert('profile url copied')
-    }, () => {
-      alert('error! copy failed.')
-    });
-  }
 
   const handleFollowers = () => {
     let data = {
@@ -88,7 +81,7 @@ export default function StudentCard({ student, index , handleFollowings , search
             className="hover:scale-110 text-blue-700 "
           />
         </Link>
-        <Link href={student.github} className={`${!student.github && "pointer-events-none opacity-20"}`}>
+        <Link href={student.github} className={`${!student.github && "pointer-events-none opacity-5"}`}>
           <FontAwesomeIcon
             icon={faGithub}
             size="2x"
@@ -133,10 +126,13 @@ export default function StudentCard({ student, index , handleFollowings , search
           icon={faShareNodes}
           size="1x"
           className="text-gray-800 dark:text-gray-400 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer"
-          onClick={handleCopyURL}
+          onClick={e => setCopyLink(1)}
         />
       </div>
-      
+
+      {        
+        copyLink != 0 && <CopyLink text={`http://13.201.72.123/students/${student?._id}`} setCopyLink={setCopyLink} copyLink={copyLink}/>
+      }      
     </div>
   );
 }

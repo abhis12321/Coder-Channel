@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" className="">
-      <AuthProvider initial_theme={initial_theme}>
+      <AuthProvider initial_theme={initial_theme} >
         {children}
       </AuthProvider>
     </html>

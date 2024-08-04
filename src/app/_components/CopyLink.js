@@ -1,0 +1,36 @@
+import { faCheck, faCopy } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react'
+
+export default function CopyLink({ text, copyLink, setCopyLink }) {
+    const handleCopyURL = () => {
+        try {
+            navigator.clipboard.writeText(text)
+            .then(() => {
+                setCopyLink(2);
+                setTimeout(() => {
+                    setCopyLink(1);
+                }, [4000]);
+            }, () => {
+            });   
+        } catch(error) {
+            console.log(error.message);
+            
+        }     
+    }
+
+
+    return (
+        <div className='h-[100vh] w-full fixed top-0 left-0 z-50 bg-red-700/5 flex items-center justify-center text-wrap'>
+            <div className="max-w-[98%] px-4 py-[10px] rounded-xl flex flex-wrap flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 bg-gray-200 text-red-950 shadow-[0_0_8px_black] relative">
+                <p className="font-extrabold font-mono text-center">{text}</p>
+                { copyLink === 1 ? 
+                <FontAwesomeIcon size='xs' icon={faCopy} className='h-5 sm:h-[18px] cursor-pointer text-gray-800 hover:text-blue-600' onClick={handleCopyURL} />
+                :
+                <FontAwesomeIcon size='xs' icon={faCheck} className='h-5 sm:h-[18px] cursor-pointer text-green-700 scale-y-150'/>
+                }
+                <div className="absolute top-[-14px] right-[-13px] bg-gray-50 text-red-600 text-xl font-semibold py-[1px] px-[9px] rounded-full ring-2 ring-red-600 hover:bg-red-600 hover:text-white cursor-pointer" onClick={() => setCopyLink(0)}>X</div>
+            </div>
+        </div>
+    )
+}

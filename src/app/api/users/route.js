@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 import Users from "/mongo/UserModel";
 import cryptoJS from 'crypto-js'
 import cron from 'node-cron';
+import { cookies } from 'next/headers';
 
 cron.schedule('*/10 * * * *', async () => {
   try {
@@ -63,6 +64,7 @@ export async function PUT(req) {
     }
     else if (password == pass) {
       if (User.verify) {
+        // cookies().set("coder-channel-login-info" , JSON.stringify({ email , password }));
         return NextResponse.json({ User, success: true, message: `You credentials are right and you have Logged-in...!` })
       }
       else {
