@@ -7,7 +7,6 @@ import mongoose from "mongoose";
 export async function GET(req , {params}) {
     try {
       let userId = params._id;
-      userId = userId?._id || undefined;
       
       const users = await Users.aggregate([
         {

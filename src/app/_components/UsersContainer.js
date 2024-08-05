@@ -38,7 +38,10 @@ function UsersContainer({ users }) {
 
   React.useEffect(() => {
     getData();
-  }, [getData, USER, USER.user])
+  }, [getData, USER, USER.user]);
+
+  console.log(users);
+  
   
 
   return (
