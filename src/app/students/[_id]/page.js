@@ -43,7 +43,7 @@ export default function Page({ params }) {
         .then(response => response.data)
         .then(data => data.success && setStudent({...student , isFollowed:data.isFollowed}))
         .catch(error => console.log(error.message));
-  } , [USER.user?._id, student?._id]);
+  } , [USER?.user?._id , student?._id]);
 
   const handleFollowers = () => {
     if (!USER?.user) {

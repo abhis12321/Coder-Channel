@@ -8,8 +8,9 @@ function UsersContainer({ users }) {
   let USER = useAuth();
   const [students, setStudents] = React.useState([]);
   const [search, setSearch] = useState('');
+  const [searchBy, setSearchBy] = useState("0");
 
-  const getData = useCallback(async(USER) => {
+  const getData = useCallback(async (USER) => {
     if (!users || users.length == 0) {
       axios.get(`/api/users/${USER?.user?._id}`)
         .then(res => res.data)
@@ -40,9 +41,6 @@ function UsersContainer({ users }) {
     getData();
   }, [getData, USER, USER.user]);
 
-  console.log(users);
-  
-  
 
   return (
     <>
@@ -56,12 +54,16 @@ function UsersContainer({ users }) {
 
         {students &&
           <>
-            <div className="w-full flex items-center justify-center self-start">
-              <input type="text" className="w-[98%] max-w-[500px] outline-none ring-1 focus:ring-2 ring-violet-700 text-red-950 dark:text-red-50 font-medium focus:ring-offset-teal-800 py-[6px] px-5 rounded-xl bg-violet-700/20 focus:bg-blue-700/30 dark:placeholder:text-gray-400 placeholder:text-gray-500" value={search} onChange={e => setSearch(e.target.value)} placeholder='Search By Name...' />
+            <div className="w-[98%] mx-auto flex flex-col md:flex-row gap-2 items-center justify-center self-start font-serif">
+              <select name="sort-by" id="" className="w-[98%] md:w-fit flex-1 max-w-[500px] outline-none py-2 px-3 rounded-xl text-center ring-1 focus:ring-2 ring-cyan-500 bg-green-600/20" placeholder='pending' value={searchBy} onChange={(e) => setSearchBy(e.target.value)} >
+                <option value="0" className='bg-slate-950/30'>search by user&apos;s name</option>
+                <option value="1" className='bg-slate-950/30'>search by university name</option>
+              </select>
+              <input type="text" className="w-[98%] md:w-fit flex-1 max-w-[500px] outline-none text-violet-600 font-medium py-[6px] px-5 rounded-xl ring-1 focus:ring-2 ring-cyan-500 bg-green-600/20 dark:placeholder:text-gray-400 placeholder:text-gray-500 text-center" value={search} onChange={e => setSearch((e.target.value).toLowerCase())} placeholder='type here to search...' />
             </div>
             {students?.map((student, index) => {
               return student.verify && student._id != USER?.user?._id ?
-                <StudentCard key={student._id + index} student={student} index={index} handleFollowings={handleFollowings} search={search.toLowerCase()} />
+                <StudentCard key={student._id + index} student={student} index={index} handleFollowings={handleFollowings} search={search.toLowerCase()} searchBy={searchBy} />
                 :
                 null
             })}
