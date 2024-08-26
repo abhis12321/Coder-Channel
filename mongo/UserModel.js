@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import dbConnect from "./dbConnect";
-import { type } from "os";
 
 dbConnect();
 const userSchema = new mongoose.Schema({    //data model

@@ -20,7 +20,7 @@ export default function AuthProvider({ children , initial_theme  }) {
             Initializing(data.User, setSocket);
             setUser(data.User);
             axios.put(`/api/users/${data.User._id}`, { isOnline: 1 });
-            localStorage.setItem('coder-media', JSON.stringify({ email, password }));
+            localStorage.setItem('coder-media', JSON.stringify({ email , password }));
           } else {
             alert(data.message);
           }
@@ -30,8 +30,7 @@ export default function AuthProvider({ children , initial_theme  }) {
   }, [socket]);
 
   const logout = () => {
-    axios.post(`/api/single-user`);
-    axios.put(`/api/users/${user._id}`, { status: false });
+    axios.post(`/api/single-user`);   //clearing cache
     localStorage.setItem('coder-media', JSON.stringify(null));
     socket?.disconnect();
     setSocket(null);
@@ -41,7 +40,6 @@ export default function AuthProvider({ children , initial_theme  }) {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("coder-media"));
     data && login({ email: data.email, password: data.password });
-    // loginInfo && login(loginInfo);
   }, [login]);
 
 
@@ -50,12 +48,11 @@ export default function AuthProvider({ children , initial_theme  }) {
 
   return (
     <context.Provider value={value}>
-      <body className={`${theme} bg-slate-100 text-gray-950 dark:bg-gray-950 dark:text-white`}>
+      <body className={`${theme} bg-blue-50 text-gray-800 dark:bg-gray-950 dark:text-white`}>
         <NavBar />
         <div className='h-nav'>
           {children}
         </div>
-        {/* <p className="h-10 w-10 mx-auto bg-red-500" onClick={greet}>click</p> */}
         <Footer />
       </body>
     </context.Provider>
