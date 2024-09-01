@@ -42,8 +42,6 @@ export default function Page(props) {
       box.appendChild(content);
       USER?.socket?.emit('sendPersonalMessage', { Name: USER.user?.name, message, senderId: USER?.user?._id, receiverId: sender?._id });
       setMessage("");
-
-      console.log(data);
       
       axios.post('/api/chatLog', data)
         .then(response => response.data)

@@ -7,7 +7,6 @@ export default async function SocketHandler(req, res) {
         const io = new Server(res.socket.server, {
             path: "/api/socket_io",
             addTrailingSlash: false,
-            // cors: { origin: '*' },
         });
         res.socket.server.io = io;
 
@@ -28,7 +27,6 @@ export default async function SocketHandler(req, res) {
 
             socket.on('sendPersonalMessage', data => {
                 socket.to(data.receiverId).emit('receivePersonalMessage', data);
-                // socket.broadcast.emit('receivePersonalMessage', data);
             });
 
             socket.on('disconnect', async () => {

@@ -14,7 +14,7 @@ export default function Followings({ followings, setConnections,handleUnFollow }
           followings.map((user, index) =>
             <div className="flex justify-between items-center p-2 font-mono bg-blue-900/20 dark:bg-blue-400/20 rounded w-full hover:bg-green-900/40 text-red-950 dark:text-white" key={index}>
               <Link href={`/students/${user.followedToId}`} className="flex-1 font-bold">{user.followedToName}</Link>
-              { handleUnFollow && <button className="text-sm hover:text-white px-2 py-[2px] bg-gray-500 hover:bg-gray-900 rounded-lg cursor-auto" onClick={e => handleUnFollow(user._id)}>unfollow</button> }
+              { handleUnFollow && <button className="text-sm text-white px-2 py-[2px] bg-gray-500 hover:bg-gray-900 rounded-lg cursor-auto" onClick={e => handleUnFollow(user._id)}>unfollow</button> }
             </div>
           )
           :

@@ -71,46 +71,59 @@ export default function ProfileCard({ student, setStatus }) {
         </div>
         :
 
-        <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-slate-200 dark:bg-blue-900/55 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-red-950 dark:text-white shadow-[0_0_10px_gray]`}>
-          <div className="w-fit flex items-center justify-center">
-            <Image src={student.imgUrl} alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40 bg-white ring-2 ring-green-700' />
+        <>
+          <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-slate-200 dark:bg-blue-900/55 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-red-950 dark:text-white shadow-[0_0_10px_gray]`}>
+            <div className="w-fit flex items-center justify-center">
+              <Image src={student.imgUrl} alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40 bg-white ring-2 ring-green-700' />
+            </div>
+
+            <div className="flex flex-col gap-3 px-1 py-2 xs:p-3 md:p-4 items-center sm:items-start justify-center bg-white dark:bg-blue-100/5 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
+              <div className="flex gap-2 md:gap-4 flex-wrap items-center">
+                <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{student?.name}</h1>
+                <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-red-700 hover:bg-red-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={e => setStatus(true)}>logout</button>
+                <FontAwesomeIcon size='sm' icon={faPenToSquare} className='text-[1.5rem] cursor-pointer text-blue-600 dark:drop-shadow-[0_0_2px_black] hover:scale-110 hover:text-blue-800' onClick={e => setEditable(true)} />
+              </div>
+
+              <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm text-white">
+                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30">
+                  <button className="">{student?.likes}</button>
+                  <button className="">Likes</button>
+                </div>
+                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(1)}>
+                  <button className="">{followers.length}</button>
+                  <button className="">Followers</button>
+                </div>
+                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(2)}>
+                  <button className="">{followings.length}</button>
+                  <button className="" >Following</button>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center sm:items-start">
+                <div className="flex gap-[5px] items-start">
+                  <h1 className="text-gray-400 w-fit">course : </h1>
+                  <h1 className="font-mono flex-1 font-semibold">{student?.course}</h1>
+                </div>
+                <div className="flex gap-[5px] items-start">
+                  <h1 className="text-gray-400 w-fit">university : </h1>
+                  <h1 className="font-mono flex-1 font-semibold">{student?.university}</h1>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          <div className="flex flex-col gap-3 px-1 py-2 xs:p-3 md:p-4 items-center sm:items-start justify-center bg-white dark:bg-blue-100/5 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
-            <div className="flex gap-2 md:gap-4 flex-wrap items-center">
-              <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{student?.name}</h1>
-              <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-red-700 hover:bg-red-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={e => setStatus(true)}>logout</button>
-              <FontAwesomeIcon size='sm' icon={faPenToSquare} className='text-[1.5rem] cursor-pointer text-blue-600 drop-shadow-[0_0_2px_white] hover:scale-110 hover:text-blue-800' onClick={e => setEditable(true)} />
+          <h2 className="font-semibold text-4xl font-mono opacity-70">Blogs</h2>
+          {blogs?.length > 0 ?
+            <div className="w-full flex flex-col gap-3 items-center justify-evenly">
+              {
+                blogs.map((blog, index) => <Blogs key={index} blog={blog} />)
+              }
             </div>
-
-            <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm text-white">
-              <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30">
-                <button className="">{student?.likes}</button>
-                <button className="">Likes</button>
-              </div>
-              <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(1)}>
-                <button className="">{followers.length}</button>
-                <button className="">Followers</button>
-              </div>
-              <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(2)}>
-                <button className="">{followings.length}</button>
-                <button className="" >Following</button>
-              </div>
-            </div>
-
-            <div className="flex flex-col items-center sm:items-start">
-              <div className="flex gap-[5px] items-start">
-                <h1 className="text-gray-400 w-fit">course : </h1>
-                <h1 className="font-mono flex-1 font-semibold">{student?.course}</h1>
-              </div>
-              <div className="flex gap-[5px] items-start">
-                <h1 className="text-gray-400 w-fit">university : </h1>
-                <h1 className="font-mono flex-1 font-semibold">{student?.university}</h1>
-              </div>
-            </div>
-          </div>
-
-        </div>
+            :
+            <div className="opacity-50">No Blogs till Now</div>
+          }
+        </>
       }
 
       {
@@ -120,19 +133,6 @@ export default function ProfileCard({ student, setStatus }) {
         connections === 2 && <Followings _id={student?._id} setConnections={setConnections} followings={followings} handleUnFollow={handleUnFollow} />
       }
 
-
-      <>
-        <h2 className="font-semibold text-4xl font-mono opacity-70">Blogs</h2>
-        {blogs?.length > 0 ?
-          <div className="w-full flex flex-col gap-3 items-center justify-evenly">
-            {
-              blogs.map((blog, index) => <Blogs key={index} blog={blog} />)
-            }
-          </div>
-          :
-          <div className="opacity-50">No Blogs till Now</div>
-        }
-      </>
     </div>
   )
 }
