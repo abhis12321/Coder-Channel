@@ -10,4 +10,8 @@
   .h-nav {
     min-height: calc(100vh - 4rem);
   }
+  .overflow-break {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
 }

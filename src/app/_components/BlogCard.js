@@ -4,9 +4,8 @@ import Link from 'next/link'
 import React from 'react'
 
 export default function Blogs( { blog } ) {
-    // console.log(blog);
   return (
-    <div className='w-[98%] max-w-[700px] min-h-20 min-w-20 bg-green-800/15 ring-1 ring-green-800 rounded-lg pt-4 pb-[6px] px-3 xs:px-4 md:px-5 flex flex-col gap-2  justify-evenly items-center'>
+    <div className='w-[98%] max-w-[700px] min-h-20 min-w-20 bg-white ring-gray-500 dark:bg-green-800/15 ring-1 dark:ring-green-800 rounded-lg pt-4 pb-[6px] px-3 xs:px-4 md:px-5 flex flex-col gap-2  justify-evenly items-center'>
       <div className="w-full font-mono text-gray-800 dark:text-gray-300/80 whitespace-pre-wrap">
         {blog.blog}
       </div>

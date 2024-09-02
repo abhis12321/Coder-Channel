@@ -2,6 +2,8 @@
 
 import React from "react";
 import { useAuth } from "../_components/AuthProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 function Page() {
     const [content , setContent] = React.useState("");
@@ -56,15 +58,15 @@ function Page() {
     }
 
     return (
-        <div className='h-full w-full relative max-w-[900px] mx-auto bg-gradient-to-r from-white to-white dark:from-slate-900 dark:via-cyan-950 dark:to-slate-900 dark:text-white rounded-lg pb-1 overflow-auto h-nav shadow-[0_0_10px_gray]'>
-            <div className='chatting-box px-4 flex flex-col gap-3 p-3max-h-[90.9vh] pt-3 pb-14 text-gray-100'>
+        <div className='h-full w-full relative max-w-[900px] mx-auto bg-white dark:bg-slate-900 dark:text-white rounded-lg pb-1 overflow-auto h-nav shadow-[0_0_2px_gray_inset] flex flex-col items-center'>
+            <div className='w-full overflow-x-hidden chatting-box px-4 flex flex-col gap-3 p-3max-h-[90.9vh] pt-3 pb-14 text-gray-100'>
                 <h1 className='text-yellow-600' >It&apos;s a Public Chat Group...</h1>
                 <p className='text-center text-3xl drop-shadow-[2px_3px_1px_red] font-semibold bg-slate-950/5 w-fit mx-auto rounded-lg py-2 px-4'>Welcome in this chat group</p>
             </div>
 
-            <form className='flex items-center justify-center px-4 w-[100%] absolute bottom-2 bg-ed-500 gap-2 text-gray-100'  onSubmit={handleMessage}>
-                <input className='flex-1 px-4 py-2 rounded-lg outline-none ring-1 focus:ring-violet-800 ring-cyan-600 bg-blue-900/10 focus:bg-blue-700/20' placeholder="Enter your message" type='text' value = {content} onChange={e => setContent(e.target.value)}  required/>
-                <button className='hidden sm:block px-8 py-2 rounded-lg bg-blue-900 font-semibold opacity-80 hover:opacity-100 hover:text-yellow-500 active:bg-violet-950 ring-1 active:ring-2 ring-red-500'>send</button>
+            <form className='flex items-center justify-center w-[98%] absolute bottom-2 bg-ed-500 gap-2 bg-blue-900/10 rounded overflow-hidden shadow-[0_0_1px_black_inset] focus-within:shadow-[0_0_3px_black_inset]'  onSubmit={handleMessage}>
+                <input className='w-full overflow-auto flex-1 pl-4 pr-1 py-2 outline-none bg-transparent text-gray-950 dark:text-white' placeholder="Enter your message" type='text' value = {content} onChange={e => setContent(e.target.value)}  required/>
+                <FontAwesomeIcon size="sm" icon={faPaperPlane} className='h-6 cursor-pointer px-4 md:px-7 py-2 bg-blue-900 font-semibold opacity-80 hover:opacity-100 hover:text-yellow-500 text-gray-100 active:bg-violet-950' />
             </form>
 
         </div>
@@ -76,7 +78,7 @@ function Page() {
 function chatModel(name , message , direction) {
     const node = document.createElement('p');
     node.innerHTML = `<span class="text-gray-500">${name} : </span>${message}`;
-    node.classList.add(`text-${direction}` , `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}` , "py-2" , "px-4" , "rounded-lg" , "max-w-[80%]" , "w-fit" , "dark:bg-slate-950" , "bg-gray-400");
+    node.classList.add(`text-${direction}` , `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}` , "py-2" , "px-4" , "rounded-lg" , "max-w-[80%]" , "w-fit" , "dark:bg-slate-950" , "bg-gray-400" , "whitespace-pre-wrap" , "overflow-break");
     
     return (
       node

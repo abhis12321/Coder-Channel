@@ -4,7 +4,7 @@ import Users from "/mongo/UserModel";
 
 export async function GET(req , {params}) {
     try {
-        let data = await Users.findOne({_id:params._id});
+        let data = await Users.findOne({ _id:params._id, verify:true });
         return NextResponse.json({...data._doc , success:true});
     }
     catch(error) {

@@ -6,7 +6,7 @@ import { faSquareEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 export default function Footer() {
   return (
-    <div className="flex flex-col [background-color:black] dark:border-t-2 border-gray-800 opacity-85 text-gray-50">
+    <div className="flex flex-col bg-black dark:border-t-2 border-gray-800 opacity-85 text-gray-50">
       <div className='px-3 xs:px-8 flex flex-col md:flex-row items-center justify-around flex-1'>
         <div className="md:w-[40%] w-full flex flex-col items-center">
           <div className="pt-4">

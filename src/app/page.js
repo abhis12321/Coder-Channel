@@ -33,7 +33,7 @@ export default function Page() {
               <LoginForm />
             </div>
           :
-          <h1 className="py-2 px-6 text-red-950 hover:text-white dark:text-blue-600 dark:hover:text-white bg-red-950/20 hover:bg-red-950 dark:bg-blue-600/20 dark:hover:bg-blue-600/50 ring-1 ring-red-950 dark:ring-blue-600 dark:hover:ring-blue-600/50 rounded-xl cursor-pointer outline-none font-semibold duration-300" onClick={e => setBlogFost(true)}>write a new post/blog</h1>
+          <h1 className="w-[98%] max-w-[310px] text-center py-2 px-6 text-blue-800 hover:text-white bg-blue-800/20 hover:bg-blue-800 ring-1 ring-blue-800 rounded-xl cursor-pointer outline-none font-semibold duration-300" onClick={e => setBlogFost(true)}>write a new post/blog</h1>
       }
 
 
@@ -42,8 +42,6 @@ export default function Page() {
           blogs.map((blog, index) => <BlogCard key={index} blog={blog} />)
         }
       </div>
-
-      {/* <div onClick={e => console.log(blogs)} className='p-2 ring-2'>log</div> */}
     </div>
   )
 }

@@ -20,7 +20,7 @@ cron.schedule('*/10 * * * *', async () => {
 
 export async function GET() {
   try {
-    let users = await Users.find();
+    let users = await Users.find({ verify:true });
     return NextResponse.json({ users, success: true });
   } catch (err) {
     return NextResponse.json({ success: false });
@@ -64,7 +64,7 @@ export async function PUT(req) {
     }
     else if (password == pass) {
       if (User.verify) {
-        cookies().set("coder-channel-login-info" , JSON.stringify({ email , password , _id:User._id }));
+        // cookies().set("coder-channel-login-info" , JSON.stringify({ email , password , _id:User._id }));
         return NextResponse.json({ User, success: true, message: `You credentials are right and you have Logged-in...!` })
       }
       else {

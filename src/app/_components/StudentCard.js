@@ -53,12 +53,12 @@ export default function StudentCard({ student, index , handleFollowings , search
   }
 
   return (
-    <div className={`bg-gradient-to-r from-gray-400 via-gray-200 to-gray-400 dark:from-slate-900 dark:via-slate-700/85 dark:to-slate-900 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_6px_black] dark:shadow-[0_0_6px_white] hover:shadow-[0_0_10px_indigo] dark:hover:shadow-[0_0_10px_violet] rounded-lg flex flex-col justify-evenly items-center gap-3 ${searchBy == "0" && !student.name.toLowerCase().includes(search) && "hidden"}  ${searchBy == "1" && !student.university.toLowerCase().includes(search) && "hidden"}`}>
+    <div className={`bg-white dark:bg-slate-900/70 py-4 px-4 h-[440px] w-[320px] shadow-[0_0_2px_gray_inset] dark:shadow-[0_0_2px_white_inset] hover:shadow-[0_0_3px_indigo] dark:hover:shadow-[0_0_3px_pink] rounded-lg flex flex-col justify-evenly items-center gap-3 ${searchBy == "0" && !student.name.toLowerCase().includes(search) && "hidden"}  ${searchBy == "1" && !student.university.toLowerCase().includes(search) && "hidden"}`}>
       <div className="relative">
         <Image
           src={student.imgUrl ? student.imgUrl : "/img/profileImg.jpg"}
           alt="profile-img"
-          className={`h-[140px] m-auto rounded-full overflow-hidden ring-4 ${status ? 'ring-lime-900 dark:ring-green-700' : 'ring-red-900 dark:ring-red-700'} opacity-90 bg-white`}
+          className={`h-[140px] m-auto rounded-full overflow-hidden ring-[3px] ${status ? 'ring-lime-900 dark:ring-green-800' : 'ring-red-900 dark:ring-red-700'} opacity-90 bg-white aspect-square`}
           width={140}
           height={140}
         />
@@ -70,39 +70,39 @@ export default function StudentCard({ student, index , handleFollowings , search
       <div className="text-2xl font-bold text-red-950 dark:text-gray-50">
         {student.name}
       </div>
-      <div className="text-center text-white dark:text-slate-400 drop-shadow-[0_0_3px_black]">
+      <div className="text-center font-semibold text-gray-500">
         {student.university}
       </div>
       <div className="flex justify-center items-center gap-8">
-        <Link href={student.linkedIn} className={`${!student.linkedIn && "pointer-events-none opacity-25"}`}>
+        <Link href={student.linkedIn} className={`${!student.linkedIn ? "pointer-events-none text-gray-500/20" : "hover:scale-110 text-blue-700"}`}>
           <FontAwesomeIcon
             icon={faLinkedin}
             size="2x"
-            className="hover:scale-110 text-blue-700 "
+            className=" "
           />
         </Link>
-        <Link href={student.github} className={`${!student.github && "pointer-events-none opacity-5"}`}>
+        <Link href={student.github} className={`${!student.github ? "pointer-events-none text-gray-500/20" : "hover:scale-110 text-slate-700 dark:text-gray-300"}`}>
           <FontAwesomeIcon
             icon={faGithub}
             size="2x"
-            className="hover:scale-110 text-gray-900 dark:text-gray-100"
+            className=""
           />
         </Link>
-        <Link href={student.instagram} className={`${!student.instagram && "pointer-events-none opacity-25"}`}>
+        <Link href={student.instagram} className={`${!student.instagram ? "pointer-events-none text-gray-500/20" : "hover:scale-110 text-rose-800"}`}>
           <FontAwesomeIcon
             icon={faInstagram}
             size="2x"
-            className="hover:scale-110 text-rose-800"
+            className=""
           />
         </Link>
       </div>
-      <div className="flex items-center justify-center gap-6 font-serif">
-        <button className="w-[100px] text-center py-[5px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200" onClick={handleFollowers}>
+      <div className="flex items-center justify-center gap-6 font-sans text-[12px] font-semibold tracking-wider">
+        <button className="w-[100px] text-center py-[6px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-900/70 dark:hover:bg-green-600/80 text-gray-200" onClick={handleFollowers}>
           {student.isFollowing ? "following" : "follow"}
         </button>
         <Link
           href={`chat/${student._id}`}
-          className="w-[100px] text-center py-[5px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-800 dark:hover:bg-green-600 font-mn text-gray-200"
+          className="w-[100px] text-center py-[6px] rounded-lg bg-lime-900/80 hover:bg-lime-900/95 dark:bg-green-900/70 dark:hover:bg-green-600/80 font-mn text-gray-200"
         >
           Message
         </Link>
