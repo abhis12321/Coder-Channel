@@ -4,6 +4,9 @@ import Users from "/mongo/UserModel";
 import cryptoJS from 'crypto-js'
 import cron from 'node-cron';
 import { cookies } from 'next/headers';
+import { sign } from "jsonwebtoken";
+import { TOCKEN_MAX_AGE , CODER_CHANNEL_TOCKEN } from '../../../constants'
+
 
 cron.schedule('*/10 * * * *', async () => {
   try {
@@ -55,7 +58,7 @@ export async function PUT(req) {
       return NextResponse.json({ message: "bad request! No email found.", success: false });
     }
 
-    let User = await Users.findOne({ email });
+    let User = (await Users.findOne({ email })).toObject();
     let bytes = cryptoJS.AES.decrypt(User.password, email);
     let pass = bytes.toString(cryptoJS.enc.Utf8);
 
@@ -64,7 +67,20 @@ export async function PUT(req) {
     }
     else if (password == pass) {
       if (User.verify) {
-        // cookies().set("coder-channel-login-info" , JSON.stringify({ email , password , _id:User._id }));
+        const secret = process.env.JWT_SECRET_KEY || "";
+        const tocken = sign({ email , password:pass } , secret , { expiresIn:TOCKEN_MAX_AGE });
+
+        cookies().set({
+          name:CODER_CHANNEL_TOCKEN , 
+          value:tocken ,
+          secure:process.env.NODE_ENV === "production",
+          httpOnly:true,
+          sameSite:"strict",
+          maxAge:TOCKEN_MAX_AGE,
+          path:"/"
+        });
+        
+        delete User.password;
         return NextResponse.json({ User, success: true, message: `You credentials are right and you have Logged-in...!` })
       }
       else {

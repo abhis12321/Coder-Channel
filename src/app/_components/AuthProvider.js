@@ -6,11 +6,11 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 const context = createContext();
 
-export default function AuthProvider({ children , initial_theme  }) {
-  const [user, setUser] = useState(null);
+export default function AuthProvider({ children, initial_theme, tocken }) {
+  const [user, setUser] = useState(tocken);
   let [socket, setSocket] = useState();
-  const [theme , setTheme] = useState(initial_theme);
-  
+  const [theme, setTheme] = useState(initial_theme);
+
   const login = useCallback(async ({ email, password }) => {
     if (!socket) {
       axios.put(`/api/users`, { email, password })
@@ -19,30 +19,39 @@ export default function AuthProvider({ children , initial_theme  }) {
           if (data.success) {
             Initializing(data.User, setSocket);
             setUser(data.User);
-            axios.put(`/api/users/${data.User._id}`, { isOnline: 1 });
-            localStorage.setItem('coder-media', JSON.stringify({ email , password }));
           } else {
             alert(data.message);
           }
         })
-        .catch(error => alert('some error occured, Try again.\n', error.message));
+        .catch(error => alert('some went wrong, Try again.\n', error.message));
     }
   }, [socket]);
 
   const logout = () => {
-    localStorage.setItem('coder-media', JSON.stringify(null));
-    socket?.disconnect();
+    axios.post(`/api/single-user`);   //clear tocken-cookie
+    socket.disconnect();
+    // socket.io.opts.reconnection = false;
     setSocket(null);
     setUser(null);
   };
 
+  const fetchTocken = async () => {
+    const user = await axios.get(`/api/single-user`)
+      .then(res => res?.data)
+      .then(data => data?.User)
+      .catch(() => null);
+    if (user) {
+      setUser(user);
+      Initializing(user, setSocket);
+    }
+  }
+
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("coder-media"));
-    data && login({ email: data.email, password: data.password });
-  }, [login]);
+    fetchTocken();
+  }, []);
 
 
-  const value = { user, login, logout, socket, theme , setTheme };
+  const value = { user, login, logout, socket, theme, setTheme };
 
 
   return (
@@ -69,11 +78,14 @@ function Initializing(sender, setSocket) {
       let socket = io(undefined, {
         path: "/api/socket_io",
         addTrailingSlash: false,
+        // reconnection:false,
       });
 
+      // socket.io.opts.reconnection = false;
       // console.log(sender.name);
       socket.emit('new-user', ({ name: sender.name, _id: sender._id }));
       setSocket(socket);
+      // console.log(sender , setSocket, socket);
 
       return () => {
         socket.disconnect();

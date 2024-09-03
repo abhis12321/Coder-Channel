@@ -24,7 +24,7 @@ export default function StudentCard({ student, index , handleFollowings , search
   const [copyLink , setCopyLink] = useState(0)
 
   const handleStatus = useCallback(({ _id, status }) => {
-    // console.log("haha..", status , _id);
+    console.log("haha..", status , _id , student._id);
     if (student._id == _id) {
       setStatus(status);
     }
