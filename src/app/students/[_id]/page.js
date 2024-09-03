@@ -69,45 +69,44 @@ export default function Page({ params }) {
         </div>
         :
         <>
-          <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-blue-700/15 sm:bg-blue-900/30 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-white`}>
+          <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-slate-200 dark:bg-blue-900/55 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-red-950 dark:text-white shadow-[0_0_2px_black]`}>
             <div className="w-fit flex items-center justify-center">
-              <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40 shadow-[0_0_3px_gray]' />
+              <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40 bg-white shadow-[0_0_2px_black] aspect-square' />
             </div>
 
-            <div className="flex flex-col gap-3 p-1 xs:p-3 md:p-4 items-center sm:items-start justify-center dark:bg-slate-700/40 bg-blue-950/30 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
+            <div className="flex flex-col gap-3 px-1 py-2 xs:p-3 md:p-4 items-center sm:items-start justify-center bg-white dark:bg-blue-100/5 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
               <div className="flex gap-2 md:gap-4 flex-wrap items-center">
-                <h1 className="text-2xl sm:text-3xl font-bold font-serif">{student?.name}</h1>
-                <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-blue-600/70 hover:bg-blue-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={handleFollowers}> {student.isFollowed ? "following" : "follow"} </button>
+                <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{student?.name}</h1>
+                <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-blue-800/90 hover:bg-blue-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={handleFollowers}> {student.isFollowed ? "following" : "follow"} </button>
                 {/* <h1 className="font-mono opacity-80">({student?.email})</h1> */}
               </div>
 
-              <div className="flex flex-wrap gap-1 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm">
-                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30">
-                  <button className="text-gray-50 dark:text-gray-200">{student?.likes}</button>
+              <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm text-white">
+                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30">
+                  <button className="">{student?.likes}</button>
                   <button className="">Likes</button>
                 </div>
-                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30" onClick={e => setConnections(1)}>
-                  <button className="text-gray-50 dark:text-gray-200">{followers.length}</button>
+                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(1)}>
+                  <button className="">{followers.length}</button>
                   <button className="">Followers</button>
                 </div>
-                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700/60 rounded-md hover:bg-green-600 active:bg-violet-600/30" onClick={e => setConnections(2)}>
-                  <button className="text-gray-50 dark:text-gray-200">{followings.length}</button>
+                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(2)}>
+                  <button className="">{followings.length}</button>
                   <button className="" >Following</button>
                 </div>
               </div>
 
               <div className="flex flex-col items-center sm:items-start">
                 <div className="flex gap-[5px] items-start">
-                  <h1 className="opacity-60 w-fit">course : </h1>
-                  <h1 className="font-mono flex-1">{student?.course}</h1>
+                  <h1 className="text-gray-400 w-fit">course : </h1>
+                  <h1 className="font-mono flex-1 font-semibold">{student?.course}</h1>
                 </div>
                 <div className="flex gap-[5px] items-start">
-                  <h1 className="opacity-60 w-fit">university : </h1>
-                  <h1 className="font-mono flex-1">{student?.university}</h1>
+                  <h1 className="text-gray-400 w-fit">university : </h1>
+                  <h1 className="font-mono flex-1 font-semibold">{student?.university}</h1>
                 </div>
               </div>
             </div>
-
           </div>
 
           <h2 className="font-semibold text-4xl font-mono opacity-70">Blogs</h2>

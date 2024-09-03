@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 export default function UserLogout({ USER, setStatus }) {
     const handleLogout = () => {
@@ -15,7 +14,7 @@ export default function UserLogout({ USER, setStatus }) {
                         <h5 className='text-md font-serif font-bold'>You can login-back with your Email and Password later whenever you want</h5>
                         <p className='text-sm font-mono'>Are you sure, You wanna logout?</p>
                         <div className="w-[60%] min-w-[200px] flex items-center justify-evenly font-serif font-semibold text-sm xs:text-base">
-                            <Link href={'/logout'} className="text-white bg-red-800 hover:bg-red-600 hover:font-bold py-2 xs:py-[5px] w-[65px] rounded-lg" onClick={handleLogout}>Yes</Link>
+                            <button className="text-white bg-red-800 hover:bg-red-600 hover:font-bold py-2 xs:py-[5px] w-[65px] rounded-lg" onClick={handleLogout}>Yes</button>
                             <button className="text-white bg-green-800 hover:bg-green-600 hover:font-bold py-2 xs:py-[5px] w-[65px] rounded-lg" onClick={e => setStatus(true)}>No</button>
                         </div>
                     </div>

@@ -25,8 +25,8 @@ export default function NavBar() {
 
   return (
     <div className="sticky top-0 left-0 z-[90] w-full bg-white dark:bg-blue-900 text-gray-500 dark:text-gray-50 font-semibold flex items-center justify-between h-16 py-2 px-[4%] sm:px-8 md:px-10 lg:px-12 overflow-hidden shadow-[0_0_2px_gray]">
-      <div className="drop-shadow-[0_0_1px_red]">
-        <h1 className="font-extrabold italic text-3xl text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-violet-100 w-fit leading-[4rem] overflow-hidden">
+      <div className="drop-shadow-[0_0_1px_black]">
+        <h1 className="font-extrabold italic text-3xl text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-gray-400 w-fit overflow-hidden px-1">
           Coder&apos;channel
         </h1>
       </div>
