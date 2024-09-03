@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import React, { createContext, useCallback, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import io from "socket.io-client";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
@@ -25,6 +25,8 @@ export default function AuthProvider({ children, initial_theme, tocken }) {
         })
         .catch(error => alert('some went wrong, Try again.\n', error.message));
     }
+    
+    socket?.on("disconnect" , setUser(null));
   }, [socket]);
 
   const logout = () => {
@@ -94,5 +96,5 @@ function Initializing(sender, setSocket) {
 }
 
 export const useAuth = () => {
-  return React.useContext(context);
+  return useContext(context);
 };

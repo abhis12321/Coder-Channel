@@ -12,12 +12,12 @@ export default async function SocketHandler(req, res) {
         res.socket.server.io = io;
 
         io.on("connection", (socket) => {
-            console.log("connected...");
+            // console.log("connected...");
             let userId = socket.id;
             socket.broadcast.emit('welcome', { name: "captain jack sparrow" });
 
             socket.on('new-user', async ({ name, _id }) => {
-                console.log("new-user...");
+                // console.log("new-user...");
                 if(map.has(_id)) {
                     online.set(_id , online.get(_id)+1);
                 } else {
@@ -31,17 +31,17 @@ export default async function SocketHandler(req, res) {
             });
 
             socket.on('sendGroupMessage', data => {
-                console.log("sendGroupMessage...");
+                // console.log("sendGroupMessage...");
                 socket.broadcast.emit('receiveGroupMessage', data);
             });
 
             socket.on('sendPersonalMessage', data => {
-                console.log("sendPersonalMessage...", data);
+                // console.log("sendPersonalMessage...", data);
                 socket.to(data.receiverId).emit('receivePersonalMessage', data);
             });
 
             socket.on('disconnect', async () => {
-                console.log("disconnected...");
+                // console.log("disconnected...");
                 const key = socket.id;
                 const _id = map.get(key);
                 let user = await updateStatus(_id, false);
