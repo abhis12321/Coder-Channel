@@ -26,7 +26,6 @@ export async function PUT(request) {
                 {senderId:user2 , receiverId:user1}
             ]
         })
-        console.log(user1, user2);
         return NextResponse.json({success:true , chats});
     } catch(error) {
         return NextResponse.json({success:false , message:error.message});

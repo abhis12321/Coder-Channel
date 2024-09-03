@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useAuth } from "../../_components/AuthProvider";
 import axios from "axios";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function Page(props) {
-  const USER = useAuth();
+  const { socket, user } = useAuth();
   const [sender, setSender] = useState("hello");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(sender?.isOnline);
@@ -21,36 +21,40 @@ export default function Page(props) {
   }, [sender]);
 
 
-  const handleReceiveMessage = React.useCallback(async (data) => {
-    if (data.senderId == sender?._id && data.receiverId == USER?.user?._id) {
-      const box = document.querySelector(".chatting-message-box");
-      let message = chatModel(data.Name, data.message, "left");
-      box.appendChild(message);
-    }
-  }, [USER?.user?._id, sender?._id])
+  const handleReceiveMessage = React.useCallback(async ({ data }) => {
+    // console.log(data.sender, data.receiverId , sender?._id , user?._id);
+    // if (data.senderId == sender?._id && data.receiverId == user?._id) {
+    const box = document.querySelector(".chatting-message-box");
+    let message = chatModel(data.Name, data.message, "left");
+    box.appendChild(message);
+    // }
+  }, [])
 
   const handleSendNewMessage = (e) => {
     e.preventDefault();
+    console.log("sending message...")
     if (message.length > 0) {
+      socket?.emit('sendPersonalMessage', { receiverId: sender?._id, message });
+
+      const box = document.querySelector('.chatting-message-box');
+      let content = chatModel("you", message, 'right');
+      box.appendChild(content);
+
       let data = {
-        senderId: USER?.user?._id,
-        senderName: USER?.user?.name,
+        senderId: user?._id,
+        senderName: user?.name,
         receiverId: sender?._id,
         receiverName: sender?.name,
         message,
       }
-      const box = document.querySelector('.chatting-message-box');
-      let content = chatModel("you", message, 'right');
-      box.appendChild(content);
-      USER?.socket?.emit('sendPersonalMessage', { Name: USER.user?.name, message, senderId: USER?.user?._id, receiverId: sender?._id });
-      setMessage("");
-
       axios.post('/api/chatLog', data)
         .then(response => response.data)
         .then(data => !data.success && alert(data.message))
         .catch(error => console.log(error.message));
+
+      setMessage("");
     }
-  };
+  }
 
 
   React.useEffect(() => {
@@ -62,25 +66,27 @@ export default function Page(props) {
           setStatus(data.isOnline > 0);
         }
       });
-  }, [props.params.newUserChat, USER.sender, USER]);
+  }, [props.params.newUserChat]);
+
 
   React.useEffect(() => {
-    USER?.socket?.on("receivePersonalMessage", handleReceiveMessage);
-    USER?.socket?.on("online-status", handleStatus);
+    socket?.on("receivePersonalMessage", handleReceiveMessage);
+    socket?.on("online-status", handleStatus);
 
     return () => {
-      USER?.socket?.off("receivePersonalMessage", handleReceiveMessage);
-      USER?.socket?.off("online-status", handleStatus);
+      socket?.off("receivePersonalMessage", handleReceiveMessage);
+      socket?.off("online-status", handleStatus);
     }
-  }, [handleReceiveMessage, handleStatus, sender, USER?.socket]);
+  }, [handleReceiveMessage, handleStatus, socket]);
+
 
   React.useEffect(() => {
     let body = {
       user1: props?.params?.newUserChat,
-      user2: USER?.user?._id,
+      user2: user?._id,
     }
 
-    body.user1 && body.user2 &&
+    if (body.user1 && body.user2) {
       axios.put('/api/chatLog', body)
         .then(response => response.data)
         .then(data => {
@@ -88,15 +94,14 @@ export default function Page(props) {
             const box = document.querySelector('.chatting-message-box');
             for (let index in data.chats) {
               let chat = data.chats[index];
-              // console.log(chat);
-              let content = chatModel(chat.receiverId === USER.user._id ? chat.senderName : "you", chat.message, chat.receiverId === USER.user._id ? 'left' : 'right');
+              let content = chatModel(chat.receiverId === user._id ? chat.senderName : "you", chat.message, chat.receiverId === user._id ? 'left' : 'right');
               box.appendChild(content);
             }
           }
         })
         .catch(error => console.log(error.message));
-  }, [USER?.user?._id, props?.params?.newUserChat]);
-
+    }
+  }, [user._id, props?.params?.newUserChat]);
 
 
   return (

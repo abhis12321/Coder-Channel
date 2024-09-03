@@ -44,7 +44,7 @@ function Page() {
             socket?.off("receiveGroupMessage", handleGroupMessage);        
             socket?.off("userLeftGroup", handleUserLeft);
         }
-    } , [])
+    } , [socket])
 
     const handleMessage = e => {  
         e.preventDefault();
