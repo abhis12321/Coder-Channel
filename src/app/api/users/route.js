@@ -15,7 +15,7 @@ cron.schedule('*/10 * * * *', async () => {
       verify: false,
       createdAt: { $lt: new Date(now - 10 * 60 * 1000) }
     });
-    console.log('Deleting unverified users registered more than 10 minutes ago');
+    // console.log('Deleting unverified users registered more than 10 minutes ago');
   } catch (error) {
     console.error('Error deleting unverified users:', error.message);
   }
@@ -90,6 +90,7 @@ export async function PUT(req) {
     delete User.password;
     return NextResponse.json({ User, success: true, message: `You credentials are right and you have Logged-in...!` })
   } catch (error) {
+    // console.log(error.message);
     return NextResponse.json({ message: "bad request, Try again...!", success: false });
   }
 }

@@ -1,14 +1,16 @@
 "use client";
-import React, { useCallback, useState } from "react";
-import { useAuth } from "../../_components/AuthProvider";
-import axios from "axios";
-import Image from "next/image";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useAuth } from "../../_components/AuthProvider";
+import { ChatModel } from "../../_components/ChatModel";
+import Image from "next/image";
+import Link from "next/link";
+import axios from "axios";
 
 
 export default function Page(props) {
+  const messageRef = useRef();
   const { socket, user } = useAuth();
   const [sender, setSender] = useState("hello");
   const [message, setMessage] = useState("");
@@ -24,9 +26,7 @@ export default function Page(props) {
   const handleReceiveMessage = useCallback(async ({ message, senderId, receiverId, senderName }) => {
     // console.log(data.sender, data.receiverId , sender?._id , user?._id);
     if (senderId == sender?._id && receiverId == user?._id) {
-      const box = document.querySelector(".chatting-message-box");
-      let newMessage = chatModel(senderName, message, "left");
-      box.appendChild(newMessage);
+      appendNewMessageToCant(senderName, message, "left");
     }
   }, [sender?._id, user?._id])
 
@@ -43,10 +43,7 @@ export default function Page(props) {
 
     if (message.length > 0) {
       socket?.emit('sendPersonalMessage', data);
-
-      const box = document.querySelector('.chatting-message-box');
-      let content = chatModel("you", message, 'right');
-      box.appendChild(content);
+      appendNewMessageToCant("you", message, 'right');
 
       axios.post('/api/chatLog', data)
         .then(response => response.data)
@@ -58,7 +55,7 @@ export default function Page(props) {
   }
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch(`/api/single-user/${props.params.newUserChat}`)
       .then((res) => res.json())
       .then((data) => {
@@ -70,7 +67,7 @@ export default function Page(props) {
   }, [props.params.newUserChat]);
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     socket?.on("receivePersonalMessage", handleReceiveMessage);
     socket?.on("online-status", handleStatus);
 
@@ -81,7 +78,7 @@ export default function Page(props) {
   }, [handleReceiveMessage, handleStatus, socket]);
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     let body = {
       user1: props?.params?.newUserChat,
       user2: user?._id,
@@ -92,11 +89,9 @@ export default function Page(props) {
         .then(response => response.data)
         .then(data => {
           if (data.success) {
-            const box = document.querySelector('.chatting-message-box');
             for (let index in data.chats) {
               let chat = data.chats[index];
-              let content = chatModel(chat.receiverId === user._id ? chat.senderName : "you", chat.message, chat.receiverId === user._id ? 'left' : 'right');
-              box.appendChild(content);
+              appendNewMessageToCant(chat.receiverId === user._id ? chat.senderName : "you", chat.message, chat.receiverId === user._id ? 'left' : 'right');
             }
           }
         })
@@ -104,6 +99,10 @@ export default function Page(props) {
     }
   }, [user._id, props?.params?.newUserChat]);
 
+  const appendNewMessageToCant = (sender , message, direction) => {
+    let content = ChatModel("you", message, 'right');
+    messageRef.current.appendChild(content);
+  }
 
   return (
     <div className="text-white rounded-md bg-gradient-to-r from-white to-white dark:from-slate-900 dark:via-blue-950 dark:to-slate-900 dark:text-white w-full max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative h-nav shadow-[0_0_2px_gray] dark:shadow-[0_0_2px_white] flex flex-col items-center justify-start" >
@@ -115,7 +114,7 @@ export default function Page(props) {
         </div>
       </Link>
 
-      <div className="w-[98%] chatting-message-box flex flex-col justify-start gap-3 py-3 overflow-auto flex-1">
+      <div className="w-[98%] chatting-message-box flex flex-col justify-start gap-3 py-3 overflow-auto flex-1" ref={messageRef}>
 
       </div>
 
@@ -129,14 +128,3 @@ export default function Page(props) {
     </div>
   );
 }
-
-
-function chatModel(name, message, direction) {
-  const node = document.createElement('p');
-  node.innerHTML = `<span class="text-gray-500">${name} : </span>${message}`;
-  node.classList.add(`text-${direction}`, `${direction === "center" ? "self-center" : direction === "right" ? "self-end" : "start"}`, "py-1", "px-4", "rounded-md", "max-w-[80%]", "w-fit", "dark:bg-slate-950", "bg-gray-400");
-
-  return (
-    node
-  )
-};

@@ -29,7 +29,7 @@ export async function GET() {
         return NextResponse.json({ User , success:true });
     }
     catch(error) {
-        console.log(error.message)
+        // console.log("tocken", error.message)
         return NextResponse.json({ message:"something went wrong please login with your email and password.", success:false });
     }
 }

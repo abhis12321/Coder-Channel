@@ -1,8 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
 import { useAuth } from "../_components/AuthProvider";
-import Link from 'next/link';
 import LoginForm from '../_components/LoginForm';
 
 export default function Layout({ children }) {
