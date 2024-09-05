@@ -5,7 +5,7 @@ import cryptoJS from 'crypto-js'
 import cron from 'node-cron';
 import { cookies } from 'next/headers';
 import { sign } from "jsonwebtoken";
-import { TOCKEN_MAX_AGE , CODER_CHANNEL_TOCKEN } from '../../../constants'
+import { TOCKEN_MAX_AGE, CODER_CHANNEL_TOCKEN } from '../../../constants'
 
 
 cron.schedule('*/10 * * * *', async () => {
@@ -23,7 +23,7 @@ cron.schedule('*/10 * * * *', async () => {
 
 export async function GET() {
   try {
-    let users = await Users.find({ verify:true });
+    let users = await Users.find({ verify: true });
     return NextResponse.json({ users, success: true });
   } catch (err) {
     return NextResponse.json({ success: false });
@@ -65,30 +65,30 @@ export async function PUT(req) {
     if (!User) {
       return NextResponse.json({ message: "No such account found...!", success: false });
     }
-    else if (password == pass) {
-      if (User.verify) {
-        const secret = process.env.JWT_SECRET_KEY || "";
-        const tocken = sign({ email , password:pass } , secret , { expiresIn:TOCKEN_MAX_AGE });
-
-        cookies().set({
-          name:CODER_CHANNEL_TOCKEN , 
-          value:tocken ,
-          secure:process.env.NODE_ENV === "production",
-          httpOnly:true,
-          sameSite:"strict",
-          maxAge:TOCKEN_MAX_AGE,
-          path:"/"
-        });
-        
-        delete User.password;
-        return NextResponse.json({ User, success: true, message: `You credentials are right and you have Logged-in...!` })
-      }
-      else {
-        return NextResponse.json({ message: "email verification required...!", success: false })
-      }
-    } else {
-      return NextResponse.json({ success: false, message: "Wrong credentials!" })
+    else if (password !== pass) {
+      return NextResponse.json({ message: "wrong credentials, Try again...!", success: false });
     }
+
+    if (!User.verify) {
+      return NextResponse.json({ message: "email verification required...!", success: false });
+    }
+    const secret = process.env.JWT_SECRET_KEY || "";
+    const tocken = sign({ email, password: pass }, secret, { expiresIn: TOCKEN_MAX_AGE });
+
+    cookies().set(CODER_CHANNEL_TOCKEN, tocken, { maxAge: TOCKEN_MAX_AGE, sameSite: 'Strict' });
+
+    // cookies().set({
+    //   name: CODER_CHANNEL_TOCKEN,
+    //   value: tocken,
+    //   secure: process.env.NODE_ENV === "production",
+    //   httpOnly: true,
+    //   sameSite: "strict",
+    //   maxAge: TOCKEN_MAX_AGE,
+    //   path: "/"
+    // });
+
+    delete User.password;
+    return NextResponse.json({ User, success: true, message: `You credentials are right and you have Logged-in...!` })
   } catch (error) {
     return NextResponse.json({ message: "bad request, Try again...!", success: false });
   }
