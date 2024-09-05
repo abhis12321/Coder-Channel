@@ -95,7 +95,7 @@ export default function ProfileCard({ student, setStatus }) {
                 </div>
                 <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(2)}>
                   <button className="">{followings.length}</button>
-                  <button className="" >Following</button>
+                  <button className="" >Followings</button>
                 </div>
               </div>
 

@@ -6,6 +6,9 @@ import { useAuth } from '../../_components/AuthProvider';
 import Followers from '../../_components/Followers';
 import Followings from '../../_components/Followings';
 import Blogs from '../../_components/BlogCard';
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
 
 export default function Page({ params }) {
   const USER = useAuth();
@@ -78,6 +81,9 @@ export default function Page({ params }) {
               <div className="flex gap-2 md:gap-4 flex-wrap items-center">
                 <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{student?.name}</h1>
                 <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-blue-800/90 hover:bg-blue-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={handleFollowers}> {student.isFollowed ? "following" : "follow"} </button>
+                <Link href={`/chat/${student._id}`} name="personal-message">
+                  <FontAwesomeIcon size='sm' icon={faMessage} className='h-[22px] hover:scale-110 hover:text-yellow-400 hover:drop-shadow-[0_0_2px_black]' />
+                </Link>
                 {/* <h1 className="font-mono opacity-80">({student?.email})</h1> */}
               </div>
 
@@ -92,7 +98,7 @@ export default function Page({ params }) {
                 </div>
                 <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(2)}>
                   <button className="">{followings.length}</button>
-                  <button className="" >Following</button>
+                  <button className="" >Followings</button>
                 </div>
               </div>
 

@@ -75,17 +75,17 @@ export async function PUT(req) {
     const secret = process.env.JWT_SECRET_KEY || "";
     const tocken = sign({ email, password: pass }, secret, { expiresIn: TOCKEN_MAX_AGE });
 
-    cookies().set(CODER_CHANNEL_TOCKEN, tocken, { maxAge: TOCKEN_MAX_AGE, sameSite: 'Strict' });
+    // cookies().set(CODER_CHANNEL_TOCKEN, tocken, { maxAge: TOCKEN_MAX_AGE, sameSite: 'Strict' });
 
-    // cookies().set({
-    //   name: CODER_CHANNEL_TOCKEN,
-    //   value: tocken,
-    //   secure: process.env.NODE_ENV === "production",
-    //   httpOnly: true,
-    //   sameSite: "strict",
-    //   maxAge: TOCKEN_MAX_AGE,
-    //   path: "/"
-    // });
+    cookies().set({
+      name: CODER_CHANNEL_TOCKEN,
+      value: tocken,
+      // secure: process.env.NODE_ENV === 'production' && window.location.protocol === 'https:',
+      httpOnly: true,
+      sameSite: "strict",
+      maxAge: TOCKEN_MAX_AGE,
+      path: "/"
+    });
 
     delete User.password;
     return NextResponse.json({ User, success: true, message: `You credentials are right and you have Logged-in...!` })
