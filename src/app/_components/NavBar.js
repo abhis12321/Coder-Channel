@@ -39,7 +39,7 @@ export default function NavBar() {
         <div className="w-full lg:w-fit flex items-center justify-center">
           <Link
             href="/"
-            className="w-full text-2xl overflow-hidden flex items-center justify-center lg:rounded-lg hover:bg-gray-500 hover:text-white dark:hover:bg-gray-200/15 lg:hover:ring-2 ring-gray-100 py-4 lg:py-[13px] lg:px-4"
+            className="w-full text-2xl overflow-hidden flex items-center justify-center lg:rounded-lg hover:bg-gray-500 hover:text-white dark:hover:bg-gray-200/15 dark:lg:hover:ring-2 dark:ring-gray-100 py-4 lg:py-[13px] lg:px-4"
           >
             <FontAwesomeIcon icon={faHome} size="sm" className="scale-110"/>
           </Link>
@@ -48,7 +48,7 @@ export default function NavBar() {
         <div className="w-full lg:w-fit flex items-center justify-center">
           <Link
             href="/students"
-            className="w-full text-2xl overflow-hidden flex items-center justify-center lg:rounded-lg hover:bg-gray-500 hover:text-white dark:hover:bg-gray-200/15 lg:hover:ring-2 ring-gray-100 py-4 lg:py-[13px] lg:px-[15px]"
+            className="w-full text-2xl overflow-hidden flex items-center justify-center lg:rounded-lg hover:bg-gray-500 hover:text-white dark:hover:bg-gray-200/15 dark:lg:hover:ring-2 dark:ring-gray-100 py-4 lg:py-[13px] lg:px-[15px]"
           >
             <FontAwesomeIcon icon={faUserGroup} size="sm" className="scale-110"/>
           </Link>
@@ -57,7 +57,7 @@ export default function NavBar() {
         <div className="w-full lg:w-fit flex items-center justify-center">
           <Link
             href="/chat"
-            className="w-full text-2xl overflow-hidden flex items-center justify-center lg:rounded-lg hover:bg-gray-500 hover:text-white dark:hover:bg-gray-200/15 lg:hover:ring-2 ring-gray-100 py-4 lg:py-[13px] lg:px-[17px]"
+            className="w-full text-2xl overflow-hidden flex items-center justify-center lg:rounded-lg hover:bg-gray-500 hover:text-white dark:hover:bg-gray-200/15 dark:lg:hover:ring-2 dark:ring-gray-100 py-4 lg:py-[13px] lg:px-[17px]"
           >
             <FontAwesomeIcon icon={faPaperPlane} size="sm" className="scale-110"/>
           </Link>
@@ -66,7 +66,7 @@ export default function NavBar() {
         <div className="w-full lg:w-fit flex items-center justify-center">
           <Link
             href="/login"
-            className="w-full text-2xl overflow-hidden flex items-center justify-center lg:rounded-lg hover:bg-gray-500 hover:text-white dark:hover:bg-gray-200/15 lg:hover:ring-2 ring-gray-100 py-4 lg:py-[13px] lg:px-[19px]"
+            className="w-full text-2xl overflow-hidden flex items-center justify-center lg:rounded-lg hover:bg-gray-500 hover:text-white dark:hover:bg-gray-200/15 dark:lg:hover:ring-2 dark:ring-gray-100 py-4 lg:py-[13px] lg:px-[19px]"
           >
             <FontAwesomeIcon icon={faUser} size="sm" className="scale-110 scale-x-110"/>
           </Link>

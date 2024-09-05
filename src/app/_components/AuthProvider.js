@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
@@ -9,7 +9,7 @@ const context = createContext();
 export default function AuthProvider({ children, initial_theme, tocken }) {
   const [user, setUser] = useState(tocken);
   let [socket, setSocket] = useState();
-  const [theme, setTheme] = useState(initial_theme);
+  const themeRef = useRef();
 
   const login = useCallback(async ({ email, password }) => {
     if (!socket) {
@@ -53,12 +53,12 @@ export default function AuthProvider({ children, initial_theme, tocken }) {
   }, []);
 
 
-  const value = { user, login, logout, socket, theme, setTheme };
+  const value = { user, login, logout, socket, themeRef };
 
 
   return (
     <context.Provider value={value}>
-      <body className={`${theme} bg-gray-50 text-gray-800 dark:bg-slate-950 dark:text-white`}>
+      <body className={`${initial_theme} bg-gray-50 text-gray-800 dark:bg-slate-950 dark:text-white`} ref={themeRef}>
         <NavBar />
         <div className='h-nav'>
           {children}
