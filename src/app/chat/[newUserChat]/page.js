@@ -100,12 +100,12 @@ export default function Page(props) {
   }, [user._id, props?.params?.newUserChat]);
 
   const appendNewMessageToCant = (sender , message, direction) => {
-    let content = ChatModel("you", message, 'right');
+    let content = ChatModel(sender, message, direction);
     messageRef.current.appendChild(content);
   }
 
   return (
-    <div className="text-white rounded-md bg-gradient-to-r from-white to-white dark:from-slate-900 dark:via-blue-950 dark:to-slate-900 dark:text-white w-full max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative h-nav shadow-[0_0_2px_gray] dark:shadow-[0_0_2px_white] flex flex-col items-center justify-start" >
+    <div className="text-white rounded-md bg-gradient-to-r from-white to-white dark:from-slate-900/80 dark:via-blue-950/60 dark:to-slate-900/80 dark:text-white w-full max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative h-nav shadow-[0_0_2px_gray] dark:shadow-[0_0_2px_white] flex flex-col items-center justify-start" >
       <Link href={`/students/${sender?._id}`} className={`w-[98%] bg-green-950/10 dark:bg-gray-950/20 ${status ? 'shadow-[0_0_3px_green]' : 'shadow-[0_0_3px_red]'} rounded-md pl-4 p-2 mx-4 md:mx-9 flex items-center gap-6 hover:bg-red-800/20 hover:animate-pulse`}>
         <Image src={sender?.imgUrl ? sender?.imgUrl : "/img/profileImg.jpg"} alt="image" height={70} width={70} className={`rounded-full w-16 h-16 ring-2 ${status ? "ring-green-600" : "ring-red-800"}`} />
         <div className={`relative text-2xl font-semibold  ${status ? 'drop-shadow-[1px_1px_1px_green]' : 'drop-shadow-[1px_1px_1px_red]'}`}>
@@ -114,7 +114,7 @@ export default function Page(props) {
         </div>
       </Link>
 
-      <div className="w-[98%] chatting-message-box flex flex-col justify-start gap-3 py-3 overflow-auto flex-1" ref={messageRef}>
+      <div className="w-[98%] chatting-message-box flex flex-col justify-start gap-3 py-3 overflow-auto flex-1 text-gray-600 dark:text-white" ref={messageRef}>
 
       </div>
 

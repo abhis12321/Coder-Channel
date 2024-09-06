@@ -15,6 +15,9 @@ const blogSchema = new mongoose.Schema({
         type:String,
         required:[true , "There is no blog found!"],
     },
+    image:{
+        type:String,
+    },
     time:{
         type:Date,
         default:Date.now,
