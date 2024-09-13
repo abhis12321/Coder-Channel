@@ -1,26 +1,23 @@
 "use client"
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import StudentCard from './StudentCard';
 import { useAuth } from './AuthProvider';
 import axios from 'axios';
 
 function UsersContainer({ users }) {
   let USER = useAuth();
-  const [students, setStudents] = React.useState([]);
+  const [students, setStudents] = React.useState(users);
   const [search, setSearch] = useState('');
   const [searchBy, setSearchBy] = useState("0");
 
-  const getData = useCallback(async (USER) => {
-    if (!users || users.length == 0) {
-      axios.get(`/api/users/${USER?.user?._id}`)
-        .then(res => res.data)
-        .then(data => data.success && setStudents(data.users))
-        .catch(error => console.log(error.message));
-    } else {
-      setStudents(users);
-    }
-  }, [users]);
+  useEffect(() => {
+    axios.get(`/api/users/${USER?.user?._id}`)
+      .then(res => res.data)
+      .then(data => data.success && setStudents(data.users))
+      .catch(error => console.error(error.message));
+  }, [USER?.user]);
 
+  
   const handleFollowings = (student, index, data) => {
     if (!USER?.user) {
       alert("You are not logged-in! Login first to follow a user!");
@@ -36,11 +33,6 @@ function UsersContainer({ users }) {
         });
     }
   }
-
-  React.useEffect(() => {
-    getData();
-  }, [getData, USER, USER.user]);
-
 
   return (
     <>

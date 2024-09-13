@@ -6,7 +6,6 @@ import axios from 'axios';
 
 export default function ToggleMode() {
   const { themeRef } = useAuth();
-  console.log(themeRef?.current?.classList?.contains("dark"))
 
   const handleToggleMode = (e) => {
     e.preventDefault();

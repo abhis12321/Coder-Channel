@@ -1,6 +1,9 @@
 "use client"
-import React, { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
+import CopyLink from "./CopyLink";
+import { useAuth } from "./AuthProvider";
+import React, { useCallback, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
@@ -12,9 +15,6 @@ import {
   faShareNodes,
   faMicroscope,
 } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
-import { useAuth } from "./AuthProvider";
-import CopyLink from "./CopyLink";
 
 
 export default function StudentCard({ student, index , handleFollowings , search , searchBy} ) {
@@ -53,7 +53,7 @@ export default function StudentCard({ student, index , handleFollowings , search
   }
 
   return (
-    <div className={`bg-white dark:bg-slate-900/80 dark:hover:bg-slate-900/90 backdrop-blur-lg py-4 px-4 h-[440px] w-[320px] shadow-[0_0_2px_gray] dark:shadow-[0_0_2px_white] hover:shadow-[0_0_4px_indigo] dark:hover:shadow-[0_0_4px_pink] rounded-lg flex flex-col justify-evenly items-center gap-3 ${searchBy == "0" && !student.name.toLowerCase().includes(search) && "hidden"}  ${searchBy == "1" && !student.university.toLowerCase().includes(search) && "hidden"}`}>
+    <div className={`bg-white dark:bg-[#1D2129] dark:hover:bg-slate-900/90 backdrop-blur-lg py-4 px-4 h-[440px] w-[320px] shadow-[0_0_2px_black] dark:shadow-[0_0_2px_white] hover:shadow-[0_0_4px_indigo] dark:hover:shadow-[0_0_4px_pink] hover:scale-[1.01] rounded-lg flex flex-col justify-evenly items-center gap-3 ${searchBy == "0" && !student.name.toLowerCase().includes(search) && "hidden"}  ${searchBy == "1" && !student.university.toLowerCase().includes(search) && "hidden"}`}>
       <div className="relative">
         <Image
           src={student.imgUrl ? student.imgUrl : "/img/profileImg.jpg"}

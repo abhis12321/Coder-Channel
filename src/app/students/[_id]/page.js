@@ -65,7 +65,7 @@ export default function Page({ params }) {
   }
 
   return (
-    <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
+    <div className={`h-nav flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
       {!student ?
         <div className={`flex items-center justify-center h-nav`}>
           <div className="mx-auto h-40 w-40 rounded-full animate-spin border-t-4 border-slate-900 dark:border-white flex items-center justify-center"><div className="h-24 w-24 rounded-full border-r-4 border-slate-700 dark:border-white"></div></div>
@@ -77,7 +77,7 @@ export default function Page({ params }) {
               <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40 bg-white shadow-[0_0_2px_black] aspect-square' />
             </div>
 
-            <div className="flex flex-col gap-3 px-1 py-2 xs:p-3 md:p-4 items-center sm:items-start justify-center bg-white dark:bg-blue-100/5 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
+            <div className="flex flex-col gap-3 px-1 py-2 xs:p-3 md:p-4 items-center sm:items-start justify-center bg-white dark:bg-blue-200/10 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
               <div className="flex gap-2 md:gap-4 flex-wrap items-center">
                 <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{student?.name}</h1>
                 <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-blue-800/90 hover:bg-blue-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={handleFollowers}> {student.isFollowed ? "following" : "follow"} </button>
