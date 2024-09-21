@@ -73,7 +73,7 @@ export async function PUT(req) {
       return NextResponse.json({ message: "email verification required...!", success: false });
     }
     const secret = process.env.JWT_SECRET_KEY || "";
-    const tocken = sign({ email, password: pass }, secret, { expiresIn: TOCKEN_MAX_AGE });
+    const tocken = sign({ _id:User._id }, secret, { expiresIn: TOCKEN_MAX_AGE });
 
     // cookies().set(CODER_CHANNEL_TOCKEN, tocken, { maxAge: TOCKEN_MAX_AGE, sameSite: 'Strict' });
 

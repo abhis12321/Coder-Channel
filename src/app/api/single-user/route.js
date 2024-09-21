@@ -1,9 +1,8 @@
+import { CODER_CHANNEL_TOCKEN } from '../../../constants';
 import { NextResponse } from "next/server";
 import { cookies } from 'next/headers';
 import { verify } from "jsonwebtoken";
 import Users from "/mongo/UserModel";
-import cryptoJS from 'crypto-js'
-import { CODER_CHANNEL_TOCKEN } from '../../../constants';
 
 
 export async function GET() {
@@ -14,14 +13,10 @@ export async function GET() {
         if(!tocken) {
             return NextResponse.json({ success:false, message:"no user found, please login with your email and password." });
         }
-        const { email, password } = verify(tocken , secret);
-        let User = (await Users.findOne({ email , verify:true })).toObject();
-
+        const { _id } = verify(tocken , secret);
+        let User = (await Users.findOne({ _id })).toObject();
         
-        let bytes = cryptoJS.AES.decrypt(User?.password, email);
-        let pass = bytes.toString(cryptoJS.enc.Utf8);
-        
-        if(!User || pass !== password) {
+        if(!User) {
             return NextResponse.json({ message:"#something went wrong please login with your email and password.", success:false });
         }
         
