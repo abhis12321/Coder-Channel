@@ -14,7 +14,7 @@ export async function GET() {
 export async function POST( req ) {
     try {
         let body = await req.json();
-        let blog = new Blog(body);
+        let blog = new Blog(body).sort({ time: -1 });
         await blog.save();
         return NextResponse.json({success:true , message:"your blog is posted successfylly" , blog});
     } catch(error) {
