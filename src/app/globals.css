@@ -14,4 +14,7 @@
     overflow-wrap: break-word;
     word-break: break-word;
   }
+  .rotate-y-180 {
+    rotate: Y 180deg;
+  }
 }
