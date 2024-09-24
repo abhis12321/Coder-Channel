@@ -22,7 +22,7 @@ export default function Blogs({ blog }) {
 
       <div className='h-[1px] w-full mt-4 bg-gray-600/50 overflow-hidden' />
       
-      <BlogFooter />
+      <BlogFooter blog={blog}/>
     </div>
   )
 }
