@@ -3,6 +3,7 @@ import Blog from "/mongo/BlogModel";
 
 export async function GET() {
     try {
+        // console.log("getting....")
         let blogs = await Blog.find().sort({ time: -1 })        
                             .populate({
                                 path: 'writerId',  // Use the correct field name as per schema

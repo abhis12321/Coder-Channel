@@ -19,7 +19,7 @@ export default function BlogComments({ blogId, userId }) {
 
     useEffect
     return (
-        <div className='w-full min-h-20 my-[6px] rounded bgred-500 flex flex-col gap-3'>
+        <div className='w-full min-h-20 my-[3px] rounded flex flex-col gap-3'>
             <BlogCommentForm commentById={userId} commentToId={blogId} />
             {
                 comments.map(comment =>

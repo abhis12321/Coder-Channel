@@ -35,7 +35,7 @@ export default function Page({ params }) {
       .then(data => data.success && setFollowings(data.followings));
 
 
-    axios.get(`/api/blogs/${params?._id}`)
+    axios.post(`/api/blogs/${params?._id}`)
       .then(result => result.data)
       .then(data => data.success && setBlogs(data.blogs));
   }, [params._id]);
@@ -64,6 +64,12 @@ export default function Page({ params }) {
     }
   }
 
+
+  useEffect(() => {
+    console.log(blogs);
+  }, [blogs]);
+
+  
   return (
     <div className={`h-nav flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
       {!student ?

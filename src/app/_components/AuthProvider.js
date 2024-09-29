@@ -53,7 +53,7 @@ export default function AuthProvider({ children, initial_theme, tocken }) {
   }, []);
 
 
-  const value = { user, login, logout, socket, themeRef };
+  const value = { user, setUser, login, logout, socket, themeRef };
 
 
   return (

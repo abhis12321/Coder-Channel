@@ -29,7 +29,7 @@ export default function ProfileCard({ student, setStatus }) {
   }, [student?._id]);
 
   const updateBlogs = useCallback(() => {
-    axios.get(`/api/blogs/${student?._id}`)
+    axios.post(`/api/blogs/${student?._id}`)
       .then(result => result.data)
       .then(data => data.success && setBlogs(data.blogs));
   }, [student?._id]);

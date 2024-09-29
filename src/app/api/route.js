@@ -1,17 +1,21 @@
 import { NextResponse } from "next/server";
 import User from "/mongo/UserModel";
+import Blogs from "/mongo/BlogModel";
+import { BlogLikes } from "/mongo/BlogLikesModel";
 import mongoose from "mongoose";
 import { cookies } from 'next/headers';
 
 export async function GET() {
-  console.log("/api" , "GET")
   try {
     // await User.updateMany(
     //   { verify: true },
     //   { $set: { isOnline: 0 } }
     // );
 
-    return NextResponse.json({success:true})
+    const blogs = await getBlogsWithUserLikes("663d70c3df20b6ad463f8afa");
+    // console.log(blogs)
+
+    return NextResponse.json({ success:true , blogs })
   } catch(error) {
     return NextResponse.json(error);
   }
@@ -71,3 +75,36 @@ export async function PUT(req) {
       return NextResponse.json({ success:false , message:error.message });
   }
 }
+
+
+const getBlogsWithUserLikes = async (userId) => {
+  try {
+      // Find all blogs
+      const blogs = await Blogs.find({})
+          .populate({
+              path: 'writerId',   // Populate the writer's information
+              select: 'name imgUrl' // Only select needed fields from Users
+          })
+          .sort({time : -1})
+          .lean() // Use lean() to get plain JavaScript objects instead of Mongoose documents
+          .exec();
+
+      // Map over blogs and check if the user has liked each blog
+      const blogsWithLikes = await Promise.all(blogs.map(async (blog) => {
+          const liked = await BlogLikes.findOne({
+              blogId: blog._id,
+              userId,
+          }).exec();
+
+          return {
+              ...blog,
+              liked: liked !== null // true if the user has liked this blog, otherwise false
+          };
+      }));
+
+      return blogsWithLikes; // Return the blogs with like status
+  } catch (error) {
+      console.error('Error fetching blogs:', error);
+      return [];
+  }
+};

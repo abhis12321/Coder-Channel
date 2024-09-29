@@ -5,7 +5,7 @@ export const POST = async(req) => {
     try {
         const body = await req.json();
         const newlike = new BlogLikes(body);
-        console.log(body , BlogLikes , newlike);
+        // console.log(body , BlogLikes , newlike);
         await newlike.save();
         return NextResponse.json({ message:"likes request received.." });
     } catch(error) {
