@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import React from 'react';
 
 export default function Followers({ followers, setConnections, handleRemoveFollower }) {
   return (
@@ -13,7 +12,7 @@ export default function Followers({ followers, setConnections, handleRemoveFollo
           (followers && followers.length > 0) ?
             followers.map((user, index) =>
               <div className="flex justify-between items-center font-mono bg-blue-900/20 dark:bg-blue-400/20 hover:bg-blue-800/25 rounded w-full text-red-950 dark:text-white overflow-hidden" key={index}>
-                <Link href={`/students/${user.followedById}`} className="flex-1 font-bold py-2 px-3 hover:bg-green-900/40" key={index}>{user.followedByName}</Link>
+                <Link href={`/students/${user.followedById._id}`} className="flex-1 font-bold py-2 px-3 hover:bg-green-900/40" key={index}>{user.followedById.name}</Link>
                 { handleRemoveFollower && <button className="text-sm text-white p-[10px] bg-gray-500 hover:bg-gray-900" onClick={e => handleRemoveFollower(user._id)}>remove</button> }
               </div>
             )

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Users from "/mongo/UserModel";
-import Followers from "/mongo/Followers";
+import Followers from "/mongo/FollowersModel";
 
 
 export async function POST(req , res) {

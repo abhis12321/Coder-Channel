@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import React from 'react'
 
 export default function Followings({ followings, setConnections,handleUnFollow }) {
   return (
@@ -13,7 +12,7 @@ export default function Followings({ followings, setConnections,handleUnFollow }
           (followings && followings.length > 0) ?
           followings.map((user, index) =>
             <div className="flex justify-between items-center font-mono bg-blue-900/20 dark:bg-blue-400/20 hover:bg-blue-800/25 rounded w-full text-red-950 dark:text-white overflow-hidden" key={index}>
-              <Link href={`/students/${user.followedToId}`} className="flex-1 font-bold py-2 px-3 hover:bg-green-900/40">{user.followedToName}</Link>
+              <Link href={`/students/${user.followedToId._id}`} className="flex-1 font-bold py-2 px-3 hover:bg-green-900/40">{user.followedToId.name}</Link>
               { handleUnFollow && <button className="text-sm text-white p-[10px] bg-gray-900/70 hover:bg-gray-900" onClick={e => handleUnFollow(user._id)}>unfollow</button> }
             </div>
           )

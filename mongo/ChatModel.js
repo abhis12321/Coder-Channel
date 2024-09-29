@@ -4,21 +4,15 @@ import dbConnect from './dbConnect'
 dbConnect();
 const chatSchema = new mongoose.Schema({
     senderId:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
         required:[true , "sender-id is missing."],
-    },
-    senderName:{
-        type:String,
-        required:[true , "sender-name is missing."],
+        ref:"Users",
     },
     receiverId:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
         required:[true , "sender-id is missing."],
-    },
-    receiverName:{
-        type:String,
-        required:[true , "sender-name is missing."],
-    },    
+        ref:"Users",
+    },  
     message:{
         type:String,
         required:[true , "chat-message is missing."],
@@ -27,4 +21,4 @@ const chatSchema = new mongoose.Schema({
 });
 
 
-export const Chat = mongoose.models.Chat || mongoose.model("Chat" , chatSchema);
+export const Chat = mongoose.models.Chats || mongoose.model("Chats" , chatSchema);

@@ -3,10 +3,16 @@ import Blog from "/mongo/BlogModel";
 
 export async function GET() {
     try {
-        let blogs = await Blog.find().sort({ time: -1 });
-        return NextResponse.json({success:true , blogs})
+        let blogs = await Blog.find().sort({ time: -1 })        
+                            .populate({
+                                path: 'writerId',  // Use the correct field name as per schema
+                                model: 'Users',       // Explicitly mention the 'Users' model
+                                select: 'name imgUrl' // Select name and other fields
+                            })
+                            .exec();
+        return NextResponse.json({success:true , blogs});
     } catch(error) {
-        NextResponse.json({ success:false , message:error.message })
+        NextResponse.json({ success:false , message:error.message });
     }
 }
 

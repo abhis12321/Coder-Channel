@@ -22,10 +22,21 @@ export async function PUT(request) {
         let {user1 , user2} = await request.json();
         let chats = await Chat.find({
             $or:[
-                {senderId:user1 , receiverId:user2},
-                {senderId:user2 , receiverId:user1}
+                {senderId: user1 , receiverId: user2},
+                {senderId: user2 , receiverId: user1}
             ]
         })
+        .populate({
+            path: 'senderId',  // Use the correct field name as per schema
+            model: 'Users',       // Explicitly mention the 'Users' model
+            select: 'name' // Select name and imgUrl fields
+        })
+        .populate({
+            path: 'receiverId',  // Use the correct field name as per schema
+            model: 'Users',       // Explicitly mention the 'Users' model
+            select: 'name' // Select name and imgUrl fields
+        })
+        .exec();
         return NextResponse.json({success:true , chats});
     } catch(error) {
         return NextResponse.json({success:false , message:error.message});

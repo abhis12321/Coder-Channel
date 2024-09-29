@@ -89,11 +89,12 @@ export default function Page(props) {
       axios.put('/api/chatLog', body)
         .then(response => response.data)
         .then(data => {
+          // console.log(data)
           if (data.success) {
-            for (let index in data.chats) {
-              let chat = data.chats[index];
-              appendNewMessageToCant(chat.receiverId === user._id ? chat.senderName : "you", chat.message, chat.receiverId === user._id ? 'left' : 'right');
-            }
+            data.chats?.map(chat => {
+              let flag = chat.receiverId._id === user._id;
+              appendNewMessageToCant(flag ? chat.senderId.name : "you", chat.message, flag ? 'left' : 'right');
+            })
           }
         })
         .catch(error => console.error(error.message));

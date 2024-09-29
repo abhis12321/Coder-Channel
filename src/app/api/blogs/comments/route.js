@@ -7,7 +7,7 @@ export const POST = async(req) => {
         const body = await req.json();
         const comment = new Comment(body);
         await comment.save();
-        return NextResponse.json({ message: "Comment request is received for the blog..", success: true })
+        return NextResponse.json({ message: "Your Comment posted successfully..", success: true })
     } catch(error) {
         return NextResponse.json({ error: `Bad request! ${error.message}..` } , { status:400 })
     }

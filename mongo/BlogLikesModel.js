@@ -6,10 +6,12 @@ const blogLikesSchema = new mongoose.Schema({
     blogId:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
+        ref:"Blogs",
     },
     userId:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
+        ref:"Users",
     },
     likedAt:{
         type:Date,

@@ -10,13 +10,19 @@ const commentSchema = new mongoose.Schema({
     commentToId:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
+        ref:"Blogs",
     },
     commentById:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
+        ref:"Users",
+    },
+    commentedAt: {
+        type:Date,
+        default:Date.now,
     }
 })
 
 
 
-export const Comment = mongoose.models.Comment || mongoose.model("Comment" , commentSchema);
+export const Comment = mongoose.models.Comments || mongoose.model("Comments" , commentSchema);
