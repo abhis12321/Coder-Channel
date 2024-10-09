@@ -6,6 +6,6 @@ export function middleware(request) {
 }
 
 
-export const config = {
-  matcher: '/*',
-}
+// export const config = {
+//   matcher: '/*',
+// }

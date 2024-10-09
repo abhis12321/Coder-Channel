@@ -4,9 +4,7 @@ import { Comment } from '/mongo/CommentModel'
 
 export const GET = async(req , { params }) => {
     try {
-        // console.log("params" , params)
-        // const comments = await Comment.find( params );
-        const comments = await Comment.find({})
+        const comments = await Comment.find(params)
         .populate({
             path: 'commentById',  // Use the correct field name as per schema
             model: 'Users',       // Explicitly mention the 'Users' model
@@ -21,7 +19,7 @@ export const GET = async(req , { params }) => {
 
         return NextResponse.json({ comments }, { status:200 });
     } catch(error) {
-        console.error(error.message)
+        // console.error(error.message)
         return NextResponse.json({ error:error.message }, { status:400 });
     }
 }

@@ -8,19 +8,22 @@ import Image from 'next/image';
 export default function BlogComments({ blogId, userId }) {
     const [comments, setComments] = useState([]);
 
-    useEffect(() => {
+    const loadComments = () => {        
         axios.get(`/api/blogs/comments/${blogId}`)
             .then(response => response.data)
             .then(data => data.comments)
             // .then(comments => console.log(comments))
             .then(comments => setComments(comments))
             .catch(error => console.error(error.message))
+    }
+    useEffect(() => {
+        loadComments();
     }, [blogId]);
 
-    useEffect
+
     return (
         <div className='w-full min-h-20 my-[3px] rounded flex flex-col gap-3'>
-            <BlogCommentForm commentById={userId} commentToId={blogId} />
+            <BlogCommentForm commentById={userId} commentToId={blogId} addComments={loadComments}/>
             {
                 comments.map(comment =>
                     <div className="flex flex-col gap-2 p-1" key={comment._id}>

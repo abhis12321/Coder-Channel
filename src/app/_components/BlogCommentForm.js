@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 
-export default function BlogCommentForm({ commentToId, commentById }) {
+export default function BlogCommentForm({ commentToId, commentById, addComments }) {
     const handleNewComment = (e) => {
         e.preventDefault();
         const payload = {
@@ -13,8 +13,12 @@ export default function BlogCommentForm({ commentToId, commentById }) {
         // console.log(payload)
         axios.post("/api/blogs/comments" , payload)
             .then(res => res.data)
-            .then(data => alert(data.message))
-            .catch(err => alert(`Bad request! ${err.message}`))
+            .then(data => {
+              alert(data.message);
+              addComments();
+              e.target.comment.value = "";
+            })
+            .catch(error => alert(`Bad request! ${error.message}`))
     }
 
   return (
