@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Followers from "/mongo/FollowersModel";
+import { authenticateUser } from "../../../../../authenticateUser";
 
 //Find Followers
 export async function GET(req , {params}) {
@@ -46,6 +47,12 @@ export async function POST(req , {params}) {
 
 export async function DELETE(req , {params}) {
     try {
+        const isVerified = authenticateUser(params._id);
+    
+        if (isVerified) {
+          return NextResponse.json({}, { status: 404 });
+        }
+    
         await Followers.findByIdAndDelete(params._id);
         return NextResponse.json({ success:true , message:"Task completed." });
     } catch(error) {

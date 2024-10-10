@@ -27,6 +27,8 @@ export default function Page() {
     setBlogs([...blogs, newblog]);
   }
 
+  useEffect(() => console.log(blogs) , [blogs])
+
   return (
     <div className='flex flex-col gap-3 items-center justify-center h-nav py-4'>
       <BlogPostContainer handleBlogPost={handleBlogPost}/>

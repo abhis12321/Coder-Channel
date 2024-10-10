@@ -1,11 +1,18 @@
 import { NextResponse } from "next/server";
 import Users from "/mongo/UserModel";
 import Followers from "/mongo/FollowersModel";
+import { authenticateUser } from "../../../../authenticateUser";
 
 
 export async function POST(req , res) {
     try {
         let data = await req.json();
+        const isVerified = authenticateUser(data.followedById);
+        
+        if(isVerified) {
+            return NextResponse.json({} , { status:404})
+        }
+
         if(data.followedById === data.followedToId) {
             return NextResponse.json({success:false , message:"you can not follow yourself."});
         } 

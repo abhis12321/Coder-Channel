@@ -22,7 +22,8 @@ export default function Page({ params }) {
   useEffect(() => {   //user's personal data
     axios.get(`/api/single-user/${params._id}`)
       .then(res => res.data)
-      .then(result => setStudent(result))
+      .then(data => data.user)
+      .then(user => setStudent(user))
       .catch(error => alert(error.message));
 
     axios.get(`/api/users/follow/${params._id}`)

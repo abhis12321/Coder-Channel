@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import Blog from "/mongo/BlogModel";
+import { authenticateUser } from "../../../authenticateUser";
 
 export async function GET() {
     try {
-        // console.log("getting....")
         let blogs = await Blog.find().sort({ time: -1 })        
                             .populate({
                                 path: 'writerId',  // Use the correct field name as per schema
@@ -21,10 +21,18 @@ export async function GET() {
 export async function POST( req ) {
     try {
         let body = await req.json();
+        const isVerified = authenticateUser(body.writerId);
+
+        if(!isVerified) {
+            return NextResponse.json({} , { status:404 });       
+        }
+
         let blog = new Blog(body);
         await blog.save();
+
         return NextResponse.json({success:true , message:"your blog is posted successfylly" , blog});
     } catch(error) {
+        // console.error(error.message)
         return NextResponse.json({success:false , message:error.message});
     }
 }
