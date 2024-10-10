@@ -14,49 +14,38 @@ export default function Footer() {
             <p className="text-center text-yellow-400 font-semibold drop-shadow-[0_0_7px_white] pt-[6px]">creator&apos;s info</p>
           </div>
           
-          <div className="py-4 flex justify-around items-center rounded-lg self-center sm:self-auto w-[250px]">
+          <div className="py-4 flex justify-around items-center bg-slate50 rounded-lg self-center sm:self-auto w-[267px]">
             <Link
               target="_blank"
               href={`https://github.com/abhis12321`}
-              className="hover:scale-110 duration-500"
+              className="disabled"
             >
               <FontAwesomeIcon
                 icon={faGithub}
-                size="2x"
-                className="p-[4px] text-[1.8rem] rounded-md bg-slate-950 dark:bg-blue-950 text-white ring-[1px] ring-gray-500"
+                size="3x"
+                className=" text-gray-400 hover:text-gray-300 hover:scale-110 text-4xl md:text-5xl"
               />
             </Link>
             <Link
               target="_blank"
               href={`https://www.linkedin.com/in/abhishek-singh-b82427256/`}
-              className="hover:scale-110 duration-500"
+              className="disabled"
             >
               <FontAwesomeIcon
                 icon={faLinkedin}
                 size="3x"
-                className="text-blue-700 hover:text-blue-600 text-[2.6rem]"
+                className="text-blue-700 hover:text-blue-600 hover:scale-110 text-4xl md:text-5xl"
               />
             </Link>
             <Link
               target="_blank"
               href={`https://www.instagram.com/____abhis____/`}
-              className="hover:scale-110 duration-500"
+              className="disabled"
             >
               <FontAwesomeIcon
                 icon={faInstagram}
                 size="3x"
-                className="text-rose-800/95 hover:text-rose-700 text-[2.76rem]"
-              />
-            </Link>
-            <Link
-              target="_blank"
-              href={`mailto:abhisheksingh2359328@gmail.com`}
-              className="hover:scale-110 duration-500"
-            >
-              <FontAwesomeIcon
-                icon={faSquareEnvelope}
-                size="3x"
-                className="text-blue-800 text-[2.65rem]"
+                className="text-rose-800 hover:text-rose-700 hover:scale-110 text-4xl md:text-5xl"
               />
             </Link>
           </div>
