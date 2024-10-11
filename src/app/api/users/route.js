@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Users from "/mongo/UserModel";
+import { UploadToCloudinary } from "/mongo/Uploader";
 import cryptoJS from 'crypto-js'
 import cron from 'node-cron';
 import { cookies } from 'next/headers';
@@ -33,15 +34,23 @@ export async function GET() {
 
 
 export async function POST(req, res) {
-  try {
-    let data = await req.json();
-    let email = data.email;
-    // Encrypting the password
-    let ciphertext = cryptoJS.AES.encrypt(data.password, email).toString();
-    let user = new Users({ ...data, verify: false, password: ciphertext });
+  try {    
+    const formData = await req.formData();
+    const file = formData.get('file');
+    const payload = JSON.parse(formData.get("payload"));
+
+    if(file) {
+      const result = await UploadToCloudinary(file);
+      payload.imgUrl = result ? result.secure_url : "/img/profileImg.jpg";
+    } else {
+      payload.imgUrl = "/img/profileImg.jpg";
+    }
+
+    let ciphertext = cryptoJS.AES.encrypt(payload.password, payload.email).toString();
+    let user = new Users({ ...payload, verify: false, password: ciphertext });
     await user.save();
 
-    await sendVerificationEmail(email, user._id);
+    await sendVerificationEmail(payload.email, user._id);
     return NextResponse.json({ message: "Verification Link sent successfully to your Email...! It will be valid only for 10 minutes, If you fails to verify within the time your registration will be cancelled. And you have to register again for further process", success: true });
   }
   catch (error) {

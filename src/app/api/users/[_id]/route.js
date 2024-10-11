@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Users from "/mongo/UserModel";
+import { UploadToCloudinary } from "/mongo/Uploader";
 import cryptoJS from "crypto-js";
 import mongoose from "mongoose";
 import { authenticateUser } from "../../../../authenticateUser";
@@ -97,19 +98,34 @@ export async function PUT(req, { params }) {
 
 
 export async function PATCH(request, { params }) {
-  try {
-    let body = await request.json();
+  try {    
+    const formData = await request.formData();
+    const file = formData.get('file');
+    const payload = JSON.parse(formData.get("payload"));
+
     const isVerified = authenticateUser(params._id);
 
-    if (isVerified) {
+    if (!isVerified) {
       return NextResponse.json({}, { status: 404 })
     }
 
-    let ciphertext = cryptoJS.AES.encrypt(body.password, body.email).toString();
-    await Users.findOneAndUpdate({ _id: params._id }, { ...body, password: ciphertext });
+  
+    console.log(typeof(file) , file);
+    console.log(payload);
+
+    if(file) {
+      const result = await UploadToCloudinary(file);
+      if(result) {
+        payload.imgUrl = result.secure_url;
+      }
+    }
+
+    let ciphertext = cryptoJS.AES.encrypt(payload.password, payload.email).toString();
+    payload.password = ciphertext;
+
+    const user = await Users.findOneAndUpdate({ _id: params._id }, payload);
     return NextResponse.json({ success: true, message: "profile updated successfully" });
   } catch (error) {
-    // console.log(error.message);
     return NextResponse.json({ success: false, message: error.message });
   }
 }
