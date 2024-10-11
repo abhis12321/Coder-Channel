@@ -23,15 +23,15 @@ const uploadToCloudinary = (filePath) => {
 };
 
 export async function UploadToCloudinary(file) {
-  try {
-    if (!file) {
-      return null;
-    }
-  
+  if (!file) {
+    return null;
+  }
+
   // Use the system's temporary directory
   const tmpDir = os.tmpdir();
   const tempFilePath = path.join(tmpDir, `upload_${Date.now()}_${file.name}`);
 
+  try {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
@@ -40,7 +40,7 @@ export async function UploadToCloudinary(file) {
 
     // Upload the file to Cloudinary
     const result = await uploadToCloudinary(tempFilePath);
-    
+
     // Clean up the temporary file
     fs.unlinkSync(tempFilePath);
 
