@@ -33,7 +33,7 @@ export default function NavBar() {
 
       <div className="right-navbar fixed lg:static top-0 right-0 hidden lg:flex gap-8 bg-white dark:bg-blue-950 dark:lg:bg-transparent min-h-[100vh] lg:min-h-fit z-10 items-center min-w-[170px] dark:font-normal font-medium border-l-[1px] lg:border-0 border-gray-400 rint-2 ring-white" ref={rightNav}>
         <div className="hidden text-4xl pt-[15px] pb-2 text-center"  onClick={handleRight} ref={cutX}>
-          <FontAwesomeIcon icon={faXmark} size="sm" className="h-[23px] hover:text-red-800 cursor-pointer"/>
+          <FontAwesomeIcon icon={faXmark} size="sm" className="h-[31px] hover:text-red-800 cursor-pointer"/>
         </div>
 
         <div className="w-full lg:w-fit flex items-center justify-center">
