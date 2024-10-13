@@ -3,6 +3,7 @@ import { useAuth } from '../_components/AuthProvider';
 import ForgotPassword from './ForgotPassword';
 import ResendVerificationLink from './ResendVerificationLink';
 import UserRegistration from './UserRegistration'
+import LoadingPage from './LoadingPage';
 
 export default function LoginForm() {
   const [option, setOption] = useState(0);
@@ -38,6 +39,7 @@ export default function LoginForm() {
         {option == 1 && <ForgotPassword setOption={setOption} />}
         {option == 2 && <ResendVerificationLink setOption={setOption} />}
         {option == 3 && <UserRegistration setOption={setOption} />}
+        {option == 4 && <LoadingPage />}
 
       </div>
   )

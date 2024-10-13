@@ -52,11 +52,12 @@ export default function StudentCard({ student, index , handleFollowings , search
     handleFollowings(student , index , data);
   }
 
+
   return (
     <div className={`bg-white dark:bg-[#1D2129] dark:hover:bg-slate-900/90 backdrop-blur-lg py-4 px-4 h-[440px] w-[320px] shadow-[0_0_2px_black] dark:shadow-[0_0_2px_white] hover:shadow-[0_0_4px_indigo] dark:hover:shadow-[0_0_4px_pink] rounded-lg flex flex-col justify-evenly items-center gap-3 ${searchBy == "0" && !student.name.toLowerCase().includes(search) && "hidden"}  ${searchBy == "1" && !student.university.toLowerCase().includes(search) && "hidden"}`}>
       <div className="relative">
-        <Image
-          src={student.imgUrl ? student.imgUrl : "/img/profileImg.jpg"}
+        <img
+          src={(student.imgUrl)}
           alt="profile-img"
           className={`h-[140px] m-auto rounded-full overflow-hidden ring-[3px] ${status ? 'ring-lime-900 dark:ring-green-800' : 'ring-red-900 dark:ring-red-700'} opacity-90 bg-white aspect-square`}
           width={140}

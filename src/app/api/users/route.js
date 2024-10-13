@@ -1,63 +1,26 @@
-import { NextResponse } from "next/server";
-import Users from "/mongo/UserModel";
-import { UploadToCloudinary } from "/mongo/Uploader";
-import cryptoJS from 'crypto-js'
 import cron from 'node-cron';
-import { cookies } from 'next/headers';
+import cryptoJS from 'crypto-js'
 import { sign } from "jsonwebtoken";
-import { TOCKEN_MAX_AGE, CODER_CHANNEL_TOCKEN } from '../../../constants'
-import { sendVerificationEmail } from '../../../sendMailToUser'
+import Users from "/mongo/UserModel";
+import { cookies } from 'next/headers';
+import { NextResponse } from "next/server";
+import { sendVerificationEmail } from '../../../sendMailToUser';
+import { TOCKEN_MAX_AGE, CODER_CHANNEL_TOCKEN } from '../../../constants';
 
 
-cron.schedule('*/10 * * * *', async () => {
+export async function POST(req) {
   try {
-    const now = new Date();
-    await Users.deleteMany({
-      verify: false,
-      createdAt: { $lt: new Date(now - 10 * 60 * 1000) }
-    });
-    // console.log('Deleting unverified users registered more than 10 minutes ago');
-  } catch (error) {
-    console.error('Error deleting unverified users:', error.message);
-  }
-});
-
-
-export async function GET() {
-  try {
-    let users = await Users.find({ verify: true });
-    return NextResponse.json({ users, success: true });
-  } catch (err) {
-    return NextResponse.json({ success: false });
-  }
-}
-
-
-export async function POST(req, res) {
-  try {    
-    const formData = await req.formData();
-    const file = formData.get('file');
-    const payload = JSON.parse(formData.get("payload"));
-
-    if(file) {
-      const result = await UploadToCloudinary(file);
-      payload.imgUrl = result ? result.secure_url : "/img/profileImg.jpg";
-    } else {
-      payload.imgUrl = "/img/profileImg.jpg";
-    }
-
-    let ciphertext = cryptoJS.AES.encrypt(payload.password, payload.email).toString();
-    let user = new Users({ ...payload, verify: false, password: ciphertext });
+    const payload = await req.json();
+    // console.log(payload);
+    const user = new Users(payload);
     await user.save();
-
     await sendVerificationEmail(payload.email, user._id);
     return NextResponse.json({ message: "Verification Link sent successfully to your Email...! It will be valid only for 10 minutes, If you fails to verify within the time your registration will be cancelled. And you have to register again for further process", success: true });
-  }
-  catch (error) {
-    return NextResponse.json({ message: error.message, success: false });
+  } catch (error) {
+    // console.error('Error during file upload:', error);
+    return NextResponse.json({ error: 'Error during file upload: ' + error.message }, { status: 500 });
   }
 }
-
 
 export async function PUT(req) {
   try {
@@ -83,7 +46,7 @@ export async function PUT(req) {
       return NextResponse.json({ message: "email verification required...!", success: false });
     }
     const secret = process.env.JWT_SECRET_KEY || "";
-    const tocken = sign({ _id:User._id }, secret, { expiresIn: TOCKEN_MAX_AGE });
+    const tocken = sign({ _id: User._id }, secret, { expiresIn: TOCKEN_MAX_AGE });
 
     // cookies().set(CODER_CHANNEL_TOCKEN, tocken, { maxAge: TOCKEN_MAX_AGE, sameSite: 'Strict' });
 
@@ -105,3 +68,28 @@ export async function PUT(req) {
   }
 }
 
+
+
+
+cron.schedule('*/10 * * * *', async () => {
+  try {
+    const now = new Date();
+    await Users.deleteMany({
+      verify: false,
+      createdAt: { $lt: new Date(now - 10 * 60 * 1000) }
+    });
+    // console.log('Deleting unverified users registered more than 10 minutes ago');
+  } catch (error) {
+    console.error('Error deleting unverified users:', error.message);
+  }
+});
+
+
+export async function GET() {
+  try {
+    let users = await Users.find({ verify: true });
+    return NextResponse.json({ users, success: true });
+  } catch (err) {
+    return NextResponse.json({ success: false });
+  }
+}

@@ -17,14 +17,20 @@ export default function ProfileEdit({ student, setEditable }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();    
-        const payload = { name, email, password, gender, university, course, linkedIn, instagram, github };
+        let imgUrl = "/img/profileImg.jpg";
 
         const formData = new FormData();
-        formData.append("payload" , JSON.stringify(payload));
-        if(image)
-        formData.append("file" , image);
+        if(image) {
+            formData.append("file", image);
+            formData.append("upload_preset", "my-lab");
+            await axios.post(`https://api.cloudinary.com/v1_1/dak3c5zwi/upload`, formData)
+                .then(res => res.data)
+                .then(data => imgUrl = data.secure_url)
+                .catch((error) => console.error(error.message));
+        }        
 
-        axios.patch(`/api/users/${student._id}`, formData)
+        const payload = { name, email, password, gender, university, course, linkedIn, instagram, github, imgUrl };
+        axios.patch(`/api/users/${student._id}`, payload)
             .then(response => response.data)
             .then(data => alert(data.message))
             .catch(error => alert(error.message));
