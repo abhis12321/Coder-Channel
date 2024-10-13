@@ -9,6 +9,7 @@ import ProfileEdit from './ProfileEdit'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
+
 export default function ProfileCard({ student, setStatus }) {
   const [connections, setConnections] = useState(0);
   const [followers, setFollowers] = useState([]);
@@ -56,6 +57,7 @@ export default function ProfileCard({ student, setStatus }) {
       .then(success => success && updateFollowers())
       .catch(error => alert(error.message));
   }
+
 
   return (
     <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
