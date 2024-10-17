@@ -1,6 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Followings({ followings, setConnections,handleUnFollow }) {
+export default function Followings({ followings, setConnections, handleUnFollow }) {
   return (
     <div className="fixed z-10 top-0 left-0 w-[100%] h-[100%] bg-gray-500/45 dark:bg-blue-50/25 flex items-center justify-center">
       <div className='flex gap-[1px] flex-col items-center justify-around w-[98%] mx-[2%] max-w-[400px] bg-white dark:bg-blue-950/95 p-2 ring-1 ring-blue-700 rounded'>
@@ -10,14 +11,17 @@ export default function Followings({ followings, setConnections,handleUnFollow }
         </div>
         {
           (followings && followings.length > 0) ?
-          followings.map((user, index) =>
-            <div className="flex justify-between items-center font-mono bg-blue-900/20 dark:bg-blue-400/20 hover:bg-blue-800/25 rounded w-full text-red-950 dark:text-white overflow-hidden" key={index}>
-              <Link href={`/students/${user.followedToId._id}`} className="flex-1 font-bold py-2 px-3 hover:bg-green-900/40">{user.followedToId.name}</Link>
-              { handleUnFollow && <button className="text-sm text-white p-[10px] bg-gray-900/70 hover:bg-gray-900" onClick={e => handleUnFollow(user._id)}>unfollow</button> }
-            </div>
-          )
-          :
-          <p className="text-gray-500">No followings till now</p>
+            followings.map((user, index) =>
+              <div className="flex justify-between items-center font-mono bg-blue-900/20 dark:bg-blue-400/20 hover:bg-blue-800/25 rounded w-full text-red-950 dark:text-white overflow-hidden" key={index}>
+                <Link href={`/students/${user.followedToId._id}`} className="flex-1 font-bold py-[3px] px-3 hover:bg-green-900/40 flex items-center gap-4">
+                  <Image src={user.followedToId.imgUrl} alt='' height={50} width={50} className='rounded-full h-10 w-10' />
+                  <p className="">{user.followedToId.name}</p>
+                </Link>
+                {handleUnFollow && <button className="text-sm text-white p-[10px] bg-gray-900/70 hover:bg-gray-900" onClick={e => handleUnFollow(user._id)}>unfollow</button>}
+              </div>
+            )
+            :
+            <p className="text-gray-500">No followings till now</p>
         }
       </div>
     </div>

@@ -9,12 +9,12 @@ export async function GET(req , {params}) {
                                         .populate({
                                             path: 'followedById',  // Use the correct field name as per schema
                                             model: 'Users',       // Explicitly mention the 'Users' model
-                                            select: 'name' // Select name and other fields
+                                            select: 'name imgUrl' // Select name and other fields
                                         })
                                         .populate({
                                             path: 'followedToId',  // Use the correct field name as per schema
                                             model: 'Users',       // Explicitly mention the 'Users' model
-                                            select: 'name' // Select name and other fields
+                                            select: 'name imgUrl' // Select name and other fields
                                         })
                                         .exec();
         return NextResponse.json({followers , success:true});
@@ -26,18 +26,18 @@ export async function GET(req , {params}) {
 //Find Followings
 export async function POST(req , {params}) {
     try {
-        const followings = await Followers.find({followedById:params._id})
-        .populate({
-            path: 'followedById',  // Use the correct field name as per schema
-            model: 'Users',       // Explicitly mention the 'Users' model
-            select: 'name' // Select name and other fields
-        })
-        .populate({
-            path: 'followedToId',  // Use the correct field name as per schema
-            model: 'Users',       // Explicitly mention the 'Users' model
-            select: 'name' // Select name and other fields
-        })
-        .exec();
+        const followings = await Followers.find({ followedById: params._id })
+                                .populate({
+                                    path: 'followedById',  // Correct field name from Follower schema
+                                    model: 'Users',        // Explicitly mention the Users model
+                                    select: 'name imgUrl',        // Select only the 'name' field
+                                })
+                                .populate({
+                                    path: 'followedToId',  // Correct field name from Follower schema
+                                    model: 'Users',        // Explicitly mention the Users model
+                                    select: 'name imgUrl',        // Select only the 'name' field
+                                })
+                                .exec();  // Execute the query
         return NextResponse.json({followings , success:true});
     } catch(error) {
         return NextResponse.json({message:error.message , success:false})

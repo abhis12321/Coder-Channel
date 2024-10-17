@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Followers({ followers, setConnections, handleRemoveFollower }) {
@@ -12,8 +13,11 @@ export default function Followers({ followers, setConnections, handleRemoveFollo
           (followers && followers.length > 0) ?
             followers.map((user, index) =>
               <div className="flex justify-between items-center font-mono bg-blue-900/20 dark:bg-blue-400/20 hover:bg-blue-800/25 rounded w-full text-red-950 dark:text-white overflow-hidden" key={index}>
-                <Link href={`/students/${user.followedById._id}`} className="flex-1 font-bold py-2 px-3 hover:bg-green-900/40" key={index}>{user.followedById.name}</Link>
-                { handleRemoveFollower && <button className="text-sm text-white p-[10px] bg-gray-500 hover:bg-gray-900" onClick={e => handleRemoveFollower(user._id)}>remove</button> }
+                <Link href={`/students/${user.followedById._id}`} className="flex-1 font-bold py-[3px] px-3 hover:bg-green-900/40 flex items-center gap-4" key={index}>
+                  <Image src={user.followedById.imgUrl} alt='' height={50} width={50} className='rounded-full h-10 w-10' />
+                  <div className="">{user.followedById.name}</div>
+                </Link>
+                {handleRemoveFollower && <button className="text-sm text-white p-[10px] bg-gray-500 hover:bg-gray-900" onClick={e => handleRemoveFollower(user._id)}>remove</button>}
               </div>
             )
             :

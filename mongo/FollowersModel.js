@@ -1,5 +1,5 @@
-const { default: mongoose } = require("mongoose");
-const { default: dbConnect } = require("./dbConnect");
+import mongoose from "mongoose";
+import dbConnect from "./dbConnect";
 
 dbConnect();
 const followerSchema = new mongoose.Schema({

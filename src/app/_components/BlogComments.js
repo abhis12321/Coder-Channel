@@ -22,7 +22,7 @@ export default function BlogComments({ blogId, userId }) {
 
 
     return (
-        <div className='w-full min-h-20 my-[3px] rounded flex flex-col gap-3'>
+        <div className='w-full min-h-20 mt-[3px] mb-4 rounded flex flex-col gap-3'>
             <BlogCommentForm commentById={userId} commentToId={blogId} addComments={loadComments}/>
             {
                 comments.map(comment =>

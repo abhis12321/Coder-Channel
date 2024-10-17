@@ -66,11 +66,6 @@ export default function Page({ params }) {
   }
 
 
-  useEffect(() => {
-    console.log(blogs);
-  }, [blogs]);
-
-
   return (
     <div className={`h-nav flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
       {!student ?
