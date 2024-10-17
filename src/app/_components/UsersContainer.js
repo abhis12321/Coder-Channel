@@ -18,12 +18,15 @@ function UsersContainer({ users }) {
   }, [USER?.user]);
 
   
-  const handleFollowings = (student, index, data) => {
+  const handleFollowings = (index, data) => {
     if (!USER?.user) {
       alert("You are not logged-in! Login first to follow a user!");
-    } else if (USER.user._id === student._id) {
+    } else if (USER.user._id === data.followedToId) {
       alert("you can not follow yourself.");
+    // } else if (students[index].isFollowing) {
+    //   alert("you are already following this user.");
     } else {
+      // console.log({ index, data });
       axios.post('/api/users/follow', data)
         .then(result => result.data)
         .then(data => {

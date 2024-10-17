@@ -8,7 +8,7 @@ export const POST = async(req) => {
         const body = await req.json();
         const isVerified = authenticateUser(body.commentById);
         
-        if(isVerified) {
+        if(!isVerified) {
             return NextResponse.json({ } , { status:404 });
         }
 

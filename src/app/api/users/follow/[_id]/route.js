@@ -49,7 +49,7 @@ export async function DELETE(req , {params}) {
     try {
         const isVerified = authenticateUser(params._id);
     
-        if (isVerified) {
+        if (!isVerified) {
           return NextResponse.json({}, { status: 404 });
         }
     

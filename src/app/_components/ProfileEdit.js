@@ -17,7 +17,7 @@ export default function ProfileEdit({ student, setEditable }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();    
-        let imgUrl = "/img/profileImg.jpg";
+        let imgUrl = student.imgUrl;
 
         const formData = new FormData();
         if(image) {

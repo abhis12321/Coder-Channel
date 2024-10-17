@@ -11,7 +11,7 @@ export async function POST(request) {
         let data = await request.json();
         const isVerified = authenticateUser(data.senderId);
         
-        if(isVerified) {
+        if(!isVerified) {
             return NextResponse.json({} , { status:404})
         }
         let chat = new Chat(data);
@@ -29,7 +29,7 @@ export async function PUT(request) {
         let {user1 , user2} = await request.json();
         const isVerified = authenticateUser(user1);
         
-        if(isVerified) {
+        if(!isVerified) {
             return NextResponse.json({} , { status:404})
         }
 

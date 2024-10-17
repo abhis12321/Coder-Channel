@@ -39,7 +39,7 @@ export default function Footer() {
             </Link>
             <Link
               target="_blank"
-              href={`https://www.instagram.com/____abhis____/`}
+              href={`https://www.instagram.com/_______abhishek_singh_______/`}
               className="disabled"
             >
               <FontAwesomeIcon

@@ -48,7 +48,7 @@ export default function StudentCard({ student, index , handleFollowings , search
       followedToId: student?._id,
       followedToName: student?.name
     };
-    handleFollowings(student , index , data);
+    handleFollowings(index , data);
   }
 
 

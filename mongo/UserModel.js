@@ -57,18 +57,6 @@ const userSchema = new mongoose.Schema({    //data model
     github: {
         type:String,
     },
-    likes:{
-        type:Number,
-        default:0,
-    },
-    followers: {
-        type:Number,
-        default:0,
-    },
-    followings: {
-        type:Number,
-        default:0,
-    },
     createdAt: {
         type:Date,
         default:Date.now,
