@@ -4,6 +4,7 @@ import ForgotPassword from './ForgotPassword';
 import ResendVerificationLink from './ResendVerificationLink';
 import UserRegistration from './UserRegistration'
 import LoadingPage from './LoadingPage';
+import axios from 'axios';
 
 export default function LoginForm() {
   const [option, setOption] = useState(0);
@@ -13,7 +14,19 @@ export default function LoginForm() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    USER.login({ email, password });
+    setOption(4)
+    axios.put(`/api/users`, { email, password })
+      .then(response => response.data)
+      .then(data => {
+        if (data.success) {
+          USER.login(data.User);
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch(error => alert('some went wrong, Try again.\n', error.message))
+      .then(() => setOption(0));
+    
   }
 
   return (
@@ -26,8 +39,8 @@ export default function LoginForm() {
           <input type="password" value={password} onChange={(e) => setPass(e.target.value)} className='bg-blue-950/10 dark:bg-red-600/15 px-2 py-[10px] rounded text-center w-[96%] max-w-[550px] outline-none focus:bg-green-600/15 ring-1 focus:ring-2 ring-violet-700 dark:ring-gray-400' placeholder='password' name='password' required />
 
           <div className="flex items-center justify-evenly w-[98%] max-w-[550px] text-xs xs:text-sm" >
-            <div onClick={e => setOption(2)} className="text-blue-700 font-semibold underline hover:text-blue-600 hover:scale-110 cursor-pointer">Resend Verification Link</div>
-            <div onClick={e => setOption(1)} className="text-blue-700 font-semibold underline hover:text-blue-600 hover:scale-110 cursor-pointer">forgot password</div>
+            <div onClick={() => setOption(2)} className="text-blue-700 font-semibold underline hover:text-blue-600 hover:scale-110 cursor-pointer">Resend Verification Link</div>
+            <div onClick={() => setOption(1)} className="text-blue-700 font-semibold underline hover:text-blue-600 hover:scale-110 cursor-pointer">forgot password</div>
           </div>
 
           <div className="w-[96%] max-w-[550px] flex justify-between text-white">

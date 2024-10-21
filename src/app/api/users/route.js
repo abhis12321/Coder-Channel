@@ -8,6 +8,16 @@ import { sendVerificationEmail } from '../../../sendMailToUser';
 import { TOCKEN_MAX_AGE, CODER_CHANNEL_TOCKEN } from '../../../constants';
 
 
+export async function GET() {
+  try {
+    let users = await Users.find({ verify: true });
+    return NextResponse.json({ users, success: true });
+  } catch (err) {
+    return NextResponse.json({ success: false });
+  }
+}
+
+
 export async function POST(req) {
   try {
     const payload = await req.json();
@@ -17,10 +27,11 @@ export async function POST(req) {
     await sendVerificationEmail(payload.email, user._id);
     return NextResponse.json({ message: "Verification Link sent successfully to your Email...! It will be valid only for 10 minutes, If you fails to verify within the time your registration will be cancelled. And you have to register again for further process", success: true });
   } catch (error) {
-    // console.error('Error during file upload:', error);
+    console.error(error);
     return NextResponse.json({ error: 'Error during file upload: ' + error.message }, { status: 500 });
   }
 }
+
 
 export async function PUT(req) {
   try {
@@ -83,13 +94,3 @@ cron.schedule('*/10 * * * *', async () => {
     console.error('Error deleting unverified users:', error.message);
   }
 });
-
-
-export async function GET() {
-  try {
-    let users = await Users.find({ verify: true });
-    return NextResponse.json({ users, success: true });
-  } catch (err) {
-    return NextResponse.json({ success: false });
-  }
-}

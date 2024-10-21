@@ -1,21 +1,20 @@
-import React from "react"
+import { useState } from "react"
 import { useAuth } from "./AuthProvider";
+import axios from "axios";
 
 
 export default function ResendVerificationLink({ setOption }) {
     let USER = useAuth();
-    const [email, setEmail] = React.useState("");
+    const [email, setEmail] = useState("");
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let info = await fetch(`/api/users/resend`, {
-            method: "post",
-            body: JSON.stringify({ email })
-        })
-            .then(res => res.json())
-            .catch(error => { message: error.message })
-
-        alert(`${info.message}`);
-        setOption(0);
+        setOption(4);
+        axios.post(`/api/users/resend`, { email })
+            .then(res => res.data)
+            .then(data => data.message)
+            .then(message => alert(message))
+            .catch(error => alert(error.message))
+            .then(() => setOption(0));
     }
     return (
         <div className="fixed top-0 left-0 z-20 h-[100vh] w-full flex items-center justify-center bg-gray-700/90">

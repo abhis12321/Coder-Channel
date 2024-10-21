@@ -1,20 +1,19 @@
-import React from "react"
+import { useState } from "react"
 import { useAuth } from './AuthProvider';
+import axios from "axios";
 
 export default function ForgotPassword({ setOption }) {
     let USER = useAuth();
-    const [email, setEmail] = React.useState("");
+    const [email, setEmail] = useState("");
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let info = await fetch(`/api/users/forgot`, {
-            method: "post",
-            body: JSON.stringify({ email })
-        })
-            .then(res => res.json())
-            .catch(error => { message: error.message })
-
-        alert(`${info.message}`)
-        setOption(0);
+        setOption(4);
+        axios.post(`/api/users/forgot`, { email })
+            .then(res => res.data)
+            .then(data => data.message)
+            .then(message => alert(message))
+            .catch(error => alert(error.message))
+            .then(() => setOption(0));
     }
 
 

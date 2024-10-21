@@ -11,23 +11,13 @@ export default function AuthProvider({ children, initial_theme, tocken }) {
   let [socket, setSocket] = useState();
   const themeRef = useRef();
 
-  const login = useCallback(async ({ email, password }) => {
+  const login = (userData) => {
     if (!socket) {
-      axios.put(`/api/users`, { email, password })
-        .then(response => response.data)
-        .then(data => {
-          if (data.success) {
-            Initializing(data.User, setSocket);
-            setUser(data.User);
-          } else {
-            alert(data.message);
-          }
-        })
-        .catch(error => alert('some went wrong, Try again.\n', error.message));
+      Initializing(userData, setSocket);
+      setUser(userData);
     }
-    
-    socket?.on("disconnect" , setUser(null));
-  }, [socket]);
+    socket?.on("disconnect", setUser(null));
+  };
 
   const logout = () => {
     axios.post(`/api/single-user`);   //clear tocken-cookie
@@ -97,8 +87,8 @@ function Initializing(sender, setSocket) {
 
 export const useAuth = () => {
   try {
-    return useContext(context);    
-  } catch(error) {
-    return { };
+    return useContext(context);
+  } catch (error) {
+    return {};
   }
 };

@@ -30,11 +30,9 @@ const userSchema = new mongoose.Schema({    //data model
     },
     university:{
         type:String,
-        required:[true , 'Please enter the University name'],
     },
     course:{
         type:String,
-        required:[true , 'Please enter the course name'],
     },
     verify:{
         type:Boolean,
