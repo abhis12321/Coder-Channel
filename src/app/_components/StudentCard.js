@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import CopyLink from "./CopyLink";
 import { useAuth } from "./AuthProvider";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
@@ -20,26 +20,30 @@ import {
 export default function StudentCard({ student, index , handleFollowings , search , searchBy} ) {
   const USER = useAuth();
   const socket = USER.socket;
-  const [status, setStatus] = useState(student.isOnline);
+  const [onlineStatus, setOnlineStatus] = useState(false);
   const [copyLink , setCopyLink] = useState(0)
 
-  const handleStatus = useCallback(({ _id, status }) => {
+  const handleStatus = ({ _id, status }) => {
     if (student._id == _id) {
-      setStatus(status);
+      setOnlineStatus(status);
     }
-  }, [student]);
+  }
 
+  const handleEnistingOnlineUsers = (onlineUsersId) => {
+    const set = new Set(onlineUsersId);
+    if(set.has(student._id)) {
+      setOnlineStatus(true);
+    }
+  }
 
   useEffect(() => {
     socket?.on("online-status", handleStatus);
+    socket?.on("existingOnline", handleEnistingOnlineUsers);
     return () => {
       socket?.off("online-status", handleStatus);
+      socket?.off("existingOnline", handleEnistingOnlineUsers);
     }
-  }, [socket, USER, handleStatus]);
-
-  useEffect(() => {
-    setStatus(student.isOnline);
-  }, [student._id, student]);
+  }, [socket, USER]);
 
   const handleFollowers = () => {
     let data = {
@@ -58,14 +62,14 @@ export default function StudentCard({ student, index , handleFollowings , search
         <Image
           src={(student.imgUrl)}
           alt="profile-img"
-          className={`h-[140px] m-auto rounded-full overflow-hidden ring-[3px] ${status ? 'ring-lime-900 dark:ring-green-800' : 'ring-red-900 dark:ring-red-700'} opacity-90 bg-white aspect-square`}
+          className={`h-[140px] m-auto rounded-full overflow-hidden ring-[3px] ${onlineStatus ? 'ring-lime-900 dark:ring-green-800' : 'ring-red-900 dark:ring-red-700'} opacity-90 bg-white aspect-square`}
           width={140}
           height={140}
           name="profile-image"
         />
         <span className="absolute bottom-3 right-4 flex h-3 w-3">
-          <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${status && "dark:bg-green-800 bg-lime-900"} `}></span>
-          <span className={`relative inline-flex rounded-full h-3 w-3 ${status ? "dark:bg-green-600 bg-lime-700 border-lime-800 dark:border-green-700" : "bg-rose-700 border-red-900"} border-2`}></span>
+          <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${onlineStatus && "dark:bg-green-800 bg-lime-900"} `}></span>
+          <span className={`relative inline-flex rounded-full h-3 w-3 ${onlineStatus ? "dark:bg-green-600 bg-lime-700 border-lime-800 dark:border-green-700" : "bg-rose-700 border-red-900"} border-2`}></span>
         </span>
       </div>
       <div className="text-2xl font-bold text-red-950 dark:text-gray-50">
@@ -75,21 +79,21 @@ export default function StudentCard({ student, index , handleFollowings , search
         {student.university}
       </div>
       <div className="flex justify-center items-center gap-8">
-        <Link href={student.linkedIn} className={`${!student.linkedIn ? "pointer-events-none text-gray-500/20" : "hover:scale-110 text-blue-700"}`} name="linkedin-profile">
+        <Link href={student.linkedIn} target="_blank" className={`${!student.linkedIn ? "pointer-events-none text-gray-500/20" : "hover:scale-110 text-blue-700"}`} name="linkedin-profile">
           <FontAwesomeIcon
             icon={faLinkedin}
             size="2x"
             className=" "
           />
         </Link>
-        <Link href={student.github} className={`${!student.github ? "pointer-events-none text-gray-500/20" : "hover:scale-110 text-slate-700 dark:text-gray-300"}`} name="github-account">
+        <Link href={student.github} target="_blank" className={`${!student.github ? "pointer-events-none text-gray-500/20" : "hover:scale-110 text-slate-700 dark:text-gray-300"}`} name="github-account">
           <FontAwesomeIcon
             icon={faGithub}
             size="2x"
             className=""
           />
         </Link>
-        <Link href={student.instagram} className={`${!student.instagram ? "pointer-events-none text-gray-500/20" : "hover:scale-110 text-rose-800"}`} name="instagram-account">
+        <Link href={student.instagram} target="_blank" className={`${!student.instagram ? "pointer-events-none text-gray-500/20" : "hover:scale-110 text-rose-800"}`} name="instagram-account">
           <FontAwesomeIcon
             icon={faInstagram}
             size="2x"

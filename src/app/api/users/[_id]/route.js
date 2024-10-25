@@ -76,23 +76,23 @@ export async function POST(req, { params }) {
 }
 
 
-export async function PUT(req, { params }) {
-  try {
-    let data = await req.json();
-    const isVerified = authenticateUser(params._id);
+// export async function PUT(req, { params }) {
+//   try {
+//     let data = await req.json();
+//     const isVerified = authenticateUser(params._id);
 
-    if (isVerified) {
-      return NextResponse.json({}, { status: 404 });
-    }
+//     if (isVerified) {
+//       return NextResponse.json({}, { status: 404 });
+//     }
 
-    let user = await Users.findOne({ _id: params._id });
-    user.isOnline += data.isOnline;
-    await user.save();
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json({ data: error.message, success: false });
-  }
-}
+//     let user = await Users.findOne({ _id: params._id });
+//     user.isOnline += data.isOnline;
+//     await user.save();
+//     return NextResponse.json({ success: true });
+//   } catch (error) {
+//     return NextResponse.json({ data: error.message, success: false });
+//   }
+// }
 
 
 export async function PATCH(request, { params }) {

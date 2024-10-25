@@ -26,32 +26,34 @@ export async function POST(request) {
 
 export async function PUT(request) {
     try {
-        let {user1 , user2} = await request.json();
-        const isVerified = authenticateUser(user1);
+        let {tempUserId , mainUserId} = await request.json();
+        const isVerified = authenticateUser(mainUserId);
         
-        if(!isVerified) {
-            return NextResponse.json({} , { status:404})
-        }
 
+        console.log("PUTTIng----" , tempUserId)
+        if(!isVerified) {
+            return NextResponse.json({ } , { status:404})
+        }
         let chats = await Chat.find({
-            $or:[
-                {senderId: user1 , receiverId: user2},
-                {senderId: user2 , receiverId: user1}
-            ]
-        })
-        .populate({
-            path: 'senderId',  // Use the correct field name as per schema
-            model: 'Users',       // Explicitly mention the 'Users' model
-            select: 'name' // Select name and imgUrl fields
-        })
-        .populate({
-            path: 'receiverId',  // Use the correct field name as per schema
-            model: 'Users',       // Explicitly mention the 'Users' model
-            select: 'name' // Select name and imgUrl fields
-        })
-        .exec();
+                            $or:[
+                                {senderId: mainUserId , receiverId: tempUserId},
+                                {senderId: tempUserId , receiverId: mainUserId}
+                            ]
+                        })
+                        .populate({
+                            path: 'senderId',  // Use the correct field name as per schema
+                            model: 'Users',       // Explicitly mention the 'Users' model
+                            select: 'name' // Select name and imgUrl fields
+                        })
+                        .populate({
+                            path: 'receiverId',  // Use the correct field name as per schema
+                            model: 'Users',       // Explicitly mention the 'Users' model
+                            select: 'name' // Select name and imgUrl fields
+                        })
+                        .exec();
         return NextResponse.json({success:true , chats});
     } catch(error) {
+        console.log("ERROR->" , error.message);
         return NextResponse.json({success:false , message:error.message});
     }
 }

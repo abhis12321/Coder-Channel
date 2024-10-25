@@ -1,4 +1,3 @@
-import React from 'react'
 import UsersContainer from "../_components/UsersContainer"
 import { cookies } from 'next/headers'
 import axios from 'axios'

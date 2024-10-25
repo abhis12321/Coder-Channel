@@ -11,10 +11,10 @@ export async function GET() {
         const secret = process.env.JWT_SECRET_KEY || "";
         
         if(!tocken) {
-            return NextResponse.json({ success:false, message:"no user found, please login with your email and password." });
+            return NextResponse.json({ success:false, message:"no user fouUsernd, please login with your email and password." });
         }
-        const { _id } = verify(tocken , secret);
-        let User = (await Users.findOne({ _id })).toObject();
+        const { User } = verify(tocken , secret);
+        // let User = (await Users.findOne({ _id })).toObject();
         
         if(!User) {
             return NextResponse.json({ message:"#something went wrong please login with your email and password.", success:false });

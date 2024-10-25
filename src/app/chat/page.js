@@ -27,19 +27,13 @@ const Page = () => {
         messageCant.current.appendChild(message);
     }
 
-    const handleWelcome = (data) => {
-        // console.log("welcome message" , data);
-    }
-
     useEffect(() => {
-        socket?.on("newUser", handleNewUser);
-        socket?.on("welcome", handleWelcome);
+        socket?.on("newUserInGroup", handleNewUser);
         socket?.on("receiveGroupMessage", handleGroupMessage);
         socket?.on("userLeftGroup", handleUserLeft);
 
         return () => {
-            socket?.off("newUser", handleNewUser);
-            socket?.off("welcome", handleWelcome);
+            socket?.off("newUserInGroup", handleNewUser);
             socket?.off("receiveGroupMessage", handleGroupMessage);
             socket?.off("userLeftGroup", handleUserLeft);
         }

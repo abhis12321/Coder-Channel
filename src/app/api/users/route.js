@@ -56,8 +56,10 @@ export async function PUT(req) {
     if (!User.verify) {
       return NextResponse.json({ message: "email verification required...!", success: false });
     }
+
+    delete User.password;
     const secret = process.env.JWT_SECRET_KEY || "";
-    const tocken = sign({ _id: User._id }, secret, { expiresIn: TOCKEN_MAX_AGE });
+    const tocken = sign({ User }, secret, { expiresIn: TOCKEN_MAX_AGE });
 
     // cookies().set(CODER_CHANNEL_TOCKEN, tocken, { maxAge: TOCKEN_MAX_AGE, sameSite: 'Strict' });
 
@@ -71,7 +73,6 @@ export async function PUT(req) {
       path: "/"
     });
 
-    delete User.password;
     return NextResponse.json({ User, success: true, message: `You credentials are right and you have Logged-in...!` })
   } catch (error) {
     // console.log(error.message);
