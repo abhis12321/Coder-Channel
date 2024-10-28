@@ -13,6 +13,7 @@ export async function GET() {
                             .exec();
         return NextResponse.json({success:true , blogs});
     } catch(error) {
+        // console.log(error.message);
         NextResponse.json({ success:false , message:error.message });
     }
 }

@@ -12,10 +12,7 @@ export default function ToggleMode() {
     themeRef.current.classList.toggle("dark");
     e.currentTarget?.dark?.classList?.toggle("hidden");
     e.currentTarget?.light?.classList?.toggle("hidden");
-
-    const theme = themeRef.current.classList.contains("dark");
-    axios.put("/api", { theme: theme ? "dark" : "" })   //setting-up theme cookie
-      .catch(error => console.log(error.message));
+    axios.get("/api")
   }
 
   return (
