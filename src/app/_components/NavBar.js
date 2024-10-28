@@ -1,6 +1,7 @@
 "use client";
-import React, { useRef } from "react";
 import Link from "next/link";
+import { useRef } from "react";
+import ToggleMode from "./ToggleMode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -10,7 +11,6 @@ import {
   faUserGroup,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import ToggleMode from "./ToggleMode";
 
 export default function NavBar() {
   const cutX = useRef(null);

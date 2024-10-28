@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useAuth } from '../_components/AuthProvider';
-import ForgotPassword from './ForgotPassword';
-import ResendVerificationLink from './ResendVerificationLink';
-import UserRegistration from './UserRegistration'
-import LoadingPage from './LoadingPage';
 import axios from 'axios';
+import { useState } from 'react';
+import LoadingPage from './LoadingPage';
+import ForgotPassword from './ForgotPassword';
+import UserRegistration from './UserRegistration'
+import { useAuth } from '../_components/AuthProvider';
+import ResendVerificationLink from './ResendVerificationLink';
 
 export default function LoginForm() {
   const [option, setOption] = useState(0);

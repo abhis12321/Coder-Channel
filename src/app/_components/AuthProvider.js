@@ -1,18 +1,18 @@
-"use client";
+"use client"
 import axios from "axios";
-import React, { createContext, useContext, useEffect, useRef, useState } from "react";
-import io from "socket.io-client";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-const context = createContext();
+import io from "socket.io-client";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 
-export default function AuthProvider({ children, initial_theme, tocken }) {
-  const [user, setUser] = useState(tocken);
+const context = createContext();
+export default function AuthProvider({ children, initial_theme, initialUserValue }) {
+  const [user, setUser] = useState();
   let [socket, setSocket] = useState();
   const themeRef = useRef();
 
   const login = (userData) => {
-    if (!socket) {
+    if (!socket && userData) {
       Initializing(userData, setSocket);
       setUser(userData);
     }
@@ -20,26 +20,14 @@ export default function AuthProvider({ children, initial_theme, tocken }) {
   };
 
   const logout = () => {
-    axios.post(`/api/single-user`);   //clear tocken-cookie
+    axios.get(`/api/single-user`);   //clear tocken-cookie
     socket.disconnect();
-    // socket.io.opts.reconnection = false;
     setSocket(null);
     setUser(null);
   };
 
-  const fetchTocken = async () => {
-    const user = await axios.get(`/api/single-user`)
-      .then(res => res?.data)
-      .then(data => data?.User)
-      .catch(() => null);
-    if (user) {
-      setUser(user);
-      Initializing(user, setSocket);
-    }
-  }
-
   useEffect(() => {
-    fetchTocken();
+    login(initialUserValue);
   }, []);
 
 

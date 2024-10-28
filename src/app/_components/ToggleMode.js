@@ -1,7 +1,7 @@
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useAuth } from './AuthProvider'
 import axios from 'axios'
+import { useAuth } from './AuthProvider'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function ToggleMode() {

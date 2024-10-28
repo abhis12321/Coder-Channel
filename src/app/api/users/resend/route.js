@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import Users from "/mongo/UserModel";
+import { NextResponse } from "next/server";
 import { sendVerificationEmail } from "../../../../sendMailToUser";
 
 

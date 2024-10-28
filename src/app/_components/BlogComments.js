@@ -1,8 +1,8 @@
 import axios from 'axios'
+import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import BlogCommentForm from "./BlogCommentForm"
-import Link from 'next/link';
-import Image from 'next/image';
 
 
 export default function BlogComments({ blogId, userId }) {

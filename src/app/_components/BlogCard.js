@@ -1,22 +1,25 @@
-import BlogFooter from './BlogFooter';
-import Link from 'next/link'
-import { useState } from 'react'
-import Image from 'next/image';
-import { useAuth } from './AuthProvider';
-import CopyLink from './CopyLink'
-import BlogComments from './BlogComments'
 import axios from 'axios';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useState } from 'react';
+import CopyLink from './CopyLink';
+import LoginForm from './LoginForm';
+import BlogFooter from './BlogFooter';
+import { useAuth } from './AuthProvider';
+import BlogComments from './BlogComments';
 
 export default function Blogs({ blog }) {
   const { user, setUser } = useAuth();
   const [option, setOption] = useState();
 
-  // console.log(blog);
-
   const handleLikes = () => {
+    if(!user) {
+      setOption(4);
+      return;
+    }
     const payload = {
       blogId: blog?._id,
-      userId: user._id,
+      userId: user?._id,
     }
 
     axios.post("/api/blogs/likes", payload)
@@ -50,8 +53,9 @@ export default function Blogs({ blog }) {
         option === 1 ?
           <BlogComments blogId={blog._id} userId={user?._id}/>
           :
-          option === 2 &&
+          option === 2 ?
           <CopyLink  setCopyLink={setOption} text={`http://localhost:3000/#${blog._id}`}/>
+          : (option == 4 && !user)  && <div className="min-h-screen w-full fixed z-10 top-0 left-0 flex items-center justify-center bg-slate-500/50"><LoginForm /></div>
       }
     </div>
   )

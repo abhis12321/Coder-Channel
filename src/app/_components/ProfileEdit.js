@@ -1,7 +1,7 @@
 "use client"
-import React, { useState } from 'react';
-import ImageForm from './ImageForm';
 import axios from 'axios';
+import { useState } from 'react';
+import ImageForm from './ImageForm';
 
 export default function ProfileEdit({ student, setEditable }) {
     const [name, setName] = useState(student.name);

@@ -1,6 +1,6 @@
-import UsersContainer from "../_components/UsersContainer"
-import { cookies } from 'next/headers'
 import axios from 'axios'
+import { cookies } from 'next/headers'
+import UsersContainer from "../_components/UsersContainer"
 
 export default async function page() {  
   const cookieStore = cookies();

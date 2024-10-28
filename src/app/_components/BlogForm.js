@@ -1,7 +1,7 @@
 "use client"
-import React, { useState } from 'react'
-import { useAuth } from './AuthProvider';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { useAuth } from './AuthProvider';
 
 export default function Page({ setBlogPost, handleBlogPost }) {
     const [blog, setBlog] = useState('');

@@ -2,8 +2,8 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import BlogCard from './_components/BlogCard'
-import BlogPostContainer from './_components/BlogPostContainer'
 import { useAuth } from './_components/AuthProvider'
+import BlogPostContainer from './_components/BlogPostContainer'
 
 export default function Page() {
   const { user } = useAuth();
@@ -14,7 +14,6 @@ export default function Page() {
     if(user)    blogUrl += user._id;
     axios.get(blogUrl)
       .then(response => response.data)
-      // .then(data => console.log(data))
       .then(data => data.success && setBlogs(data.blogs))
       .catch(error => console.log("error", error.message));
   }

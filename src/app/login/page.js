@@ -1,9 +1,9 @@
 "use client"
-import React, { useEffect, useState } from 'react';
-import {useAuth} from '../_components/AuthProvider';
-import ProfileCard from '../_components/ProfileCard';
+import { useState } from 'react';
 import LoginForm from '../_components/LoginForm';
 import UserLogout from '../_components/UserLogout';
+import {useAuth} from '../_components/AuthProvider';
+import ProfileCard from '../_components/ProfileCard';
 
 export default function Page() {  
   let USER = useAuth();

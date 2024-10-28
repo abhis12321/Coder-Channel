@@ -1,6 +1,6 @@
 "use client"
-import React, { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 
 export default function UserRegistration({ setOption }) {
     const [name, setName] = useState('');

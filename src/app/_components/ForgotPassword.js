@@ -1,6 +1,6 @@
+import axios from "axios";
 import { useState } from "react"
 import { useAuth } from './AuthProvider';
-import axios from "axios";
 
 export default function ForgotPassword({ setOption }) {
     let USER = useAuth();

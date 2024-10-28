@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react'
+import { useState } from 'react';
 
 export default function ImageForm({ initialImg, setImage }) {
     const [imgUrl , setImgUrl] = useState(initialImg);

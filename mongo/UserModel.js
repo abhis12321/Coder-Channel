@@ -38,10 +38,6 @@ const userSchema = new mongoose.Schema({    //data model
         type:Boolean,
         default:false,
     },
-    isOnline:{
-        type:Number,
-        default:0,
-    },
     imgUrl:{
         type:String,
         default:"/img/profileImg.jpg", 

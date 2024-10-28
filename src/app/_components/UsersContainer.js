@@ -1,12 +1,12 @@
 "use client"
-import React, { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 import StudentCard from './StudentCard';
 import { useAuth } from './AuthProvider';
-import axios from 'axios';
+import { memo, useEffect, useState } from 'react';
 
 function UsersContainer({ users }) {
   let {user , socket} = useAuth();
-  const [students, setStudents] = React.useState(users);
+  const [students, setStudents] = useState(users);
   const [search, setSearch] = useState('');
   const [searchBy, setSearchBy] = useState("0");
 
@@ -72,4 +72,4 @@ function UsersContainer({ users }) {
   )
 }
 
-export default React.memo(UsersContainer);
+export default memo(UsersContainer);

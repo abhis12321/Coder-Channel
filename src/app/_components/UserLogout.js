@@ -1,4 +1,4 @@
-import React from 'react';
+
 export default function UserLogout({ USER, setStatus }) {
     const handleLogout = () => {
         USER?.logout();

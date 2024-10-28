@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import cryptoJS from "crypto-js";
 import nodemailer from "nodemailer";
 import Users from "/mongo/UserModel";
-import cryptoJS from "crypto-js";
+import { NextResponse } from "next/server";
+
 
 const transporter = nodemailer.createTransport({
   service: "gmail",

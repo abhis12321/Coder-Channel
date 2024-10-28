@@ -1,17 +1,17 @@
 "use client"
 import axios from 'axios';
+import Link from 'next/link';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react'
-import { useAuth } from '../../_components/AuthProvider';
+import { useEffect, useState } from 'react'
+import Blogs from '../../_components/BlogCard';
 import Followers from '../../_components/Followers';
 import Followings from '../../_components/Followings';
-import Blogs from '../../_components/BlogCard';
-import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useAuth } from '../../_components/AuthProvider';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Page({ params }) {
-  const USER = useAuth();
+  const { user } = useAuth();
   const [student, setStudent] = useState();
   const [connections, setConnections] = useState(0);
   const [followers, setFollowers] = useState([]);
@@ -34,28 +34,29 @@ export default function Page({ params }) {
     axios.post(`/api/users/follow/${params._id}`)
       .then(result => result.data)
       .then(data => data.success && setFollowings(data.followings));
+  }, [params._id]);
 
-
+  useEffect(() => {    
     axios.post(`/api/blogs/${params?._id}`)
       .then(result => result.data)
       .then(data => data.success && setBlogs(data.blogs));
-  }, [params._id]);
+  }, [params._id , user]);
 
   useEffect(() => {
-    USER?.user?._id && student?._id &&
-      axios.put(`/api/users/follow`, { followedById: USER?.user?._id, followedToId: student?._id })
+    user?._id && params?._id &&
+      axios.put(`/api/users/follow`, { followedById: user?._id, followedToId: params?._id })
         .then(response => response.data)
         .then(data => data.success && setStudent({ ...student, isFollowed: data.isFollowed }))
-        .catch(error => console.log(error.message));
-  }, [USER?.user?._id, student?._id]);
+        .catch(error => console.error(error.message));
+  }, [user?._id, params?._id]);
 
   const handleFollowers = () => {
-    if (!USER?.user) {
+    if (!user) {
       alert("login first to follow a user!")
     } else {
       axios.post('/api/users/follow', {
-        followedById: USER?.user?._id,
-        followedByName: USER?.user?.name,
+        followedById: user?._id,
+        followedByName: user?.name,
         followedToId: student?._id,
         followedToName: student?.name,
       })

@@ -1,8 +1,8 @@
 "use client"
-import React, { useState } from 'react'
+import { useState } from 'react'
+import BlogPost from './BlogForm'
 import LoginForm from './LoginForm'
 import { useAuth } from './AuthProvider'
-import BlogPost from './BlogForm'
 
 export default function BlogPostContainer({ handleBlogPost }) {
   const { user } = useAuth();

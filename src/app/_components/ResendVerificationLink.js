@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { useAuth } from "./AuthProvider";
 import axios from "axios";
+import { useState } from "react";
+import { useAuth } from "./AuthProvider";
 
 
 export default function ResendVerificationLink({ setOption }) {

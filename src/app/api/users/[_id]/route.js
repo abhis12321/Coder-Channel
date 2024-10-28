@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import Users from "/mongo/UserModel";
-import cryptoJS from "crypto-js";
 import mongoose from "mongoose";
+import cryptoJS from "crypto-js";
+import Users from "/mongo/UserModel";
+import { NextResponse } from "next/server";
 import { authenticateUser } from "../../../../authenticateUser";
 
 

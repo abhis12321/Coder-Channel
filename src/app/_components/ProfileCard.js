@@ -1,11 +1,11 @@
 "use client"
 import axios from 'axios';
+import Blogs from './BlogCard';
 import Image from 'next/image';
-import React, { useCallback, useEffect, useState } from 'react'
 import Followers from './Followers';
 import Followings from './Followings';
-import Blogs from './BlogCard';
 import ProfileEdit from './ProfileEdit'
+import { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
@@ -33,7 +33,7 @@ export default function ProfileCard({ student, setStatus }) {
     axios.post(`/api/blogs/${student?._id}`)
       .then(result => result.data)
       .then(data => data.success && setBlogs(data.blogs));
-  }, [student?._id]);
+  }, [student]);
 
 
   useEffect(() => {

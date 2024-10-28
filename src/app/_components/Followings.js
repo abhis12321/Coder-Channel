@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Followings({ followings, setConnections, handleUnFollow }) {
   return (
@@ -13,11 +13,11 @@ export default function Followings({ followings, setConnections, handleUnFollow 
           (followings && followings.length > 0) ?
             followings.map((user, index) =>
               <div className="flex justify-between items-center font-mono bg-blue-900/20 dark:bg-blue-400/20 hover:bg-blue-800/25 rounded w-full text-red-950 dark:text-white overflow-hidden" key={index}>
-                <Link href={`/students/${user.followedToId._id}`} className="flex-1 font-bold py-[3px] px-3 hover:bg-green-900/40 flex items-center gap-4">
+                <Link href={`/students/${user.followedToId._id}`} className="flex-1 font-bold p-[2px] px-3 hover:bg-green-900/40 flex items-center gap-4">
                   <Image src={user.followedToId.imgUrl} alt='' height={50} width={50} className='rounded-full h-10 w-10' />
                   <p className="">{user.followedToId.name}</p>
                 </Link>
-                {handleUnFollow && <button className="text-sm text-white p-[10px] bg-gray-900/70 hover:bg-gray-900" onClick={e => handleUnFollow(user._id)}>unfollow</button>}
+                {handleUnFollow && <button className="text-sm text-white p-3 bg-gray-900/70 hover:bg-gray-900" onClick={e => handleUnFollow(user._id)}>unfollow</button>}
               </div>
             )
             :
