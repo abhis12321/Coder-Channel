@@ -54,7 +54,7 @@ export default function Blogs({ blog }) {
           <BlogComments blogId={blog._id} userId={user?._id}/>
           :
           option === 2 ?
-          <CopyLink  setCopyLink={setOption} text={`http://localhost:3000/#${blog._id}`}/>
+          <CopyLink  setCopyLink={setOption} text={`http://13.201.72.123/students/#${blog._id}`}/>
           : (option == 4 && !user)  && <div className="min-h-screen w-full fixed z-10 top-0 left-0 flex items-center justify-center bg-slate-500/50"><LoginForm /></div>
       }
     </div>
