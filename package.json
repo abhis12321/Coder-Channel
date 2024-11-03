@@ -26,6 +26,7 @@
     "react-dom": "^18",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
+    "speakeasy": "^2.0.0",
     "streamifier": "^0.1.1",
     "typewriter-effect": "^2.21.0",
     "uuid": "^9.0.1"

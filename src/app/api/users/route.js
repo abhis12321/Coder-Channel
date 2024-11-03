@@ -6,6 +6,8 @@ import { cookies } from 'next/headers';
 import { NextResponse } from "next/server";
 import { sendVerificationEmail } from '../../../sendMailToUser';
 import { TOCKEN_MAX_AGE, CODER_CHANNEL_TOCKEN } from '../../../constants';
+import { verifyOPT } from '@/verifyOTP';
+import { sendOTP } from '@/sendOTP';
 
 
 export async function GET() {
@@ -21,7 +23,6 @@ export async function GET() {
 export async function POST(req) {
   try {
     const payload = await req.json();
-    // console.log(payload);
     const user = new Users(payload);
     await user.save();
     await sendVerificationEmail(payload.email, user._id);
@@ -36,27 +37,31 @@ export async function POST(req) {
 export async function PUT(req) {
   try {
     let data = await req.json();
-    let { email, password } = data;
+    let { email, password , OTP } = data;
 
-    if (!email) {
-      return NextResponse.json({ message: "bad request! No email found.", success: false });
+    if (!email || !password) {
+      return NextResponse.json({ message: "bad request! Missing credentials.", success: false });
     }
 
     let User = (await Users.findOne({ email })).toObject();
     let bytes = cryptoJS.AES.decrypt(User.password, email);
     let pass = bytes.toString(cryptoJS.enc.Utf8);
 
-    if (!User) {
-      return NextResponse.json({ message: "No such account found...!", success: false });
-    }
-    else if (password !== pass) {
+    if (!User || password !== pass) {
       return NextResponse.json({ message: "wrong credentials, Try again...!", success: false });
-    }
-
-    if (!User.verify) {
+    } else if (!User.verify) {
       return NextResponse.json({ message: "email verification required...!", success: false });
     }
 
+    if(!OTP) {
+      sendOTP({ email });
+      return NextResponse.json({ message: "OTP is sent to your email", success: true });
+    }
+
+    const otpVerified = verifyOPT({ email , OTP });
+    if(!otpVerified) {
+      return NextResponse.json({ message: "wrong OTP, Try again...!", success: false });      
+    }
     delete User.password;
     const secret = process.env.JWT_SECRET_KEY || "";
     const tocken = sign({ User }, secret, { expiresIn: TOCKEN_MAX_AGE });
