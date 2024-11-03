@@ -4,7 +4,7 @@ import { getJWTUser } from '@/getJWTUser';
 import AuthProvider from './_components/AuthProvider';
 
 export const metadata = {
-  title: "Coder'channel",
+  title: "Coders&Decoders",
   description: 'A Coding and Development discussion app',
 }
 
