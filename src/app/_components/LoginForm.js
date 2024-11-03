@@ -13,7 +13,7 @@ export default function LoginForm() {
   const [OTP, setOTP] = useState("");
   const [verifyOTP, setVerifyOTP] = useState(false);
   const [alert, setAlert] = useState("");
-  let USER = useAuth();
+  let { login } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function LoginForm() {
         if (data.success) {
           if (data.User) {
             setVerifyOTP(false);
-            USER.login(data.User);
+            login(data.User);
           } else {
             setVerifyOTP(true);
           }

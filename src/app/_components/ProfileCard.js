@@ -83,7 +83,7 @@ export default function ProfileCard({ student, setStatus }) {
               <div className="flex gap-2 md:gap-4 flex-wrap items-center">
                 <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{student?.name}</h1>
                 <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-red-700 hover:bg-red-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={e => setStatus(true)}>logout</button>
-                <FontAwesomeIcon size='sm' icon={faPenToSquare} className='text-[1.5rem] cursor-pointer text-blue-600 dark:drop-shadow-[0_0_2px_black] hover:scale-110 hover:text-blue-800' onClick={e => setEditable(true)} />
+                <FontAwesomeIcon size='sm' icon={faPenToSquare} className='h-[1.5rem] cursor-pointer text-blue-600 dark:drop-shadow-[0_0_2px_black] hover:scale-110 hover:text-blue-800' onClick={e => setEditable(true)} />
               </div>
 
               <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm text-white">

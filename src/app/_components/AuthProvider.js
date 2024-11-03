@@ -7,7 +7,7 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 const context = createContext();
 export default function AuthProvider({ children, initial_theme, initialUserValue }) {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(initialUserValue);
   let [socket, setSocket] = useState();
   const themeRef = useRef();
 
@@ -27,7 +27,9 @@ export default function AuthProvider({ children, initial_theme, initialUserValue
   };
 
   useEffect(() => {
-    login(initialUserValue);
+    if(initialUserValue) {
+      Initializing(initialUserValue , setSocket);
+    }
   }, []);
 
 
