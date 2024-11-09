@@ -28,9 +28,9 @@ export default async function SocketHandler(req, res) {
                 socket.emit("existingOnline", Array.from(existingUsers));
             });
 
-            socket.on('sendGroupMessage', data => {
-                socket.broadcast.emit('receiveGroupMessage', data);
-            });
+            // socket.on('sendGroupMessage', data => {
+            //     socket.broadcast.emit('receiveGroupMessage', data);
+            // });
 
             socket.on('sendPersonalMessage', data => {
                 socket.to(data.receiverId).emit('receivePersonalMessage', data);
@@ -42,7 +42,7 @@ export default async function SocketHandler(req, res) {
                 if (!room || room.size === 0) {
                     existingUsers.delete(_id);
                     socket.broadcast.emit("online-status", { _id, status: false });
-                    socket.broadcast.emit('userLeftGroup', { _id });
+                    // socket.broadcast.emit('userLeftGroup', { _id });
                 }
                 map.delete(socket.id);
             });

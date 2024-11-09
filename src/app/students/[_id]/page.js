@@ -11,7 +11,8 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Page({ params }) {
-  const { user } = useAuth();
+  const { user , socket } = useAuth();
+  const [onlineStatus , setOnlineStatus] = useState(params._id == user?._id);
   const [student, setStudent] = useState();
   const [connections, setConnections] = useState(0);
   const [followers, setFollowers] = useState([]);
@@ -47,7 +48,6 @@ export default function Page({ params }) {
     axios.post(`/api/blogs/${params?._id}`)
       .then(result => result.data)
       .then(data => {
-        console.log("blogs" , data);
         if(data.success)   setBlogs(data.blogs)
       });
   }
@@ -67,10 +67,7 @@ export default function Page({ params }) {
     axios.get(`/api/single-user/${params._id}`)
       .then(res => res.data)
       .then(data => data.user)
-      .then(userData => {
-        console.log(userData)
-        checkFollowed(userData)
-      })
+      .then(userData => checkFollowed(userData))
       .catch(error => alert(error.message));
   }
   const checkFollowed = (userData) => {
@@ -83,13 +80,38 @@ export default function Page({ params }) {
           } else {
             setStudent(userData);
           }
-          console.log("userData");
+          // console.log("userData");
         })
         .catch(error => console.error(error.message));
     } else {
       setStudent(userData);
     }
   }
+  
+  
+  const handleStatus = ({ _id, status }) => {
+    console.log(_id , status , student);
+    if (student?._id == _id) {
+      setOnlineStatus(status);
+    }
+  }
+
+  const handleEnistingOnlineUsers = (onlineUsersId) => {
+    const set = new Set(onlineUsersId);
+    if(set.has(student?._id)) {
+      setOnlineStatus(true);
+    }
+  }
+
+  useEffect(() => {
+    socket?.emit("loadOnlineUsers", user._id);
+    socket?.on("online-status", handleStatus);
+    socket?.on("existingOnline", handleEnistingOnlineUsers);
+    return () => {
+      socket?.off("online-status", handleStatus);
+      socket?.off("existingOnline", handleEnistingOnlineUsers);
+    }
+  }, [socket , student]);
 
   
 
@@ -103,7 +125,7 @@ export default function Page({ params }) {
         <>
           <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-slate-200 dark:bg-blue-900/55 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-red-950 dark:text-white shadow-[0_0_2px_black]`}>
             <div className="w-fit flex items-center justify-center">
-              <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className='rounded-full h-36 w-36 sm:h-40 sm:w-40 bg-white shadow-[0_0_2px_black] aspect-square' />
+              <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className={`rounded-full h-36 w-36 sm:h-40 sm:w-40 bg-white shadow-[0_0_2px_black] aspect-square ring-2 ${onlineStatus ? "ring-green-700" : "ring-red-700"}`} />
             </div>
 
             <div className="flex flex-col gap-3 px-1 py-2 xs:p-3 md:p-4 items-center sm:items-start justify-center bg-white dark:bg-blue-200/10 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">

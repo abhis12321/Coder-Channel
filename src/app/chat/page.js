@@ -9,33 +9,33 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 const Page = () => {
     const messageCant = useRef();
     const [content, setContent] = useState("");
-    let USER = useAuth();
-    const socket = USER.socket;
+    let { user , socket } = useAuth();
 
-    const handleNewUser = (Name) => {
-        let message = ChatModel(Name, "joined the chat", "center");
-        messageCant.current.appendChild(message);
-    }
+    // const handleNewUser = (name) => {
+    //     let message = ChatModel(name, "joined the chat", "center");
+    //     messageCant.current.appendChild(message);
+    // }
+
+    // const handleUserLeft = ({ name }) => {
+    //     let message = ChatModel(name, "left the chat", "center");
+    //     messageCant.current.appendChild(message);
+    // }
 
     const handleGroupMessage = (data) => {
-        let message = ChatModel(data.Name, data.message, "left");
-        messageCant.current.appendChild(message);
-    }
-
-    const handleUserLeft = ({ Name }) => {
-        let message = ChatModel(Name, "left the chat", "center");
+        // console.log(data);
+        let message = ChatModel(data.name, data.message, "left" , data._id);
         messageCant.current.appendChild(message);
     }
 
     useEffect(() => {
-        socket?.on("newUserInGroup", handleNewUser);
+        // socket?.on("newUserInGroup", handleNewUser);
+        // socket?.on("userLeftGroup", handleUserLeft);
         socket?.on("receiveGroupMessage", handleGroupMessage);
-        socket?.on("userLeftGroup", handleUserLeft);
 
         return () => {
-            socket?.off("newUserInGroup", handleNewUser);
+            // socket?.off("newUserInGroup", handleNewUser);
+            // socket?.off("userLeftGroup", handleUserLeft);
             socket?.off("receiveGroupMessage", handleGroupMessage);
-            socket?.off("userLeftGroup", handleUserLeft);
         }
     }, [socket])
 
@@ -45,7 +45,7 @@ const Page = () => {
             // const box = document.querySelector('.chatting-box');
             let message = ChatModel("you", content, 'right');
             messageCant.current.appendChild(message);
-            socket?.emit('sendGroupMessage', { Name: USER.user?.name, message: content });
+            socket?.emit('sendGroupMessage', { name:user?.name , message:content , _id:user?._id });
         }
         setContent("");
     }
@@ -53,7 +53,7 @@ const Page = () => {
     return (
         <div className='h-nav w-full flex items-center justify-center'>
             {
-                USER?.user ?
+                user ?
                     <div className='h-full w-full relative max-w-[900px] mx-auto bg-white dark:bg-slate-900/80 dark:text-white rounded-lg pb-1 overflow-auto h-nav shadow-[0_0_2px_gray_inset] dark:shadow-[0_0_2px_white_inset] flex flex-col items-center'>
                         <div className='w-full overflow-x-hidden px-4 flex flex-col gap-3 pt-3 pb-4 text-gray-100'>
                             <h1 className='text-yellow-600' >It&apos;s a Public Chat Group...</h1>
