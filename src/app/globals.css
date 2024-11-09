@@ -7,6 +7,9 @@
   .text-balance {
     text-wrap: balance;
   }
+  .top-nav {
+    top: 4rem;
+  }
   .h-nav {
     min-height: calc(100vh - 4rem);
   }

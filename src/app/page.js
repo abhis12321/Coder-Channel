@@ -14,7 +14,10 @@ export default function Page() {
     if(user)    blogUrl += user._id;
     axios.get(blogUrl)
       .then(response => response.data)
-      .then(data => data.success && setBlogs(data.blogs))
+      .then(data => {
+        // console.log(data)
+        if(data.success)   setBlogs(data.blogs)
+      })
       .catch(error => console.log("error", error.message));
   }
 
@@ -31,7 +34,7 @@ export default function Page() {
       <BlogPostContainer handleBlogPost={handleBlogPost}/>
       <div className="w-full flex flex-col gap-3 items-center justify-evenly">
         {
-          blogs.map((blog, index) => <BlogCard key={index} blog={blog} />)
+          blogs.map((blog, index) => <BlogCard key={index} blog={blog} loadBlogs={loadBlogs}/>)
         }
       </div>
     </div>

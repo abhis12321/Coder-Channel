@@ -1,4 +1,5 @@
 import Blog from "/mongo/BlogModel";
+import "/mongo/UserModel";
 import { NextResponse } from "next/server";
 import { authenticateUser } from "../../../authenticateUser";
 
@@ -14,7 +15,7 @@ export async function GET() {
         return NextResponse.json({success:true , blogs});
     } catch(error) {
         // console.log(error.message);
-        NextResponse.json({ success:false , message:error.message });
+        return NextResponse.json({ success:false , message:error.message });
     }
 }
 

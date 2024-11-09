@@ -7,27 +7,21 @@ import LoginForm from './LoginForm';
 import BlogFooter from './BlogFooter';
 import { useAuth } from './AuthProvider';
 import BlogComments from './BlogComments';
+import BlogLikesPage from './BlogLikesPage';
 
-export default function Blogs({ blog }) {
-  const { user, setUser } = useAuth();
+export default function Blogs({ blog, loadBlogs }) {
+  const { user } = useAuth();
   const [option, setOption] = useState();
 
   const handleLikes = () => {
-    if(!user) {
+    if (!user) {
       setOption(4);
-      return;
+    } else {
+      const payload = { blogId: blog?._id, userId: user?._id }
+      axios.post("/api/blogs/likes", payload)
+        .then(() => loadBlogs())
+        .catch(error => console.error(error));
     }
-    const payload = {
-      blogId: blog?._id,
-      userId: user?._id,
-    }
-
-    axios.post("/api/blogs/likes", payload)
-      .then(response => response.data)
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
-    
-    setUser({ ...user })
   }
 
 
@@ -42,20 +36,22 @@ export default function Blogs({ blog }) {
       </Link>
 
 
-      <div className="w-full font-mono font-extralight text-gray-700 dark:text-gray-300/85 whitespace-pre-wrap text-balance overflow-auto border-b-[1.5px] border-gray-400/80 dark:border-gray-700 pb-3 mb-[2px]">
+      <div className="w-full font-mono font-extralight text-gray-700 dark:text-gray-300/85 whitespace-pre-wrap text-balance overflow-auto border-b-[1.5px] border-gray-400/80 dark:border-gray-700 pb-3 mt-[2px]">
         {blog.blog}
       </div>
 
 
-      <BlogFooter blog={blog} setOption={setOption} handleLikes={handleLikes}/>
+      <BlogFooter blog={blog} setOption={setOption} handleLikes={handleLikes} />
 
       {
         option === 1 ?
-          <BlogComments blogId={blog._id} userId={user?._id}/>
+          <BlogComments blogId={blog._id} userId={user?._id} setOption={setOption} />
           :
           option === 2 ?
-          <CopyLink  setCopyLink={setOption} text={`http://13.201.72.123/students/#${blog._id}`}/>
-          : (option == 4 && !user)  && <div className="min-h-screen w-full fixed z-10 top-0 left-0 flex items-center justify-center bg-slate-500/50"><LoginForm /></div>
+            <CopyLink setCopyLink={setOption} text={`http://13.201.72.123/students/#${blog._id}`} />
+            : option === 3 ?
+              <BlogLikesPage setOption={setOption} _id={blog._id}/>
+              : (option === 4 && !user) && <div className="min-h-screen w-full fixed z-10 top-0 left-0 flex items-center justify-center bg-slate-500/50 dark:bg-slate-900/90"><LoginForm /></div>
       }
     </div>
   )

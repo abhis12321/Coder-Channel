@@ -5,9 +5,8 @@ import { useEffect, useState } from 'react'
 import BlogCommentForm from "./BlogCommentForm"
 
 
-export default function BlogComments({ blogId, userId }) {
+export default function BlogComments({ blogId, userId, setOption }) {
     const [comments, setComments] = useState([]);
-
     const loadComments = () => {        
         axios.get(`/api/blogs/comments/${blogId}`)
             .then(response => response.data)
@@ -23,7 +22,7 @@ export default function BlogComments({ blogId, userId }) {
 
     return (
         <div className='w-full min-h-20 mt-[3px] mb-4 rounded flex flex-col gap-3'>
-            <BlogCommentForm commentById={userId} commentToId={blogId} addComments={loadComments}/>
+            <BlogCommentForm commentById={userId} commentToId={blogId} loadComments={loadComments} setOption={setOption}/>
             {
                 comments.map(comment =>
                     <div className="flex flex-col gap-1 py-1" key={comment._id}>

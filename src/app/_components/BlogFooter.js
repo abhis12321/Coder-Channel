@@ -3,7 +3,8 @@ import { faComment, faShare, faThumbsUp } from '@fortawesome/free-solid-svg-icon
 
 export default function BlogFooter({ blog, setOption, handleLikes }) {
   return (
-    <div className='w-[100%] flex items-center justify-around'>
+    <div className='w-[100%] relative flex items-center justify-around'>
+      <button className="absolute top-[-1rem] left-0 font-semibold text-xs text-green-700 hover:underline hover:text-green-600 active:text-violet-700" onClick={() => setOption(3)}>total-likes : 0</button>
       <div className={"w-1/3 py-[11px] rounded-sm text-white hover:bg-gray-600/15 dark:hover:bg-white/10 cursor-pointer flex gap-4 items-center justify-center font-semibold group"} onClick={handleLikes} >
         <FontAwesomeIcon size='sm' icon={faThumbsUp} className={`h-5 group-hover:drop-shadow-none ${blog.liked ? "text-blue-600" : "group-hover:text-blue-700/80 drop-shadow-[0_0_1px_black]"}`}/>
         <div className={`${blog.liked ? "text-blue-600" : "text-gray-500/90 group-hover:text-blue-700/90"}`}>Like</div>

@@ -1,24 +1,21 @@
 import axios from 'axios'
-import React from 'react'
 
-export default function BlogCommentForm({ commentToId, commentById, addComments }) {
+export default function BlogCommentForm({ commentToId, commentById, setOption, loadComments }) {
     const handleNewComment = (e) => {
         e.preventDefault();
-        const payload = {
-            commentById,
-            commentToId,
-            comment: e.target.comment.value,
+        if(commentById) {  
+          const payload = { commentById , commentToId , comment: e.target.comment.value }
+          axios.post("/api/blogs/comments" , payload)
+              .then(res => res.data)
+              .then(data => {
+                alert(data.message);
+                e.target.comment.value = "";
+              })
+              .then(() => loadComments())
+              .catch(error => alert(`Bad request! ${error.message}`))
+        } else {
+          setOption(4);
         }
-
-        // console.log(payload)
-        axios.post("/api/blogs/comments" , payload)
-            .then(res => res.data)
-            .then(data => {
-              alert(data.message);
-              addComments();
-              e.target.comment.value = "";
-            })
-            .catch(error => alert(`Bad request! ${error.message}`))
     }
 
   return (

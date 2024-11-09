@@ -139,7 +139,7 @@ export default function Page({ params }) {
           {blogs?.length > 0 ?
             <div className="w-full flex flex-col gap-3 items-center justify-evenly">
               {
-                blogs.map((blog, index) => <Blogs key={index} blog={blog} />)
+                blogs.map((blog, index) => <Blogs key={index} blog={blog} loadBlogs={loadBlogs}/>)
               }
             </div>
             :
