@@ -36,7 +36,7 @@ export default function Blogs({ blog, loadBlogs }) {
       </Link>
 
 
-      <div className="w-full font-mono font-extralight text-gray-700 dark:text-gray-300/85 whitespace-pre-wrap text-balance overflow-auto border-b-[1.5px] border-gray-400/80 dark:border-gray-700 pb-3 mt-[2px]">
+      <div className="w-full font-mono font-extralight text-gray-700 dark:text-gray-300/85 whitespace-pre-wrap text-balance overflow-auto border-b-[1.5px] border-gray-400/80 dark:border-gray-700 pb-3 my-[2px]">
         {blog.blog}
       </div>
 

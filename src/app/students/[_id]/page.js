@@ -46,7 +46,10 @@ export default function Page({ params }) {
   const loadBlogs = () => {    
     axios.post(`/api/blogs/${params?._id}`)
       .then(result => result.data)
-      .then(data => data.success && setBlogs(data.blogs));
+      .then(data => {
+        console.log("blogs" , data);
+        if(data.success)   setBlogs(data.blogs)
+      });
   }
 
   const loadFollowers = () => {
@@ -65,6 +68,7 @@ export default function Page({ params }) {
       .then(res => res.data)
       .then(data => data.user)
       .then(userData => {
+        console.log(userData)
         checkFollowed(userData)
       })
       .catch(error => alert(error.message));
@@ -79,10 +83,15 @@ export default function Page({ params }) {
           } else {
             setStudent(userData);
           }
+          console.log("userData");
         })
         .catch(error => console.error(error.message));
-      }
+    } else {
+      setStudent(userData);
+    }
   }
+
+  
 
   return (
     <div className={`h-nav flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
