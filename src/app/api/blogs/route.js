@@ -1,7 +1,7 @@
 import Blog from "/mongo/BlogModel";
 import "/mongo/UserModel";
 import { NextResponse } from "next/server";
-import { authenticateUser } from "../../../authenticateUser";
+import { authenticateUser } from "@/utilities/authenticateUser";
 
 export async function GET() {
     try {

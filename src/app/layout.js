@@ -1,6 +1,6 @@
 import './globals.css'
 import { cookies } from "next/headers";
-import { getJWTUser } from '@/getJWTUser';
+import { getJWTUser } from '@/utilities/getJWTUser';
 import AuthProvider from './_components/AuthProvider';
 
 export const metadata = {

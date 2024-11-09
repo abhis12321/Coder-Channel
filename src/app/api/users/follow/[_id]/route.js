@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Followers from "/mongo/FollowersModel";
-import { authenticateUser } from "../../../../../authenticateUser";
+import { authenticateUser } from "@/utilities/authenticateUser";
 
 //Find Followers
 export async function GET(req , {params}) {

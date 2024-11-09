@@ -4,10 +4,10 @@ import { sign } from "jsonwebtoken";
 import Users from "/mongo/UserModel";
 import { cookies } from 'next/headers';
 import { NextResponse } from "next/server";
-import { sendVerificationEmail } from '../../../sendMailToUser';
-import { TOCKEN_MAX_AGE, CODER_CHANNEL_TOCKEN } from '../../../constants';
-import { verifyOPT } from '@/verifyOTP';
-import { sendOTP } from '@/sendOTP';
+import { sendVerificationEmail } from '@/utilities/sendMailToUser';
+import { TOCKEN_MAX_AGE, CODER_CHANNEL_TOCKEN } from '@/utilities/constants';
+import { verifyOPT } from '@/utilities/verifyOTP';
+import { sendOTP } from '@/utilities/sendOTP';
 
 
 export async function GET() {

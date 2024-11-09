@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { Comment } from '/mongo/CommentModel'
-import { authenticateUser } from "../../../../authenticateUser";
+import { authenticateUser } from "@/utilities/authenticateUser";
 
 
 export const POST = async(req) => {

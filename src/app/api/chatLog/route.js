@@ -1,6 +1,6 @@
 import { Chat } from '/mongo/ChatModel'
 import { NextResponse } from "next/server";
-import { authenticateUser } from '../../../authenticateUser'
+import { authenticateUser } from '@/utilities/authenticateUser'
 
 export async function GET() {
     return NextResponse.json({success:true});

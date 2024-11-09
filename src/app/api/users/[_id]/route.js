@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import cryptoJS from "crypto-js";
 import Users from "/mongo/UserModel";
 import { NextResponse } from "next/server";
-import { authenticateUser } from "../../../../authenticateUser";
+import { authenticateUser } from "@/utilities/authenticateUser";
 
 
 export async function GET(req, { params }) {

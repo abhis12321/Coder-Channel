@@ -2,7 +2,7 @@ import Blog from '/mongo/BlogModel';
 import { NextResponse } from "next/server";
 import "/mongo/UserModel";
 import { BlogLikes } from "/mongo/BlogLikesModel";
-import { getJWTUser } from '@/getJWTUser';
+import { getJWTUser } from '@/utilities/getJWTUser';
 
 
 export const GET = async (req, { params }) => {
