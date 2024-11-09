@@ -8,12 +8,15 @@ import { ChatModel } from "../../_components/ChatModel";
 import { useAuth } from "../../_components/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import ErrorPage from "@/app/_components/ErrorPage";
+import LoadingPage from "@/app/_components/LoadingPage";
 
 
 export default function Page({ params }) {
   const messageRef = useRef();
   const { socket, user } = useAuth();
-  const [sender, setSender] = useState("hello");
+  const [error, setError] = useState(false);
+  const [sender, setSender] = useState();
   const [message, setMessage] = useState("");
   const [onlineStatus, setOnlineStatus] = useState(false);
 
@@ -75,19 +78,25 @@ export default function Page({ params }) {
 
   useEffect(() => {
     socket?.emit("loadOnlineUsers", params.newUserChat);
+    loadUser();
+    loadChats();
+  }, [user?._id, params?.newUserChat]);
 
+  const loadUser = () => {
     axios.get(`/api/single-user/${params.newUserChat}`)
       .then(res => res.data)
       .then(data => {
         if (data.success) {
           setSender(data.user);
+        } else {
+          setError(true);
         }
-      });
+      })
+      .catch(() => setError(true));
+  }
 
-    let payload = {
-      tempUserId: params?.newUserChat,
-      mainUserId: user?._id,
-    }
+  const loadChats = () => {
+    let payload = { tempUserId: params?.newUserChat, mainUserId: user?._id }
     if (payload.mainUserId && payload.tempUserId) {
       axios.put('/api/chatLog', payload)
         .then(response => response.data)
@@ -101,7 +110,7 @@ export default function Page({ params }) {
         })
         .catch(error => console.error(error.message));
     }
-  }, [user?._id, params?.newUserChat]);
+  }
 
   const appendNewMessageToCant = (sender, message, direction) => {
     let content = ChatModel(sender, message, direction);
@@ -109,30 +118,40 @@ export default function Page({ params }) {
   }
 
   return (
-    <div className='h-nav w-full flex items-center justify-center'>
+    <>
       {
-        user ?
-          <div className="text-white rounded-md bg-gradient-to-r from-white to-white dark:from-slate-900/80 dark:via-blue-950/60 dark:to-slate-900/80 dark:text-white w-full max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative h-nav shadow-[0_0_2px_gray] dark:shadow-[0_0_2px_white] flex flex-col items-center justify-start" >
-            <Link href={`/students/${params.newUserChat}`} className={`w-[98%] bg-green-950/10 dark:bg-gray-950/20 ${onlineStatus ? 'shadow-[0_0_3px_green]' : 'shadow-[0_0_3px_red]'} rounded-md pl-4 p-2 mx-4 md:mx-9 flex items-center gap-6 hover:bg-red-800/20 hover:animate-pulse`}>
-              <Image src={sender?.imgUrl ? sender?.imgUrl : "/img/profileImg.jpg"} alt="image" height={70} width={70} className={`rounded-full w-16 h-16 ring-2 ${onlineStatus ? "ring-green-600" : "ring-red-800"}`} />
-              <div className={`relative text-2xl font-semibold  ${onlineStatus ? 'drop-shadow-[1px_1px_1px_green]' : 'drop-shadow-[1px_1px_1px_red]'}`}>
-                {sender?.name}
-                <p onClick={handleReceiveMessage} className={`absolute top-0 text-[8px] font-semibold px-1 py-0 leading-4 inline-flex rounded-full ${onlineStatus ? "dark:bg-green-800 bg-lime-900" : "dark:bg-red-800 bg-red-900"} `}>{onlineStatus ? "online" : "offline"}</p>
-              </div>
-            </Link>
-
-            <div className="w-[98%] chatting-message-box flex flex-col justify-start gap-3 py-3 overflow-auto flex-1 text-gray-600 dark:text-white" ref={messageRef}> </div>
-
-            <form className='flex items-center justify-center w-[98%] absolute bottom-2 bg-ed-500 gap-2 bg-blue-900/20 rounded-md overflow-hidden shadow-[0_0_1px_black_inset] focus-within:shadow-[0_0_3px_black_inset] dark:shadow-[0_0_1px_white_inset] dark:focus-within:shadow-[0_0_3px_white_inset]' onSubmit={handleSendNewMessage}>
-              <input className='w-full overflow-auto flex-1 pl-4 pr-1 py-2 outline-none bg-transparent text-gray-950 dark:text-white' placeholder="Enter your message" type='text' value={message} onChange={e => setMessage(e.target.value)} required />
-              <button className="cursor-pointer px-4 md:px-7 py-2 bg-blue-900/80 hover:bg-blue-900 font-semibold hover:text-yellow-500 text-gray-100 active:bg-violet-950 shadow-[0_0_1px_black_inset] focus-within:shadow-[0_0_3px_black_inset] dark:shadow-[0_0_1px_white_inset] dark:focus-within:shadow-[0_0_3px_white_inset]" >
-                <FontAwesomeIcon size="sm" icon={faPaperPlane} className='h-6' />
-              </button>
-            </form>
-          </div>
+        error ?
+          <ErrorPage />
           :
-          <LoginForm />
+          <div className='h-nav w-full flex items-center justify-center'>
+            {
+              !sender ?
+                <LoadingPage />
+                :
+                user ?
+                  <div className="text-white rounded-md bg-gradient-to-r from-white to-white dark:from-slate-900/80 dark:via-blue-950/60 dark:to-slate-900/80 dark:text-white w-full max-w-[900px] mx-auto py-4 pb-12 overflow-hidden relative h-nav shadow-[0_0_2px_gray] dark:shadow-[0_0_2px_white] flex flex-col items-center justify-start" >
+                    <Link href={`/students/${params.newUserChat}`} className={`w-[98%] bg-green-950/10 dark:bg-gray-950/20 ${onlineStatus ? 'shadow-[0_0_3px_green]' : 'shadow-[0_0_3px_red]'} rounded-md pl-4 p-2 mx-4 md:mx-9 flex items-center gap-6 hover:bg-red-800/20 hover:animate-pulse`}>
+                      <Image src={sender?.imgUrl ? sender?.imgUrl : "/img/profileImg.jpg"} alt="image" height={70} width={70} className={`rounded-full w-16 h-16 ring-2 ${onlineStatus ? "ring-green-600" : "ring-red-800"}`} />
+                      <div className={`relative text-2xl font-semibold  ${onlineStatus ? 'drop-shadow-[1px_1px_1px_green]' : 'drop-shadow-[1px_1px_1px_red]'}`}>
+                        {sender?.name}
+                        <p onClick={handleReceiveMessage} className={`absolute top-0 text-[8px] font-semibold px-1 py-0 leading-4 inline-flex rounded-full ${onlineStatus ? "dark:bg-green-800 bg-lime-900" : "dark:bg-red-800 bg-red-900"} `}>{onlineStatus ? "online" : "offline"}</p>
+                      </div>
+                    </Link>
+
+                    <div className="w-[98%] chatting-message-box flex flex-col justify-start gap-3 py-3 overflow-auto flex-1 text-gray-600 dark:text-white" ref={messageRef}> </div>
+
+                    <form className='flex items-center justify-center w-[98%] absolute bottom-2 bg-ed-500 gap-2 bg-blue-900/20 rounded-md overflow-hidden shadow-[0_0_1px_black_inset] focus-within:shadow-[0_0_3px_black_inset] dark:shadow-[0_0_1px_white_inset] dark:focus-within:shadow-[0_0_3px_white_inset]' onSubmit={handleSendNewMessage}>
+                      <input className='w-full overflow-auto flex-1 pl-4 pr-1 py-2 outline-none bg-transparent text-gray-950 dark:text-white' placeholder="Enter your message" type='text' value={message} onChange={e => setMessage(e.target.value)} required />
+                      <button className="cursor-pointer px-4 md:px-7 py-2 bg-blue-900/80 hover:bg-blue-900 font-semibold hover:text-yellow-500 text-gray-100 active:bg-violet-950 shadow-[0_0_1px_black_inset] focus-within:shadow-[0_0_3px_black_inset] dark:shadow-[0_0_1px_white_inset] dark:focus-within:shadow-[0_0_3px_white_inset]" >
+                        <FontAwesomeIcon size="sm" icon={faPaperPlane} className='h-6' />
+                      </button>
+                    </form>
+                  </div>
+                  :
+                  <LoginForm />
+            }
+          </div>
       }
-    </div>
+    </>
   );
 }

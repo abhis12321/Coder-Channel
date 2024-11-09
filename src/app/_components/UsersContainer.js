@@ -25,10 +25,7 @@ function UsersContainer({ users }) {
       alert("You are not logged-in! Login first to follow a user!");
     } else if (user._id === data.followedToId) {
       alert("you can not follow yourself.");
-    // } else if (students[index].isFollowing) {
-    //   alert("you are already following this user.");
     } else {
-      // console.log({ index, data });
       axios.post('/api/users/follow', data)
         .then(result => result.data)
         .then(data => {
@@ -59,7 +56,7 @@ function UsersContainer({ users }) {
               <input type="text" className="w-full max-w-[340px]  md:w-fit flex-1 outline-none text-gray-700 dark:text-white py-[6px] px-5 rounded-xl bg-white dark:bg-indigo-900/40 shadow-[0_0_2px_black_inset] dark:shadow-[0_0_2px_white_inset] focus:shadow-[0_0_5px_gray_inset] focus:bg-violet-600/10 dark:focus:shadow-[0_0_5px_white_inset] font-semibold font-mono dark:placeholder:text-gray-400 placeholder:text-gray-500 text-center" value={search} onChange={e => setSearch((e.target.value).toLowerCase())} placeholder='type here to search...' />
             </div>
             {students?.map((student, index) => {
-              return student.verify && student._id != user?._id ?
+              return student.verify ?
                 <StudentCard key={student._id + index} student={student} index={index} handleFollowings={handleFollowings} search={search.toLowerCase()} searchBy={searchBy} />
                 :
                 null
