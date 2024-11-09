@@ -20,52 +20,69 @@ export default function Page({ params }) {
 
 
   useEffect(() => {   //user's personal data
-    axios.get(`/api/single-user/${params._id}`)
-      .then(res => res.data)
-      .then(data => data.user)
-      .then(user => setStudent(user))
-      .catch(error => alert(error.message));
-
-    axios.get(`/api/users/follow/${params._id}`)
-      .then(result => result.data)
-      .then(data => data.success && setFollowers(data.followers));
-
-
-    axios.post(`/api/users/follow/${params._id}`)
-      .then(result => result.data)
-      .then(data => data.success && setFollowings(data.followings));
+    loadUserData();
+    loadFollowings();
+    loadFollowers();
+    loadBlogs();
   }, [params._id]);
 
-  useEffect(() => {    
-    axios.post(`/api/blogs/${params?._id}`)
-      .then(result => result.data)
-      .then(data => data.success && setBlogs(data.blogs));
-  }, [params._id , user]);
-
-  useEffect(() => {
-    user?._id && params?._id &&
-      axios.put(`/api/users/follow`, { followedById: user?._id, followedToId: params?._id })
-        .then(response => response.data)
-        .then(data => data.success && setStudent({ ...student, isFollowed: data.isFollowed }))
-        .catch(error => console.error(error.message));
-  }, [user?._id, params?._id]);
 
   const handleFollowers = () => {
     if (!user) {
       alert("login first to follow a user!")
     } else {
-      axios.post('/api/users/follow', {
-        followedById: user?._id,
-        followedByName: user?.name,
-        followedToId: student?._id,
-        followedToName: student?.name,
-      })
-        .then(result => result.data)
-        .then(data => data.success && setFollowers([...followers, data.follow]) && setStudent({ ...student, isFollowed: true }))
-        .catch(error => console.log(error.message))
+      axios.post('/api/users/follow', { followedById: user?._id , followedToId: student?._id })
+        .then(response => response.data)
+        .then(data => {
+          if(data.success) {
+            loadFollowers();
+            setStudent({ ...student, isFollowed: true });
+          }
+        })
+        .catch(error => console.error(error.message))
     }
   }
 
+  const loadBlogs = () => {    
+    axios.post(`/api/blogs/${params?._id}`)
+      .then(result => result.data)
+      .then(data => data.success && setBlogs(data.blogs));
+  }
+
+  const loadFollowers = () => {
+    axios.get(`/api/users/follow/${params._id}`)
+      .then(result => result.data)
+      .then(data => data.success && setFollowers(data.followers));
+  }
+  const loadFollowings = () => {
+    axios.post(`/api/users/follow/${params._id}`)
+      .then(result => result.data)
+      .then(data => data.success && setFollowings(data.followings));
+  }
+
+  const loadUserData = () => {
+    axios.get(`/api/single-user/${params._id}`)
+      .then(res => res.data)
+      .then(data => data.user)
+      .then(userData => {
+        checkFollowed(userData)
+      })
+      .catch(error => alert(error.message));
+  }
+  const checkFollowed = (userData) => {
+    if(user?._id && params?._id) {
+      axios.put(`/api/users/follow`, { followedById: user?._id, followedToId: params?._id })
+        .then(response => response.data)
+        .then(data => {
+          if(data.success) {
+            setStudent({ ...userData, isFollowed: data.isFollowed })
+          } else {
+            setStudent(userData);
+          }
+        })
+        .catch(error => console.error(error.message));
+      }
+  }
 
   return (
     <div className={`h-nav flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
