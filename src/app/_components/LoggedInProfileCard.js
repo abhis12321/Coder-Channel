@@ -4,7 +4,7 @@ import Blogs from './BlogCard';
 import Image from 'next/image';
 import Followers from './Followers';
 import Followings from './Followings';
-import ProfileEdit from './ProfileEdit'
+import ProfileEdit from './LoggedInProfileEdit'
 import { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
@@ -45,7 +45,7 @@ export default function ProfileCard({ setStatus }) {
   }, [user._id, updateBlogs, updateFollowers, updateFollowings]);
 
   const handleUnFollow = (_id) => {
-    axios.delete(`/api/users/follow/${_id}`)
+    axios.delete(`/api/users/follow/${_id}` , ({ data:JSON.stringify({ _id:user?._id }) }))
       .then(result => result.data)
       .then(data => data.success)
       .then(success => success && updateFollowings())
@@ -53,7 +53,7 @@ export default function ProfileCard({ setStatus }) {
   }
 
   const handleRemoveFollower = (_id) => {
-    axios.delete(`/api/users/follow/${_id}`)
+    axios.delete(`/api/users/follow/${_id}` , ({ data:JSON.stringify({_id:user?._id}) }))
       .then(result => result.data)
       .then(data => data.success)
       .then(success => success && updateFollowers())

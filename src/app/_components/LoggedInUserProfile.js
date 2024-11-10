@@ -3,7 +3,7 @@ import { useState } from 'react';
 import LoginForm from './LoginForm';
 import UserLogout from './UserLogout';
 import {useAuth} from './AuthProvider';
-import ProfileCard from './ProfileCard';
+import ProfileCard from './LoggedInProfileCard';
 
 export default function LoggedInUserProfile() {  
   let { user } = useAuth();
