@@ -22,12 +22,17 @@ export default function BlogComments({ blogId, userId, setOption }) {
             .then(message => alert(message))
             .then(() => loadComments())
             .catch(error => alert(error.message))
-        console.log("deleting the comment")
     }
 
     const handleEditComment = (_id , comment) => {
-        console.log("comment is editing.." , _id , comment);
+        axios.put(`/api/blogs/comments/${_id}` , { comment })
+            .then(res => res.data)
+            .then(data => data.message)
+            .then(message => alert(message))
+            .then(() => loadComments())
+            .catch(error => alert(error.message))        
     }
+    
     useEffect(() => {
         loadComments();
     }, [blogId]);

@@ -20,6 +20,23 @@ export const GET = async(req , { params }) => {
 }
 
 
+export const PUT = async(req , { params }) => {
+    try {
+        const { comment } = await req.json();
+        const User = getJWTUser();
+        if(!User?._id) {
+            return NextResponse.json({  } , { status:404 });
+        }
+        const oldComment = await Comment.findOne({ commentById:User._id , _id:params.commentToId });
+        oldComment.comment = comment;
+        await oldComment.save();
+        return NextResponse.json({ message:"your comment is modified successfully!" });
+    } catch(error) {
+        return NextResponse.json({ error:error.message }, { status:400 });
+    }
+}
+
+
 export const DELETE = async(req , { params }) => {
     try {
         const User = getJWTUser();
