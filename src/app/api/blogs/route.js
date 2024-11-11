@@ -31,7 +31,6 @@ export async function POST( req ) {
 
         let blog = new Blog(body);
         await blog.save();
-        // console.log(blog);
         return NextResponse.json({success:true , message:"your blog is posted successfylly" , blog});
     } catch(error) {
         // console.error(error.message)

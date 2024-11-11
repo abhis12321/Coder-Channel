@@ -53,13 +53,20 @@ export default function ProfileCard({ setStatus }) {
   }
 
   const handleRemoveFollower = (_id) => {
-    axios.delete(`/api/users/follow/${_id}` , ({ data:JSON.stringify({_id:user?._id}) }))
+    axios.delete(`/api/users/follow/${_id}` , ({ data:JSON.stringify({ _id:user?._id }) }))
       .then(result => result.data)
       .then(data => data.success)
       .then(success => success && updateFollowers())
       .catch(error => alert(error.message));
   }
 
+  const handleBlogEdit = (_id) => {
+    console.log("blog editing..");
+  }
+
+  const handleBlogDelete = (_id) => {
+    console.log("blog deletion...");
+  }
 
   return (
     <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
@@ -121,7 +128,7 @@ export default function ProfileCard({ setStatus }) {
           {blogs?.length > 0 ?
             <div className="w-full flex flex-col gap-3 items-center justify-evenly">
               {
-                blogs.map((blog, index) => <Blogs key={index} blog={blog} loadBlogs={updateBlogs}/>)
+                blogs.map((blog, index) => <Blogs key={index} blog={blog} loadBlogs={updateBlogs} handleBlogDelete={handleBlogDelete} handleBlogEdit={handleBlogEdit}/>)
               }
             </div>
             :

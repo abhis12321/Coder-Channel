@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import "/mongo/UserModel";
 import { BlogLikes } from "/mongo/BlogLikesModel";
 import { getJWTUser } from '@/utilities/getJWTUser';
+import { authenticateUser } from '@/utilities/authenticateUser';
+import { Comment } from '/mongo/CommentModel';
 
 
 export const GET = async (req, { params }) => {
@@ -63,7 +65,42 @@ export async function POST(req, { params }) {
 
         return NextResponse.json({ success: true, blogs:blogsWithLikes });
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return NextResponse.json({ success: false, message: error.message });
+    }
+}
+
+
+
+export const PUT = async(req , { params }) => {
+    try {
+        const { _id , blog } = await req.json();
+        const isVerified = authenticateUser(_id);
+        if(!isVerified) {
+            return NextResponse.json({  } , { status:404 });
+        }
+        const myBlog = await Blog.findOn(params)
+        myBlog.blog = blog;
+        await myBlog.save();
+        return NextResponse.json({ message: "Blog modified successfully" });
+    } catch(error) {
+        return NextResponse.json({ message: `Error occured! ${error.message}` })
+    }
+}
+
+
+export const DELETE = async(req , { params }) => {
+    try {
+        const { _id } = await req.json();
+        const isVerified = authenticateUser(_id);
+        if(!isVerified) {
+            return NextResponse.json({  } , { status:404 });
+        }
+        await Blog.findOneAndDelete(params)
+                .then(() => BlogLikes.deleteMany({ blogId: params._id }))
+                .then(() => Comment.deleteMany({ commentToId: params._id }))
+        return NextResponse.json({ message: "Blog deleted successfully" });
+    } catch(error) {
+        return NextResponse.json({ message: `Error occured! ${error.message}` })
     }
 }
