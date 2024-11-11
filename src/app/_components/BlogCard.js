@@ -33,7 +33,7 @@ export default function Blogs({ blog, loadBlogs, handleBlogDelete, handleBlogEdi
 
       <div className="w-full flex justify-between items-center">
         <Link href={`/students/${blog.writerId._id}`} className="min-h-16 p-2 flex gap-5 items-center group border-b[1.5px] border-gray-400 mb-2">
-          <Image src={blog.writerId.imgUrl || "/img/profileImg.jpg"} alt='' height={50} width={50} className='rounded-full h-[55px] w-[55px]' />
+          <Image src={blog.writerId.imgUrl || "/img/profileImg.jpg"} alt='' height={50} width={50} className='rounded-full h-[50px] w-[50px] shadow-[0_0_1.5px_gray]' />
           <div className="flex flex-col justify-around">
             <div className="font-bold text-gray-700/90 dark:text-blue-200 group-hover:text-blue-700/80 group-hover:underline">{blog.writerId.name}</div>
             <div className="text-red-950/60 dark:text-gray-500/85 text-xs">{`${(new Date(blog.time)).toDateString()} ${(new Date(blog.time)).toLocaleTimeString()}`}</div>

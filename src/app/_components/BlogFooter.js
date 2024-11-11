@@ -9,7 +9,7 @@ export default function BlogFooter({ blog, setOption, handleLikes }) {
         <FontAwesomeIcon size='sm' icon={faThumbsUp} className={`h-5 group-hover:drop-shadow-none ${blog.liked ? "text-blue-600" : "group-hover:text-blue-700/80 drop-shadow-[0_0_1px_black]"}`}/>
         <div className={`${blog.liked ? "text-blue-600" : "text-gray-500/90 group-hover:text-blue-700/90"}`}>Like</div>
       </div>
-      <div className="w-1/3 py-[11px] rounded-sm text-white hover:bg-gray-600/15 dark:hover:bg-white/10 cursor-pointer flex gap-4 items-center justify-center font-semibold group" onClick={() => setOption(1)} >
+      <div className="w-1/3 py-[11px] rounded-sm text-white hover:bg-gray-600/15 dark:hover:bg-white/10 cursor-pointer flex gap-4 items-center justify-center font-semibold group" onClick={() => setOption(prev => prev == 1 ? 0 : 1)} >
         <FontAwesomeIcon size='sm' icon={faComment} className='h-5 group-hover:drop-shadow-none drop-shadow-[0_0_1px_black] group-hover:text-blue-700/80'/>
         <div className="text-gray-500/90 group-hover:text-blue-700/90">Comment</div>
       </div>
