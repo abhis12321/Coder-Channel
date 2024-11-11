@@ -149,8 +149,8 @@ export default function NotLoggedInUserProfile({ params }) {
 
                   <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm text-white">
                     <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30">
-                      <button className="">{student?.likes}</button>
-                      <button className="">Likes</button>
+                      <button className="">{blogs?.length}</button>
+                      <button className="">Blogs</button>
                     </div>
                     <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(1)}>
                       <button className="">{followers.length}</button>

@@ -37,13 +37,6 @@ export default function ProfileCard({ setStatus }) {
       .then(data => data.success && setBlogs(data.blogs));
   }, [user]);
 
-
-  useEffect(() => {
-    updateFollowers();
-    updateFollowings();
-    updateBlogs();
-  }, [user._id, updateBlogs, updateFollowers, updateFollowings]);
-
   const handleUnFollow = (_id) => {
     axios.delete(`/api/users/follow/${_id}` , ({ data:JSON.stringify({ _id:user?._id }) }))
       .then(result => result.data)
@@ -60,13 +53,30 @@ export default function ProfileCard({ setStatus }) {
       .catch(error => alert(error.message));
   }
 
-  const handleBlogEdit = (_id) => {
-    console.log("blog editing..");
+  const handleBlogEdit = (_id , blog) => {
+    axios.put(`/api/blogs/${_id}` , { blog })
+      .then(res => res.data)
+      .then(data => data.message)
+      .then(message => alert(message))
+      .then(() => updateBlogs())
+      .catch(() => alert("Sorry, some error occurred!"))
   }
 
   const handleBlogDelete = (_id) => {
-    console.log("blog deletion...");
+    axios.delete(`/api/blogs/${_id}` , ({ data:JSON.stringify({ _id:user?._id }) }))
+        .then(res => res.data)
+        .then(data => data.message)
+        .then(message => alert(message))
+        .then(() => updateBlogs())
+        .catch(() => alert("Sorry, some error occurred!"))
   }
+  
+
+  useEffect(() => {
+    updateFollowers();
+    updateFollowings();
+    updateBlogs();
+  }, [user._id, updateBlogs, updateFollowers, updateFollowings]);
 
   return (
     <div className={`flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
@@ -97,8 +107,8 @@ export default function ProfileCard({ setStatus }) {
 
               <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm text-white">
                 <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30">
-                  <button className="">{user?.likes}</button>
-                  <button className="">Likes</button>
+                  <button className="">{blogs?.length}</button>
+                  <button className="">Blogs</button>
                 </div>
                 <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(1)}>
                   <button className="">{followers.length}</button>
@@ -128,7 +138,7 @@ export default function ProfileCard({ setStatus }) {
           {blogs?.length > 0 ?
             <div className="w-full flex flex-col gap-3 items-center justify-evenly">
               {
-                blogs.map((blog, index) => <Blogs key={index} blog={blog} loadBlogs={updateBlogs} handleBlogDelete={handleBlogDelete} handleBlogEdit={handleBlogEdit}/>)
+                blogs.map((blog, index) => <Blogs key={index} blog={blog} loadBlogs={updateBlogs} handleBlogDelete={() => handleBlogDelete(blog?._id)} handleBlogEdit={handleBlogEdit}/>)
               }
             </div>
             :

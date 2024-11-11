@@ -74,12 +74,12 @@ export async function POST(req, { params }) {
 
 export const PUT = async(req , { params }) => {
     try {
-        const { _id , blog } = await req.json();
-        const isVerified = authenticateUser(_id);
-        if(!isVerified) {
+        const { blog } = await req.json();
+        const User = getJWTUser();
+        if(!User?._id) {
             return NextResponse.json({  } , { status:404 });
         }
-        const myBlog = await Blog.findOn(params)
+        const myBlog = await Blog.findOne({ ...params, writerId:User._id })
         myBlog.blog = blog;
         await myBlog.save();
         return NextResponse.json({ message: "Blog modified successfully" });
@@ -91,16 +91,16 @@ export const PUT = async(req , { params }) => {
 
 export const DELETE = async(req , { params }) => {
     try {
-        const { _id } = await req.json();
-        const isVerified = authenticateUser(_id);
-        if(!isVerified) {
+        const User = getJWTUser();
+        if(!User?._id) {
             return NextResponse.json({  } , { status:404 });
         }
-        await Blog.findOneAndDelete(params)
+        await Blog.findOneAndDelete({ _id:params._id , writerId:User._id })
                 .then(() => BlogLikes.deleteMany({ blogId: params._id }))
                 .then(() => Comment.deleteMany({ commentToId: params._id }))
         return NextResponse.json({ message: "Blog deleted successfully" });
     } catch(error) {
+        console.log("Error => " , error.message);
         return NextResponse.json({ message: `Error occured! ${error.message}` })
     }
 }

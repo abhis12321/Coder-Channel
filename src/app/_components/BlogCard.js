@@ -10,6 +10,7 @@ import BlogComments from './BlogComments';
 import BlogLikesPage from './BlogLikesPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import BlogEditForm from './BlogEditForm';
 
 export default function Blogs({ blog, loadBlogs, handleBlogDelete, handleBlogEdit }) {
   const { user } = useAuth();
@@ -44,8 +45,8 @@ export default function Blogs({ blog, loadBlogs, handleBlogDelete, handleBlogEdi
             <FontAwesomeIcon size='sm' icon={faEllipsisVertical} className={`h-5 px-3 hover:text-blue-600 ${option === 10 && "rotate-90"} duration-300`} onClick={() => setOption(prev => prev == 10 ? 0 : 10)}/>
             {
               option === 10 &&
-              <div className='absolute top-[18px] left-[-2.2px] flex flex-col items-start text-xs font-bold' onClick={() => setOption(0)}>
-                <button className='text-green-700 hover:bg-green-700/20 py-[2px] px-2 rounded-lg' onClick={handleBlogEdit}>edit</button>
+              <div className='absolute top-[24px] left-[-2.2px] flex flex-col gap-[6px] items-start text-xs font-bold' onClick={() => setOption(0)}>
+                <button className='text-green-700 hover:bg-green-700/20 py-[2px] px-2 rounded-lg' onClick={(e) => { e.stopPropagation(); setOption(11);}}>edit</button>
                 <button className='text-red-700 hover:bg-red-700/20 py-[2px] px-2 rounded-lg' onClick={handleBlogDelete}>delete</button>
               </div>
             }
@@ -69,7 +70,9 @@ export default function Blogs({ blog, loadBlogs, handleBlogDelete, handleBlogEdi
             <CopyLink setCopyLink={setOption} text={`http://13.201.72.123/students/#${blog._id}`} />
             : option === 3 ?
               <BlogLikesPage setOption={setOption} _id={blog._id} />
-              : (option === 4 && !user) && <div className="min-h-screen w-full fixed z-10 top-0 left-0 flex items-center justify-center bg-slate-500/50 dark:bg-slate-900/90"><LoginForm /></div>
+              : (option === 4 && !user) ? <div className="min-h-screen w-full fixed z-10 top-0 left-0 flex items-center justify-center bg-slate-500/50 dark:bg-slate-900/90"><LoginForm /></div>
+              :
+              (option === 11) && <BlogEditForm handleBlogEdit={handleBlogEdit} oldBlog={blog} cancelForm={() => setOption(0)}/>
       }
     </div>
   )
