@@ -4,7 +4,7 @@ import { getJWTUser } from '@/utilities/getJWTUser';
 import AuthProvider from './_components/AuthProvider';
 
 export const metadata = {
-  title: "DevSphere",
+  title: "CoderMedia",
   description: 'A Coding and Development discussion app',
 }
 
