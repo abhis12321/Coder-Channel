@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import SocialMediaOfDeveloper from './SocialMediaOfDeveloper';
 
 export default function Footer() {
   return (
@@ -11,42 +10,7 @@ export default function Footer() {
             <h2 className="max-h-12 font-serif italic font-extrabold text-[1.8rem] text-center rounded-md text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-violet-100 w-fit overflow-hidden">#CoderMedia</h2>
             <p className="text-center text-yellow-400 font-semibold drop-shadow-[0_0_7px_white] pt-[6px]">creator&apos;s info</p>
           </div>
-          
-          <div className="py-4 flex justify-around items-center bg-slate50 rounded-lg self-center sm:self-auto w-[267px]">
-            <Link
-              target="_blank"
-              href={`https://github.com/abhis12321`}
-              className="disabled"
-            >
-              <FontAwesomeIcon
-                icon={faGithub}
-                size="3x"
-                className=" text-gray-400 hover:text-gray-300 hover:scale-110 text-4xl md:text-5xl"
-              />
-            </Link>
-            <Link
-              target="_blank"
-              href={`https://www.linkedin.com/in/abhishek-singh-b82427256/`}
-              className="disabled"
-            >
-              <FontAwesomeIcon
-                icon={faLinkedin}
-                size="3x"
-                className="text-blue-700 hover:text-blue-600 hover:scale-110 text-4xl md:text-5xl"
-              />
-            </Link>
-            <Link
-              target="_blank"
-              href={`https://www.instagram.com/_______abhishek_singh_______/`}
-              className="disabled"
-            >
-              <FontAwesomeIcon
-                icon={faInstagram}
-                size="3x"
-                className="text-rose-800 hover:text-rose-700 hover:scale-110 text-4xl md:text-5xl"
-              />
-            </Link>
-          </div>
+          <SocialMediaOfDeveloper />
 
         </div>
         <div className="flex flex-col md:flex-row justify-around md:gap-4 items-center w-[290px] md:w-[60%] text-gray-200">
@@ -63,7 +27,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-gray-500 text-sm font-serif text-center py-2 font-extrabold overflow-hidden drop-shadow-[0_0_1px_black]"><span className="font-extrabold">&copy; </span>Coder&apos;channel! A public social-media platform.</div>
+      <div className="text-gr text-gray-500 opacity-80 font-serif text-center py-2 font-semibold overflow-hidden drop-shadow-[0_0_1px_black]"><span className="font-extrabold">&copy; </span>CoderMedia! A public social-media platform for developers.</div>
     </div>
   )
 }

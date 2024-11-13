@@ -21,7 +21,6 @@ export const GET = async() => {
 export const POST = async(req) => {
   try {
     const { name , email , mobile , problem } = await req.json();
-    console.log({ name , email , mobile , problem });
     await sendMailToAdmin({ name , email , mobile , problem });
     return NextResponse.json({ message: "Your request is noted and you will be contacted from our backend team very soon with an Update."});
   } catch(error) {
