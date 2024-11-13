@@ -4,7 +4,7 @@ import { sign } from "jsonwebtoken";
 import Users from "/mongo/UserModel";
 import { cookies } from 'next/headers';
 import { NextResponse } from "next/server";
-import { sendVerificationEmail } from '@/utilities/sendMailToUser';
+import { sendVerificationEmail } from '@/utilities/sendVerificationMailToUser';
 import { TOCKEN_MAX_AGE, CODER_CHANNEL_TOCKEN } from '@/utilities/constants';
 import { verifyOPT } from '@/utilities/verifyOTP';
 import { sendOTP } from '@/utilities/sendOTP';

@@ -1,4 +1,5 @@
 "use client"
+import axios from "axios";
 
 export default function ContactForm() {
     const handleFormSubmit = (e) => {
@@ -10,7 +11,11 @@ export default function ContactForm() {
             problem:e.target.problem.value,
         }
 
-        console.log(payload);
+        axios.post("/api" , payload)
+            .then(res => res.data)
+            .then(data => data.message)
+            .then(message => alert(message))
+            .catch(error => alert(error.message))
         
         e.target.name.value = ""
         e.target.email.value = ""

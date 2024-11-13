@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { emailVerificationMessageFromAdminToUser } from "./message";
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -17,11 +18,7 @@ export async function sendVerificationEmail(email, token) {
       to: email,
       subject: "Email Verification",
       text: `Please click on this link to verify your email address:\n${link}\n\nIf you did not request this verification, please ignore this message.`,
-      html: `<p>Hi,</p>
-               <p>Please click on the link below to verify your email address.</p>
-               <a href="${link}">Verify Email by clicking the bellow link <br/> ${link}</a>
-               <p>It will be valid only for 10 minutes, If you fails to verify within the time, your registration will be cancelled. And you have to register again for further process.</p>
-               <p>If you did not request this, please ignore this email.</p>`,
+      html: emailVerificationMessageFromAdminToUser({ link }),
     };
   
     return transporter.sendMail(mailOptions);

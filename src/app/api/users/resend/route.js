@@ -1,6 +1,6 @@
 import Users from "/mongo/UserModel";
 import { NextResponse } from "next/server";
-import { sendVerificationEmail } from "@/utilities/sendMailToUser";
+import { sendVerificationEmail } from "@/utilities/sendVerificationMailToUser";
 
 
 export async function POST(req) {

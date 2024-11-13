@@ -1,31 +1,8 @@
 import cryptoJS from "crypto-js";
-import nodemailer from "nodemailer";
 import Users from "/mongo/UserModel";
 import { NextResponse } from "next/server";
+import { sendPasswordToUser } from "@/utilities/sendPasswordToUser";
 
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.USER_EMAIL,
-    pass: process.env.E_PASS,
-  },
-});
-
-async function sendVerificationEmail(email, pass) {
-  const mailOptions = {
-    from: process.env.USER_EMAIL,
-    to: email,
-    subject: "password forgot",
-    text: `Please use this password to login with your email address:\n${pass}\n\nIf you did not request this password, please ignore this message.`,
-    html: `<p>Hi,</p>
-             <p>Please use the Password below to login with your email address.</p>
-             <h3>password is:  <h1> ${pass}</h1></h3>
-             <p>If you did not request this, please ignore this email.</p>`,
-  };
-
-  return transporter.sendMail(mailOptions);
-}
 
 export async function POST(req) {
   try {
@@ -41,7 +18,7 @@ export async function POST(req) {
       let bytes = cryptoJS.AES.decrypt(check[0].password, email);
       let pass = bytes.toString(cryptoJS.enc.Utf8);
 
-      await sendVerificationEmail(email, pass);
+      await sendPasswordToUser({ email, pass });
       return NextResponse.json({ message: "Your Password sent successfully to your Email...!" });
     }
   } catch (error) {
