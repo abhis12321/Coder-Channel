@@ -60,7 +60,7 @@ export default function Blogs({ blog, loadBlogs, handleBlogDelete, handleBlogEdi
       </div>
 
 
-      <BlogFooter blog={blog} setOption={setOption} handleLikes={handleLikes} />
+      <BlogFooter blog={blog} option={option} setOption={setOption} handleLikes={handleLikes} />
 
       {
         option === 1 ?

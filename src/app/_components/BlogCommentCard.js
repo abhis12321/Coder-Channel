@@ -1,4 +1,3 @@
-
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -29,8 +28,8 @@ export default function CommentCard({ comment , handleDeleteComment, handleEditC
                 {
                     comment.commentById._id == user?._id &&
                     <div className='flex gap-[6px] items-start text-xs font-bold' >
-                        <button className={`text-blue-700 active:bg-violet-800 hover:scale-125 px-2 pb-[3px] pt-[5px] rounded-lg ${commentOption === 2 && "bg-blue-700/20 ring-1 ring-blue-700"}`} onClick={() => setCommentOption(prev => prev == 2 ? 0 : 2)}><FontAwesomeIcon size='xs' icon={faPen} className='h-4' /></button>
-                        <button className='text-red-700 active:bg-violet-800 hover:scale-125 px-2 pb-[3px] pt-[5px] rounded-lg' onClick={() => handleDeleteComment(comment?._id)}><FontAwesomeIcon size='xs' icon={faTrashCan} className='h-4' /></button>
+                        <button className={`text-blue-700 active:bg-violet-800/30 hover:scale-125 px-2 pb-[3px] pt-[5px] rounded-lg ${commentOption === 2 && "bg-blue-700/20 ring-1 ring-blue-700"}`} onClick={() => setCommentOption(prev => prev == 2 ? 0 : 2)}><FontAwesomeIcon size='xs' icon={faPen} className='h-4' /></button>
+                        <button className='text-red-700 active:bg-violet-800/30 hover:scale-125 px-2 pb-[3px] pt-[5px] rounded-lg' onClick={() => handleDeleteComment(comment?._id)}><FontAwesomeIcon size='xs' icon={faTrashCan} className='h-4' /></button>
                     </div>
                 }
             </div>
