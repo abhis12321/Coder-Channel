@@ -57,7 +57,7 @@ export default function Footer() {
           </div>
           <div className="flex flex-row md:flex-col md:gap-2 justify-between items-center md:items-start">
             <Link href={'/'} className='py-1 px-3 rounded-md text-center'>about</Link>
-            <Link href={'/'} className='py-1 px-3 rounded-md text-center'>contact</Link>
+            <Link href={'/contact'} className='py-1 px-3 rounded-md text-center'>contact</Link>
             <Link href={'/chat'} className='py-1 px-3 rounded-md text-center'>public chat</Link>
           </div>
         </div>
