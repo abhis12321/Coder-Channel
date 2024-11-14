@@ -20,18 +20,36 @@ export default function AuthProvider({ children, initial_theme, initialUserValue
   };
 
   const logout = () => {
-    axios.get(`/api/single-user`);   //clear tocken-cookie
-    socket.disconnect();
-    setSocket(null);
-    setUser(null);
+    axios.get(`/api/single-user`); 
+    socket.emit("logout" , user?._id);
+    handleDisconnect();
   };
+  
+  const handleRefresh = () => {
+    window?.location?.reload();
+  }
+
+  const handleDisconnect = () => {
+    socket?.disconnect();
+    setUser(null);
+    setSocket(null);
+  }
+
+  useEffect(() => {
+    socket?.on("refresh" , handleRefresh);
+    socket?.on("disconnect" , handleDisconnect);
+    return () => {
+      socket?.off("refresh" , handleRefresh); 
+      socket?.off("disconnect" , handleDisconnect);     
+    }
+  } , [socket]);
+  
 
   useEffect(() => {
     if(initialUserValue) {
       Initializing(initialUserValue , setSocket);
     }
   }, []);
-
 
   const value = { user, setUser, login, logout, socket, themeRef };
 

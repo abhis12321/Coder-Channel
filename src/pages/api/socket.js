@@ -27,13 +27,17 @@ export default async function SocketHandler(req, res) {
             socket.on('loadOnlineUsers', _id => {
                 socket.emit("existingOnline", Array.from(existingUsers));
             });
-
-            // socket.on('sendGroupMessage', data => {
-            //     socket.broadcast.emit('receiveGroupMessage', data);
-            // });
+            
+            socket.on('sendPersonalMessage', data => {
+                socket.to(data.receiverId).emit('receivePersonalMessage', data);
+            });
 
             socket.on('sendPersonalMessage', data => {
                 socket.to(data.receiverId).emit('receivePersonalMessage', data);
+            });
+
+            socket.on('logout', async (_id) => {
+                socket.to(_id).emit('refresh');
             });
 
             socket.on('disconnect', async () => {

@@ -31,7 +31,6 @@ export default function LoginForm() {
         }
         setAlert(data.message);
         setTimeout(() => setAlert(), 8000);
-        // console.log(data);
       })
       .catch(error => alert('some went wrong, Try again.\n', error.message))
       .then(() => setOption(0));
