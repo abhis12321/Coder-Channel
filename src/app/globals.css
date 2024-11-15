@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -13,11 +12,38 @@
   .h-nav {
     min-height: calc(100vh - 4rem);
   }
+  .max-h-nav {
+    max-height: calc(100vh - 4rem);
+  }
   .overflow-break {
     overflow-wrap: break-word;
     word-break: break-word;
   }
   .rotate-y-180 {
     rotate: Y 180deg;
+  }
+
+  .new-scroll::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 10px;
+  }
+
+  .new-scroll::-webkit-scrollbar-track {
+    background: #1401011f;
+    border-radius: 10px;
+  }
+
+  .new-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #ff6ec4, #7873f5);
+    border-radius: 20px;
+  }
+
+  .new-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #ff66b2, #5e58e3);
+  }
+
+  .new-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #7773f596 #bca2f303;
   }
 }

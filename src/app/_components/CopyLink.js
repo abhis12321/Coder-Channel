@@ -20,7 +20,7 @@ export default function CopyLink({ text , setCopyLink }) {
 
 
     return (
-        <div className='h-full w-full fixed top-0 left-0 z-[1000] bg-gray-700/15 flex items-center justify-center'>
+        <div className='h-full w-full absolute top-0 left-0 z-[1000] bg-blue-700/15 flex items-center justify-center'>
             <div className="max-w-[98%] px-4 py-[10px] rounded-xl flex flex-wrap flex-col sm:flex-row items-center justify-center gap-1 sm:gap-6 bg-white text-red-950 shadow-[0_0_8px_black] relative">
                 <p className="max-w-[98%] font-extrabold font-mono text-wrap overflowauto [overflow-wrap:break-word] [word-wrap:break-word]">{text}</p>
                 {status === 1 ?
