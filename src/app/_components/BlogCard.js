@@ -29,7 +29,7 @@ export default function Blogs({ blog, loadBlogs, handleBlogDelete, handleBlogEdi
 
 
   return (
-    <div className='relative w-[98%] max-w-[700px] min-h-20 min-w-20 bg-white dark:bg-gray-800/95 hover:bg-gray-400/15 shadow-[0_0_2px_gray] hover:shadow-[0_0_5px_gray] rounded-lg py-1 px-3 xs:px-4 md:px-5 flex flex-col justify-between items-center pb-[2.1px] duration-1000' id={blog._id}>
+    <div className='relative w-[98%] max-w-[700px] min-h-20 min-w-20 bg-white dark:bg-gray-800/95 shadow-[0_0_2px_gray] hover:shadow-[0_0_5px_gray] rounded-lg py-1 px-3 xs:px-4 md:px-5 flex flex-col justify-between items-center pb-[2.1px]' id={blog._id}>
 
       <div className="w-full flex justify-between items-center">
         <Link href={`/students/${blog.writerId._id}`} className="min-h-16 p-2 flex gap-5 items-center group border-b[1.5px] border-gray-400 mb-2">

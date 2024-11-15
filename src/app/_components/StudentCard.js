@@ -56,7 +56,7 @@ export default function StudentCard({ student, index , handleFollowings , search
 
 
   return (
-    <div className={`bg-white dark:bg-gray-800 dark:hover:bg-blue-400/15 backdrop-blur-lg py-4 px-4 h-[440px] w-[320px] shadow-[0_0_2px_black] dark:shadow-[0_0_2px_white] hover:shadow-[.2px_1.5px_4px_indigo] dark:hover:shadow-[.5px_1px_4px_yellow] rounded-lg flex flex-col justify-evenly items-center gap-3 ${searchBy == "0" && !student.name.toLowerCase().includes(search) && "hidden"}  ${searchBy == "1" && !student.university.toLowerCase().includes(search) && "hidden"}`}>
+    <div className={`h-[440px] w-[320px] py-4 px-4 rounded-lg bg-white dark:bg-gray-800 dark:hover:bg-blue-400/15 backdrop-blur-lg shadow-[0_0_2px_black] dark:shadow-[0_0_2px_white] hover:shadow-[.2px_1.5px_4px_indigo] dark:hover:shadow-[.5px_1px_4px_yellow] flex flex-col justify-evenly items-center gap-3 ${searchBy == "0" && !student.name.toLowerCase().includes(search) && "hidden"}  ${searchBy == "1" && !student.university.toLowerCase().includes(search) && "hidden"}`}>
       <div className="relative">
         <Image
           src={(student.imgUrl)}
