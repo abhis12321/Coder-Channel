@@ -7,12 +7,12 @@ import Followings from './Followings';
 import ProfileEdit from './LoggedInProfileEdit'
 import { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faRotate } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from './AuthProvider';
 
 
 export default function ProfileCard({ setStatus }) {
-  const { user } = useAuth()
+  const { user , setUser } = useAuth()
   const [connections, setConnections] = useState(0);
   const [followers, setFollowers] = useState([]);
   const [followings, setFollowings] = useState([]);
@@ -71,6 +71,19 @@ export default function ProfileCard({ setStatus }) {
         .catch(() => alert("Sorry, some error occurred!"))
   }
   
+  const reloadUser = useCallback(() => {
+    setConnections(101);
+    axios.patch(`/api/users/${user?._id}`)
+        .then(res => res.data)
+        .then(data => {
+          if(data.success) {
+            setUser(data.user);
+          }
+          alert(data.message);
+        })
+        .catch(error => alert(error.message))
+        .finally(() => setConnections(0));
+  }, [user?._id]);
 
   useEffect(() => {
     updateFollowers();
@@ -103,6 +116,8 @@ export default function ProfileCard({ setStatus }) {
                 <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{user?.name}</h1>
                 <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-red-700 hover:bg-red-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={e => setStatus(true)}>logout</button>
                 <FontAwesomeIcon size='sm' icon={faPenToSquare} className='h-[1.5rem] cursor-pointer text-blue-600 dark:drop-shadow-[0_0_2px_black] hover:scale-110 hover:text-blue-800' onClick={e => setEditable(true)} />
+                <FontAwesomeIcon size='sm' icon={faRotate} className={`h-[1.3rem] cursor-pointer text-gray-500 dark:drop-shadow-[0_0_2px_black] hover:text-orange-800/80 duration-300 ${connections === 101 && "animate-spin"}`} onClick={reloadUser} />
+                  
               </div>
 
               <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm text-white">

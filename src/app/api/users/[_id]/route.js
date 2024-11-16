@@ -94,3 +94,18 @@ export async function PUT(request, { params }) {
     return NextResponse.json({ success: false, message: error.message });
   }
 }
+
+export async function PATCH(request, { params }) {
+  try {    
+    const isVerified = authenticateUser(params._id);
+    if (!isVerified) {
+      return NextResponse.json({}, { status: 404 })
+    }
+    const user = (await Users.findOne({ _id: params._id })).toObject();
+    delete user.password;
+    setJWTUser(user);
+    return NextResponse.json({ success: true, message: "profile refreshed successfully" , user });
+  } catch (error) {
+    return NextResponse.json({ success: false, message: error.message });
+  }
+}
