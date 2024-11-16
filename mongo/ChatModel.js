@@ -17,7 +17,10 @@ const chatSchema = new mongoose.Schema({
         type:String,
         required:[true , "chat-message is missing."],
     },
-    
+    createdAt: {
+        type:Date,
+        default:Date.now,
+    }
 });
 
 

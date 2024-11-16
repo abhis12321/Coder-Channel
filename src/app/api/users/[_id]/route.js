@@ -3,6 +3,7 @@ import cryptoJS from "crypto-js";
 import Users from "/mongo/UserModel";
 import { NextResponse } from "next/server";
 import { authenticateUser } from "@/utilities/authenticateUser";
+import { setJWTUser } from "@/utilities/getJWTUser";
 
 
 export async function GET(req, { params }) {
@@ -75,27 +76,7 @@ export async function POST(req, { params }) {
   }
 }
 
-
-// export async function PUT(req, { params }) {
-//   try {
-//     let data = await req.json();
-//     const isVerified = authenticateUser(params._id);
-
-//     if (isVerified) {
-//       return NextResponse.json({}, { status: 404 });
-//     }
-
-//     let user = await Users.findOne({ _id: params._id });
-//     user.isOnline += data.isOnline;
-//     await user.save();
-//     return NextResponse.json({ success: true });
-//   } catch (error) {
-//     return NextResponse.json({ data: error.message, success: false });
-//   }
-// }
-
-
-export async function PATCH(request, { params }) {
+export async function PUT(request, { params }) {
   try {    
     const payload = await request.json();
     const isVerified = authenticateUser(params._id);
@@ -105,7 +86,10 @@ export async function PATCH(request, { params }) {
     let ciphertext = cryptoJS.AES.encrypt(payload.password, payload.email).toString();
     payload.password = ciphertext;
     await Users.findOneAndUpdate({ _id: params._id }, payload);
-    return NextResponse.json({ success: true, message: "profile updated successfully" });
+    const user = (await Users.findOne({ _id: params._id })).toObject();
+    delete user.password;
+    setJWTUser(user);
+    return NextResponse.json({ success: true, message: "profile updated successfully" , user });
   } catch (error) {
     return NextResponse.json({ success: false, message: error.message });
   }

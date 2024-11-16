@@ -2,8 +2,10 @@
 import axios from 'axios';
 import { useState } from 'react';
 import ImageForm from './ImageForm';
+import { useAuth } from './AuthProvider';
 
 export default function ProfileEdit({ student, setEditable }) {
+    const { setUser } = useAuth();
     const [name, setName] = useState(student.name);
     const [email, setEmail] = useState(student.email);
     const [password, setPassword] = useState('');
@@ -30,9 +32,14 @@ export default function ProfileEdit({ student, setEditable }) {
         }        
 
         const payload = { name, email, password, gender, university, course, linkedIn, instagram, github, imgUrl };
-        axios.patch(`/api/users/${student._id}`, payload)
+        axios.put(`/api/users/${student._id}`, payload)
             .then(response => response.data)
-            .then(data => alert(data.message))
+            .then(data => {
+                if(data.success) {
+                    setUser(data.user);
+                }
+                alert(data.message)
+            })
             .catch(error => alert(error.message));
         
             setEditable(false);
