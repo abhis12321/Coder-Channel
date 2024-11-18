@@ -1,20 +1,9 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
 import BlogCommentForm from "./BlogCommentForm"
 import BlogCommentCard from './BlogCommentCard'
 
 
-export default function BlogComments({ blogId, userId, setOption }) {
-    const [comments, setComments] = useState([]);
-    const loadComments = () => {
-        axios.get(`/api/blogs/comments/${blogId}`)
-            .then(response => response.data)
-            .then(data => data.comments)
-            // .then(comments => console.log(comments))
-            .then(comments => setComments(comments))
-            .catch(error => console.error(error.message))
-    }
-    
+export default function BlogComments({ blogId, userId, setOption, comments, loadComments }) {    
     const handleDeleteComment = (_id) => {
         axios.delete(`/api/blogs/comments/${_id}`)
             .then(res => res.data)
@@ -33,11 +22,6 @@ export default function BlogComments({ blogId, userId, setOption }) {
             .catch(error => alert(error.message))        
     }
     
-    useEffect(() => {
-        loadComments();
-    }, [blogId]);
-
-
     return (
         <div className='w-full min-h-20 mt-[3px] mb-4 rounded flex flex-col gap-3'>
             <BlogCommentForm commentById={userId} commentToId={blogId} loadComments={loadComments} setOption={setOption} />

@@ -1,14 +1,13 @@
 import "/mongo/UserModel";
 import { NextResponse } from "next/server"
-import { BlogLikes } from "/mongo/BlogLikesModel";
+import { Likes } from "/mongo/LikesModel";
 
 
 export const GET = async (req, { params }) => {
     try {
-        // console.log(params , BlogLikes)
-        const AllLikes = await BlogLikes.find(params)
+        const AllLikes = await Likes.find(params)
                             .populate({
-                                path: "userId",
+                                path: "likedById",
                                 model: "Users",
                                 select: "name , imgUrl"
                             })
@@ -16,7 +15,6 @@ export const GET = async (req, { params }) => {
                             .exec();
         return NextResponse.json({ success:true , AllLikes });
     } catch(error) {
-        console.log(error.message)
         return NextResponse.json({ } , { status: 404 });
     }
 }

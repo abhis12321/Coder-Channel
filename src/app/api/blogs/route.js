@@ -1,5 +1,5 @@
-import Blog from "/mongo/BlogModel";
 import "/mongo/UserModel";
+import Blog from "/mongo/BlogModel";
 import { NextResponse } from "next/server";
 import { authenticateUser } from "@/utilities/authenticateUser";
 

@@ -15,8 +15,9 @@ export default function Page() {
     axios.get(blogUrl)
       .then(response => response.data)
       .then(data => {
-        // console.log(data)
-        if(data.success)   setBlogs(data.blogs)
+        if(data.success) {  
+          setBlogs(data.blogs)
+        }
       })
       .catch(error => console.log("error", error.message));
   }
