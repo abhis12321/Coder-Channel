@@ -15,9 +15,10 @@ import {
   faShareNodes,
   faMicroscope,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 
-export default function StudentCard({ student, index , handleFollowings , search , searchBy} ) {
+export default function StudentCard({ student, index , handleFollowings , search , searchBy, loadUsers } ) {
   const { socket , user } = useAuth();
   const [onlineStatus, setOnlineStatus] = useState(false);
   const [copyLink , setCopyLink] = useState(0)
@@ -52,6 +53,15 @@ export default function StudentCard({ student, index , handleFollowings , search
       followedToName: student?.name
     };
     handleFollowings(index , data);
+  }
+
+  const handleProfileLike = () => {
+    axios.post('/api/users/likes' , { likedById:user?._id , likedToId:student?._id })
+      .then(res => res.data)
+      .then(data => data.message)
+      .then(message => alert(message))
+      .catch(error => alert(error.message))
+      .finally(() => loadUsers())
   }
 
 
@@ -115,7 +125,8 @@ export default function StudentCard({ student, index , handleFollowings , search
         <FontAwesomeIcon
           icon={faHeart}
           size="1x"
-          className=" text-rose-700 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer  "
+          className={`${student.isLiked ? "text-rose-700" : "text-white dark:text-gray-400/90 drop-shadow-[0_0_1px_red] hover:text-rose-400/90"} hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_1px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer`}
+          onClick={handleProfileLike}
         />
         <div className="border-x-2 border-gray-600 flex items-center justify-center px-[50%]">
           <Link href={`/students/${student._id}`} name="view-profile">

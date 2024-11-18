@@ -5,21 +5,18 @@ import { useAuth } from './AuthProvider';
 import { memo, useEffect, useState } from 'react';
 
 function UsersContainer({ users }) {
-  let {user , socket} = useAuth();
+  let { user, socket } = useAuth();
   const [students, setStudents] = useState(users);
   const [search, setSearch] = useState('');
   const [searchBy, setSearchBy] = useState("0");
 
-  useEffect(() => {
+  const loadUsers = () => {
     axios.get(`/api/users/${user?._id}`)
       .then(res => res.data)
       .then(data => data.success && setStudents(data.users))
       .catch(error => console.error(error.message));
-    
-      socket?.emit("loadOnlineUsers", user._id);
-  }, [user]);
+  }
 
-  
   const handleFollowings = (index, data) => {
     if (!user) {
       alert("You are not logged-in! Login first to follow a user!");
@@ -35,6 +32,14 @@ function UsersContainer({ users }) {
         });
     }
   }
+
+  useEffect(() => {
+    loadUsers();
+    socket?.emit("loadOnlineUsers", user._id);
+  }, [user]);
+
+  useEffect(() => console.log(students), [students]);
+
 
   return (
     <>
@@ -57,7 +62,7 @@ function UsersContainer({ users }) {
             </div>
             {students?.map((student, index) => {
               return student.verify ?
-                <StudentCard key={student._id + index} student={student} index={index} handleFollowings={handleFollowings} search={search.toLowerCase()} searchBy={searchBy} />
+                <StudentCard key={student._id + index} student={student} loadUsers={loadUsers} index={index} handleFollowings={handleFollowings} search={search.toLowerCase()} searchBy={searchBy} />
                 :
                 null
             })}

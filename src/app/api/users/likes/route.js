@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server"
 import { Likes } from "/mongo/LikesModel";
+import { NextResponse } from "next/server";
 import { authenticateUser } from "@/utilities/authenticateUser";
 
 
@@ -9,6 +9,10 @@ export const POST = async(req) => {
         const isVerified = authenticateUser(likedById);
         if(!isVerified) {
             return NextResponse.json({  } , { status: 404 });
+        }
+        const oldLike = await Likes.findOneAndDelete({ likedById , likedToId })
+        if(oldLike) {
+            return NextResponse.json({ message: "profile liked removed successfully!" })            
         }
         const nvLike = new Likes({ likedById , likedToId , likedToModel:"Users" })
         await nvLike.save();

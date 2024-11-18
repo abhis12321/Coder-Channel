@@ -13,7 +13,9 @@ export async function GET(req, { params }) {
     if (!isVerified) {
       return NextResponse.json({}, { status: 404 })
     }
+    
     const users = await Users.aggregate([
+      // Lookup for follow status
       {
         $lookup: {
           from: 'followers',
@@ -34,18 +36,77 @@ export async function GET(req, { params }) {
           as: 'followStatus'
         }
       },
+      // Lookup for like status
       {
-        $addFields: {
-          isFollowing: { $gt: [{ $size: '$followStatus' }, 0] }
+        $lookup: {
+          from: 'likes',
+          let: { userId: '$_id' },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $and: [
+                    { $eq: ['$likedToId', '$$userId'] },
+                    { $eq: ['$likedById', new mongoose.Types.ObjectId(userId)] }
+                  ]
+                }
+              }
+            },
+            { $limit: 1 }
+          ],
+          as: 'likeStatus'
         }
       },
+      // Add computed fields for isFollowing and isLiked
+      {
+        $addFields: {
+          isFollowing: { $gt: [{ $size: '$followStatus' }, 0] },
+          isLiked: { $gt: [{ $size: '$likeStatus' }, 0] }
+        }
+      },
+      // Exclude fields from the output
       {
         $project: {
           followStatus: 0,
+          likeStatus: 0,
           password: 0 // exclude password field
         }
       }
     ]);
+    
+    // const users = await Users.aggregate([
+    //   {
+    //     $lookup: {
+    //       from: 'followers',
+    //       let: { userId: '$_id' },
+    //       pipeline: [
+    //         {
+    //           $match: {
+    //             $expr: {
+    //               $and: [
+    //                 { $eq: ['$followedToId', '$$userId'] },
+    //                 { $eq: ['$followedById', new mongoose.Types.ObjectId(userId)] }
+    //               ]
+    //             }
+    //           }
+    //         },
+    //         { $limit: 1 }
+    //       ],
+    //       as: 'followStatus'
+    //     }
+    //   },
+    //   {
+    //     $addFields: {
+    //       isFollowing: { $gt: [{ $size: '$followStatus' }, 0] }
+    //     }
+    //   },
+    //   {
+    //     $project: {
+    //       followStatus: 0,
+    //       password: 0 // exclude password field
+    //     }
+    //   }
+    // ]);
 
     return NextResponse.json({ success: true, users });
   } catch (error) {
