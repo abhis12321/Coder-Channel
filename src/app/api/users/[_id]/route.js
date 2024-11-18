@@ -9,6 +9,10 @@ import { setJWTUser } from "@/utilities/getJWTUser";
 export async function GET(req, { params }) {
   try {
     let userId = params._id;
+    const isVerified = authenticateUser(params._id);
+    if (!isVerified) {
+      return NextResponse.json({}, { status: 404 })
+    }
     const users = await Users.aggregate([
       {
         $lookup: {

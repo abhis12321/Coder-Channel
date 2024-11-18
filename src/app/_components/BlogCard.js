@@ -25,7 +25,8 @@ export default function Blogs({ blog, loadBlogs, handleBlogDelete, handleBlogEdi
       const payload = { blogId: blog?._id, userId: user?._id }
       axios.post("/api/blogs/likes", payload)
         .then(() => loadBlogs())
-        .catch(error => console.error(error));
+        .catch(error => console.error(error))
+        .finally(() => loadLikes());
     }
   }
 
