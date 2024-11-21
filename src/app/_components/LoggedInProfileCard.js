@@ -9,15 +9,17 @@ import { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faRotate } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from './AuthProvider';
+import StarredUser from './StarredUser';
 
 
 export default function ProfileCard({ setStatus }) {
-  const { user , setUser } = useAuth()
-  const [connections, setConnections] = useState(0);
-  const [followers, setFollowers] = useState([]);
-  const [followings, setFollowings] = useState([]);
+  const { user , setUser } = useAuth();
   const [blogs, setBlogs] = useState([]);
+  const [stars, setStars] = useState([]);
+  const [followers, setFollowers] = useState([]);
   const [editable, setEditable] = useState(false);
+  const [followings, setFollowings] = useState([]);
+  const [connections, setConnections] = useState(0);
 
   const updateFollowers = useCallback(() => {
     axios.get(`/api/users/follow/${user?._id}`)
@@ -71,6 +73,15 @@ export default function ProfileCard({ setStatus }) {
         .catch(() => alert("Sorry, some error occurred!"))
   }
   
+  const loadStars = () => {
+    axios.get(`/api/users/likes/${user._id}`)
+      .then(res => res.data)
+      .then(data => data.likes || [])
+      .then(likes => setStars(likes))
+      .catch(error => console.error(error.message));
+  }
+
+  
   const reloadUser = useCallback(() => {
     setConnections(101);
     axios.patch(`/api/users/${user?._id}`)
@@ -89,6 +100,7 @@ export default function ProfileCard({ setStatus }) {
     updateFollowers();
     updateFollowings();
     updateBlogs();
+    loadStars();
   }, [user._id, updateBlogs, updateFollowers, updateFollowings]);
 
   return (
@@ -121,18 +133,18 @@ export default function ProfileCard({ setStatus }) {
               </div>
 
               <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm text-white">
-                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30">
-                  <button className="">{blogs?.length}</button>
-                  <button className="">Blogs</button>
-                </div>
-                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(1)}>
-                  <button className="">{followers.length}</button>
-                  <button className="">Followers</button>
-                </div>
-                <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(2)}>
-                  <button className="">{followings.length}</button>
-                  <button className="" >Followings</button>
-                </div>
+                <button className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={() => setConnections(1)}>
+                  <span className="">{stars?.length}</span>
+                  <span className="">Star</span>
+                </button>
+                <button className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(2)}>
+                  <span className="">{followers.length}</span>
+                  <span className="">Followers</span>
+                </button>
+                <button className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(3)}>
+                  <span className="">{followings.length}</span>
+                  <span className="" >Followings</span>
+                </button>
               </div>
 
               <div className="flex flex-col items-center sm:items-start">
@@ -163,10 +175,14 @@ export default function ProfileCard({ setStatus }) {
       }
 
       {
-        connections === 1 && <Followers _id={user?._id} setConnections={setConnections} followers={followers} handleRemoveFollower={handleRemoveFollower} />
+        connections === 1 && <StarredUser setConnections={setConnections} stars={stars} />
+      }
+
+      {
+        connections === 2 && <Followers setConnections={setConnections} followers={followers} handleRemoveFollower={handleRemoveFollower} />
       }
       {
-        connections === 2 && <Followings _id={user?._id} setConnections={setConnections} followings={followings} handleUnFollow={handleUnFollow} />
+        connections === 3 && <Followings setConnections={setConnections} followings={followings} handleUnFollow={handleUnFollow} />
       }
 
     </div>

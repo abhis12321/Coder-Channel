@@ -7,7 +7,7 @@ export default function Followers({ followers, setConnections, handleRemoveFollo
       <div className='w-[98%] mx-[1%] max-w-[400px] max-h-nav overflow-auto new-scroll flex gap-[1px] flex-col items-center justify-around bg-white dark:bg-white/10 p-2 rounded shadow-[0_0_3px_gray]'>
         <div className="flex items-center justify-between w-full px-2 pb-[6px]">
           <div className="">Followers : {followers.length}</div>
-          <div className="text-xl text-red-800 dark:hover:text-white font-semibold px-[10px] py-[2px] cursor-pointer hover:ring-red-700 hover:bg-red-500/20 rounded-full ring-1 duration-500" onClick={e => setConnections(0)}>X</div>
+          <div className="text-md text-red-600 hover:ring-1 ring-red-600 font-semibold px-[9px] py-[2px] cursor-pointer bg-red-600/5 hover:bg-red-600/20 rounded-full duration-500 shadow-[1px_2px_2px_black]" onClick={e => setConnections(0)}>X</div>
         </div>
         {
           (followers && followers.length > 0) ?

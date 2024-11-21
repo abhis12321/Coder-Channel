@@ -6,15 +6,17 @@ import Blogs from './BlogCard';
 import Followers from './Followers';
 import ErrorPage from './ErrorPage';
 import Followings from './Followings';
+import StarredUser from './StarredUser';
 import { useAuth } from './AuthProvider';
-import { useEffect, useState } from 'react'
-import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useMemo, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';
+import { faMessage, faStar as faSolidStar } from '@fortawesome/free-solid-svg-icons';
 
 export default function NotLoggedInUserProfile({ params }) {
   const { user, socket } = useAuth();
   const [blogs, setBlogs] = useState([]);
-  const [stars , setStars] = useState([]);
+  const [stars, setStars] = useState([]);
   const [student, setStudent] = useState();
   const [error, setError] = useState(false);
   const [followers, setFollowers] = useState([]);
@@ -61,7 +63,7 @@ export default function NotLoggedInUserProfile({ params }) {
     axios.get(`/api/single-user/${params._id}`)
       .then(res => res.data)
       .then(data => {
-        if(data.success) {
+        if (data.success) {
           checkFollowed(data.user)
         } else {
           setError(true);
@@ -109,7 +111,7 @@ export default function NotLoggedInUserProfile({ params }) {
       .catch(error => console.error(error.message));
   }
 
-  
+
   useEffect(() => {   //user's personal data
     loadUserData();
     loadFollowings();
@@ -130,6 +132,17 @@ export default function NotLoggedInUserProfile({ params }) {
   }, [socket, student]);
 
 
+  const isStarred = useMemo(() => {
+    const findAll = stars?.filter(star => star?.likedById?._id == user?._id);
+    return findAll.length > 0;
+  } , [stars , user])
+
+  const handleProfileLike = () => {
+    axios.post('/api/users/likes', { likedById: user?._id, likedToId: student?._id })
+      .then(res => res.data)
+      .catch(error => console.error(error.message))
+      .finally(() => loadStars())
+  }
 
   return (
     <div className={`h-nav flex flex-col gap-4 items-center justify-center py-4 w-full relative`}>
@@ -152,24 +165,39 @@ export default function NotLoggedInUserProfile({ params }) {
                   <div className="flex gap-2 md:gap-4 flex-wrap items-center">
                     <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{student?.name}</h1>
                     <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-blue-800/90 hover:bg-blue-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={handleFollowers}> {student.isFollowed ? "following" : "follow"} </button>
+                    {
+                      isStarred ?
+                        <FontAwesomeIcon
+                          icon={faSolidStar}
+                          size="1x"
+                          className={`hover:scale-110 duration-300 active:text-violet-700 text-yellow-600 hover:drop-shadow-[1px_1px_1px_black] py-[2px] h-6 cursor-pointer`}
+                          onClick={handleProfileLike}
+                        />
+                        :
+                        <FontAwesomeIcon
+                          icon={faRegularStar}
+                          size="1x"
+                          className={`hover:scale-110 duration-300 active:text-violet-700 text-yellow-700/80 hover:text-yellow-600 hover:drop-shadow-[1px_1px_1px_black] py-[2px] h-6 cursor-pointer`}
+                          onClick={handleProfileLike}
+                        />}
                     <Link href={`/chat/${student._id}`} name="personal-message">
                       <FontAwesomeIcon size='sm' icon={faMessage} className='h-[22px] hover:scale-110 text-cyan-700 hover:text-yellow-400 hover:drop-shadow-[0_0_2px_black]' />
                     </Link>
                   </div>
 
                   <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm text-white">
-                    <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30">
-                      <button className="">{stars?.length}</button>
-                      <button className="">Star</button>
-                    </div>
-                    <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(1)}>
-                      <button className="">{followers.length}</button>
-                      <button className="">Followers</button>
-                    </div>
-                    <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(2)}>
-                      <button className="">{followings.length}</button>
-                      <button className="" >Followings</button>
-                    </div>
+                    <button className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={() => setConnections(1)}>
+                      <span className="">{stars?.length}</span>
+                      <span className="">Star</span>
+                    </button>
+                    <button className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(2)}>
+                      <span className="">{followers.length}</span>
+                      <span className="">Followers</span>
+                    </button>
+                    <button className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(3)}>
+                      <span className="">{followings.length}</span>
+                      <span className="" >Followings</span>
+                    </button>
                   </div>
 
                   <div className="flex flex-col items-center sm:items-start">
@@ -200,10 +228,11 @@ export default function NotLoggedInUserProfile({ params }) {
 
 
       {
-        connections === 1 && <Followers _id={params?._id} setConnections={setConnections} followers={followers} />
-      }
-      {
-        connections === 2 && <Followings _id={params?._id} setConnections={setConnections} followings={followings} />
+        connections === 1 ? <StarredUser setConnections={setConnections} stars={stars} />
+          :
+          connections === 2 ? <Followers setConnections={setConnections} followers={followers} />
+            :
+            connections === 3 && <Followings setConnections={setConnections} followings={followings} />
       }
 
     </div>
