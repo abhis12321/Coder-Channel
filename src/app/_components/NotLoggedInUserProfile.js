@@ -2,25 +2,25 @@
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react'
 import Blogs from './BlogCard';
 import Followers from './Followers';
+import ErrorPage from './ErrorPage';
 import Followings from './Followings';
 import { useAuth } from './AuthProvider';
+import { useEffect, useState } from 'react'
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ErrorPage from './ErrorPage';
 
 export default function NotLoggedInUserProfile({ params }) {
   const { user, socket } = useAuth();
-  const [onlineStatus, setOnlineStatus] = useState(params._id == user?._id);
+  const [blogs, setBlogs] = useState([]);
+  const [stars , setStars] = useState([]);
   const [student, setStudent] = useState();
-  const [connections, setConnections] = useState(0);
+  const [error, setError] = useState(false);
   const [followers, setFollowers] = useState([]);
   const [followings, setFollowings] = useState([]);
-  const [blogs, setBlogs] = useState([]);
-  const [error, setError] = useState(false);
-
+  const [connections, setConnections] = useState(0);
+  const [onlineStatus, setOnlineStatus] = useState(params._id == user?._id);
 
   useEffect(() => {   //user's personal data
     loadUserData();
@@ -144,13 +144,12 @@ export default function NotLoggedInUserProfile({ params }) {
                     <Link href={`/chat/${student._id}`} name="personal-message">
                       <FontAwesomeIcon size='sm' icon={faMessage} className='h-[22px] hover:scale-110 text-cyan-700 hover:text-yellow-400 hover:drop-shadow-[0_0_2px_black]' />
                     </Link>
-                    {/* <h1 className="font-mono opacity-80">({student?.email})</h1> */}
                   </div>
 
                   <div className="flex flex-wrap gap-1 xs:gap-2 sm:gap-4 items-center justify-center sm:justify-start font-bold sm:font-semibold text-xs sm:text-sm text-white">
                     <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30">
-                      <button className="">{blogs?.length}</button>
-                      <button className="">Blogs</button>
+                      <button className="">{stars?.length}</button>
+                      <button className="">Star</button>
                     </div>
                     <div className="flex gap-2 items-center justify-center px-3 sm:px-4 py-[5px] sm:py-[3px] bg-green-700 hover:bg-green-600 rounded-md active:bg-violet-600/30" onClick={e => setConnections(1)}>
                       <button className="">{followers.length}</button>

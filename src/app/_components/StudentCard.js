@@ -11,17 +11,18 @@ import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import {
-  faHeart,
+  faStar as faSolidStar,
   faShareNodes,
   faMicroscope,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { faStar as faRegularStar } from "@fortawesome/free-regular-svg-icons";
 
 
-export default function StudentCard({ student, index , handleFollowings , search , searchBy, loadUsers } ) {
-  const { socket , user } = useAuth();
+export default function StudentCard({ student, index, handleFollowings, search, searchBy, loadUsers }) {
+  const { socket, user } = useAuth();
   const [onlineStatus, setOnlineStatus] = useState(false);
-  const [copyLink , setCopyLink] = useState(0)
+  const [copyLink, setCopyLink] = useState(0)
 
   const handleStatus = ({ _id, status }) => {
     if (student._id == _id) {
@@ -31,7 +32,7 @@ export default function StudentCard({ student, index , handleFollowings , search
 
   const handleEnistingOnlineUsers = (onlineUsersId) => {
     const set = new Set(onlineUsersId);
-    if(set.has(student._id)) {
+    if (set.has(student._id)) {
       setOnlineStatus(true);
     }
   }
@@ -52,15 +53,13 @@ export default function StudentCard({ student, index , handleFollowings , search
       followedToId: student?._id,
       followedToName: student?.name
     };
-    handleFollowings(index , data);
+    handleFollowings(index, data);
   }
 
   const handleProfileLike = () => {
-    axios.post('/api/users/likes' , { likedById:user?._id , likedToId:student?._id })
+    axios.post('/api/users/likes', { likedById: user?._id, likedToId: student?._id })
       .then(res => res.data)
-      .then(data => data.message)
-      .then(message => alert(message))
-      .catch(error => alert(error.message))
+      .catch(error => console.error(error.message))
       .finally(() => loadUsers())
   }
 
@@ -122,18 +121,27 @@ export default function StudentCard({ student, index , handleFollowings , search
         </Link>
       </div>
       <div className="flex items-center justify-center">
-        <FontAwesomeIcon
-          icon={faHeart}
-          size="1x"
-          className={`${student.isLiked ? "text-rose-700" : "text-white dark:text-gray-400/90 drop-shadow-[0_0_1px_red] hover:text-rose-400/90"} hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_1px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer`}
-          onClick={handleProfileLike}
-        />
+        {
+          student.isLiked ?
+            <FontAwesomeIcon
+              icon={faSolidStar}
+              size="1x"
+              className={`hover:scale-110 duration-300 active:text-violet-700 text-yellow-600 hover:drop-shadow-[1px_1px_1px_black] py-[2px] px-[50%] h-6 cursor-pointer`}
+              onClick={handleProfileLike}
+            />
+            :
+            <FontAwesomeIcon
+              icon={faRegularStar}
+              size="1x"
+              className={`hover:scale-110 duration-300 active:text-violet-700 text-yellow-700/80 hover:text-yellow-600 hover:drop-shadow-[1px_1px_1px_black] py-[2px] px-[50%] h-6 cursor-pointer`}
+              onClick={handleProfileLike}
+            />}
         <div className="border-x-2 border-gray-600 flex items-center justify-center px-[50%]">
           <Link href={`/students/${student._id}`} name="view-profile">
             <FontAwesomeIcon
               icon={faMicroscope}
               size="1x"
-              className="text-blue-700 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] h-6 cursor-pointer"
+              className="hover:scale-110 duration-300 active:text-violet-700 text-blue-700 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] h-6 cursor-pointer"
             />
           </Link>
         </div>
@@ -141,14 +149,14 @@ export default function StudentCard({ student, index , handleFollowings , search
           icon={faShareNodes}
           name="share-profile"
           size="1x"
-          className="text-gray-800 dark:text-gray-400 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_yellow] opacity-100 py-[2px] px-[50%] h-6 cursor-pointer"
+          className="hover:scale-110 duration-300 active:text-violet-700 text-gray-700/90 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 hover:drop-shadow-[1px_1px_1px_green] dark:hover:drop-shadow-[0_0_2px_black] opacity-100 py-[2px] px-[50%] h-[25px] cursor-pointer"
           onClick={e => setCopyLink(1)}
         />
       </div>
 
-      {        
-        copyLink != 0 && <CopyLink text={`http://13.201.72.123/students/${student?._id}`} setCopyLink={setCopyLink} copyLink={copyLink}/>
-      }      
+      {
+        copyLink != 0 && <CopyLink text={`http://13.201.72.123/students/${student?._id}`} setCopyLink={setCopyLink} copyLink={copyLink} />
+      }
     </div>
   );
 }
