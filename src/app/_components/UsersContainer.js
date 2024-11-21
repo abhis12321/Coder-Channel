@@ -38,9 +38,6 @@ function UsersContainer({ users }) {
     socket?.emit("loadOnlineUsers", user._id);
   }, [user]);
 
-  useEffect(() => console.log(students), [students]);
-
-
   return (
     <>
       <div className="flex justify-evenly items-center py-5 flex-wrap gap-6 h-nav">

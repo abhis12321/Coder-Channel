@@ -22,14 +22,6 @@ export default function NotLoggedInUserProfile({ params }) {
   const [connections, setConnections] = useState(0);
   const [onlineStatus, setOnlineStatus] = useState(params._id == user?._id);
 
-  useEffect(() => {   //user's personal data
-    loadUserData();
-    loadFollowings();
-    loadFollowers();
-    loadBlogs();
-  }, [params._id]);
-
-
   const handleFollowers = () => {
     if (!user) {
       alert("login first to follow a user!")
@@ -77,6 +69,7 @@ export default function NotLoggedInUserProfile({ params }) {
       })
       .catch(error => alert(error.message));
   }
+
   const checkFollowed = (userData) => {
     if (user?._id && params?._id) {
       axios.put(`/api/users/follow`, { followedById: user?._id, followedToId: params?._id })
@@ -107,6 +100,24 @@ export default function NotLoggedInUserProfile({ params }) {
       setOnlineStatus(true);
     }
   }
+
+  const loadStars = () => {
+    axios.get(`/api/users/likes/${params._id}`)
+      .then(res => res.data)
+      .then(data => data.likes || [])
+      .then(likes => setStars(likes))
+      .catch(error => console.error(error.message));
+  }
+
+  
+  useEffect(() => {   //user's personal data
+    loadUserData();
+    loadFollowings();
+    loadFollowers();
+    loadBlogs();
+    loadStars();
+  }, [params._id]);
+
 
   useEffect(() => {
     socket?.emit("loadOnlineUsers", user._id);
