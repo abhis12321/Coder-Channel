@@ -7,7 +7,7 @@ export const GET = async(req , { params }) => {
                         .populate({
                             path:"likedById",
                             model:"Users",
-                            select:"name , imgUrl"
+                            select:"name imgUrl university"
                         })
                         .exec();
         return NextResponse.json({ likes });

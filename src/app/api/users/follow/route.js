@@ -34,8 +34,7 @@ export async function PUT(req) {
     try {
         let data = await req.json();
         let connection = await Followers.findOne({followedById:data.followedById , followedToId:data.followedToId});
-        // console.log(data , connection);
-        return NextResponse.json( {success:true , isFollowed:connection._id ? true : false} )
+        return NextResponse.json( {success:true , isFollowed:connection?._id ? true : false} )
     } catch(error) {
         return NextResponse.json( {success:false , message:error.message} )
     }

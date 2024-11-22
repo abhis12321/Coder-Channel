@@ -40,7 +40,7 @@ export default function CommentCard({ comment , handleDeleteComment, handleEditC
                         {commentOption === 2 && <input type="submit" value="update" className='text-xs font-bold bg-blue-700/20 active:bg-violet-800 hover:ring-1 ring-blue-700 text-blue-700 px-3 py-[2px] rounded-lg cursor-pointer' />}
                     </form>
                     :
-                    <p className="pl-12 font-mono text-gray-600 dark:text-gray-400 text-[13px]">{comment.comment}</p>
+                    <p className="pl-12 font-mono text-gray-600 dark:text-gray-400 text-[13.2px]">{comment.comment}</p>
             }
         </div>
     )
