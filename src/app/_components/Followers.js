@@ -12,15 +12,15 @@ export default function Followers({ followers, setConnections, handleRemoveFollo
         {
           (followers && followers.length > 0) ?
             followers.map((user, index) =>
-              <div className="flex justify-between items-center font-mono bg-gray-200 dark:bg-white/10 rounded w-full text-red-950 dark:text-white overflow-hidden" key={index}>
-                <Link href={`/students/${user.followedById._id}`} className="flex-1 font-bold py-[2px] px-3 flex items-center gap-4 hover:bg-gray-300 dark:hover:bg-white/30" key={index}>
-                  <Image src={user.followedById.imgUrl} alt='' height={50} width={50} className='rounded-full h-10 w-10' />
-                  <div className="flex items-center gap-3 overflow-hidden">
+              <div className="flex justify-between items-center font-mono bg-gray-200 dark:bg-white/10 rounded w-full text-red-950 dark:text-white" key={index}>
+                <Link href={`/students/${user.followedById._id}`} className="flex-1 font-bold py-[2px] px-3 flex items-center gap-3 hover:bg-gray-300 dark:hover:bg-white/30 overflow-hidden" key={index}>
+                  <Image src={user.followedById.imgUrl} alt='' height={50} width={50} className='rounded-full h-8 w-8' />
+                  <div className="flex items-center gap-2 overflow-hidden">
                     <span className="font-semibold text-nowrap">{user.followedById.name}</span>
-                    <span className="text-[11px] text-nowrap">{user.followedById.university}</span>
+                    <span className="text-[11px] text-nowrap">({user.followedById.university})</span>
                   </div>
                 </Link>
-                {handleRemoveFollower && <button className="text-sm text-white p-3 bg-gray-900/70 hover:bg-gray-900" onClick={e => handleRemoveFollower(user._id)}>remove</button>}
+                {handleRemoveFollower && <button className="text-sm text-white py-[8px] px-3 bg-gray-900/70 hover:bg-gray-900" onClick={e => handleRemoveFollower(user._id)}>remove</button>}
               </div>
             )
             :

@@ -10,11 +10,11 @@ export default function BlogLikesPage({ setOption , allLikes }) {
                     <button className="ring-1 hover:ring-red-600 rounded-full px-[10px] py-[3.5px] text-red-600 font-bold bg-gray-200 dark:bg-inherit hover:bg-red-600/20 dark:hover:text-white" onClick={() => setOption(0)}> X </button>
                 </div>
                 {
-                    allLikes.map(like => <Link href={`/students/${like.likedById._id}`} className='py-1 px-3 rounded flex gap-3 items-center bg-gray-200 hover:bg-gray-300 dark:bg-white/10 dark:hover:bg-white/20 hover:underline' key={like._id}>
-                        <Image src={like.likedById.imgUrl} alt='' height={50} width={50} className='h-10 w-10 rounded-full' />
-                        <div className="flex items-center gap-3 overflow-hidden">
+                    allLikes.map(like => <Link href={`/students/${like.likedById._id}`} className='py-[2px] px-3 rounded flex gap-3 items-center bg-gray-200 hover:bg-gray-300 dark:bg-white/10 dark:hover:bg-white/20 hover:underline' key={like._id}>
+                        <Image src={like.likedById.imgUrl} alt='' height={50} width={50} className='h-8 w-8 rounded-full' />
+                        <div className="flex items-center gap-2 overflow-hidden">
                             <span className="font-semibold text-nowrap">{like.likedById.name}</span>
-                            <span className="text-[11px] text-nowrap">{like.likedById.university}</span>
+                            <span className="text-[11px] text-nowrap">({like.likedById.university})</span>
                         </div>
                     </Link>)
                 }

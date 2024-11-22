@@ -1,9 +1,9 @@
 import "/mongo/UserModel";
 import Blog from "/mongo/BlogModel";
-import { NextResponse } from "next/server";
-import { authenticateUser } from "@/utilities/authenticateUser";
-import { getJWTUser } from "@/utilities/getJWTUser";
 import { Likes } from "/mongo/LikesModel";
+import { NextResponse } from "next/server";
+import { getJWTUser } from "@/utilities/getJWTUser";
+import { authenticateUser } from "@/utilities/authenticateUser";
 
 export async function GET() {
     try {
@@ -12,7 +12,7 @@ export async function GET() {
             .populate({
                 path: 'writerId',   // targeting through
                 model: 'Users',       // targeting to
-                select: 'name imgUrl' // field to select
+                select: 'name imgUrl university' // field to select
             })
             .lean() //  Mongoose documents => js objects
             .exec();

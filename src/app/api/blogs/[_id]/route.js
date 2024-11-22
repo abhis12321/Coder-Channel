@@ -13,7 +13,7 @@ export const GET = async (req, { params }) => {
             .populate({
                 path: 'writerId',   // targeting through
                 model: 'Users',       // targeting to
-                select: 'name imgUrl' // field to select
+                select: 'name imgUrl university' // field to select
             })
             .lean() //  Mongoose documents => js objects
             .exec();
@@ -39,7 +39,7 @@ export async function POST(req, { params }) {
             .populate({
                 path: 'writerId',   // targeting through
                 model: 'Users',       // targeting to
-                select: 'name imgUrl' // field to select
+                select: 'name imgUrl university' // field to select
             })
             .lean()
             .exec();

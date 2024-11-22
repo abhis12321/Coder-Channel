@@ -4,12 +4,12 @@ import Blogs from './BlogCard';
 import Image from 'next/image';
 import Followers from './Followers';
 import Followings from './Followings';
+import StarredUser from './StarredUser';
+import { useAuth } from './AuthProvider';
 import ProfileEdit from './LoggedInProfileEdit'
 import { useCallback, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faRotate } from '@fortawesome/free-solid-svg-icons';
-import { useAuth } from './AuthProvider';
-import StarredUser from './StarredUser';
 
 
 export default function ProfileCard({ setStatus }) {
@@ -90,9 +90,8 @@ export default function ProfileCard({ setStatus }) {
           if(data.success) {
             setUser(data.user);
           }
-          alert(data.message);
         })
-        .catch(error => alert(error.message))
+        .catch(error => console.error(error.message))
         .finally(() => setConnections(0));
   }, [user?._id]);
 
