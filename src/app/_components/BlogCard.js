@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import BlogEditForm from './BlogEditForm';
 
-export default function Blogs({ blog, loadBlogs, handleBlogDelete, handleBlogEdit }) {
+export default function BlogCard({ blog, loadBlogs, handleBlogDelete, handleBlogEdit }) {
   const { user } = useAuth();
   const [option, setOption] = useState();
   const [comments, setComments] = useState([]);
@@ -52,7 +52,7 @@ export default function Blogs({ blog, loadBlogs, handleBlogDelete, handleBlogEdi
   }, [blog?._id]);
 
   return (
-    <div className='relative w-[98%] max-w-[700px] min-h-20 min-w-20 bg-white dark:bg-gray-800/95 shadow-[0_0_2px_gray] hover:shadow-[0_0_5px_gray] rounded-lg py-1 px-3 xs:px-4 md:px-5 flex flex-col justify-between items-center pb-[2.1px]' id={blog._id}>
+    <div className='relative w-[98%] max-w-[700px] min-h-20 min-w-20 bg-white dark:bg-gray-800/95 shadow-[0_0_2px_gray] hover:shadow-[0_0_5px_gray] rounded-lg py-1 px-3 xs:px-4 md:px-5 flex flex-col justify-between items-center pb-[2.1px]' id={blog?._id}>
 
       <div className="w-full flex justify-between items-center">
         <Link href={`/students/${blog.writerId._id}`} className="min-h-16 p-2 flex gap-5 items-center group border-b[1.5px] border-gray-400 mb-2">
@@ -95,7 +95,7 @@ export default function Blogs({ blog, loadBlogs, handleBlogDelete, handleBlogEdi
           <BlogComments blogId={blog._id} userId={user?._id} setOption={setOption} comments={comments} loadComments={loadComments} />
           :
           option === 2 ?
-            <CopyLink setCopyLink={setOption} text={`http://13.201.72.123/students/#${blog._id}`} />
+            <CopyLink setCopyLink={setOption} text={`http://13.201.72.123/${blog._id}`} />
             : option === 3 ?
               <BlogLikesPage setOption={setOption} allLikes={allLikes} />
               : (option === 4 && !user) ? <div className="min-h-screen w-full fixed z-10 top-0 left-0 flex items-center justify-center bg-slate-500/50 dark:bg-slate-900/90"><LoginForm /></div>

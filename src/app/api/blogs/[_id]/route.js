@@ -4,12 +4,11 @@ import { Likes } from "/mongo/LikesModel";
 import { NextResponse } from "next/server";
 import { Comment } from '/mongo/CommentModel';
 import { getJWTUser } from '@/utilities/getJWTUser';
-import { authenticateUser } from "@/utilities/authenticateUser";
 
 
 export const GET = async (req, { params }) => {
     try {
-        const blogs = await Blog.find({})
+        const blog = await Blog.findOne(params)
             .sort({ time: -1 })
             .populate({
                 path: 'writerId',   // targeting through
@@ -19,21 +18,13 @@ export const GET = async (req, { params }) => {
             .lean() //  Mongoose documents => js objects
             .exec();
 
-        const likedById = params._id;
-        const isVerified = authenticateUser(likedById)
-        if (!isVerified) {
-            return NextResponse.json({ success: true, blogs });
+        const likedById = getJWTUser()?._id;
+        if (!likedById || !blog) {
+            return NextResponse.json({ success: true, blog });
         }
-        
-        const blogsWithLikes = await Promise.all(blogs.map(async (blog) => {
-            const liked = await Likes.findOne({ likedToId: blog._id, likedById }).exec();
-            return {
-                ...blog,
-                liked: liked !== null
-            };
-        }));
-
-        return NextResponse.json({ blogs: blogsWithLikes, success: true });
+        const liked = await Likes.findOne({ likedToId: blog._id, likedById }).exec();
+        blog.liked = liked !== null;
+        return NextResponse.json({ blog , success: true });
     } catch (error) {
         return NextResponse.json({ message: error.message, success: false });
     }

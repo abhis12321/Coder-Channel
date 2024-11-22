@@ -10,9 +10,7 @@ export default function Page() {
   const [blogs, setBlogs] = useState([]);
 
   const loadBlogs = () => {    
-    let blogUrl = `/api/blogs/`;
-    if(user)    blogUrl += user._id;
-    axios.get(blogUrl)
+    axios.get("/api/blogs")
       .then(response => response.data)
       .then(data => {
         if(data.success) {  
