@@ -13,14 +13,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function NavBar() {
-  const cutX = useRef(null);
   const rightNav = useRef(null);
-  const hamBerger = useRef(null);
 
   const handleRight = () => {
-    cutX.current.classList.toggle("hidden")
-    rightNav.current.classList.toggle("hidden")
-    hamBerger.current.classList.toggle("hidden")
+    rightNav.current.classList.toggle("-right-full")
   };
 
   return (
@@ -31,8 +27,8 @@ export default function NavBar() {
         </Link>
       </div>
 
-      <div className="right-navbar fixed lg:static top-0 right-0 hidden lg:flex gap-8 bg-white dark:bg-blue-950 dark:lg:bg-transparent min-h-[100vh] lg:min-h-fit z-10 items-center min-w-[170px] dark:font-normal font-medium border-l-[1px] lg:border-0 border-gray-400 rint-2 ring-white" ref={rightNav}>
-        <div className="hidden text-4xl pt-[15px] pb-2 text-center"  onClick={handleRight} ref={cutX}>
+      <div className="min-w-[70px] pb-2 lg:pb-0 rounded-[1.7rem] lg:rounded-none fixed lg:static top-[20vh] right-0 -right-full lg:flex gap-8 bg-white dark:bg-indigo-950/50 dark:lg:bg-transparent z-10 items-center dark:font-normal font-medium shadow-[-.5px_.3px_1px_black] lg:shadow-none dark:shadow-white overflow-hidden duration-300" ref={rightNav}>
+        <div className="text-4xl pt-[9px] pb-[5.5px] text-center" onClick={handleRight}>
           <FontAwesomeIcon icon={faXmark} size="sm" className="h-[31px] hover:text-red-800 cursor-pointer"/>
         </div>
 
@@ -74,7 +70,7 @@ export default function NavBar() {
         <ToggleMode />
       </div>
 
-      <div className="lg:hidden text-3xl py-2" ref={hamBerger}>
+      <div className="lg:hidden text-3xl py-2">
         <FontAwesomeIcon
           icon={faBars}
           size="sm"

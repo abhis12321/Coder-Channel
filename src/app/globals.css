@@ -46,4 +46,7 @@
     scrollbar-width: thin;
     scrollbar-color: #7773f596 #bca2f303;
   }
+  .-right-full {
+    right: -100%;
+  }
 }
