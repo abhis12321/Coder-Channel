@@ -56,7 +56,7 @@ export default function AuthProvider({ children, initial_theme, initialUserValue
 
   return (
     <context.Provider value={value}>
-      <body className={`${initial_theme} w-[100vw] overflow-x-hidden bg-gray-100/60 text-gray-800 dark:bg-gray-900 dark:text-white`} ref={themeRef}>
+      <body className={`${initial_theme} w-[100vw] overflow-x-hidden bg-gray-100/60 text-gray-700 dark:bg-gray-900 dark:text-white *:new-scroll`} ref={themeRef}>
         <NavBar />
         <div className='h-nav'>
           {children}

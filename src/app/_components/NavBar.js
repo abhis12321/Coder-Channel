@@ -27,8 +27,8 @@ export default function NavBar() {
         </Link>
       </div>
 
-      <div className="min-w-[70px] pb-2 lg:pb-0 rounded-[1.7rem] lg:rounded-none fixed lg:static top-[20vh] right-0 -right-full lg:flex gap-8 bg-white dark:bg-indigo-950/50 dark:lg:bg-transparent z-10 items-center dark:font-normal font-medium shadow-[-.5px_.3px_1px_black] lg:shadow-none dark:shadow-white overflow-hidden duration-300" ref={rightNav}>
-        <div className="text-4xl pt-[9px] pb-[5.5px] text-center" onClick={handleRight}>
+      <div className="min-w-[70px] pb-2 lg:pb-0 rounded-[1.7rem] lg:rounded-none fixed lg:static top-[20vh] right-0 -right-full lg:flex gap-8 bg-white dark:bg-indigo-950/50 lg:bg-transparent dark:lg:bg-transparent z-10 items-center dark:font-normal font-medium shadow-[-.5px_.3px_1px_black] lg:shadow-none dark:shadow-white duration-300" ref={rightNav}>
+        <div className="text-4xl pt-[9px] pb-[5.5px] text-center lg:hidden" onClick={handleRight}>
           <FontAwesomeIcon icon={faXmark} size="sm" className="h-[31px] hover:text-red-800 cursor-pointer"/>
         </div>
 
@@ -74,7 +74,7 @@ export default function NavBar() {
         <FontAwesomeIcon
           icon={faBars}
           size="sm"
-          className="h-[23px] cursor-pointer text-gray-500 dark:text-gray-400"
+          className="h-[23px] cursor-pointer text-gray-500 dark:text-gray-300"
           onClick={handleRight}
         />
       </div>
