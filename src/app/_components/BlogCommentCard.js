@@ -36,7 +36,7 @@ export default function CommentCard({ comment , handleDeleteComment, handleEditC
             {
                 (user?._id == comment.commentById._id && commentOption === 2) ?
                     <form className="w-full pl-10 py-0 flex flex-col md:flex-row items-end gap-[3px]" onSubmit={handleCommentSubmit}>
-                        <textarea name="comment" placeholder='write your comment here...' className='appearance-none border-none resizenone w-full font-mono text-gray-600 dark:text-gray-400 text-[14px] outline-none bg-gray-500/10 focus:shadow-[0_0_2px_gray] px-2 rounded-md' defaultValue={comment.comment} rows={3} required></textarea>
+                        <textarea name="comment" placeholder='write your comment here...' className='appearance-none border-none w-full font-mono text-gray-600 dark:text-gray-400 text-[14px] outline-none bg-gray-500/10 focus:shadow-[0_0_2px_gray] px-2 rounded-md' defaultValue={comment.comment} rows={3} required></textarea>
                         {commentOption === 2 && <input type="submit" value="update" className='text-xs font-bold bg-blue-700/20 active:bg-violet-800 hover:ring-1 ring-blue-700 text-blue-700 px-3 py-[2px] rounded-lg cursor-pointer' />}
                     </form>
                     :

@@ -7,7 +7,7 @@ export default function StarredUser({ stars, setConnections }) {
             <div className="w-[98%] max-w-[350px] max-h-nav p-2 overflow-auto new-scroll flex gap-[1px] flex-col justify-start bg-white dark:bg-white/10 rounded shadow-[2px_2px_3px_black]">
                 <div className="px-1 pb-1 flex gap-4 items-center justify-between">
                     <div className="">stars : <span className="font-semibold">{stars?.length}</span></div>
-                    <div className="text-md text-red-600 hover:ring-1 ring-red-600 font-semibold px-[9px] py-[2px] cursor-pointer bg-red-600/5 hover:bg-red-600/20 rounded-full duration-500 shadow-[1px_2px_2px_black]" onClick={e => setConnections(0)}>X</div>
+                    <button className="text-md text-red-600 hover:ring-1 ring-red-600 font-semibold px-[9px] py-[2px] cursor-pointer bg-red-600/15 hover:bg-red-600/20 rounded-full duration-500 shadow-[1px_2px_2px_black]" onClick={e => setConnections(0)}>X</button>
                 </div>
                 {
                     stars?.map(star => <Link key={star?._id} href={`/students/${star?.likedById?._id}`} className='px-2 py-[2px] flex gap-3 justify-start items-center font-mono bg-gray-200 dark:bg-white/10 rounded w-full text-red-950 dark:text-white overflow-hidden hover:bg-gray-300 dark:hover:bg-white/30'>

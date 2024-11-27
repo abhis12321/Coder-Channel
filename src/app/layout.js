@@ -14,7 +14,7 @@ export default async function RootLayout({ children }) {
   const initialUserValue = getJWTUser();
 
   return (
-    <html lang="en" className="">
+    <html lang="en" className="overflow-x-hidden">
       <AuthProvider initial_theme={initial_theme} initialUserValue={initialUserValue}>
         {children}
       </AuthProvider>
