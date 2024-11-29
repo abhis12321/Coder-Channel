@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 import cryptoJS from "crypto-js";
 import Users from "/mongo/UserModel";
 import { NextResponse } from "next/server";
-import { authenticateUser } from "@/utilities/authenticateUser";
 import { setJWTUser } from "@/utilities/getJWTUser";
+import { authenticateUser } from "@/utilities/authenticateUser";
 
 
 export async function GET(req, { params }) {
@@ -73,40 +73,6 @@ export async function GET(req, { params }) {
         }
       }
     ]);
-    
-    // const users = await Users.aggregate([
-    //   {
-    //     $lookup: {
-    //       from: 'followers',
-    //       let: { userId: '$_id' },
-    //       pipeline: [
-    //         {
-    //           $match: {
-    //             $expr: {
-    //               $and: [
-    //                 { $eq: ['$followedToId', '$$userId'] },
-    //                 { $eq: ['$followedById', new mongoose.Types.ObjectId(userId)] }
-    //               ]
-    //             }
-    //           }
-    //         },
-    //         { $limit: 1 }
-    //       ],
-    //       as: 'followStatus'
-    //     }
-    //   },
-    //   {
-    //     $addFields: {
-    //       isFollowing: { $gt: [{ $size: '$followStatus' }, 0] }
-    //     }
-    //   },
-    //   {
-    //     $project: {
-    //       followStatus: 0,
-    //       password: 0 // exclude password field
-    //     }
-    //   }
-    // ]);
 
     return NextResponse.json({ success: true, users });
   } catch (error) {
