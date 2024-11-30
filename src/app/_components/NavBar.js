@@ -33,7 +33,7 @@ export default function NavBar() {
         </Link>
       </div>
 
-      <div className="min-w-[60px] pb-2 lg:pb-0 rounded-[1.7rem] lg:rounded-none fixed lg:static top-[20vh] -right-20 lg:flex gap-8 bg-white dark:bg-indigo-950 lg:bg-transparent dark:lg:bg-transparent z-10 items-center dark:font-normal font-medium shadow-[-.3px_.3px_1.5px_black] lg:shadow-none dark:shadow-white duration-300 backdrop-blur-lg lg:backdrop-blur-none" ref={rightNav}>
+      <div className="min-w-[60px] pb-2 lg:pb-0 rounded-[1.7rem] lg:rounded-none fixed lg:static top-[20vh] -right-20 lg:flex gap-8 bg-white dark:bg-indigo-950 lg:bg-transparent dark:lg:bg-transparent z-10 items-center dark:font-normal font-medium shadow-[-.3px_.3px_1.5px_black_inset] lg:shadow-none dark:shadow-white duration-300 backdrop-blur-lg lg:backdrop-blur-none" ref={rightNav}>
 
         <Link
           href="/"
