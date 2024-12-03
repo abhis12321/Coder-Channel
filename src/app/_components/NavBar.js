@@ -26,14 +26,14 @@ export default function NavBar() {
   };
 
   return (
-    <div className="h-16 py-2 px-[4%] sm:px-8 md:px-10 lg:px-12 fixed top-0 left-0 z-[90] w-full bg-white dark:bg-blue-900 text-gray-500 dark:text-gray-50 font-semibold flex items-center justify-between shadow-[0_0_1px_black] dark:shadow-[0_0_1px_white] backdrop-blur-lg">
+    <div className="h-16 py-2 px-[4%] sm:px-8 md:px-10 lg:px-12 fixed top-0 left-0 z-[90] w-full bg-white dark:bg-blue-900 text-gray-500 dark:text-gray-50 font-semibold flex items-center justify-between shadow-[0_0_1px_black] dark:shadow-[0_0_1px_white]">
       <div className="drop-shadow-[0_0_1px_black]">
         <Link href={'/'} className="font-extrabold italic text-3xl text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-gray-400 w-fit overflow-hidden px-1 font-serif">
           #CoderMedia
         </Link>
       </div>
 
-      <div className="min-w-[60px] pb-2 lg:pb-0 rounded-[1.7rem] lg:rounded-none fixed lg:static top-[20vh] -right-20 lg:flex gap-8 bg-white dark:bg-indigo-950 lg:bg-transparent dark:lg:bg-transparent z-10 items-center dark:font-normal font-medium shadow-[-.3px_.3px_1.5px_black_inset] lg:shadow-none dark:shadow-white duration-300 backdrop-blur-lg lg:backdrop-blur-none" ref={rightNav}>
+      <div className="min-w-[60px] pb-2 lg:pb-0 rounded-[1.55rem] lg:rounded-none fixed lg:static top-[20vh] -right-20 lg:flex gap-8 bg-white dark:bg-indigo-950/60 lg:bg-transparent dark:lg:bg-transparent z-10 items-center dark:font-normal font-medium shadow-[-.3px_.3px_1.5px_black_inset] lg:shadow-none dark:shadow-white duration-300 backdrop-blur-md lg:backdrop-blur-none" ref={rightNav}>
 
         <Link
           href="/"

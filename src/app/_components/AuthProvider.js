@@ -16,7 +16,6 @@ export default function AuthProvider({ children, initial_theme, initialUserValue
       Initializing(userData, setSocket);
       setUser(userData);
     }
-    socket?.on("disconnect", setUser(null));
   };
 
   const logout = () => {
@@ -35,12 +34,16 @@ export default function AuthProvider({ children, initial_theme, initialUserValue
     setSocket(null);
   }
 
+  const handleConnection = () => {    
+    socket.emit('new-user', ({ name: user?.name, _id: user._id }));
+  }
+
   useEffect(() => {
     socket?.on("refresh" , handleRefresh);
-    socket?.on("disconnect" , handleDisconnect);
+    socket?.on("connect" , handleConnection);
     return () => {
       socket?.off("refresh" , handleRefresh); 
-      socket?.off("disconnect" , handleDisconnect);     
+      socket?.off("connect" , handleConnection);   
     }
   } , [socket]);
   
@@ -80,12 +83,7 @@ function Initializing(sender, setSocket) {
         addTrailingSlash: false,
         // reconnection:false,
       });
-
-      // socket.io.opts.reconnection = false;
-      // console.log(sender.name);
-      socket.emit('new-user', ({ name: sender.name, _id: sender._id }));
       setSocket(socket);
-      // console.log(sender , setSocket, socket);
 
       return () => {
         socket.disconnect();
