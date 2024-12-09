@@ -8,6 +8,7 @@ import { sendVerificationEmail } from '@/utilities/sendVerificationMailToUser';
 import { TOCKEN_MAX_AGE, CODER_CHANNEL_TOCKEN } from '@/utilities/constants';
 import { verifyOPT } from '@/utilities/verifyOTP';
 import { sendOTP } from '@/utilities/sendOTP';
+import { setJWTUser } from '@/utilities/getJWTUser';
 
 
 export async function GET() {
@@ -62,21 +63,9 @@ export async function PUT(req) {
     if(!otpVerified) {
       return NextResponse.json({ message: "wrong OTP, Try again...!", success: false });      
     }
+    
     delete User.password;
-    const secret = process.env.JWT_SECRET_KEY || "";
-    const tocken = sign({ User }, secret, { expiresIn: TOCKEN_MAX_AGE });
-
-    // cookies().set(CODER_CHANNEL_TOCKEN, tocken, { maxAge: TOCKEN_MAX_AGE, sameSite: 'Strict' });
-
-    cookies().set({
-      name: CODER_CHANNEL_TOCKEN,
-      value: tocken,
-      // secure: process.env.NODE_ENV === 'production' && window.location.protocol === 'https:',
-      httpOnly: true,
-      sameSite: "strict",
-      maxAge: TOCKEN_MAX_AGE,
-      path: "/"
-    });
+    setJWTUser(User);
 
     return NextResponse.json({ User, success: true, message: `You credentials are right and you have Logged-in...!` })
   } catch (error) {

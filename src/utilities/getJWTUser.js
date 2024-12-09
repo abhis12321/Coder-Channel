@@ -21,7 +21,7 @@ export const setJWTUser = (User) => {
         value: tocken,
         // secure: process.env.NODE_ENV === 'production' && window.location.protocol === 'https:',
         httpOnly: true,
-        sameSite: "strict",
+        // sameSite: "strict",
         maxAge: TOCKEN_MAX_AGE,
         path: "/"
     });
