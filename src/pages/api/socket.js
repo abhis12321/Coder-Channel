@@ -27,7 +27,7 @@ export default async function SocketHandler(req, res) {
             socket.on('loadOnlineUsers', _id => {
                 socket.emit("existingOnline", Array.from(existingUsers));
             });
-            
+
             socket.on('sendPersonalMessage', data => {
                 socket.to(data.receiverId).emit('receivePersonalMessage', data);
             });

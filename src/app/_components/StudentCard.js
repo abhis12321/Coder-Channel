@@ -21,8 +21,8 @@ import { faStar as faRegularStar } from "@fortawesome/free-regular-svg-icons";
 
 export default function StudentCard({ student, index, handleFollowings, search, searchBy, loadUsers }) {
   const { socket, user } = useAuth();
-  const [onlineStatus, setOnlineStatus] = useState(false);
   const [copyLink, setCopyLink] = useState(0)
+  const [onlineStatus, setOnlineStatus] = useState(false);
 
   const handleStatus = ({ _id, status }) => {
     if (student._id == _id) {
@@ -30,7 +30,7 @@ export default function StudentCard({ student, index, handleFollowings, search, 
     }
   }
 
-  const handleEnistingOnlineUsers = (onlineUsersId) => {
+  const handleExistingOnlineUsers = (onlineUsersId) => {
     const set = new Set(onlineUsersId);
     if (set.has(student._id)) {
       setOnlineStatus(true);
@@ -39,10 +39,10 @@ export default function StudentCard({ student, index, handleFollowings, search, 
 
   useEffect(() => {
     socket?.on("online-status", handleStatus);
-    socket?.on("existingOnline", handleEnistingOnlineUsers);
+    socket?.on("existingOnline", handleExistingOnlineUsers);
     return () => {
       socket?.off("online-status", handleStatus);
-      socket?.off("existingOnline", handleEnistingOnlineUsers);
+      socket?.off("existingOnline", handleExistingOnlineUsers);
     }
   }, [socket]);
 

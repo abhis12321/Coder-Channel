@@ -135,7 +135,7 @@ export default function NotLoggedInUserProfile({ params }) {
   const isStarred = useMemo(() => {
     const findAll = stars?.filter(star => star?.likedById?._id == user?._id);
     return findAll.length > 0;
-  } , [stars , user])
+  }, [stars, user])
 
   const handleProfileLike = () => {
     axios.post('/api/users/likes', { likedById: user?._id, likedToId: student?._id })
@@ -157,13 +157,16 @@ export default function NotLoggedInUserProfile({ params }) {
             :
             <>
               <div className={`flex flex-col sm:flex-row gap-2 sm:gap-4 items-center justify-around bg-slate-200 dark:bg-blue-900/55 px-[2px] pt-2 pb-1 xs:p-2 sm:p-4 rounded-lg w-[98%] max-w-[900px] text-red-950 dark:text-white shadow-[0_0_2px_black]`}>
-                <div className="w-fit flex items-center justify-center">
-                  <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className={`rounded-full h-36 w-36 sm:h-40 sm:w-40 bg-white shadow-[0_0_2px_black] aspect-square ring-2 ${onlineStatus ? "ring-green-700" : "ring-red-700"}`} />
+                <div className="w-fit flex items-center justify-center relative">
+                  <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className={`rounded-full h-36 w-36 sm:h-40 sm:w-40 bg-white shadow-[0_0_2px_black] aspect-square ring-[3px] ${onlineStatus ? "ring-green-700" : "ring-red-700"}`} />
                 </div>
 
                 <div className="flex flex-col gap-3 px-1 py-2 xs:p-3 md:p-4 items-center sm:items-start justify-center bg-white dark:bg-blue-200/10 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
                   <div className="flex gap-2 md:gap-4 flex-wrap items-center">
-                    <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{student?.name}</h1>
+                    <div className="relative">
+                      <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{student?.name}</h1>
+                      {onlineStatus && <div className="absolute -right-1 top-0 h-2 w-2 bg-green-700 rounded-full"><div className="h-full w-full rounded-full animate-ping bg-green-500" /></div>}
+                    </div>
                     <button className="py-[3px] sm:py-1 px-3 md:px-4 text-xs sm:text-sm rounded-md bg-blue-800/90 hover:bg-blue-600 active:bg-violet-600 w-fit font-serif font-semibold text-gray-200" onClick={handleFollowers}> {student.isFollowed ? "following" : "follow"} </button>
                     {
                       isStarred ?

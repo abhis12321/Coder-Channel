@@ -46,9 +46,9 @@ export default function LoginForm() {
       <form onSubmit={handleLogin} className='w-[98%] max-w-[500px] min-h-[280px] py-4 px-5 bg-white dark:bg-blue-900/50 shadow-[0_0_2px_black_inset] dark:shadow-[0_0_4px_white] rounded-2xl text-red-950 dark:text-white flex flex-col items-center justify-evenly' autoComplete='on'>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className='bg-blue-950/10 dark:bg-red-600/15 px-2 py-[10px] rounded text-center w-[96%] max-w-[550px] outline-none focus:bg-green-600/15 ring-1 focus:ring-2 ring-violet-700 dark:ring-gray-400' placeholder='email' name='email' required />
 
-        {verifyOTP && <input type="text" value={OTP} onChange={(e) => setOTP(e.target.value)} className='bg-sky-600/30 dark:bg-sky-600/15 px-2 py-[10px] rounded text-center w-[96%] max-w-[550px] outline-none focus:bg-green-600/15 ring-1 focus:ring-2 ring-sky-600 text-sky-600 font-bold' placeholder='enter OTP' name='OTP' required />}
-
         <input type="password" value={password} onChange={(e) => setPass(e.target.value)} className='bg-blue-950/10 dark:bg-red-600/15 px-2 py-[10px] rounded text-center w-[96%] max-w-[550px] outline-none focus:bg-green-600/15 ring-1 focus:ring-2 ring-violet-700 dark:ring-gray-400' placeholder='password' name='password' required />
+
+        {verifyOTP && <input type="text" value={OTP} onChange={(e) => setOTP(e.target.value)} className='bg-sky-600/30 dark:bg-sky-600/15 px-2 py-[10px] rounded text-center w-[96%] max-w-[550px] outline-none focus:bg-green-600/15 ring-1 focus:ring-2 ring-sky-600 text-sky-600 font-bold' placeholder='enter OTP' name='OTP' required />}
 
         <div className="flex items-center justify-evenly w-[98%] max-w-[550px] text-xs xs:text-sm" >
           <div onClick={() => setOption(2)} className="text-blue-700 font-semibold underline hover:text-blue-600 hover:scale-110 cursor-pointer">Resend Verification Link</div>
