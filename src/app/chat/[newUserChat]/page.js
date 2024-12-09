@@ -19,7 +19,7 @@ export default function Page({ params }) {
   const [sender, setSender] = useState();
   const [message, setMessage] = useState("");
   const [onlineStatus, setOnlineStatus] = useState(false);
-  
+
   const scrollToBottom = () => {
     if (messageRef.current) {
       messageRef.current.scrollTop = messageRef.current.scrollHeight;
@@ -137,11 +137,16 @@ export default function Page({ params }) {
                 :
                 user ?
                   <div className="text-white rounded-md bg-white dark:bg-gray-800 dark:text-white w-full max-w-[900px] mx-auto pt-2 pb-12 overflow-hidden relative h-nav shadow-[0_0_2px_gray] flex flex-col items-center justify-start" >
-                    <Link href={`/students/${params.newUserChat}`} className={`w-[98%] bg-green-950/10 dark:bg-gray-950/20 ${onlineStatus ? 'shadow-[0_0_3px_green_inset]' : 'shadow-[0_0_3px_red_inset]'} rounded-md pl-4 p-2 mx-4 md:mx-9 flex items-center gap-6 hover:bg-red-800/20 hover:animate-pulse`}>
+                    <Link href={`/students/${params.newUserChat}`} className={`w-[98%] bg-green-950/10 dark:bg-gray-950/20 ${onlineStatus ? 'shadow-[0_0_3px_green_inset] hover:bg-lime-800/20' : 'shadow-[0_0_3px_red_inset] hover:bg-red-800/20'} rounded-md pl-4 p-2 mx-4 md:mx-9 flex items-center gap-4 md:gap-6 hover:animate-pulse overflow-x-hidden`}>
                       <Image src={sender?.imgUrl ? sender?.imgUrl : "/img/profileImg.jpg"} alt="image" height={70} width={70} className={`rounded-full w-16 h-16 ring-2 ${onlineStatus ? "ring-green-600" : "ring-red-800"}`} />
-                      <div className={`relative text-2xl font-semibold  ${onlineStatus ? 'drop-shadow-[1px_1px_1px_green]' : 'drop-shadow-[1px_1px_1px_red]'}`}>
-                        {sender?.name}
-                        <p onClick={handleReceiveMessage} className={`absolute top-0 text-[8px] font-semibold px-1 py-0 leading-4 inline-flex rounded-full ${onlineStatus ? "dark:bg-green-800 bg-lime-900" : "dark:bg-red-800 bg-red-900"} `}>{onlineStatus ? "online" : "offline"}</p>
+                      <div className="flex flex-col">
+                        <div className={`relative text-2xl font-semibold text-nowrap  ${onlineStatus ? 'drop-shadow-[1px_1px_1px_green]' : 'drop-shadow-[1px_1px_1px_red]'}`}>
+                          {sender?.name}
+                          <p onClick={handleReceiveMessage} className={`absolute top-0 text-[8px] font-semibold px-1 py-0 leading-4 inline-flex rounded-full ${onlineStatus ? "dark:bg-green-800 bg-lime-900" : "dark:bg-red-800 bg-red-900"} `}>{onlineStatus ? "online" : "offline"}</p>
+                        </div>
+                        <div className={`relative text-xs text-nowrap  ${onlineStatus ? 'drop-shadow-[1px_1px_1px_green]' : 'drop-shadow-[1px_1px_1px_red]'}`}>
+                          (@{sender?.university})
+                        </div>
                       </div>
                     </Link>
 
