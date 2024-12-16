@@ -1,14 +1,11 @@
 import cron from 'node-cron';
 import cryptoJS from 'crypto-js'
-import { sign } from "jsonwebtoken";
 import Users from "/mongo/UserModel";
-import { cookies } from 'next/headers';
 import { NextResponse } from "next/server";
-import { sendVerificationEmail } from '@/utilities/sendVerificationMailToUser';
-import { TOCKEN_MAX_AGE, CODER_CHANNEL_TOCKEN } from '@/utilities/constants';
-import { verifyOPT } from '@/utilities/verifyOTP';
 import { sendOTP } from '@/utilities/sendOTP';
+import { verifyOPT } from '@/utilities/verifyOTP';
 import { setJWTUser } from '@/utilities/getJWTUser';
+import { sendVerificationEmail } from '@/utilities/sendVerificationMailToUser';
 
 
 export async function GET() {
@@ -23,13 +20,14 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    const payload = await req.json();
-    const user = new Users(payload);
+    let { name, email, password, gender } = await req.json();
+    password = cryptoJS.AES.encrypt(password, email).toString();      // Encrypt a password
+    const user = new Users({ name , email , gender, password });
     await user.save();
-    await sendVerificationEmail(payload.email, user._id);
+    await sendVerificationEmail(email, user._id);
     return NextResponse.json({ message: "Verification Link sent successfully to your Email...! It will be valid only for 10 minutes, If you fails to verify within the time your registration will be cancelled. And you have to register again for further process", success: true });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return NextResponse.json({ error: 'Error during file upload: ' + error.message }, { status: 500 });
   }
 }
@@ -38,7 +36,7 @@ export async function POST(req) {
 export async function PUT(req) {
   try {
     let data = await req.json();
-    let { email, password , OTP } = data;
+    let { email, password, OTP } = data;
 
     if (!email || !password) {
       return NextResponse.json({ message: "bad request! Missing credentials.", success: false });
@@ -54,16 +52,16 @@ export async function PUT(req) {
       return NextResponse.json({ message: "email verification required...!", success: false });
     }
 
-    if(!OTP) {
+    if (!OTP) {
       sendOTP({ email });
       return NextResponse.json({ message: "OTP is sent to your email", success: true });
     }
 
-    const otpVerified = verifyOPT({ email , OTP });
-    if(!otpVerified) {
-      return NextResponse.json({ message: "wrong OTP, Try again...!", success: false });      
+    const otpVerified = verifyOPT({ email, OTP });
+    if (!otpVerified) {
+      return NextResponse.json({ message: "wrong OTP, Try again...!", success: false });
     }
-    
+
     delete User.password;
     setJWTUser(User);
 

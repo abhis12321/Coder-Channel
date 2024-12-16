@@ -6,18 +6,14 @@ import { sendPasswordToUser } from "@/utilities/sendPasswordToUser";
 
 export async function POST(req) {
   try {
-    let data = await req.json();
-    let email = data.email;
-
+    let {email} = await req.json();
     if (!email) return NextResponse.json({ message: "Missing email or token" });
-    let check = await Users.find({ email });
-
-    if (check.length == 0) {
+    let user = await Users.findOne({ email });
+    if (!user) {
       return NextResponse.json({ message: "Email is not resistered..!" });
     } else {
-      let bytes = cryptoJS.AES.decrypt(check[0].password, email);
+      let bytes = cryptoJS.AES.decrypt(user.password, email);
       let pass = bytes.toString(cryptoJS.enc.Utf8);
-
       await sendPasswordToUser({ email, pass });
       return NextResponse.json({ message: "Your Password sent successfully to your Email...!" });
     }

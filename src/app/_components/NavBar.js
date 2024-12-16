@@ -14,16 +14,17 @@ import {
 export default function NavBar() {
   const rightNav = useRef(null);
 
-  const handleRight = () => {
-    rightNav.current.classList.toggle("-right-20")
-    rightNav.current.classList.toggle("right-1")
-  };
-
   const handleHideRight = () => {
     if (!rightNav.current.classList.contains("-right-20")) {
       handleRight();
     }
   };
+  
+  const handleRight = () => {
+    rightNav.current.classList.toggle("-right-20")
+    rightNav.current.classList.toggle("right-1")
+  };
+
 
   return (
     <div className="h-16 py-2 px-[4%] sm:px-8 md:px-10 lg:px-12 fixed top-0 left-0 z-[90] w-full bg-white dark:bg-blue-900 text-gray-500 dark:text-gray-50 font-semibold flex items-center justify-between shadow-[0_0_1px_black] dark:shadow-[0_0_1px_white]">

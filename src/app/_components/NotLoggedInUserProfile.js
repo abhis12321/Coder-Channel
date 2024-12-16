@@ -12,6 +12,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as faRegularStar } from '@fortawesome/free-regular-svg-icons';
 import { faMessage, faStar as faSolidStar } from '@fortawesome/free-solid-svg-icons';
+import UserSocialMediaInfo from './UserSocialMediaInfo';
 
 export default function NotLoggedInUserProfile({ params }) {
   const { user, socket } = useAuth();
@@ -161,8 +162,8 @@ export default function NotLoggedInUserProfile({ params }) {
                   <Image src='/img/profileImg.jpg' alt='profile-image' width={200} height={200} className={`rounded-full h-36 w-36 sm:h-40 sm:w-40 bg-white shadow-[0_0_2px_black] aspect-square ring-[3px] ${onlineStatus ? "ring-green-700" : "ring-red-700"}`} />
                 </div>
 
-                <div className="flex flex-col gap-3 px-1 py-2 xs:p-3 md:p-4 items-center sm:items-start justify-center bg-white dark:bg-blue-200/10 w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg">
-                  <div className="flex gap-2 md:gap-4 flex-wrap items-center">
+                <div className="w-[100%] sm:w-[72%] sm:max-w-[700px] rounded-lg px-1 py-2 xs:p-3 md:p-4 flex flex-col gap-2 items-center sm:items-start justify-center bg-white dark:bg-blue-200/10">
+                  <div className="flex gap-x-2 md:gap-x-4 flex-wrap items-center justify-center">
                     <div className="relative">
                       <h1 className="text-2xl sm:text-3xl font-bold font-serif drop-shadow-[0_0_5px_lack]">{student?.name}</h1>
                       {onlineStatus && <div className="absolute -right-1 top-0 h-2 w-2 bg-green-700 rounded-full"><div className="h-full w-full rounded-full animate-ping bg-green-500" /></div>}
@@ -183,7 +184,7 @@ export default function NotLoggedInUserProfile({ params }) {
                           className={`hover:scale-110 duration-300 active:text-violet-700 text-yellow-700/80 hover:text-yellow-600 hover:drop-shadow-[1px_1px_1px_black] py-[2px] h-6 cursor-pointer`}
                           onClick={handleProfileLike}
                         />}
-                    <Link href={`/chat/${student._id}`} name="personal-message">
+                    <Link href={`/chat/${student._id}`} name="personal-message" className='relative top-1 '>
                       <FontAwesomeIcon size='sm' icon={faMessage} className='h-[22px] hover:scale-110 text-cyan-700 hover:text-yellow-400 hover:drop-shadow-[0_0_2px_black]' />
                     </Link>
                   </div>
@@ -202,17 +203,7 @@ export default function NotLoggedInUserProfile({ params }) {
                       <span className="" >Followings</span>
                     </button>
                   </div>
-
-                  <div className="flex flex-col items-center sm:items-start">
-                    <div className="flex gap-[5px] items-start">
-                      <h1 className="text-gray-400 w-fit">course : </h1>
-                      <h1 className="font-mono flex-1 font-semibold">{student?.course}</h1>
-                    </div>
-                    <div className="flex gap-[5px] items-start">
-                      <h1 className="text-gray-400 w-fit">university : </h1>
-                      <h1 className="font-mono flex-1 font-semibold">{student?.university}</h1>
-                    </div>
-                  </div>
+                  <UserSocialMediaInfo course={student?.course} university={student?.university} instagram={student?.instagram} github={student?.github} linkedIn={student?.linkedIn} />
                 </div>
               </div>
 

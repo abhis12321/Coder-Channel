@@ -51,6 +51,30 @@ export default function BlogCard({ blog, loadBlogs, handleBlogDelete, handleBlog
     loadComments();
   }, [blog?._id]);
 
+  const handleHamburgerClick = (e) => {
+    e.preventDefault();
+    setOption(prev => prev == 10 ? 0 : 10)
+  }
+
+  let blurtimeOut;
+  const handleHamburgerOnBlur = (e) => {
+    if (option === 10) {
+      blurtimeOut = setTimeout(() => setOption(0), 200);
+    }
+  }
+
+  const handleBlogEditOption = (e) => {
+    clearTimeout(blurtimeOut);
+    e.stopPropagation();
+    setOption(11);
+  }
+
+  const handleBlogDeleteOption = (e) => {
+    clearTimeout(blurtimeOut);
+    handleBlogDelete(e);
+    setOption(0);
+  }
+
   return (
     <div className='relative w-[98%] max-w-[700px] min-h-20 min-w-20 bg-white dark:bg-gray-800/95 shadow-[0_0_2px_gray] hover:shadow-[0_0_5px_gray] rounded-lg py-1 px-3 xs:px-4 md:px-5 flex flex-col justify-between items-center pb-[2.1px]' id={blog?._id}>
       <div className="w-full flex justify-between items-center">
@@ -67,18 +91,17 @@ export default function BlogCard({ blog, loadBlogs, handleBlogDelete, handleBlog
         {
           handleBlogDelete && handleBlogEdit &&
           <div className="relative cursor-pointer">
-            <FontAwesomeIcon size='sm' icon={faEllipsisVertical} className={`h-5 px-3 hover:text-blue-600 ${option === 10 && "rotate-90"} duration-300`} onClick={() => setOption(prev => prev == 10 ? 0 : 10)} />
-            {
-              option === 10 &&
-              <div className='absolute top-[24px] left-[-.1rem] flex flex-col gap-[6px] items-start text-xs font-bold' onClick={() => setOption(0)}>
-                <button className='text-green-700 hover:bg-green-700/20 py-[2px] px-1 rounded-lg' onClick={(e) => { e.stopPropagation(); setOption(11); }}>
+            <button className="w-fit" onClick={handleHamburgerClick} onBlur={handleHamburgerOnBlur}>
+              <FontAwesomeIcon size='sm' icon={faEllipsisVertical} className={`h-5 px-3 hover:text-blue-600 ${option === 10 && "rotate-90"} duration-300`} />
+            </button>
+            <div className={`absolute top-[24px] right-[1px] flex flex-col gap-[6px] items-start text-xs font-bold ${option !== 10 && "scale-0"} duration-300`}>
+              <button className='text-green-700 hover:bg-green-700/20 py-[2px] px-1 rounded-lg' onClick={handleBlogEditOption}>
                 <FontAwesomeIcon size='sm' icon={faPenToSquare} className='h-[18px]' />
-                </button>
-                <button className='text-red-700 hover:bg-red-700/20 py-[2px] px-1 rounded-lg' onClick={handleBlogDelete}>
+              </button>
+              <button className='text-red-700 hover:bg-red-700/20 py-[2px] px-1 rounded-lg' onClick={handleBlogDeleteOption}>
                 <FontAwesomeIcon size='sm' icon={faTrashCan} className='h-[18px]' />
-                </button>
-              </div>
-            }
+              </button>
+            </div>
           </div>
         }
       </div>

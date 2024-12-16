@@ -3,7 +3,7 @@ import { useState } from 'react';
 import LoginForm from './LoginForm';
 import UserLogout from './UserLogout';
 import {useAuth} from './AuthProvider';
-import ProfileCard from './LoggedInProfileCard';
+import LoggedInProfileCard from './LoggedInProfileCard';
 
 export default function LoggedInUserProfile() {  
   let { user } = useAuth();
@@ -14,7 +14,7 @@ export default function LoggedInUserProfile() {
       { !user ?
           <LoginForm />
           :
-          <ProfileCard setStatus = {e => setStatus(false)}/>
+          <LoggedInProfileCard setStatus = {e => setStatus(false)}/>
       }
 
       {
