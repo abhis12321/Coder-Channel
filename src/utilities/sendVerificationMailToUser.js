@@ -9,15 +9,14 @@ const transporter = nodemailer.createTransport({
     },
   });
   
-export async function sendVerificationEmail(email, token) {
-    let hostname = process.env.DOMAIN_LINK;
-    const link = `${hostname}/login/${token}?e=${email}`;
+export async function sendVerificationEmail(email, token, origin) {
+    const link = `${origin}/login/${token}?e=${email}`;
   
     const mailOptions = {
       from: process.env.USER_EMAIL,
       to: email,
       subject: "Email Verification",
-      text: `Please click on this link to verify your email address:\n${link}\n\nIf you did not request this verification, please ignore this message.`,
+      text: "verify your email",
       html: emailVerificationMessageFromAdminToUser({ link }),
     };
   

@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
       from: process.env.USER_EMAIL,
       to: email,
       subject: "password forgot",
-      text: `Please use this password to login with your email address:\n${pass}\n\nIf you did not request this password, please ignore this message.`,
+      text: "Forgot password",
       html: forgotPasswordMessage({ pass }),
     };
   

@@ -24,7 +24,8 @@ export async function POST(req) {
     password = cryptoJS.AES.encrypt(password, email).toString();      // Encrypt a password
     const user = new Users({ name , email , gender, password });
     await user.save();
-    await sendVerificationEmail(email, user._id);
+    const origin = new URL(req.url)?.origin;
+    await sendVerificationEmail(email, user._id, origin);
     return NextResponse.json({ message: "Verification Link sent successfully to your Email...! It will be valid only for 10 minutes, If you fails to verify within the time your registration will be cancelled. And you have to register again for further process", success: true });
   } catch (error) {
     // console.error(error);

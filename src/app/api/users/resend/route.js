@@ -5,7 +5,6 @@ import { sendVerificationEmail } from "@/utilities/sendVerificationMailToUser";
 
 export async function POST(req) {
   try {
-    let origin = (req.url).slice(0 , -17);
     let data = await req.json();
     let email = data.email;
   
@@ -14,7 +13,6 @@ export async function POST(req) {
     }
   
     let check = await Users.findOne(data);
-    // console.log(check , email , data);
     
     if (!check) {
       return NextResponse.json({ message: "Email is not resistered..!" });
@@ -24,6 +22,7 @@ export async function POST(req) {
     }
     else {
         let token = check._id;
+        const origin = new URL(req.url)?.origin;
         await sendVerificationEmail(check.email, token , origin);
         return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" });
     }

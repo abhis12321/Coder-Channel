@@ -44,12 +44,15 @@ const userSchema = new mongoose.Schema({    //data model
     },
     linkedIn: {
         type:String,
+        default:"",
     },
     instagram: {
         type:String,
+        default:"",
     },
     github: {
         type:String,
+        default:"",
     },
     createdAt: {
         type:Date,

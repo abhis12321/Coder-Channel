@@ -139,10 +139,14 @@ export default function NotLoggedInUserProfile({ params }) {
   }, [stars, user])
 
   const handleProfileLike = () => {
-    axios.post('/api/users/likes', { likedById: user?._id, likedToId: student?._id })
-      .then(res => res.data)
-      .catch(error => console.error(error.message))
-      .finally(() => loadStars())
+    if (user) {
+      axios.post('/api/users/likes', { likedById: user?._id, likedToId: student?._id })
+        .then(res => res.data)
+        .catch(error => console.error(error.message))
+        .finally(() => loadStars());
+    } else {
+      alert("login first");
+    }
   }
 
   return (

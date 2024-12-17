@@ -11,7 +11,7 @@ function UsersContainer({ users }) {
   const [searchBy, setSearchBy] = useState("0");
 
   const loadUsers = () => {
-    axios.get(`/api/users/${user?._id}`)
+    axios.get(`/api/users/${user?._id || ""}`)
       .then(res => res.data)
       .then(data => data.success && setStudents(data.users))
       .catch(error => console.error(error.message));
@@ -38,6 +38,7 @@ function UsersContainer({ users }) {
     socket?.emit("loadOnlineUsers", user._id);
   }, [user]);
 
+
   return (
     <>
       <div className="flex justify-evenly items-center py-5 flex-wrap gap-6 h-nav">
@@ -57,12 +58,7 @@ function UsersContainer({ users }) {
               </select>
               <input type="text" className="w-full max-w-[320px] md:w-fit flex-1 outline-none text-gray-700 dark:text-white py-[6px] px-5 rounded-xl bg-white dark:bg-sky-900/40 shadow-[0_0_2px_black_inset] dark:shadow-[0_0_2px_white_inset] focus:shadow-[0_0_5px_violet_inset] focus:ring-1 ring-violet-700 dark:focus:shadow-[0_0_3px_black_inset] focus:bg-violet-700/10 font-semibold font-mono dark:placeholder:text-gray-400 placeholder:text-gray-500 text-center" value={search} onChange={e => setSearch((e.target.value).toLowerCase())} placeholder='type here to search...' />
             </div>
-            {students?.map((student, index) => {
-              return student.verify ?
-                <StudentCard key={student._id + index} student={student} loadUsers={loadUsers} index={index} handleFollowings={handleFollowings} search={search.toLowerCase()} searchBy={searchBy} />
-                :
-                null
-            })}
+            {students?.map((student, index) => student.verify && <StudentCard key={student._id + index} student={student} loadUsers={loadUsers} index={index} handleFollowings={handleFollowings} search={search.toLowerCase()} searchBy={searchBy} />)}
           </>
         }
       </div>

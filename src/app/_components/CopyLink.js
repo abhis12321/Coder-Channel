@@ -1,10 +1,13 @@
 "use client"
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faCopy } from '@fortawesome/free-solid-svg-icons'
 
-export default function CopyLink({ text, setCopyLink }) {
+export default function CopyLink({ url, setCopyLink }) {
     const [status, setStatus] = useState(1);
+    const origin = useMemo(() => window?.location?.origin, [window?.location]);
+    const text = origin + url;
+
     const handleCopyURL = () => {
         if (navigator?.clipboard?.writeText) {
             navigator.clipboard.writeText(text)
