@@ -22,7 +22,7 @@ export async function POST(req) {
     }
     else {
         let token = check._id;
-        const origin = new URL(req.url)?.origin;
+        const origin = `http://${req.headers.get('x-forwarded-host') || req.headers.get('host') || '13.201.44.241/'}`;
         await sendVerificationEmail(check.email, token , origin);
         return NextResponse.json({ message: "Verification Link sent successfully to your Email...!" });
     }
